@@ -27,4 +27,6 @@ This program does not operate automatically. All the timers and counters are mod
 You can find more details on how this program works by pressing the program's help button.
 
 
-Created by: Tilemachos Dimos  -  October 2020
+Created by:
+
+Tilemachos Dimos  -  October 2020
