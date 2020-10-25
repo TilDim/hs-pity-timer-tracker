@@ -10,10 +10,12 @@ This program has a pity timer tracker for both epic and legendary cards of every
 
 
 How to install:
+
 There is no installation required for this program to work. Just download and run the .exe file anywhere in your system.
 
 
 How it works:
+
 For each expansion there is a dedicated panel containing:
 1) The icon of the expansion, which is a link to the expansion's official website (except 'Clsssic')
 2) A pity timer tracker for epic cards with buttons to modify the tracker and a label displaying the probability of finding an epic card in the next pack
@@ -25,4 +27,4 @@ This program does not operate automatically. All the timers and counters are mod
 You can find more details on how this program works by pressing the program's help button.
 
 
-Created by: Tilemachos Dimos - October 2020
+Created by: Tilemachos Dimos  -  October 2020
