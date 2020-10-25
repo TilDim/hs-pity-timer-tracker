@@ -3,8 +3,7 @@ Helps you keep track of the pity timers in Hearthstone
 
 What is a pity timer?
 
-When you open card packs in Hearthstone, you are guaranteed to find an epic card within 10 packs and a legendary one within 40. 
-This is called a pity timer and there is one for each expansion."
+When you open card packs in Hearthstone, you are guaranteed to find an epic card within 10 packs and a legendary one within 40. This is called a pity timer and there is one for each expansion."
 
 This program has a pity timer tracker for both epic and legendary cards of every expansion and a total pack counter for each expansion to keep track of how many packs you open.
 
