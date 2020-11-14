@@ -2294,14 +2294,14 @@ public class HSPityTimerTracker implements ActionListener
 		// "Madness at the Darkmoon Faire" epic reset button
 		else if (index == 1) {
 			darkmoonEpicCounter = 0;
-			tracker.setScholomanceEpicCounter(Integer.toString(darkmoonEpicCounter));
+			tracker.setDarkmoonEpicCounter(Integer.toString(darkmoonEpicCounter));
 			
 			// Reset the increment field to '1'
 			darkmoonEpicIncrement.setText("1");
 			
 			// Calculate probability
 			darkmoonEpicProbability = probabilityCalculator(darkmoonEpicCounter, 10);
-			tracker.setScholomanceEpicProbability(nf.format(darkmoonEpicProbability));
+			tracker.setDarkmoonEpicProbability(nf.format(darkmoonEpicProbability));
 		}
 		// "Scholomance Academy" epic reset button
 		else if (index == 2) {
@@ -2523,11 +2523,11 @@ public class HSPityTimerTracker implements ActionListener
 				java.awt.Toolkit.getDefaultToolkit().beep();
 				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
 			}
-			tracker.setScholomanceEpicCounter(Integer.toString(darkmoonEpicCounter));
+			tracker.setDarkmoonEpicCounter(Integer.toString(darkmoonEpicCounter));
 			
 			// Calculate probability
 			darkmoonEpicProbability = probabilityCalculator(darkmoonEpicCounter, 10);
-			tracker.setScholomanceEpicProbability(nf.format(darkmoonEpicProbability));
+			tracker.setDarkmoonEpicProbability(nf.format(darkmoonEpicProbability));
 		}
 		// "Scholomance Academy" epic add button
 		else if (index == 2) {
@@ -2835,16 +2835,16 @@ public class HSPityTimerTracker implements ActionListener
 			tracker.setClassicLegendaryProbability(nf.format(classicLegendaryProbability));
 		}
 		// "Madness at the Darkmoon Faire" legendary reset button
-		else if (index == 2) {
+		else if (index == 1) {
 			darkmoonLegendaryCounter = 0;
-			tracker.setScholomanceLegendaryCounter(Integer.toString(darkmoonLegendaryCounter));
+			tracker.setDarkmoonLegendaryCounter(Integer.toString(darkmoonLegendaryCounter));
 			
 			// Reset the increment field to '1'
 			darkmoonLegendaryIncrement.setText("1");
 			
 			// Calculate probability
 			darkmoonLegendaryProbability = probabilityCalculator(darkmoonLegendaryCounter, 40);
-			tracker.setScholomanceLegendaryProbability(nf.format(darkmoonLegendaryProbability));
+			tracker.setDarkmoonLegendaryProbability(nf.format(darkmoonLegendaryProbability));
 		}
 		// "Scholomance Academy" legendary reset button
 		else if (index == 2) {
@@ -3066,11 +3066,11 @@ public class HSPityTimerTracker implements ActionListener
 				java.awt.Toolkit.getDefaultToolkit().beep();
 				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
 			}
-			tracker.setScholomanceLegendaryCounter(Integer.toString(darkmoonLegendaryCounter));
+			tracker.setDarkmoonLegendaryCounter(Integer.toString(darkmoonLegendaryCounter));
 			
 			// Calculate probability
 			darkmoonLegendaryProbability = probabilityCalculator(darkmoonLegendaryCounter, 40);
-			tracker.setScholomanceLegendaryProbability(nf.format(darkmoonLegendaryProbability));
+			tracker.setDarkmoonLegendaryProbability(nf.format(darkmoonLegendaryProbability));
 		}
 		// "Scholomance Academy" legendary add button
 		else if (index == 2) {
@@ -3395,7 +3395,7 @@ public class HSPityTimerTracker implements ActionListener
 				darkmoonTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
-			tracker.setScholomanceTotalCounter(Integer.toString(darkmoonTotalCounter));
+			tracker.setDarkmoonTotalCounter(Integer.toString(darkmoonTotalCounter));
 			
 			// Reset the increment field to '1'
 			darkmoonTotalIncrement.setText("1");
@@ -3599,7 +3599,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "Madness at the Darkmoon Faire" total add button
 		else if (index == 1) {
 			darkmoonTotalCounter = darkmoonTotalCounter + Integer.valueOf(darkmoonTotalIncrement.getText());
-			tracker.setScholomanceTotalCounter(Integer.toString(darkmoonTotalCounter));
+			tracker.setDarkmoonTotalCounter(Integer.toString(darkmoonTotalCounter));
 			
 			// Reset the increment field to '1'
 			darkmoonTotalIncrement.setText("1");
