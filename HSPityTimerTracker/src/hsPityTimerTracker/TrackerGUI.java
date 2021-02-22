@@ -131,6 +131,7 @@ public class TrackerGUI
 	private final String showWildSelectedHoverIconPath = "wild_checkbox_icons/checkbox_selected_hover.png";
 	
 	// Hearthstone Years
+	private JPanel gryphon; // Year of the Gryphon
 	private JPanel phoenix; // Year of the Phoenix
 	private JPanel dragon; // Year of the Dragon
 	private JPanel raven; // Year of the Raven
@@ -139,6 +140,7 @@ public class TrackerGUI
 	private JPanel classicSets; // Classic Sets
 	
 	// Years title headers
+	private JPanel gryphonHeader;
 	private JPanel phoenixHeader;
 	private JPanel dragonHeader;
 	private JPanel ravenHeader;
@@ -147,6 +149,7 @@ public class TrackerGUI
 	private JPanel classicSetsHeader;
 	
 	// Years titles
+	private final String gryphonTitle = "Year of the Gryphon (2021)";
 	private final String phoenixTitle = "Year of the Phoenix (2020)";
 	private final String dragonTitle = "Year of the Dragon (2019)";
 	private final String ravenTitle = "Year of the Raven (2018)";
@@ -154,6 +157,7 @@ public class TrackerGUI
 	private final String krakenTitle = "Year of the Kraken (2016)";
 	private final String classicSetsTitle = "Classic Sets (2014-2015)";
 	
+	private JLabel gryphonLabel;
 	private JLabel phoenixLabel;
 	private JLabel dragonLabel;
 	private JLabel ravenLabel;
@@ -162,6 +166,11 @@ public class TrackerGUI
 	private JLabel classicSetsLabel;
 	
 	// Years logos
+	private JLabel gryphonImageLabel;
+	private BufferedImage gryphonImage;
+	private URL gryphonImageURL;
+	private final String gryphonImagePath = "hs_years_icons/year_of_the_gryphon.png";
+	
 	private JLabel phoenixImageLabel;
 	private BufferedImage phoenixImage;
 	private URL phoenixImageURL;
@@ -193,7 +202,8 @@ public class TrackerGUI
 	private final String classicSetsImagePath = "hs_years_icons/classic_sets.png";
 	
 	// Hearthstone Expansions
-	private JPanel classic; // Classic
+	// Year of the Gryphon
+	private JPanel barrens; // Forged in the Barrens
 	// Year of the Phoenix
 	private JPanel darkmoon; // Madness at the Darkmoon Faire
 	private JPanel scholomance; // Scholomance Academy
@@ -216,17 +226,18 @@ public class TrackerGUI
 	// Classic Sets
 	private JPanel tournament; // The Grand Tournament
 	private JPanel goblins; // Goblins vs Gnomes
+	private JPanel classic; // Classic
 	
-	// Expansions logos
-	private JLabel classicImageLabel;
-	private BufferedImage classicImage;
-	private URL classicImageURL;
-	private final String classicImagePath = "hs_expansions_icons/classic.png";
+	// Expansions logos	
+	private JButton barrensImageButton;
+	private BufferedImage barrensImage;
+	private URL barrensImageURL;
+	private final String barrensImagePath = "hs_expansions_icons/forged_in_the_barrens.png";
 	
 	private JButton darkmoonImageButton;
 	private BufferedImage darkmoonImage;
 	private URL darkmoonImageURL;
-	private final String darkmoonImagePath = "hs_expansions_icons/darkmoon.png";
+	private final String darkmoonImagePath = "hs_expansions_icons/madness_at_the_darkmoon_faire.png";
 	
 	private JButton scholomanceImageButton;
 	private BufferedImage scholomanceImage;
@@ -303,10 +314,15 @@ public class TrackerGUI
 	private URL goblinsImageURL;
 	private final String goblinsImagePath = "hs_expansions_icons/goblins_vs_gnomes.png";
 	
+	private JLabel classicImageLabel;
+	private BufferedImage classicImage;
+	private URL classicImageURL;
+	private final String classicImagePath = "hs_expansions_icons/classic.png";
+	
 	// Message displaying when hovering over an expansion logo
 	private final String imageButtonToolTipText = "Go to the expansion's official webpage";
 	
-	private JPanel classicImagePanel;
+	private JPanel barrensImagePanel;
 	private JPanel darkmoonImagePanel;
 	private JPanel scholomanceImagePanel;
 	private JPanel outlandImagePanel;
@@ -323,9 +339,10 @@ public class TrackerGUI
 	private JPanel oldGodsImagePanel;
 	private JPanel tournamentImagePanel;
 	private JPanel goblinsImagePanel;
+	private JPanel classicImagePanel;
 /*	
 	// Expansions title labels
-	private final String classicTitle = "Classic";
+	private final String barrensTitle = "Forged in the Barrens";
 	private final String darkmoonTitle = "Madness at the Darkmoon Faire";
 	private final String scholomanceTitle = "Scholomance Academy";
 	private final String outlandTitle = "Ashes of Outland";
@@ -342,8 +359,9 @@ public class TrackerGUI
 	private final String oldGodsTitle = "Whispers of the Old Gods";
 	private final String tournamentTitle = "The Grand Tournament";
 	private final String goblinsTitle = "Goblins vs Gnomes";
+	private final String classicTitle = "Classic";
 	
-	private JTextPane classicTitleLabel;
+	private JTextPane barrensTitleLabel;
 	private JTextPane darkmoonTitleLabel;
 	private JTextPane scholomanceTitleLabel;
 	private JTextPane outlandTitleLabel;
@@ -360,9 +378,10 @@ public class TrackerGUI
 	private JTextPane oldGodsTitleLabel;
 	private JTextPane tournamentTitleLabel;
 	private JTextPane goblinsTitleLabel;
+	private JTextPane classicTitleLabel;
 	
 	// Expansions title labels
-	private final String classicDate = "(March 2014)";
+	private final String barrensDate = "(March 2021)";
 	private final String darkmoonDate = "(November 2020)";
 	private final String scholomanceDate = "(August 2020)";
 	private final String outlandDate = "(April 2020)";
@@ -379,8 +398,9 @@ public class TrackerGUI
 	private final String oldGodsDate = "(April 2016)";
 	private final String tournamentDate = "(August 2015)";
 	private final String goblinsDate = "(December 2014)";
+	private final String classicDate = "(March 2014)";
 	
-	private JTextPane classicDateLabel;
+	private JTextPane barrensDateLabel;
 	private JTextPane darkmoonDateLabel;
 	private JTextPane scholomanceDateLabel;
 	private JTextPane outlandDateLabel;
@@ -397,13 +417,14 @@ public class TrackerGUI
 	private JTextPane oldGodsDateLabel;
 	private JTextPane tournamentDateLabel;
 	private JTextPane goblinsDateLabel;
+	private JTextPane classicDateLabel;
 */	
 	// Epic counter panel title
 	private final String epicPanelTitle = "Epic Pity Timer";
 	private JTextPane epicPanelTitleLabel;
 	
 	// Packs without epic counter panels
-	private JPanel classicEpicPanel;
+	private JPanel barrensEpicPanel;
 	private JPanel darkmoonEpicPanel;
 	private JPanel scholomanceEpicPanel;
 	private JPanel outlandEpicPanel;
@@ -420,11 +441,12 @@ public class TrackerGUI
 	private JPanel oldGodsEpicPanel;
 	private JPanel tournamentEpicPanel;
 	private JPanel goblinsEpicPanel;
+	private JPanel classicEpicPanel;
 	
 	// Message displaying the amount of packs opened without an epic card
 	private final String epicCounterText = "Packs opened without an epic card:   ";
 	
-	private JTextPane classicEpicCounterText;
+	private JTextPane barrensEpicCounterText;
 	private JTextPane darkmoonEpicCounterText;
 	private JTextPane scholomanceEpicCounterText;
 	private JTextPane outlandEpicCounterText;
@@ -441,9 +463,10 @@ public class TrackerGUI
 	private JTextPane oldGodsEpicCounterText;
 	private JTextPane tournamentEpicCounterText;
 	private JTextPane goblinsEpicCounterText;
+	private JTextPane classicEpicCounterText;
 	
 	// Epic packs counters (Labels showing the current amount of packs opened without finding an epic card from each expansion)
-	private String classicEpicCounter;
+	private String barrensEpicCounter;
 	private String darkmoonEpicCounter;
 	private String scholomanceEpicCounter;
 	private String outlandEpicCounter;
@@ -460,9 +483,10 @@ public class TrackerGUI
 	private String oldGodsEpicCounter;
 	private String tournamentEpicCounter;
 	private String goblinsEpicCounter;
+	private String classicEpicCounter;
 	
 	// Epic counters modify buttons panels
-	private JPanel classicEpicModifyPanel;
+	private JPanel barrensEpicModifyPanel;
 	private JPanel darkmoonEpicModifyPanel;
 	private JPanel scholomanceEpicModifyPanel;
 	private JPanel outlandEpicModifyPanel;
@@ -479,10 +503,11 @@ public class TrackerGUI
 	private JPanel oldGodsEpicModifyPanel;
 	private JPanel tournamentEpicModifyPanel;
 	private JPanel goblinsEpicModifyPanel;
+	private JPanel classicEpicModifyPanel;
 	
 	// Epic counters modifiers
 	// Reset buttons
-	private ModifierButton classicEpicReset;
+	private ModifierButton barrensEpicReset;
 	private ModifierButton darkmoonEpicReset;
 	private ModifierButton scholomanceEpicReset;
 	private ModifierButton outlandEpicReset;
@@ -499,9 +524,10 @@ public class TrackerGUI
 	private ModifierButton oldGodsEpicReset;
 	private ModifierButton tournamentEpicReset;
 	private ModifierButton goblinsEpicReset;
+	private ModifierButton classicEpicReset;
 	
 	// Add buttons
-	private RoundButton classicEpicAdd;
+	private RoundButton barrensEpicAdd;
 	private RoundButton darkmoonEpicAdd;
 	private RoundButton scholomanceEpicAdd;
 	private RoundButton outlandEpicAdd;
@@ -518,9 +544,10 @@ public class TrackerGUI
 	private RoundButton oldGodsEpicAdd;
 	private RoundButton tournamentEpicAdd;
 	private RoundButton goblinsEpicAdd;
+	private RoundButton classicEpicAdd;
 	
 	// Increment fields
-	private JTextArea classicEpicIncrement;
+	private JTextArea barrensEpicIncrement;
 	private JTextArea darkmoonEpicIncrement;
 	private JTextArea scholomanceEpicIncrement;
 	private JTextArea outlandEpicIncrement;
@@ -537,11 +564,12 @@ public class TrackerGUI
 	private JTextArea oldGodsEpicIncrement;
 	private JTextArea tournamentEpicIncrement;
 	private JTextArea goblinsEpicIncrement;
+	private JTextArea classicEpicIncrement;
 	
 	// Message displaying the probability of finding an epic card
 	private final String epicProbabilityText = "Probability of finding an epic card in the next pack:   ";
 	
-	private JTextPane classicEpicProbabilityText;
+	private JTextPane barrensEpicProbabilityText;
 	private JTextPane darkmoonEpicProbabilityText;
 	private JTextPane scholomanceEpicProbabilityText;
 	private JTextPane outlandEpicProbabilityText;
@@ -558,9 +586,10 @@ public class TrackerGUI
 	private JTextPane oldGodsEpicProbabilityText;
 	private JTextPane tournamentEpicProbabilityText;
 	private JTextPane goblinsEpicProbabilityText;
+	private JTextPane classicEpicProbabilityText;
 	
 	// Epic probabilities (Labels showing the probability of finding an epic card from each expansion)
-	private String classicEpicProbability;
+	private String barrensEpicProbability;
 	private String darkmoonEpicProbability;
 	private String scholomanceEpicProbability;
 	private String outlandEpicProbability;
@@ -577,13 +606,14 @@ public class TrackerGUI
 	private String oldGodsEpicProbability;
 	private String tournamentEpicProbability;
 	private String goblinsEpicProbability;
+	private String classicEpicProbability;
 	
 	// Legendary counter panel title
 	private final String legendaryPanelTitle = "Legendary Pity Timer";
 	private JTextPane legendaryPanelTitleLabel;
 	
 	// Packs without legendary counter panels
-	private JPanel classicLegendaryPanel;
+	private JPanel barrensLegendaryPanel;
 	private JPanel darkmoonLegendaryPanel;
 	private JPanel scholomanceLegendaryPanel;
 	private JPanel outlandLegendaryPanel;
@@ -600,11 +630,12 @@ public class TrackerGUI
 	private JPanel oldGodsLegendaryPanel;
 	private JPanel tournamentLegendaryPanel;
 	private JPanel goblinsLegendaryPanel;
+	private JPanel classicLegendaryPanel;
 	
 	// Message displaying the amount of packs opened without a legendary card
 	private final String legendaryCounterText = "Packs opened without a legendary card:   ";
 	
-	private JTextPane classicLegendaryCounterText;
+	private JTextPane barrensLegendaryCounterText;
 	private JTextPane darkmoonLegendaryCounterText;
 	private JTextPane scholomanceLegendaryCounterText;
 	private JTextPane outlandLegendaryCounterText;
@@ -621,9 +652,10 @@ public class TrackerGUI
 	private JTextPane oldGodsLegendaryCounterText;
 	private JTextPane tournamentLegendaryCounterText;
 	private JTextPane goblinsLegendaryCounterText;
+	private JTextPane classicLegendaryCounterText;
 	
 	// Legendary packs counters (Labels showing the current amount of packs opened without finding a legendary card from each expansion)
-	private String classicLegendaryCounter;
+	private String barrensLegendaryCounter;
 	private String darkmoonLegendaryCounter;
 	private String scholomanceLegendaryCounter;
 	private String outlandLegendaryCounter;
@@ -640,9 +672,10 @@ public class TrackerGUI
 	private String oldGodsLegendaryCounter;
 	private String tournamentLegendaryCounter;
 	private String goblinsLegendaryCounter;
+	private String classicLegendaryCounter;
 	
 	// Legendary counters modify buttons panels
-	private JPanel classicLegendaryModifyPanel;
+	private JPanel barrensLegendaryModifyPanel;
 	private JPanel darkmoonLegendaryModifyPanel;
 	private JPanel scholomanceLegendaryModifyPanel;
 	private JPanel outlandLegendaryModifyPanel;
@@ -659,10 +692,11 @@ public class TrackerGUI
 	private JPanel oldGodsLegendaryModifyPanel;
 	private JPanel tournamentLegendaryModifyPanel;
 	private JPanel goblinsLegendaryModifyPanel;
+	private JPanel classicLegendaryModifyPanel;
 	
 	// Legendary counters modifiers
 	// Reset buttons
-	private ModifierButton classicLegendaryReset;
+	private ModifierButton barrensLegendaryReset;
 	private ModifierButton darkmoonLegendaryReset;
 	private ModifierButton scholomanceLegendaryReset;
 	private ModifierButton outlandLegendaryReset;
@@ -679,9 +713,10 @@ public class TrackerGUI
 	private ModifierButton oldGodsLegendaryReset;
 	private ModifierButton tournamentLegendaryReset;
 	private ModifierButton goblinsLegendaryReset;
+	private ModifierButton classicLegendaryReset;
 	
 	// Add buttons
-	private RoundButton classicLegendaryAdd;
+	private RoundButton barrensLegendaryAdd;
 	private RoundButton darkmoonLegendaryAdd;
 	private RoundButton scholomanceLegendaryAdd;
 	private RoundButton outlandLegendaryAdd;
@@ -698,9 +733,10 @@ public class TrackerGUI
 	private RoundButton oldGodsLegendaryAdd;
 	private RoundButton tournamentLegendaryAdd;
 	private RoundButton goblinsLegendaryAdd;
+	private RoundButton classicLegendaryAdd;
 	
 	// Increment fields
-	private JTextArea classicLegendaryIncrement;
+	private JTextArea barrensLegendaryIncrement;
 	private JTextArea darkmoonLegendaryIncrement;
 	private JTextArea scholomanceLegendaryIncrement;
 	private JTextArea outlandLegendaryIncrement;
@@ -717,11 +753,12 @@ public class TrackerGUI
 	private JTextArea oldGodsLegendaryIncrement;
 	private JTextArea tournamentLegendaryIncrement;
 	private JTextArea goblinsLegendaryIncrement;
+	private JTextArea classicLegendaryIncrement;
 	
 	// Message displaying the probability of finding a legendary card
 	private final String legendaryProbabilityText = "Probability of finding a legendary card in the next pack:   ";
 	
-	private JTextPane classicLegendaryProbabilityText;
+	private JTextPane barrensLegendaryProbabilityText;
 	private JTextPane darkmoonLegendaryProbabilityText;
 	private JTextPane scholomanceLegendaryProbabilityText;
 	private JTextPane outlandLegendaryProbabilityText;
@@ -738,9 +775,10 @@ public class TrackerGUI
 	private JTextPane oldGodsLegendaryProbabilityText;
 	private JTextPane tournamentLegendaryProbabilityText;
 	private JTextPane goblinsLegendaryProbabilityText;
+	private JTextPane classicLegendaryProbabilityText;
 	
 	// Legendary probabilities (Labels showing the probability of finding a legendary card from each expansion)
-	private String classicLegendaryProbability;
+	private String barrensLegendaryProbability;
 	private String darkmoonLegendaryProbability;
 	private String scholomanceLegendaryProbability;
 	private String outlandLegendaryProbability;
@@ -757,13 +795,14 @@ public class TrackerGUI
 	private String oldGodsLegendaryProbability;
 	private String tournamentLegendaryProbability;
 	private String goblinsLegendaryProbability;
+	private String classicLegendaryProbability;
 	
 	// Total packs counter panel title
 	private final String totalPanelTitle = "Total Packs Counter";
 	private JTextPane totalPanelTitleLabel;
 	
 	// Total packs counter panels
-	private JPanel classicTotalPanel;
+	private JPanel barrensTotalPanel;
 	private JPanel darkmoonTotalPanel;
 	private JPanel scholomanceTotalPanel;
 	private JPanel outlandTotalPanel;
@@ -780,11 +819,12 @@ public class TrackerGUI
 	private JPanel oldGodsTotalPanel;
 	private JPanel tournamentTotalPanel;
 	private JPanel goblinsTotalPanel;
+	private JPanel classicTotalPanel;
 	
 	// Message displaying the total amount of packs opened from each expansion
 	private final String totalCounterText = "Total amount of packs opened:   ";
 	
-	private JTextPane classicTotalCounterText;
+	private JTextPane barrensTotalCounterText;
 	private JTextPane darkmoonTotalCounterText;
 	private JTextPane scholomanceTotalCounterText;
 	private JTextPane outlandTotalCounterText;
@@ -801,9 +841,10 @@ public class TrackerGUI
 	private JTextPane oldGodsTotalCounterText;
 	private JTextPane tournamentTotalCounterText;
 	private JTextPane goblinsTotalCounterText;
+	private JTextPane classicTotalCounterText;
 	
 	// Total counters (Labels showing the total amount of packs opened from each expansion)
-	private String classicTotalCounter;
+	private String barrensTotalCounter;
 	private String darkmoonTotalCounter;
 	private String scholomanceTotalCounter;
 	private String outlandTotalCounter;
@@ -820,9 +861,10 @@ public class TrackerGUI
 	private String oldGodsTotalCounter;
 	private String tournamentTotalCounter;
 	private String goblinsTotalCounter;
+	private String classicTotalCounter;
 	
 	// Total counters modify buttons panels
-	private JPanel classicTotalModifyPanel;
+	private JPanel barrensTotalModifyPanel;
 	private JPanel darkmoonTotalModifyPanel;
 	private JPanel scholomanceTotalModifyPanel;
 	private JPanel outlandTotalModifyPanel;
@@ -839,10 +881,11 @@ public class TrackerGUI
 	private JPanel oldGodsTotalModifyPanel;
 	private JPanel tournamentTotalModifyPanel;
 	private JPanel goblinsTotalModifyPanel;
+	private JPanel classicTotalModifyPanel;
 	
 	// Total counters modifiers
 	// Modify buttons
-	private ModifierButton classicTotalModify;
+	private ModifierButton barrensTotalModify;
 	private ModifierButton darkmoonTotalModify;
 	private ModifierButton scholomanceTotalModify;
 	private ModifierButton outlandTotalModify;
@@ -859,9 +902,10 @@ public class TrackerGUI
 	private ModifierButton oldGodsTotalModify;
 	private ModifierButton tournamentTotalModify;
 	private ModifierButton goblinsTotalModify;
+	private ModifierButton classicTotalModify;
 	
 	// Add buttons
-	private RoundButton classicTotalAdd;
+	private RoundButton barrensTotalAdd;
 	private RoundButton darkmoonTotalAdd;
 	private RoundButton scholomanceTotalAdd;
 	private RoundButton outlandTotalAdd;
@@ -878,9 +922,10 @@ public class TrackerGUI
 	private RoundButton oldGodsTotalAdd;
 	private RoundButton tournamentTotalAdd;
 	private RoundButton goblinsTotalAdd;
+	private RoundButton classicTotalAdd;
 	
 	// Increment fields
-	private JTextArea classicTotalIncrement;
+	private JTextArea barrensTotalIncrement;
 	private JTextArea darkmoonTotalIncrement;
 	private JTextArea scholomanceTotalIncrement;
 	private JTextArea outlandTotalIncrement;
@@ -897,6 +942,7 @@ public class TrackerGUI
 	private JTextArea oldGodsTotalIncrement;
 	private JTextArea tournamentTotalIncrement;
 	private JTextArea goblinsTotalIncrement;
+	private JTextArea classicTotalIncrement;
 	
 	// Messages displaying when hovering over a counter modify button
 	private final String resetButtonToolTipText = "Reset the counter";
@@ -908,7 +954,7 @@ public class TrackerGUI
 	private JLabel blank;
 	
 	// Rarity buttons panels
-	private JPanel classicRarityButtonsPanel;
+	private JPanel barrensRarityButtonsPanel;
 	private JPanel darkmoonRarityButtonsPanel;
 	private JPanel scholomanceRarityButtonsPanel;
 	private JPanel outlandRarityButtonsPanel;
@@ -925,9 +971,10 @@ public class TrackerGUI
 	private JPanel oldGodsRarityButtonsPanel;
 	private JPanel tournamentRarityButtonsPanel;
 	private JPanel goblinsRarityButtonsPanel;
+	private JPanel classicRarityButtonsPanel;
 	
 	// Common buttons
-	private JPanel classicCommonButtonPanel;
+	private JPanel barrensCommonButtonPanel;
 	private JPanel darkmoonCommonButtonPanel;
 	private JPanel scholomanceCommonButtonPanel;
 	private JPanel outlandCommonButtonPanel;
@@ -944,8 +991,9 @@ public class TrackerGUI
 	private JPanel oldGodsCommonButtonPanel;
 	private JPanel tournamentCommonButtonPanel;
 	private JPanel goblinsCommonButtonPanel;
+	private JPanel classicCommonButtonPanel;
 	
-	private IconButton classicCommonButton;
+	private IconButton barrensCommonButton;
 	private IconButton darkmoonCommonButton;
 	private IconButton scholomanceCommonButton;
 	private IconButton outlandCommonButton;
@@ -962,12 +1010,13 @@ public class TrackerGUI
 	private IconButton oldGodsCommonButton;
 	private IconButton tournamentCommonButton;
 	private IconButton goblinsCommonButton;
+	private IconButton classicCommonButton;
 	
 	// Message displaying when hovering over a common button
 	private final String commonButtonToolTipText = "See the expansion's common cards";
 	
 	// Rare buttons
-	private JPanel classicRareButtonPanel;
+	private JPanel barrensRareButtonPanel;
 	private JPanel darkmoonRareButtonPanel;
 	private JPanel scholomanceRareButtonPanel;
 	private JPanel outlandRareButtonPanel;
@@ -984,8 +1033,9 @@ public class TrackerGUI
 	private JPanel oldGodsRareButtonPanel;
 	private JPanel tournamentRareButtonPanel;
 	private JPanel goblinsRareButtonPanel;
+	private JPanel classicRareButtonPanel;
 	
-	private IconButton classicRareButton;
+	private IconButton barrensRareButton;
 	private IconButton darkmoonRareButton;
 	private IconButton scholomanceRareButton;
 	private IconButton outlandRareButton;
@@ -1002,12 +1052,13 @@ public class TrackerGUI
 	private IconButton oldGodsRareButton;
 	private IconButton tournamentRareButton;
 	private IconButton goblinsRareButton;
+	private IconButton classicRareButton;
 	
 	// Message displaying when hovering over a rare button
 	private final String rareButtonToolTipText = "See the expansion's rare cards";
 	
 	// Epic buttons
-	private JPanel classicEpicButtonPanel;
+	private JPanel barrensEpicButtonPanel;
 	private JPanel darkmoonEpicButtonPanel;
 	private JPanel scholomanceEpicButtonPanel;
 	private JPanel outlandEpicButtonPanel;
@@ -1024,8 +1075,9 @@ public class TrackerGUI
 	private JPanel oldGodsEpicButtonPanel;
 	private JPanel tournamentEpicButtonPanel;
 	private JPanel goblinsEpicButtonPanel;
+	private JPanel classicEpicButtonPanel;
 	
-	private IconButton classicEpicButton;
+	private IconButton barrensEpicButton;
 	private IconButton darkmoonEpicButton;
 	private IconButton scholomanceEpicButton;
 	private IconButton outlandEpicButton;
@@ -1042,12 +1094,13 @@ public class TrackerGUI
 	private IconButton oldGodsEpicButton;
 	private IconButton tournamentEpicButton;
 	private IconButton goblinsEpicButton;
+	private IconButton classicEpicButton;
 	
 	// Message displaying when hovering over an epic button
 	private final String epicButtonToolTipText = "See the expansion's epic cards";
 	
-	// Legendary buttons	
-	private JPanel classicLegendaryButtonPanel;
+	// Legendary buttons
+	private JPanel barrensLegendaryButtonPanel;
 	private JPanel darkmoonLegendaryButtonPanel;
 	private JPanel scholomanceLegendaryButtonPanel;
 	private JPanel outlandLegendaryButtonPanel;
@@ -1064,8 +1117,9 @@ public class TrackerGUI
 	private JPanel oldGodsLegendaryButtonPanel;
 	private JPanel tournamentLegendaryButtonPanel;
 	private JPanel goblinsLegendaryButtonPanel;
+	private JPanel classicLegendaryButtonPanel;
 	
-	private IconButton classicLegendaryButton;
+	private IconButton barrensLegendaryButton;
 	private IconButton darkmoonLegendaryButton;
 	private IconButton scholomanceLegendaryButton;
 	private IconButton outlandLegendaryButton;
@@ -1082,6 +1136,7 @@ public class TrackerGUI
 	private IconButton oldGodsLegendaryButton;
 	private IconButton tournamentLegendaryButton;
 	private IconButton goblinsLegendaryButton;
+	private IconButton classicLegendaryButton;
 	
 	// Message displaying when hovering over a legendary button
 	private final String legendaryButtonToolTipText = "See the expansion's legendary cards";
@@ -1163,7 +1218,7 @@ public class TrackerGUI
 	private final Color buttonsHoverColor;
 	private final Color buttonsDarkHoverColor;
 	
-	private final Color classicColor;
+	private final Color barrensColor;
 	private final Color darkmoonColor;
 	private final Color scholomanceColor;
 	private final Color outlandColor;
@@ -1180,6 +1235,7 @@ public class TrackerGUI
 	private final Color oldGodsColor;
 	private final Color tournamentColor;
 	private final Color goblinsColor;
+	private final Color classicColor;
 	
 	// Tracker fonts
 	private final Font titleFont;
@@ -1206,6 +1262,7 @@ public class TrackerGUI
 		buttonsDarkHoverColor = new Color(225, 225, 225);
 		
 		classicColor = new Color(115, 165, 235);
+		barrensColor = new Color(170, 20, 15);
 		darkmoonColor = new Color(180, 200, 20);
 		scholomanceColor = new Color(175, 55, 165);
 		outlandColor = new Color(0, 60, 30);
@@ -1215,12 +1272,12 @@ public class TrackerGUI
 		rumbleColor = new Color(10, 220, 185);
 		boomsdayColor = new Color(220, 75, 50);
 		witchwoodColor = new Color(115, 185, 165);
-		koboldsColor = new Color(100, 15, 25);
+		koboldsColor = new Color(165, 115, 80);
 		knightsColor = new Color(150, 190, 210);
 		ungoroColor = new Color(240, 180, 0);
-		gadgetzanColor = new Color(220, 180, 30);
+		gadgetzanColor = new Color(210, 165, 25);
 		oldGodsColor = new Color(200, 130, 200);
-		tournamentColor = new Color(75, 40, 30);
+		tournamentColor = new Color(95, 70, 50);
 		goblinsColor = new Color(220, 95, 10);
 		
 		// Fonts
@@ -1266,6 +1323,7 @@ public class TrackerGUI
 		showWildSelectedHoverIcon = imageURLReader(showWildSelectedHoverIconURL, showWildSelectedHoverIconPath);
 		
 		// Years images
+		gryphonImage = imageURLReader(gryphonImageURL, gryphonImagePath);
 		phoenixImage = imageURLReader(phoenixImageURL, phoenixImagePath);
 		dragonImage = imageURLReader(dragonImageURL, dragonImagePath);
 		ravenImage = imageURLReader(ravenImageURL, ravenImagePath);
@@ -1275,6 +1333,7 @@ public class TrackerGUI
 		
 		// Expansions images
 		classicImage = imageURLReader(classicImageURL, classicImagePath);
+		barrensImage = imageURLReader(barrensImageURL, barrensImagePath);
 		darkmoonImage = imageURLReader(darkmoonImageURL, darkmoonImagePath);
 		scholomanceImage = imageURLReader(scholomanceImageURL, scholomanceImagePath);
 		outlandImage = imageURLReader(outlandImageURL, outlandImagePath);
@@ -1471,16 +1530,14 @@ public class TrackerGUI
 		standardHeader.add(standardLabel);
 		
 		// "Standard" sets panels
-		createClassicPanel();
+		createYearOfTheGryphonPanel();
 		createYearOfThePhoenixPanel();
-		createYearOfTheDragonPanel();
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				standard.add(standardHeader);
-				standard.add(classic);
+				standard.add(gryphon);
 				standard.add(phoenix);
-				standard.add(dragon);
 			}
 		});
 	}
@@ -1530,223 +1587,272 @@ public class TrackerGUI
 		wildHeader.add(showWild);
 		
 		// "Wild" sets panels
+		createYearOfTheDragonPanel();
 		createYearOfTheRavenPanel();
 		createYearOfTheMammothPanel();
 		createYearOfTheKrakenPanel();
 		createClassicSetsPanel();
+		createClassicPanel();
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				wild.add(wildHeader);
+				wild.add(dragon);
 				wild.add(raven);
 				wild.add(mammoth);
 				wild.add(kraken);
 				wild.add(classicSets);
+				wild.add(classic);
 			}
 		});
 	}
 	
-	// "Classic" panel creator
-	private void createClassicPanel() 
+	// "Year of the Gryphon" panel creator
+	private void createYearOfTheGryphonPanel() 
 	{
-		// "Classic" panel
-		classic = new JPanel();
-		classic.setBackground(classicColor);
-		classic.setLayout(new GridLayout(1, 4, 10, 0));
-		classic.setBorder(new EmptyBorder(10, 10, 10, 10));
+		// "Year of the Gryphon" panel
+		gryphon = new JPanel();
+		gryphon.setLayout(new BoxLayout(gryphon, BoxLayout.Y_AXIS));
 		
-		// "Classic" logo
-		classicImagePanel = new JPanel(new GridBagLayout());
-		classicImagePanel.setBackground(classic.getBackground());
+		// "Year of the Gryphon" title header
+		gryphonHeader = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		gryphonHeader.setBackground(yearsColor);
 		
-		classicImageLabel = new JLabel(new ImageIcon(classicImage));
+		gryphonImageLabel = new JLabel(new ImageIcon(gryphonImage));
+		gryphonImageLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
-		classicImagePanel.add(classicImageLabel);
+		gryphonLabel = new JLabel(gryphonTitle);
+		gryphonLabel.setFont(yearsFont);
+		gryphonLabel.setBorder(new EmptyBorder(5, 25, 5, 5));
+		
+		gryphonHeader.add(gryphonImageLabel);
+		gryphonHeader.add(gryphonLabel);
+		
+		// "Year of the Gryphon" expansions
+		createForgedInTheBarrensPanel();
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				gryphon.add(gryphonHeader);
+				gryphon.add(barrens);
+			}
+		});
+	}
+	
+	// "Forged in the Barrens" panel creator
+	private void createForgedInTheBarrensPanel() 
+	{
+		// "Forged in the Barrens" panel
+		barrens = new JPanel();
+		barrens.setBackground(barrensColor);
+		barrens.setLayout(new GridLayout(1, 4, 10, 0));
+		barrens.setBorder(new EmptyBorder(10, 10, 10, 10));
+		
+		// "Forged in the Barrens" logo
+		barrensImagePanel = new JPanel(new GridBagLayout());
+		barrensImagePanel.setBackground(barrens.getBackground());
+		
+		barrensImageButton = new JButton(new ImageIcon(barrensImage));
+		barrensImageButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		barrensImageButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		barrensImageButton.setToolTipText(imageButtonToolTipText);
+		barrensImageButton.setContentAreaFilled(false);
+		barrensImageButton.setFocusPainted(false);
+		
+		barrensImagePanel.add(barrensImageButton);
 		
 		// Packs without epic counter panel
-		classicEpicPanel = new JPanel();
-		classicEpicPanel.setBackground(classic.getBackground());
-		classicEpicPanel.setLayout(new GridLayout(4, 1));
+		barrensEpicPanel = new JPanel();
+		barrensEpicPanel.setBackground(barrens.getBackground());
+		barrensEpicPanel.setLayout(new GridLayout(4, 1));
 		
 		// Packs without epic counter panel title
 		epicPanelTitleLabel = new JTextPane();
 		doc = epicPanelTitleLabel.getStyledDocument();
-		changePanelTitleStyle(classic, epicPanelTitleLabel, epicPanelTitle);
+		changePanelTitleStyle(barrens, epicPanelTitleLabel, epicPanelTitle);
+		epicPanelTitleLabel.setForeground(titleFontColor);
 		
 		// Packs without epic counter
-		classicEpicCounterText = new JTextPane();
-		doc = classicEpicCounterText.getStyledDocument();
-		changePanelTextStyle(classic, classicEpicCounterText, epicCounterText, classicEpicCounter);
+		barrensEpicCounterText = new JTextPane();
+		doc = barrensEpicCounterText.getStyledDocument();
+		changePanelTextStyle(barrens, barrensEpicCounterText, epicCounterText, barrensEpicCounter);
+		barrensEpicCounterText.setForeground(titleFontColor);
 		
 		// Packs without epic counter modify buttons panel
-		classicEpicModifyPanel = new JPanel();
+		barrensEpicModifyPanel = new JPanel();
 		
 		// Reset button
-		classicEpicReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
-		classicEpicReset.setToolTipText(resetButtonToolTipText);
-		classicEpicReset.setBackground(headerBGColor);
-		classicEpicReset.setForeground(titleFontColor);
+		barrensEpicReset = new ModifierButton("Reset", titleFontColor, buttonsDarkHoverColor);
+		barrensEpicReset.setToolTipText(resetButtonToolTipText);
+		barrensEpicReset.setBackground(titleFontColor);
+		barrensEpicReset.setForeground(headerBGColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
-		blank.setBackground(classic.getBackground());
+		blank.setBackground(barrens.getBackground());
 		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		// Add button
-		classicEpicAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
-		classicEpicAdd.setBackground(headerBGColor);
-		classicEpicAdd.setForeground(titleFontColor);
+		barrensEpicAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
+		barrensEpicAdd.setBackground(titleFontColor);
+		barrensEpicAdd.setForeground(headerBGColor);
 		
 		// Increment field
-		classicEpicIncrement = new JTextArea(1, 1);
-		classicEpicIncrement.setDocument(new IncrementLimit(1));
-		classicEpicIncrement.setBackground(headerBGColor);
-		classicEpicIncrement.setForeground(titleFontColor);
-		classicEpicIncrement.setCaretColor(titleFontColor);
-		classicEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
+		barrensEpicIncrement = new JTextArea(1, 1);
+		barrensEpicIncrement.setDocument(new IncrementLimit(1));
+		barrensEpicIncrement.setBackground(titleFontColor);
+		barrensEpicIncrement.setForeground(headerBGColor);
+		barrensEpicIncrement.setCaretColor(headerBGColor);
+		barrensEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
-		createModifyButtonsPanel(classic, classicEpicModifyPanel, classicEpicReset, classicEpicAdd, classicEpicIncrement);
+		createModifyButtonsPanel(barrens, barrensEpicModifyPanel, barrensEpicReset, barrensEpicAdd, barrensEpicIncrement);
 		
 		// Probability of finding an epic calculator
-		classicEpicProbabilityText = new JTextPane();
-		doc = classicEpicProbabilityText.getStyledDocument();
-		changePanelTextStyle(classic, classicEpicProbabilityText, epicProbabilityText, classicEpicProbability);
+		barrensEpicProbabilityText = new JTextPane();
+		doc = barrensEpicProbabilityText.getStyledDocument();
+		changePanelTextStyle(barrens, barrensEpicProbabilityText, epicProbabilityText, barrensEpicProbability);
+		barrensEpicProbabilityText.setForeground(titleFontColor);
 		
-		classicEpicPanel.add(epicPanelTitleLabel);
-		classicEpicPanel.add(classicEpicCounterText);
-		classicEpicPanel.add(classicEpicModifyPanel);
-		classicEpicPanel.add(classicEpicProbabilityText);
+		barrensEpicPanel.add(epicPanelTitleLabel);
+		barrensEpicPanel.add(barrensEpicCounterText);
+		barrensEpicPanel.add(barrensEpicModifyPanel);
+		barrensEpicPanel.add(barrensEpicProbabilityText);
 		
 		// Packs without legendary counter panel
-		classicLegendaryPanel = new JPanel();
-		classicLegendaryPanel.setBackground(classic.getBackground());
-		classicLegendaryPanel.setLayout(new GridLayout(4, 1));
+		barrensLegendaryPanel = new JPanel();
+		barrensLegendaryPanel.setBackground(barrens.getBackground());
+		barrensLegendaryPanel.setLayout(new GridLayout(4, 1));
 		
 		// Packs without legendary counter panel title
 		legendaryPanelTitleLabel = new JTextPane();
 		doc = legendaryPanelTitleLabel.getStyledDocument();
-		changePanelTitleStyle(classic, legendaryPanelTitleLabel, legendaryPanelTitle);
+		changePanelTitleStyle(barrens, legendaryPanelTitleLabel, legendaryPanelTitle);
+		legendaryPanelTitleLabel.setForeground(titleFontColor);
 		
 		// Packs without legendary counter
-		classicLegendaryCounterText = new JTextPane();
-		doc = classicLegendaryCounterText.getStyledDocument();
-		changePanelTextStyle(classic, classicLegendaryCounterText, legendaryCounterText, classicLegendaryCounter);
+		barrensLegendaryCounterText = new JTextPane();
+		doc = barrensLegendaryCounterText.getStyledDocument();
+		changePanelTextStyle(barrens, barrensLegendaryCounterText, legendaryCounterText, barrensLegendaryCounter);
+		barrensLegendaryCounterText.setForeground(titleFontColor);
 		
 		// Packs without legendary counter modify buttons panel
-		classicLegendaryModifyPanel = new JPanel();
+		barrensLegendaryModifyPanel = new JPanel();
 		
 		// Reset button
-		classicLegendaryReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
-		classicLegendaryReset.setToolTipText(resetButtonToolTipText);
-		classicLegendaryReset.setBackground(headerBGColor);
-		classicLegendaryReset.setForeground(titleFontColor);
+		barrensLegendaryReset = new ModifierButton("Reset", titleFontColor, buttonsDarkHoverColor);
+		barrensLegendaryReset.setToolTipText(resetButtonToolTipText);
+		barrensLegendaryReset.setBackground(titleFontColor);
+		barrensLegendaryReset.setForeground(headerBGColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
-		blank.setBackground(classic.getBackground());
+		blank.setBackground(barrens.getBackground());
 		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		// Add button
-		classicLegendaryAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
-		classicLegendaryAdd.setBackground(headerBGColor);
-		classicLegendaryAdd.setForeground(titleFontColor);
+		barrensLegendaryAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
+		barrensLegendaryAdd.setBackground(titleFontColor);
+		barrensLegendaryAdd.setForeground(headerBGColor);
 		
 		// Increment field
-		classicLegendaryIncrement = new JTextArea(1, 2);
-		classicLegendaryIncrement.setDocument(new IncrementLimit(2));
-		classicLegendaryIncrement.setBackground(headerBGColor);
-		classicLegendaryIncrement.setForeground(titleFontColor);
-		classicLegendaryIncrement.setCaretColor(titleFontColor);
-		classicLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
+		barrensLegendaryIncrement = new JTextArea(1, 2);
+		barrensLegendaryIncrement.setDocument(new IncrementLimit(2));
+		barrensLegendaryIncrement.setBackground(titleFontColor);
+		barrensLegendaryIncrement.setForeground(headerBGColor);
+		barrensLegendaryIncrement.setCaretColor(headerBGColor);
+		barrensLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
-		createModifyButtonsPanel(classic, classicLegendaryModifyPanel, classicLegendaryReset, classicLegendaryAdd, classicLegendaryIncrement);
+		createModifyButtonsPanel(barrens, barrensLegendaryModifyPanel, barrensLegendaryReset, barrensLegendaryAdd, barrensLegendaryIncrement);
 		
 		// Probability of finding a legendary calculator
-		classicLegendaryProbabilityText = new JTextPane();
-		doc = classicLegendaryProbabilityText.getStyledDocument();
-		changePanelTextStyle(classic, classicLegendaryProbabilityText, legendaryProbabilityText, classicLegendaryProbability);
+		barrensLegendaryProbabilityText = new JTextPane();
+		doc = barrensLegendaryProbabilityText.getStyledDocument();
+		changePanelTextStyle(barrens, barrensLegendaryProbabilityText, legendaryProbabilityText, barrensLegendaryProbability);
+		barrensLegendaryProbabilityText.setForeground(titleFontColor);
 		
-		classicLegendaryPanel.add(legendaryPanelTitleLabel);
-		classicLegendaryPanel.add(classicLegendaryCounterText);
-		classicLegendaryPanel.add(classicLegendaryModifyPanel);
-		classicLegendaryPanel.add(classicLegendaryProbabilityText);
+		barrensLegendaryPanel.add(legendaryPanelTitleLabel);
+		barrensLegendaryPanel.add(barrensLegendaryCounterText);
+		barrensLegendaryPanel.add(barrensLegendaryModifyPanel);
+		barrensLegendaryPanel.add(barrensLegendaryProbabilityText);
 		
 		// Total amount of packs opened counter panel
-		classicTotalPanel = new JPanel();
-		classicTotalPanel.setBackground(classic.getBackground());
-		classicTotalPanel.setLayout(new GridLayout(4, 1));
+		barrensTotalPanel = new JPanel();
+		barrensTotalPanel.setBackground(barrens.getBackground());
+		barrensTotalPanel.setLayout(new GridLayout(4, 1));
 		
 		// Total amount of packs opened counter panel title
 		totalPanelTitleLabel = new JTextPane();
 		doc = totalPanelTitleLabel.getStyledDocument();
-		changePanelTitleStyle(classic, totalPanelTitleLabel,totalPanelTitle);
+		changePanelTitleStyle(barrens, totalPanelTitleLabel,totalPanelTitle);
+		totalPanelTitleLabel.setForeground(titleFontColor);
 		
 		// Total amount of packs opened counter
-		classicTotalCounterText = new JTextPane();
-		doc = classicTotalCounterText.getStyledDocument();
-		changePanelTextStyle(classic, classicTotalCounterText, totalCounterText, classicTotalCounter);
+		barrensTotalCounterText = new JTextPane();
+		doc = barrensTotalCounterText.getStyledDocument();
+		changePanelTextStyle(barrens, barrensTotalCounterText, totalCounterText, barrensTotalCounter);
+		barrensTotalCounterText.setForeground(titleFontColor);
 		
 		// Total amount of packs opened modify buttons panel
-		classicTotalModifyPanel = new JPanel();
+		barrensTotalModifyPanel = new JPanel();
 		
 		// Modify button
-		classicTotalModify = new ModifierButton("Modify", headerBGColor, buttonsHoverColor);
-		classicTotalModify.setToolTipText(modifyButtonToolTipText);
-		classicTotalModify.setBackground(headerBGColor);
-		classicTotalModify.setForeground(titleFontColor);
+		barrensTotalModify = new ModifierButton("Modify", titleFontColor, buttonsDarkHoverColor);
+		barrensTotalModify.setToolTipText(modifyButtonToolTipText);
+		barrensTotalModify.setBackground(titleFontColor);
+		barrensTotalModify.setForeground(headerBGColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
-		blank.setBackground(classic.getBackground());
+		blank.setBackground(barrens.getBackground());
 		blank.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		// Add button
-		classicTotalAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
-		classicTotalAdd.setBackground(headerBGColor);
-		classicTotalAdd.setForeground(titleFontColor);
+		barrensTotalAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
+		barrensTotalAdd.setBackground(titleFontColor);
+		barrensTotalAdd.setForeground(headerBGColor);
 		
 		// Increment field
-		classicTotalIncrement = new JTextArea(1, 3);
-		classicTotalIncrement.setDocument(new IncrementLimit(3));
-		classicTotalIncrement.setBackground(headerBGColor);
-		classicTotalIncrement.setForeground(titleFontColor);
-		classicTotalIncrement.setCaretColor(titleFontColor);
-		classicTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
+		barrensTotalIncrement = new JTextArea(1, 3);
+		barrensTotalIncrement.setDocument(new IncrementLimit(3));
+		barrensTotalIncrement.setBackground(titleFontColor);
+		barrensTotalIncrement.setForeground(headerBGColor);
+		barrensTotalIncrement.setCaretColor(headerBGColor);
+		barrensTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
-		createModifyButtonsPanel(classic, classicTotalModifyPanel, classicTotalModify, classicTotalAdd, classicTotalIncrement);
+		createModifyButtonsPanel(barrens, barrensTotalModifyPanel, barrensTotalModify, barrensTotalAdd, barrensTotalIncrement);
 		
 		// Rarity buttons panel
-		classicRarityButtonsPanel = new JPanel();
+		barrensRarityButtonsPanel = new JPanel();
 		
 		// Common button
-		classicCommonButtonPanel = new JPanel(new GridBagLayout());
-		classicCommonButton = new IconButton(new ImageIcon(commonButtonIcon), new ImageIcon(commonButtonHoverIcon));
+		barrensCommonButtonPanel = new JPanel(new GridBagLayout());
+		barrensCommonButton = new IconButton(new ImageIcon(commonButtonDarkIcon), new ImageIcon(commonButtonDarkHoverIcon));
 		
 		// Rare button
-		classicRareButtonPanel = new JPanel(new GridBagLayout());
-		classicRareButton = new IconButton(new ImageIcon(rareButtonIcon), new ImageIcon(rareButtonHoverIcon));
+		barrensRareButtonPanel = new JPanel(new GridBagLayout());
+		barrensRareButton = new IconButton(new ImageIcon(rareButtonDarkIcon), new ImageIcon(rareButtonDarkHoverIcon));
 		
 		// Epic button
-		classicEpicButtonPanel = new JPanel(new GridBagLayout());
-		classicEpicButton = new IconButton(new ImageIcon(epicButtonIcon), new ImageIcon(epicButtonHoverIcon));
+		barrensEpicButtonPanel = new JPanel(new GridBagLayout());
+		barrensEpicButton = new IconButton(new ImageIcon(epicButtonDarkIcon), new ImageIcon(epicButtonDarkHoverIcon));
 		
 		// Legendary button
-		classicLegendaryButtonPanel = new JPanel(new GridBagLayout());
-		classicLegendaryButton = new IconButton(new ImageIcon(legendaryButtonIcon), new ImageIcon(legendaryButtonHoverIcon));
+		barrensLegendaryButtonPanel = new JPanel(new GridBagLayout());
+		barrensLegendaryButton = new IconButton(new ImageIcon(legendaryButtonDarkIcon), new ImageIcon(legendaryButtonDarkHoverIcon));
 		
-		 createRarityButtonsPanel(classic, classicRarityButtonsPanel, 
-				classicCommonButtonPanel, classicCommonButton, classicRareButtonPanel, classicRareButton, 
-				classicEpicButtonPanel, classicEpicButton, classicLegendaryButtonPanel, classicLegendaryButton);
+		createRarityButtonsPanel(barrens, barrensRarityButtonsPanel, 
+				barrensCommonButtonPanel, barrensCommonButton, barrensRareButtonPanel, barrensRareButton, 
+				barrensEpicButtonPanel, barrensEpicButton, barrensLegendaryButtonPanel, barrensLegendaryButton);
 		
-		classicTotalPanel.add(totalPanelTitleLabel);
-		classicTotalPanel.add(classicTotalCounterText);
-		classicTotalPanel.add(classicTotalModifyPanel);
-		classicTotalPanel.add(classicRarityButtonsPanel);
+		barrensTotalPanel.add(totalPanelTitleLabel);
+		barrensTotalPanel.add(barrensTotalCounterText);
+		barrensTotalPanel.add(barrensTotalModifyPanel);
+		barrensTotalPanel.add(barrensRarityButtonsPanel);
 		
-		classic.add(classicImagePanel);
-		classic.add(classicEpicPanel);
-		classic.add(classicLegendaryPanel);
-		classic.add(classicTotalPanel);
+		barrens.add(barrensImagePanel);
+		barrens.add(barrensEpicPanel);
+		barrens.add(barrensLegendaryPanel);
+		barrens.add(barrensTotalPanel);
 	}
 	
 	// "Year of the Phoenix" panel creator
@@ -2457,6 +2563,8 @@ public class TrackerGUI
 				dragon.add(dragons);
 				dragon.add(uldum);
 				dragon.add(shadows);
+				
+				dragon.setVisible(false);
 			}
 		});
 	}
@@ -3832,22 +3940,20 @@ public class TrackerGUI
 		epicPanelTitleLabel = new JTextPane();
 		doc = epicPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(kobolds, epicPanelTitleLabel, epicPanelTitle);
-		epicPanelTitleLabel.setForeground(titleFontColor);
 		
 		// Packs without epic counter
 		koboldsEpicCounterText = new JTextPane();
 		doc = koboldsEpicCounterText.getStyledDocument();
 		changePanelTextStyle(kobolds, koboldsEpicCounterText, epicCounterText, koboldsEpicCounter);
-		koboldsEpicCounterText.setForeground(titleFontColor);
 		
 		// Packs without epic counter modify buttons panel
 		koboldsEpicModifyPanel = new JPanel();
 		
 		// Reset button
-		koboldsEpicReset = new ModifierButton("Reset", titleFontColor, buttonsDarkHoverColor);
+		koboldsEpicReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		koboldsEpicReset.setToolTipText(resetButtonToolTipText);
-		koboldsEpicReset.setBackground(titleFontColor);
-		koboldsEpicReset.setForeground(headerBGColor);
+		koboldsEpicReset.setBackground(headerBGColor);
+		koboldsEpicReset.setForeground(titleFontColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -3855,16 +3961,16 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		// Add button
-		koboldsEpicAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		koboldsEpicAdd.setBackground(titleFontColor);
-		koboldsEpicAdd.setForeground(headerBGColor);
+		koboldsEpicAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
+		koboldsEpicAdd.setBackground(headerBGColor);
+		koboldsEpicAdd.setForeground(titleFontColor);
 		
 		// Increment field
 		koboldsEpicIncrement = new JTextArea(1, 1);
 		koboldsEpicIncrement.setDocument(new IncrementLimit(1));
-		koboldsEpicIncrement.setBackground(titleFontColor);
-		koboldsEpicIncrement.setForeground(headerBGColor);
-		koboldsEpicIncrement.setCaretColor(headerBGColor);
+		koboldsEpicIncrement.setBackground(headerBGColor);
+		koboldsEpicIncrement.setForeground(titleFontColor);
+		koboldsEpicIncrement.setCaretColor(titleFontColor);
 		koboldsEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(kobolds, koboldsEpicModifyPanel, koboldsEpicReset, koboldsEpicAdd, koboldsEpicIncrement);
@@ -3873,7 +3979,6 @@ public class TrackerGUI
 		koboldsEpicProbabilityText = new JTextPane();
 		doc = koboldsEpicProbabilityText.getStyledDocument();
 		changePanelTextStyle(kobolds, koboldsEpicProbabilityText, epicProbabilityText, koboldsEpicProbability);
-		koboldsEpicProbabilityText.setForeground(titleFontColor);
 		
 		koboldsEpicPanel.add(epicPanelTitleLabel);
 		koboldsEpicPanel.add(koboldsEpicCounterText);
@@ -3889,22 +3994,20 @@ public class TrackerGUI
 		legendaryPanelTitleLabel = new JTextPane();
 		doc = legendaryPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(kobolds, legendaryPanelTitleLabel, legendaryPanelTitle);
-		legendaryPanelTitleLabel.setForeground(titleFontColor);
 		
 		// Packs without legendary counter
 		koboldsLegendaryCounterText = new JTextPane();
 		doc = koboldsLegendaryCounterText.getStyledDocument();
 		changePanelTextStyle(kobolds, koboldsLegendaryCounterText, legendaryCounterText, koboldsLegendaryCounter);
-		koboldsLegendaryCounterText.setForeground(titleFontColor);
 		
 		// Packs without legendary counter modify buttons panel
 		koboldsLegendaryModifyPanel = new JPanel();
 		
 		// Reset button
-		koboldsLegendaryReset = new ModifierButton("Reset", titleFontColor, buttonsDarkHoverColor);
+		koboldsLegendaryReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		koboldsLegendaryReset.setToolTipText(resetButtonToolTipText);
-		koboldsLegendaryReset.setBackground(titleFontColor);
-		koboldsLegendaryReset.setForeground(headerBGColor);
+		koboldsLegendaryReset.setBackground(headerBGColor);
+		koboldsLegendaryReset.setForeground(titleFontColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -3912,16 +4015,16 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		// Add button
-		koboldsLegendaryAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		koboldsLegendaryAdd.setBackground(titleFontColor);
-		koboldsLegendaryAdd.setForeground(headerBGColor);
+		koboldsLegendaryAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
+		koboldsLegendaryAdd.setBackground(headerBGColor);
+		koboldsLegendaryAdd.setForeground(titleFontColor);
 		
 		// Increment field
 		koboldsLegendaryIncrement = new JTextArea(1, 2);
 		koboldsLegendaryIncrement.setDocument(new IncrementLimit(2));
-		koboldsLegendaryIncrement.setBackground(titleFontColor);
-		koboldsLegendaryIncrement.setForeground(headerBGColor);
-		koboldsLegendaryIncrement.setCaretColor(headerBGColor);
+		koboldsLegendaryIncrement.setBackground(headerBGColor);
+		koboldsLegendaryIncrement.setForeground(titleFontColor);
+		koboldsLegendaryIncrement.setCaretColor(titleFontColor);
 		koboldsLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(kobolds, koboldsLegendaryModifyPanel, koboldsLegendaryReset, koboldsLegendaryAdd, koboldsLegendaryIncrement);
@@ -3930,7 +4033,6 @@ public class TrackerGUI
 		koboldsLegendaryProbabilityText = new JTextPane();
 		doc = koboldsLegendaryProbabilityText.getStyledDocument();
 		changePanelTextStyle(kobolds, koboldsLegendaryProbabilityText, legendaryProbabilityText, koboldsLegendaryProbability);
-		koboldsLegendaryProbabilityText.setForeground(titleFontColor);
 		
 		koboldsLegendaryPanel.add(legendaryPanelTitleLabel);
 		koboldsLegendaryPanel.add(koboldsLegendaryCounterText);
@@ -3946,22 +4048,20 @@ public class TrackerGUI
 		totalPanelTitleLabel = new JTextPane();
 		doc = totalPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(kobolds, totalPanelTitleLabel,totalPanelTitle);
-		totalPanelTitleLabel.setForeground(titleFontColor);
 		
 		// Total amount of packs opened counter
 		koboldsTotalCounterText = new JTextPane();
 		doc = koboldsTotalCounterText.getStyledDocument();
 		changePanelTextStyle(kobolds, koboldsTotalCounterText, totalCounterText, koboldsTotalCounter);
-		koboldsTotalCounterText.setForeground(titleFontColor);
 		
 		// Total amount of packs opened modify buttons panel
 		koboldsTotalModifyPanel = new JPanel();
 		
 		// Modify button
-		koboldsTotalModify = new ModifierButton("Modify", titleFontColor, buttonsDarkHoverColor);
+		koboldsTotalModify = new ModifierButton("Modify", headerBGColor, buttonsHoverColor);
 		koboldsTotalModify.setToolTipText(modifyButtonToolTipText);
-		koboldsTotalModify.setBackground(titleFontColor);
-		koboldsTotalModify.setForeground(headerBGColor);
+		koboldsTotalModify.setBackground(headerBGColor);
+		koboldsTotalModify.setForeground(titleFontColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -3969,16 +4069,16 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		// Add button
-		koboldsTotalAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		koboldsTotalAdd.setBackground(titleFontColor);
-		koboldsTotalAdd.setForeground(headerBGColor);
+		koboldsTotalAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
+		koboldsTotalAdd.setBackground(headerBGColor);
+		koboldsTotalAdd.setForeground(titleFontColor);
 		
 		// Increment field
 		koboldsTotalIncrement = new JTextArea(1, 3);
 		koboldsTotalIncrement.setDocument(new IncrementLimit(3));
-		koboldsTotalIncrement.setBackground(titleFontColor);
-		koboldsTotalIncrement.setForeground(headerBGColor);
-		koboldsTotalIncrement.setCaretColor(headerBGColor);
+		koboldsTotalIncrement.setBackground(headerBGColor);
+		koboldsTotalIncrement.setForeground(titleFontColor);
+		koboldsTotalIncrement.setCaretColor(titleFontColor);
 		koboldsTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(kobolds, koboldsTotalModifyPanel, koboldsTotalModify, koboldsTotalAdd, koboldsTotalIncrement);
@@ -3988,19 +4088,19 @@ public class TrackerGUI
 		
 		// Common button
 		koboldsCommonButtonPanel = new JPanel(new GridBagLayout());
-		koboldsCommonButton = new IconButton(new ImageIcon(commonButtonDarkIcon), new ImageIcon(commonButtonDarkHoverIcon));
+		koboldsCommonButton = new IconButton(new ImageIcon(commonButtonIcon), new ImageIcon(commonButtonHoverIcon));
 		
 		// Rare button
 		koboldsRareButtonPanel = new JPanel(new GridBagLayout());
-		koboldsRareButton = new IconButton(new ImageIcon(rareButtonDarkIcon), new ImageIcon(rareButtonDarkHoverIcon));
+		koboldsRareButton = new IconButton(new ImageIcon(rareButtonIcon), new ImageIcon(rareButtonHoverIcon));
 		
 		// Epic button
 		koboldsEpicButtonPanel = new JPanel(new GridBagLayout());
-		koboldsEpicButton = new IconButton(new ImageIcon(epicButtonDarkIcon), new ImageIcon(epicButtonDarkHoverIcon));
+		koboldsEpicButton = new IconButton(new ImageIcon(epicButtonIcon), new ImageIcon(epicButtonHoverIcon));
 		
 		// Legendary button
 		koboldsLegendaryButtonPanel = new JPanel(new GridBagLayout());
-		koboldsLegendaryButton = new IconButton(new ImageIcon(legendaryButtonDarkIcon), new ImageIcon(legendaryButtonDarkHoverIcon));
+		koboldsLegendaryButton = new IconButton(new ImageIcon(legendaryButtonIcon), new ImageIcon(legendaryButtonHoverIcon));
 		
 		createRarityButtonsPanel(kobolds, koboldsRarityButtonsPanel, 
 				koboldsCommonButtonPanel, koboldsCommonButton, koboldsRareButtonPanel, koboldsRareButton, 
@@ -5345,6 +5445,209 @@ public class TrackerGUI
 		goblins.add(goblinsTotalPanel);
 	}
 	
+	// "Classic" panel creator
+	private void createClassicPanel() 
+	{
+		// "Classic" panel
+		classic = new JPanel();
+		classic.setBackground(classicColor);
+		classic.setLayout(new GridLayout(1, 4, 10, 0));
+		classic.setBorder(new EmptyBorder(10, 10, 10, 10));
+		
+		// "Classic" logo
+		classicImagePanel = new JPanel(new GridBagLayout());
+		classicImagePanel.setBackground(classic.getBackground());
+		
+		classicImageLabel = new JLabel(new ImageIcon(classicImage));
+		
+		classicImagePanel.add(classicImageLabel);
+		
+		// Packs without epic counter panel
+		classicEpicPanel = new JPanel();
+		classicEpicPanel.setBackground(classic.getBackground());
+		classicEpicPanel.setLayout(new GridLayout(4, 1));
+		
+		// Packs without epic counter panel title
+		epicPanelTitleLabel = new JTextPane();
+		doc = epicPanelTitleLabel.getStyledDocument();
+		changePanelTitleStyle(classic, epicPanelTitleLabel, epicPanelTitle);
+		
+		// Packs without epic counter
+		classicEpicCounterText = new JTextPane();
+		doc = classicEpicCounterText.getStyledDocument();
+		changePanelTextStyle(classic, classicEpicCounterText, epicCounterText, classicEpicCounter);
+		
+		// Packs without epic counter modify buttons panel
+		classicEpicModifyPanel = new JPanel();
+		
+		// Reset button
+		classicEpicReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
+		classicEpicReset.setToolTipText(resetButtonToolTipText);
+		classicEpicReset.setBackground(headerBGColor);
+		classicEpicReset.setForeground(titleFontColor);
+		
+		// Blank space between reset and add buttons
+		blank = new JLabel();
+		blank.setBackground(classic.getBackground());
+		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
+		
+		// Add button
+		classicEpicAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
+		classicEpicAdd.setBackground(headerBGColor);
+		classicEpicAdd.setForeground(titleFontColor);
+		
+		// Increment field
+		classicEpicIncrement = new JTextArea(1, 1);
+		classicEpicIncrement.setDocument(new IncrementLimit(1));
+		classicEpicIncrement.setBackground(headerBGColor);
+		classicEpicIncrement.setForeground(titleFontColor);
+		classicEpicIncrement.setCaretColor(titleFontColor);
+		classicEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
+		
+		createModifyButtonsPanel(classic, classicEpicModifyPanel, classicEpicReset, classicEpicAdd, classicEpicIncrement);
+		
+		// Probability of finding an epic calculator
+		classicEpicProbabilityText = new JTextPane();
+		doc = classicEpicProbabilityText.getStyledDocument();
+		changePanelTextStyle(classic, classicEpicProbabilityText, epicProbabilityText, classicEpicProbability);
+		
+		classicEpicPanel.add(epicPanelTitleLabel);
+		classicEpicPanel.add(classicEpicCounterText);
+		classicEpicPanel.add(classicEpicModifyPanel);
+		classicEpicPanel.add(classicEpicProbabilityText);
+		
+		// Packs without legendary counter panel
+		classicLegendaryPanel = new JPanel();
+		classicLegendaryPanel.setBackground(classic.getBackground());
+		classicLegendaryPanel.setLayout(new GridLayout(4, 1));
+		
+		// Packs without legendary counter panel title
+		legendaryPanelTitleLabel = new JTextPane();
+		doc = legendaryPanelTitleLabel.getStyledDocument();
+		changePanelTitleStyle(classic, legendaryPanelTitleLabel, legendaryPanelTitle);
+		
+		// Packs without legendary counter
+		classicLegendaryCounterText = new JTextPane();
+		doc = classicLegendaryCounterText.getStyledDocument();
+		changePanelTextStyle(classic, classicLegendaryCounterText, legendaryCounterText, classicLegendaryCounter);
+		
+		// Packs without legendary counter modify buttons panel
+		classicLegendaryModifyPanel = new JPanel();
+		
+		// Reset button
+		classicLegendaryReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
+		classicLegendaryReset.setToolTipText(resetButtonToolTipText);
+		classicLegendaryReset.setBackground(headerBGColor);
+		classicLegendaryReset.setForeground(titleFontColor);
+		
+		// Blank space between reset and add buttons
+		blank = new JLabel();
+		blank.setBackground(classic.getBackground());
+		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
+		
+		// Add button
+		classicLegendaryAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
+		classicLegendaryAdd.setBackground(headerBGColor);
+		classicLegendaryAdd.setForeground(titleFontColor);
+		
+		// Increment field
+		classicLegendaryIncrement = new JTextArea(1, 2);
+		classicLegendaryIncrement.setDocument(new IncrementLimit(2));
+		classicLegendaryIncrement.setBackground(headerBGColor);
+		classicLegendaryIncrement.setForeground(titleFontColor);
+		classicLegendaryIncrement.setCaretColor(titleFontColor);
+		classicLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
+		
+		createModifyButtonsPanel(classic, classicLegendaryModifyPanel, classicLegendaryReset, classicLegendaryAdd, classicLegendaryIncrement);
+		
+		// Probability of finding a legendary calculator
+		classicLegendaryProbabilityText = new JTextPane();
+		doc = classicLegendaryProbabilityText.getStyledDocument();
+		changePanelTextStyle(classic, classicLegendaryProbabilityText, legendaryProbabilityText, classicLegendaryProbability);
+		
+		classicLegendaryPanel.add(legendaryPanelTitleLabel);
+		classicLegendaryPanel.add(classicLegendaryCounterText);
+		classicLegendaryPanel.add(classicLegendaryModifyPanel);
+		classicLegendaryPanel.add(classicLegendaryProbabilityText);
+		
+		// Total amount of packs opened counter panel
+		classicTotalPanel = new JPanel();
+		classicTotalPanel.setBackground(classic.getBackground());
+		classicTotalPanel.setLayout(new GridLayout(4, 1));
+		
+		// Total amount of packs opened counter panel title
+		totalPanelTitleLabel = new JTextPane();
+		doc = totalPanelTitleLabel.getStyledDocument();
+		changePanelTitleStyle(classic, totalPanelTitleLabel,totalPanelTitle);
+		
+		// Total amount of packs opened counter
+		classicTotalCounterText = new JTextPane();
+		doc = classicTotalCounterText.getStyledDocument();
+		changePanelTextStyle(classic, classicTotalCounterText, totalCounterText, classicTotalCounter);
+		
+		// Total amount of packs opened modify buttons panel
+		classicTotalModifyPanel = new JPanel();
+		
+		// Modify button
+		classicTotalModify = new ModifierButton("Modify", headerBGColor, buttonsHoverColor);
+		classicTotalModify.setToolTipText(modifyButtonToolTipText);
+		classicTotalModify.setBackground(headerBGColor);
+		classicTotalModify.setForeground(titleFontColor);
+		
+		// Blank space between modify and add buttons
+		blank = new JLabel();
+		blank.setBackground(classic.getBackground());
+		blank.setBorder(new EmptyBorder(0, 5, 0, 5));
+		
+		// Add button
+		classicTotalAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
+		classicTotalAdd.setBackground(headerBGColor);
+		classicTotalAdd.setForeground(titleFontColor);
+		
+		// Increment field
+		classicTotalIncrement = new JTextArea(1, 3);
+		classicTotalIncrement.setDocument(new IncrementLimit(3));
+		classicTotalIncrement.setBackground(headerBGColor);
+		classicTotalIncrement.setForeground(titleFontColor);
+		classicTotalIncrement.setCaretColor(titleFontColor);
+		classicTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
+		
+		createModifyButtonsPanel(classic, classicTotalModifyPanel, classicTotalModify, classicTotalAdd, classicTotalIncrement);
+		
+		// Rarity buttons panel
+		classicRarityButtonsPanel = new JPanel();
+		
+		// Common button
+		classicCommonButtonPanel = new JPanel(new GridBagLayout());
+		classicCommonButton = new IconButton(new ImageIcon(commonButtonIcon), new ImageIcon(commonButtonHoverIcon));
+		
+		// Rare button
+		classicRareButtonPanel = new JPanel(new GridBagLayout());
+		classicRareButton = new IconButton(new ImageIcon(rareButtonIcon), new ImageIcon(rareButtonHoverIcon));
+		
+		// Epic button
+		classicEpicButtonPanel = new JPanel(new GridBagLayout());
+		classicEpicButton = new IconButton(new ImageIcon(epicButtonIcon), new ImageIcon(epicButtonHoverIcon));
+		
+		// Legendary button
+		classicLegendaryButtonPanel = new JPanel(new GridBagLayout());
+		classicLegendaryButton = new IconButton(new ImageIcon(legendaryButtonIcon), new ImageIcon(legendaryButtonHoverIcon));
+		
+		 createRarityButtonsPanel(classic, classicRarityButtonsPanel, 
+				classicCommonButtonPanel, classicCommonButton, classicRareButtonPanel, classicRareButton, 
+				classicEpicButtonPanel, classicEpicButton, classicLegendaryButtonPanel, classicLegendaryButton);
+		
+		classicTotalPanel.add(totalPanelTitleLabel);
+		classicTotalPanel.add(classicTotalCounterText);
+		classicTotalPanel.add(classicTotalModifyPanel);
+		classicTotalPanel.add(classicRarityButtonsPanel);
+		
+		classic.add(classicImagePanel);
+		classic.add(classicEpicPanel);
+		classic.add(classicLegendaryPanel);
+		classic.add(classicTotalPanel);
+	}
+	
 	// Modify buttons panel creator
 	private void createModifyButtonsPanel(JPanel expansion, JPanel modifiersPanel, ModifierButton resModButton, RoundButton addButton, JTextArea numField) 
 	{
@@ -5518,6 +5821,12 @@ public class TrackerGUI
 		return showWild;
 	}
 	
+	// Returns the "Year of the Gryphon" panel
+	public JPanel getYearOfTheGryphon() 
+	{
+		return gryphon;
+	}
+	
 	// Returns the "Year of the Phoenix" panel
 	public JPanel getYearOfThePhoenix() 
 	{
@@ -5552,6 +5861,11 @@ public class TrackerGUI
 	public JPanel getClassicSets() 
 	{
 		return classicSets;
+	}
+	
+	//Returns the "Forged in the Barrens" image button
+	public JButton getBarrensImage() {
+		return barrensImageButton;
 	}
 	
 	//Returns the "Madness at the Darkmoon Faire" image button
@@ -5634,10 +5948,10 @@ public class TrackerGUI
 		return goblinsImageButton;
 	}
 	
-	// Returns the value of "Classic" epic counter
-	public String getClassicEpicCounter() 
+	// Returns the value of "Forged in the Barrens" epic counter
+	public String getBarrensEpicCounter() 
 	{
-		return classicEpicCounter;
+		return barrensEpicCounter;
 	}
 	
 	// Returns the value of "Madness at the Darkmoon Faire" epic counter
@@ -5736,13 +6050,19 @@ public class TrackerGUI
 		return goblinsEpicCounter;
 	}
 	
-	// Sets the value of "Classic" epic counter
-	public void setClassicEpicCounter(String value) 
+	// Returns the value of "Classic" epic counter
+	public String getClassicEpicCounter() 
 	{
-		classicEpicCounter = value;
-		classicEpicCounterText.setText("");
-		doc = classicEpicCounterText.getStyledDocument();
-		changePanelTextStyle(classic, classicEpicCounterText, epicCounterText, classicEpicCounter);
+		return classicEpicCounter;
+	}
+	
+	// Sets the value of "Forged in the Barrens" epic counter
+	public void setBarrensEpicCounter(String value) 
+	{
+		barrensEpicCounter = value;
+		barrensEpicCounterText.setText("");
+		doc = barrensEpicCounterText.getStyledDocument();
+		changePanelTextStyle(barrens, barrensEpicCounterText, epicCounterText, barrensEpicCounter);
 	}
 	
 	// Sets the value of "Madness at the Darkmoon Faire" epic counter
@@ -5889,10 +6209,19 @@ public class TrackerGUI
 		changePanelTextStyle(goblins, goblinsEpicCounterText, epicCounterText, goblinsEpicCounter);
 	}
 	
-	// Returns the "Classic" epic reset button
-	public ModifierButton getClassicEpicReset() 
+	// Sets the value of "Classic" epic counter
+	public void setClassicEpicCounter(String value) 
 	{
-		return classicEpicReset;
+		classicEpicCounter = value;
+		classicEpicCounterText.setText("");
+		doc = classicEpicCounterText.getStyledDocument();
+		changePanelTextStyle(classic, classicEpicCounterText, epicCounterText, classicEpicCounter);
+	}
+	
+	// Returns the "Forged in the Barrens" epic reset button
+	public ModifierButton getBarrensEpicReset() 
+	{
+		return barrensEpicReset;
 	}
 	
 	// Returns the "Madness at the Darkmoon Faire" epic reset button
@@ -5991,10 +6320,16 @@ public class TrackerGUI
 		return goblinsEpicReset;
 	}
 	
-	// Returns the "Classic" epic add button
-	public RoundButton getClassicEpicAdd() 
+	// Returns the "Classic" epic reset button
+	public ModifierButton getClassicEpicReset() 
 	{
-		return classicEpicAdd;
+		return classicEpicReset;
+	}
+	
+	// Returns the "Forged in the Barrens" epic add button
+	public RoundButton getBarrensEpicAdd() 
+	{
+		return barrensEpicAdd;
 	}
 	
 	// Returns the "Madness at the Darkmoon Faire" epic add button
@@ -6093,10 +6428,16 @@ public class TrackerGUI
 		return goblinsEpicAdd;
 	}
 	
-	// Returns the "Classic" epic increment field
-	public JTextArea getClassicEpicIncrement() 
+	// Returns the "Classic" epic add button
+	public RoundButton getClassicEpicAdd() 
 	{
-		return classicEpicIncrement;
+		return classicEpicAdd;
+	}
+	
+	// Returns the "Forged in the Barrens" epic increment field
+	public JTextArea getBarrensEpicIncrement() 
+	{
+		return barrensEpicIncrement;
 	}
 	
 	// Returns the "Madness at the Darkmoon Faire" epic increment field
@@ -6195,10 +6536,16 @@ public class TrackerGUI
 		return goblinsEpicIncrement;
 	}
 	
-	// Returns the value of "Classic" epic probability
-	public String getClassicEpicProbability() 
+	// Returns the "Classic" epic increment field
+	public JTextArea getClassicEpicIncrement() 
 	{
-		return classicEpicProbability.replace("%", "").replace(",", ".");
+		return classicEpicIncrement;
+	}
+	
+	// Returns the value of "Forged in the Barrens" epic probability
+	public String getBarrensEpicProbability() 
+	{
+		return barrensEpicProbability.replace("%", "").replace(",", ".");
 	}
 	
 	// Returns the value of "Madness at the Darkmoon Faire" epic probability
@@ -6297,13 +6644,19 @@ public class TrackerGUI
 		return goblinsEpicProbability.replace("%", "").replace(",", ".");
 	}
 	
-	// Sets the value of "Classic" epic probability
-	public void setClassicEpicProbability(String value) 
+	// Returns the value of "Classic" epic probability
+	public String getClassicEpicProbability() 
 	{
-		classicEpicProbability = value + "%";
-		classicEpicProbabilityText.setText("");
-		doc = classicEpicProbabilityText.getStyledDocument();
-		changePanelTextStyle(classic, classicEpicProbabilityText, epicProbabilityText, classicEpicProbability);
+		return classicEpicProbability.replace("%", "").replace(",", ".");
+	}
+	
+	// Sets the value of "Forged in the Barrens" epic probability
+	public void setBarrensEpicProbability(String value) 
+	{
+		barrensEpicProbability = value + "%";
+		barrensEpicProbabilityText.setText("");
+		doc = barrensEpicProbabilityText.getStyledDocument();
+		changePanelTextStyle(barrens, barrensEpicProbabilityText, epicProbabilityText, barrensEpicProbability);
 	}
 	
 	// Sets the value of "Madness at the Darkmoon Faire" epic probability
@@ -6450,10 +6803,19 @@ public class TrackerGUI
 		changePanelTextStyle(goblins, goblinsEpicProbabilityText, epicProbabilityText, goblinsEpicProbability);
 	}
 	
-	// Returns the value of "Classic" legendary counter
-	public String getClassicLegendaryCounter() 
+	// Sets the value of "Classic" epic probability
+	public void setClassicEpicProbability(String value) 
 	{
-		return classicLegendaryCounter;
+		classicEpicProbability = value + "%";
+		classicEpicProbabilityText.setText("");
+		doc = classicEpicProbabilityText.getStyledDocument();
+		changePanelTextStyle(classic, classicEpicProbabilityText, epicProbabilityText, classicEpicProbability);
+	}
+	
+	// Returns the value of "Forged in the Barrens" legendary counter
+	public String getBarrensLegendaryCounter() 
+	{
+		return barrensLegendaryCounter;
 	}
 	
 	// Returns the value of "Madness at the Darkmoon Faire" legendary counter
@@ -6552,13 +6914,19 @@ public class TrackerGUI
 		return goblinsLegendaryCounter;
 	}
 	
-	// Sets the value of "Classic" legendary counter
-	public void setClassicLegendaryCounter(String value) 
+	// Returns the value of "Classic" legendary counter
+	public String getClassicLegendaryCounter() 
 	{
-		classicLegendaryCounter = value;
-		classicLegendaryCounterText.setText("");
-		doc = classicLegendaryCounterText.getStyledDocument();
-		changePanelTextStyle(classic, classicLegendaryCounterText, legendaryCounterText, classicLegendaryCounter);
+		return classicLegendaryCounter;
+	}
+	
+	// Sets the value of "Forged in the Barrens" legendary counter
+	public void setBarrensLegendaryCounter(String value) 
+	{
+		barrensLegendaryCounter = value;
+		barrensLegendaryCounterText.setText("");
+		doc = barrensLegendaryCounterText.getStyledDocument();
+		changePanelTextStyle(barrens, barrensLegendaryCounterText, legendaryCounterText, barrensLegendaryCounter);
 	}
 	
 	// Sets the value of "Madness at the Darkmoon Faire" legendary counter
@@ -6705,10 +7073,19 @@ public class TrackerGUI
 		changePanelTextStyle(goblins, goblinsLegendaryCounterText, legendaryCounterText, goblinsLegendaryCounter);
 	}
 	
-	// Returns the "Classic" legendary reset button
-	public ModifierButton getClassicLegendaryReset() 
+	// Sets the value of "Classic" legendary counter
+	public void setClassicLegendaryCounter(String value) 
 	{
-		return classicLegendaryReset;
+		classicLegendaryCounter = value;
+		classicLegendaryCounterText.setText("");
+		doc = classicLegendaryCounterText.getStyledDocument();
+		changePanelTextStyle(classic, classicLegendaryCounterText, legendaryCounterText, classicLegendaryCounter);
+	}
+	
+	// Returns the "Forged in the Barrens" legendary reset button
+	public ModifierButton getBarrensLegendaryReset() 
+	{
+		return barrensLegendaryReset;
 	}
 	
 	// Returns the "Madness at the Darkmoon Faire" legendary reset button
@@ -6807,10 +7184,16 @@ public class TrackerGUI
 		return goblinsLegendaryReset;
 	}
 	
-	// Returns the "Classic" legendary add button
-	public RoundButton getClassicLegendaryAdd() 
+	// Returns the "Classic" legendary reset button
+	public ModifierButton getClassicLegendaryReset() 
 	{
-		return classicLegendaryAdd;
+		return classicLegendaryReset;
+	}
+	
+	// Returns the "Forged in the Barrens" legendary add button
+	public RoundButton getBarrensLegendaryAdd() 
+	{
+		return barrensLegendaryAdd;
 	}
 	
 	// Returns the "Madness at the Darkmoon Faire" legendary add button
@@ -6909,10 +7292,16 @@ public class TrackerGUI
 		return goblinsLegendaryAdd;
 	}
 	
-	// Returns the "Classic" legendary increment field
-	public JTextArea getClassicLegendaryIncrement() 
+	// Returns the "Classic" legendary add button
+	public RoundButton getClassicLegendaryAdd() 
 	{
-		return classicLegendaryIncrement;
+		return classicLegendaryAdd;
+	}
+	
+	// Returns the "Forged in the Barrens" legendary increment field
+	public JTextArea getBarrensLegendaryIncrement() 
+	{
+		return barrensLegendaryIncrement;
 	}
 	
 	// Returns the "Madness at the Darkmoon Faire" legendary increment field
@@ -7011,10 +7400,16 @@ public class TrackerGUI
 		return goblinsLegendaryIncrement;
 	}
 	
-	// Returns the value of "Classic" legendary probability
-	public String getClassicLegendaryProbability() 
+	// Returns the "Classic" legendary increment field
+	public JTextArea getClassicLegendaryIncrement() 
 	{
-		return classicLegendaryProbability.replace("%", "").replace(",", ".");
+		return classicLegendaryIncrement;
+	}
+	
+	// Returns the value of "Forged in the Barrens" legendary probability
+	public String getBarrensLegendaryProbability() 
+	{
+		return barrensLegendaryProbability.replace("%", "").replace(",", ".");
 	}
 	
 	// Returns the value of "Madness at the Darkmoon Faire" legendary probability
@@ -7113,13 +7508,19 @@ public class TrackerGUI
 		return goblinsLegendaryProbability.replace("%", "").replace(",", ".");
 	}
 	
-	// Sets the value of "Classic" legendary probability
-	public void setClassicLegendaryProbability(String value) 
+	// Returns the value of "Classic" legendary probability
+	public String getClassicLegendaryProbability() 
 	{
-		classicLegendaryProbability = value + "%";
-		classicLegendaryProbabilityText.setText("");
-		doc = classicLegendaryProbabilityText.getStyledDocument();
-		changePanelTextStyle(classic, classicLegendaryProbabilityText, legendaryProbabilityText, classicLegendaryProbability);
+		return classicLegendaryProbability.replace("%", "").replace(",", ".");
+	}
+	
+	// Sets the value of "Forged in the Barrens" legendary probability
+	public void setBarrensLegendaryProbability(String value) 
+	{
+		barrensLegendaryProbability = value + "%";
+		barrensLegendaryProbabilityText.setText("");
+		doc = barrensLegendaryProbabilityText.getStyledDocument();
+		changePanelTextStyle(barrens, barrensLegendaryProbabilityText, legendaryProbabilityText, barrensLegendaryProbability);
 	}
 	
 	// Sets the value of "Madness at the Darkmoon Faire" legendary probability
@@ -7266,10 +7667,19 @@ public class TrackerGUI
 		changePanelTextStyle(goblins, goblinsLegendaryProbabilityText, legendaryProbabilityText, goblinsLegendaryProbability);
 	}
 	
-	// Returns the value of "Classic" total counter
-	public String getClassicTotalCounter() 
+	// Sets the value of "Classic" legendary probability
+	public void setClassicLegendaryProbability(String value) 
 	{
-		return classicTotalCounter;
+		classicLegendaryProbability = value + "%";
+		classicLegendaryProbabilityText.setText("");
+		doc = classicLegendaryProbabilityText.getStyledDocument();
+		changePanelTextStyle(classic, classicLegendaryProbabilityText, legendaryProbabilityText, classicLegendaryProbability);
+	}
+	
+	// Returns the value of "Forged in the Barrens" total counter
+	public String getBarrensTotalCounter() 
+	{
+		return barrensTotalCounter;
 	}
 	
 	// Returns the value of "Madness at the Darkmoon Faire" total counter
@@ -7368,13 +7778,19 @@ public class TrackerGUI
 		return goblinsTotalCounter;
 	}
 	
-	// Sets the value of "Classic" total counter
-	public void setClassicTotalCounter(String value) 
+	// Returns the value of "Classic" total counter
+	public String getClassicTotalCounter() 
 	{
-		classicTotalCounter = value;
-		classicTotalCounterText.setText("");
-		doc = classicTotalCounterText.getStyledDocument();
-		changePanelTextStyle(classic, classicTotalCounterText, totalCounterText, classicTotalCounter);
+		return classicTotalCounter;
+	}
+	
+	// Sets the value of "Forged in the Barrens" total counter
+	public void setBarrensTotalCounter(String value) 
+	{
+		barrensTotalCounter = value;
+		barrensTotalCounterText.setText("");
+		doc = barrensTotalCounterText.getStyledDocument();
+		changePanelTextStyle(barrens, barrensTotalCounterText, totalCounterText, barrensTotalCounter);
 	}
 	
 	// Sets the value of "Madness at the Darkmoon Faire" total counter
@@ -7521,10 +7937,19 @@ public class TrackerGUI
 		changePanelTextStyle(goblins, goblinsTotalCounterText, totalCounterText, goblinsTotalCounter);
 	}
 	
-	// Returns the "Classic" total modify button
-	public ModifierButton getClassicTotalModify() 
+	// Sets the value of "Classic" total counter
+	public void setClassicTotalCounter(String value) 
 	{
-		return classicTotalModify;
+		classicTotalCounter = value;
+		classicTotalCounterText.setText("");
+		doc = classicTotalCounterText.getStyledDocument();
+		changePanelTextStyle(classic, classicTotalCounterText, totalCounterText, classicTotalCounter);
+	}
+	
+	// Returns the "Forged in the Barrens" total modify button
+	public ModifierButton getBarrensTotalModify() 
+	{
+		return barrensTotalModify;
 	}
 	
 	// Returns the "Madness at the Darkmoon Faire" total modify button
@@ -7623,10 +8048,16 @@ public class TrackerGUI
 		return goblinsTotalModify;
 	}
 	
-	// Returns the "Classic" total add button
-	public RoundButton getClassicTotalAdd() 
+	// Returns the "Classic" total modify button
+	public ModifierButton getClassicTotalModify() 
 	{
-		return classicTotalAdd;
+		return classicTotalModify;
+	}
+	
+	// Returns the "Forged in the Barrens" total add button
+	public RoundButton getBarrensTotalAdd() 
+	{
+		return barrensTotalAdd;
 	}
 	
 	// Returns the "Madness at the Darkmoon Faire" total add button
@@ -7725,10 +8156,16 @@ public class TrackerGUI
 		return goblinsTotalAdd;
 	}
 	
-	// Returns the "Classic" total increment field
-	public JTextArea getClassicTotalIncrement() 
+	// Returns the "Classic" total add button
+	public RoundButton getClassicTotalAdd() 
 	{
-		return classicTotalIncrement;
+		return classicTotalAdd;
+	}
+	
+	// Returns the "Forged in the Barrens" total increment field
+	public JTextArea getBarrensTotalIncrement() 
+	{
+		return barrensTotalIncrement;
 	}
 	
 	// Returns the "Madness at the Darkmoon Faire" total increment field
@@ -7827,10 +8264,16 @@ public class TrackerGUI
 		return goblinsTotalIncrement;
 	}
 	
-	// Returns the "Classic" common button
-	public IconButton getClassicCommonButton() 
+	// Returns the "Classic" total increment field
+	public JTextArea getClassicTotalIncrement() 
 	{
-		return classicCommonButton;
+		return classicTotalIncrement;
+	}
+	
+	// Returns the "Forged in the Barrens" common button
+	public IconButton getBarrensCommonButton() 
+	{
+		return barrensCommonButton;
 	}
 	
 	// Returns the "Madness at the Darkmoon Faire" common button
@@ -7929,10 +8372,16 @@ public class TrackerGUI
 		return goblinsCommonButton;
 	}
 	
-	// Returns the "Classic" rare button
-	public IconButton getClassicRareButton() 
+	// Returns the "Classic" common button
+	public IconButton getClassicCommonButton() 
 	{
-		return classicRareButton;
+		return classicCommonButton;
+	}
+	
+	// Returns the "Forged in the Barrens" rare button
+	public IconButton getBarrensRareButton() 
+	{
+		return barrensRareButton;
 	}
 	
 	// Returns the "Madness at the Darkmoon Faire" rare button
@@ -8031,10 +8480,16 @@ public class TrackerGUI
 		return goblinsRareButton;
 	}
 	
-	// Returns the "Classic" epic button
-	public IconButton getClassicEpicButton() 
+	// Returns the "Classic" rare button
+	public IconButton getClassicRareButton() 
 	{
-		return classicEpicButton;
+		return classicRareButton;
+	}
+	
+	// Returns the "Forged in the Barrens" epic button
+	public IconButton getBarrensEpicButton() 
+	{
+		return barrensEpicButton;
 	}
 	
 	// Returns the "Madness at the Darkmoon Faire" epic button
@@ -8133,10 +8588,16 @@ public class TrackerGUI
 		return goblinsEpicButton;
 	}
 	
-	// Returns the "Classtotaldary button
-	public IconButton getClassicLegendaryButton() 
+	// Returns the "Classic" epic button
+	public IconButton getClassicEpicButton() 
 	{
-		return classicLegendaryButton;
+		return classicEpicButton;
+	}
+	
+	// Returns the "Forged in the Barrens" legendary button
+	public IconButton getBarrensLegendaryButton() 
+	{
+		return barrensLegendaryButton;
 	}
 	
 	// Returns the "Madness at the Darkmoon Faire" legendary button
@@ -8233,5 +8694,11 @@ public class TrackerGUI
 	public IconButton getGoblinsLegendaryButton() 
 	{
 		return goblinsLegendaryButton;
+	}
+	
+	// Returns the "Classtotaldary button
+	public IconButton getClassicLegendaryButton() 
+	{
+		return classicLegendaryButton;
 	}
 }

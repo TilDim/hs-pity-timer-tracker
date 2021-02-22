@@ -84,7 +84,7 @@ public class HSPityTimerTracker implements ActionListener
 			"~ Hearthstone Packs Counter ~" + nextLine + 
 			nextLine + 
 			"- Expansions" + nextLine + 
-			"Classic" + nextLine + 
+			"Forged in the Barrens" + nextLine + 
 			"Madness at the Darkmoon Faire" + nextLine + 
 			"Scholomance Academy" + nextLine + 
 			"Ashes of Outland" + nextLine + 
@@ -101,11 +101,12 @@ public class HSPityTimerTracker implements ActionListener
 			"Whispers of the Old Gods" + nextLine + 
 			"The Grand Tournament" + nextLine + 
 			"Goblins vs Gnomes" + nextLine + 
+			"Classic" + nextLine + 
 			nextLine + 
 			"----------" + nextLine + 
 			nextLine + 
 			"- Epic counters" + nextLine + 
-			"Classic: 0" + nextLine + 
+			"Forged in the Barrens: 0" + nextLine + 
 			"Madness at the Darkmoon Faire: 0" + nextLine + 
 			"Scholomance Academy: 0" + nextLine + 
 			"Ashes of Outland: 0" + nextLine + 
@@ -122,9 +123,10 @@ public class HSPityTimerTracker implements ActionListener
 			"Whispers of the Old Gods: 0" + nextLine + 
 			"The Grand Tournament: 0" + nextLine + 
 			"Goblins vs Gnomes: 0" + nextLine + 
+			"Classic: 0" + nextLine + 
 			nextLine + 
 			"- Epic probabilities" + nextLine + 
-			"Classic: 0" + nextLine + 
+			"Forged in the Barrens: 0" + nextLine + 
 			"Madness at the Darkmoon Faire: 0" + nextLine + 
 			"Scholomance Academy: 0" + nextLine + 
 			"Ashes of Outland: 0" + nextLine + 
@@ -141,11 +143,12 @@ public class HSPityTimerTracker implements ActionListener
 			"Whispers of the Old Gods: 0" + nextLine + 
 			"The Grand Tournament: 0" + nextLine + 
 			"Goblins vs Gnomes: 0" + nextLine + 
+			"Classic: 0" + nextLine + 
 			nextLine + 
 			"----------" + nextLine + 
 			nextLine + 
 			"- Legendary counters" + nextLine + 
-			"Classic: 0" + nextLine + 
+			"Forged in the Barrens: 0" + nextLine + 
 			"Madness at the Darkmoon Faire: 0" + nextLine + 
 			"Scholomance Academy: 0" + nextLine + 
 			"Ashes of Outland: 0" + nextLine + 
@@ -162,9 +165,10 @@ public class HSPityTimerTracker implements ActionListener
 			"Whispers of the Old Gods: 0" + nextLine + 
 			"The Grand Tournament: 0" + nextLine + 
 			"Goblins vs Gnomes: 0" + nextLine + 
+			"Classic: 0" + nextLine + 
 			nextLine + 
 			"- Legendary probabilities" + nextLine + 
-			"Classic: 0" + nextLine + 
+			"Forged in the Barrens: 0" + nextLine + 
 			"Madness at the Darkmoon Faire: 0" + nextLine + 
 			"Scholomance Academy: 0" + nextLine + 
 			"Ashes of Outland: 0" + nextLine + 
@@ -181,11 +185,12 @@ public class HSPityTimerTracker implements ActionListener
 			"Whispers of the Old Gods: 0" + nextLine + 
 			"The Grand Tournament: 0" + nextLine + 
 			"Goblins vs Gnomes: 0" + nextLine + 
+			"Classic: 0" + nextLine + 
 			nextLine + 
 			"----------" + nextLine + 
 			nextLine + 
 			"- Total counters" + nextLine + 
-			"Classic: 0" + nextLine + 
+			"Forged in the Barrens: 0" + nextLine + 
 			"Madness at the Darkmoon Faire: 0" + nextLine + 
 			"Scholomance Academy: 0" + nextLine + 
 			"Ashes of Outland: 0" + nextLine + 
@@ -201,7 +206,8 @@ public class HSPityTimerTracker implements ActionListener
 			"Mean Streets of Gadgetzan: 0" + nextLine + 
 			"Whispers of the Old Gods: 0" + nextLine + 
 			"The Grand Tournament: 0" + nextLine + 
-			"Goblins vs Gnomes: 0";
+			"Goblins vs Gnomes: 0" + nextLine + 
+			"Classic: 0";
 	
 	// Format in which the probabilities values are displayed
 	NumberFormat nf;
@@ -236,6 +242,9 @@ public class HSPityTimerTracker implements ActionListener
 			+ "Every number on the tracker (timers, probabilities, totals) is stored in a file located in the 'Documents' folder "
 			+ "and you can find it directly by pressing the folder icon on the top right, next to the title." + nextLine
 			+ "If you want to back up the data of your tracker or move it to another system, just copy this file." + nextLine
+			+ "It is also very important to keep a back-up of this file in another folder on your system in case the file is overwritten improperly "
+			+ "when a newer version of the program is executed for the first time. This is a rare case, but it could happen due to a bug "
+			+ "or a change in the structure of the file. In the latter case, you will be noticed in time." + nextLine
 			+ "(Warning! Do not modify this file by yourself or the program might not work properly. For this reason, the file is in read-only mode.)" + nextLine + nextLine
 			+ "More details on the modify buttons and fields:" + nextLine
 			+ "Reset:   Sets the tracker value to '0'" + nextLine
@@ -275,6 +284,7 @@ public class HSPityTimerTracker implements ActionListener
 	private JCheckBox toggleWild;
 	
 	// Wild sets panels
+	private JPanel dragon;
 	private JPanel raven;
 	private JPanel mammoth;
 	private JPanel kraken;
@@ -283,6 +293,7 @@ public class HSPityTimerTracker implements ActionListener
 	// Expansions image buttons
 	ArrayList<JButton> imageButtons;
 	
+	private JButton barrensImage;
 	private JButton darkmoonImage;
 	private JButton scholomanceImage;
 	private JButton outlandImage;
@@ -301,6 +312,7 @@ public class HSPityTimerTracker implements ActionListener
 	private JButton goblinsImage;
 	
 	// Expansions webpages links
+	private final String barrensUrlText = "https://playhearthstone.com/en-us/expansions-adventures/forged-in-the-barrens";
 	private final String darkmoonUrlText = "https://playhearthstone.com/en-us/expansions-adventures/madness-at-the-darkmoon-faire";
 	private final String scholomanceUrlText = "https://playhearthstone.com/en-us/expansions-adventures/scholomance-academy";
 	private final String outlandUrlText = "https://playhearthstone.com/en-us/expansions-adventures/ashes-of-outland";
@@ -320,6 +332,7 @@ public class HSPityTimerTracker implements ActionListener
 	
 	ArrayList<URI> imageButtonsUrls;
 	
+	private URI barrensUrl;
 	private URI darkmoonUrl;
 	private URI scholomanceUrl;
 	private URI outlandUrl;
@@ -338,7 +351,7 @@ public class HSPityTimerTracker implements ActionListener
 	private URI goblinsUrl;
 	
 	// Epic packs counters (Labels showing the current amount of packs opened without finding an epic card from each expansion)
-	private int classicEpicCounter;
+	private int barrensEpicCounter;
 	private int darkmoonEpicCounter;
 	private int scholomanceEpicCounter;
 	private int outlandEpicCounter;
@@ -355,9 +368,10 @@ public class HSPityTimerTracker implements ActionListener
 	private int oldGodsEpicCounter;
 	private int tournamentEpicCounter;
 	private int goblinsEpicCounter;
+	private int classicEpicCounter;
 	
 	// Epic probabilities (Labels showing the probability of finding an epic card from each expansion)
-	private double classicEpicProbability;
+	private double barrensEpicProbability;
 	private double darkmoonEpicProbability;
 	private double scholomanceEpicProbability;
 	private double outlandEpicProbability;
@@ -374,12 +388,13 @@ public class HSPityTimerTracker implements ActionListener
 	private double oldGodsEpicProbability;
 	private double tournamentEpicProbability;
 	private double goblinsEpicProbability;
+	private double classicEpicProbability;
 	
 	// Epic counters modify buttons
 	// Reset buttons
 	ArrayList<ModifierButton> epicResetButtons;
 	
-	private ModifierButton classicEpicReset;
+	private ModifierButton barrensEpicReset;
 	private ModifierButton darkmoonEpicReset;
 	private ModifierButton scholomanceEpicReset;
 	private ModifierButton outlandEpicReset;
@@ -396,11 +411,12 @@ public class HSPityTimerTracker implements ActionListener
 	private ModifierButton oldGodsEpicReset;
 	private ModifierButton tournamentEpicReset;
 	private ModifierButton goblinsEpicReset;
+	private ModifierButton classicEpicReset;
 	
 	// Add buttons
 	ArrayList<RoundButton> epicAddButtons;
 	
-	private RoundButton classicEpicAdd;
+	private RoundButton barrensEpicAdd;
 	private RoundButton darkmoonEpicAdd;
 	private RoundButton scholomanceEpicAdd;
 	private RoundButton outlandEpicAdd;
@@ -417,9 +433,10 @@ public class HSPityTimerTracker implements ActionListener
 	private RoundButton oldGodsEpicAdd;
 	private RoundButton tournamentEpicAdd;
 	private RoundButton goblinsEpicAdd;
+	private RoundButton classicEpicAdd;
 	
 	// Increment fields	
-	private JTextArea classicEpicIncrement;
+	private JTextArea barrensEpicIncrement;
 	private JTextArea darkmoonEpicIncrement;
 	private JTextArea scholomanceEpicIncrement;
 	private JTextArea outlandEpicIncrement;
@@ -436,9 +453,10 @@ public class HSPityTimerTracker implements ActionListener
 	private JTextArea oldGodsEpicIncrement;
 	private JTextArea tournamentEpicIncrement;
 	private JTextArea goblinsEpicIncrement;
+	private JTextArea classicEpicIncrement;
 	
 	// Legendary packs counters (Labels showing the current amount of packs opened without finding a legendary card from each expansion)
-	private int classicLegendaryCounter;
+	private int barrensLegendaryCounter;
 	private int darkmoonLegendaryCounter;
 	private int scholomanceLegendaryCounter;
 	private int outlandLegendaryCounter;
@@ -455,9 +473,10 @@ public class HSPityTimerTracker implements ActionListener
 	private int oldGodsLegendaryCounter;
 	private int tournamentLegendaryCounter;
 	private int goblinsLegendaryCounter;
+	private int classicLegendaryCounter;
 	
 	// Legendary probabilities (Labels showing the probability of finding a legendary card from each expansion)
-	private double classicLegendaryProbability;
+	private double barrensLegendaryProbability;
 	private double darkmoonLegendaryProbability;
 	private double scholomanceLegendaryProbability;
 	private double outlandLegendaryProbability;
@@ -474,12 +493,13 @@ public class HSPityTimerTracker implements ActionListener
 	private double oldGodsLegendaryProbability;
 	private double tournamentLegendaryProbability;
 	private double goblinsLegendaryProbability;
+	private double classicLegendaryProbability;
 	
 	// Legendary counters modify buttons
 	// Reset buttons
 	ArrayList<ModifierButton> legendaryResetButtons;
 	
-	private ModifierButton classicLegendaryReset;
+	private ModifierButton barrensLegendaryReset;
 	private ModifierButton darkmoonLegendaryReset;
 	private ModifierButton scholomanceLegendaryReset;
 	private ModifierButton outlandLegendaryReset;
@@ -496,11 +516,12 @@ public class HSPityTimerTracker implements ActionListener
 	private ModifierButton oldGodsLegendaryReset;
 	private ModifierButton tournamentLegendaryReset;
 	private ModifierButton goblinsLegendaryReset;
+	private ModifierButton classicLegendaryReset;
 	
 	// Add buttons
 	ArrayList<RoundButton> legendaryAddButtons;
 	
-	private RoundButton classicLegendaryAdd;
+	private RoundButton barrensLegendaryAdd;
 	private RoundButton darkmoonLegendaryAdd;
 	private RoundButton scholomanceLegendaryAdd;
 	private RoundButton outlandLegendaryAdd;
@@ -517,9 +538,10 @@ public class HSPityTimerTracker implements ActionListener
 	private RoundButton oldGodsLegendaryAdd;
 	private RoundButton tournamentLegendaryAdd;
 	private RoundButton goblinsLegendaryAdd;
+	private RoundButton classicLegendaryAdd;
 	
 	// Increment fields
-	private JTextArea classicLegendaryIncrement;
+	private JTextArea barrensLegendaryIncrement;
 	private JTextArea darkmoonLegendaryIncrement;
 	private JTextArea scholomanceLegendaryIncrement;
 	private JTextArea outlandLegendaryIncrement;
@@ -536,9 +558,10 @@ public class HSPityTimerTracker implements ActionListener
 	private JTextArea oldGodsLegendaryIncrement;
 	private JTextArea tournamentLegendaryIncrement;
 	private JTextArea goblinsLegendaryIncrement;
+	private JTextArea classicLegendaryIncrement;
 	
 	// Total Packs counters (Labels showing the total amount of packs opened from each expansion)
-	private int classicTotalCounter;
+	private int barrensTotalCounter;
 	private int darkmoonTotalCounter;
 	private int scholomanceTotalCounter;
 	private int outlandTotalCounter;
@@ -555,12 +578,13 @@ public class HSPityTimerTracker implements ActionListener
 	private int oldGodsTotalCounter;
 	private int tournamentTotalCounter;
 	private int goblinsTotalCounter;
+	private int classicTotalCounter;
 	
 	// Total counters modify buttons
 	// Modify buttons
 	ArrayList<ModifierButton> totalModifyButtons;
 	
-	private ModifierButton classicTotalModify;
+	private ModifierButton barrensTotalModify;
 	private ModifierButton darkmoonTotalModify;
 	private ModifierButton scholomanceTotalModify;
 	private ModifierButton outlandTotalModify;
@@ -577,11 +601,12 @@ public class HSPityTimerTracker implements ActionListener
 	private ModifierButton oldGodsTotalModify;
 	private ModifierButton tournamentTotalModify;
 	private ModifierButton goblinsTotalModify;
+	private ModifierButton classicTotalModify;
 	
 	// Add buttons
 	ArrayList<RoundButton> totalAddButtons;
 	
-	private RoundButton classicTotalAdd;
+	private RoundButton barrensTotalAdd;
 	private RoundButton darkmoonTotalAdd;
 	private RoundButton scholomanceTotalAdd;
 	private RoundButton outlandTotalAdd;
@@ -598,9 +623,10 @@ public class HSPityTimerTracker implements ActionListener
 	private RoundButton oldGodsTotalAdd;
 	private RoundButton tournamentTotalAdd;
 	private RoundButton goblinsTotalAdd;
+	private RoundButton classicTotalAdd;
 	
 	// Increment fields
-	private JTextArea classicTotalIncrement;
+	private JTextArea barrensTotalIncrement;
 	private JTextArea darkmoonTotalIncrement;
 	private JTextArea scholomanceTotalIncrement;
 	private JTextArea outlandTotalIncrement;
@@ -617,12 +643,13 @@ public class HSPityTimerTracker implements ActionListener
 	private JTextArea oldGodsTotalIncrement;
 	private JTextArea tournamentTotalIncrement;
 	private JTextArea goblinsTotalIncrement;
+	private JTextArea classicTotalIncrement;
 	
 	// Rarity buttons
 	// Common buttons
 	ArrayList<IconButton> commonButtons;
 	
-	private IconButton classicCommonButton;
+	private IconButton barrensCommonButton;
 	private IconButton darkmoonCommonButton;
 	private IconButton scholomanceCommonButton;
 	private IconButton outlandCommonButton;
@@ -639,9 +666,10 @@ public class HSPityTimerTracker implements ActionListener
 	private IconButton oldGodsCommonButton;
 	private IconButton tournamentCommonButton;
 	private IconButton goblinsCommonButton;
+	private IconButton classicCommonButton;
 	
 	// Expansions common cards webpages links
-	private final String classicCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=classic";
+	private final String barrensCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=forged-in-the-barrens";
 	private final String darkmoonCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=madness-at-the-darkmoon-faire";
 	private final String scholomanceCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=scholomance-academy";
 	private final String outlandCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=ashes-of-outland";
@@ -658,10 +686,11 @@ public class HSPityTimerTracker implements ActionListener
 	private final String oldGodsCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=whispers-of-the-old-gods";
 	private final String tournamentCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=the-grand-tournament";
 	private final String goblinsCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=goblins-vs-gnomes";
+	private final String classicCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=classic";
 	
 	ArrayList<URI> commonButtonsUrls;
 	
-	private URI classicCommonUrl;
+	private URI barrensCommonUrl;
 	private URI darkmoonCommonUrl;
 	private URI scholomanceCommonUrl;
 	private URI outlandCommonUrl;
@@ -678,11 +707,12 @@ public class HSPityTimerTracker implements ActionListener
 	private URI oldGodsCommonUrl;
 	private URI tournamentCommonUrl;
 	private URI goblinsCommonUrl;
+	private URI classicCommonUrl;
 	
 	// Rare buttons
 	ArrayList<IconButton> rareButtons;
 	
-	private IconButton classicRareButton;
+	private IconButton barrensRareButton;
 	private IconButton darkmoonRareButton;
 	private IconButton scholomanceRareButton;
 	private IconButton outlandRareButton;
@@ -699,9 +729,10 @@ public class HSPityTimerTracker implements ActionListener
 	private IconButton oldGodsRareButton;
 	private IconButton tournamentRareButton;
 	private IconButton goblinsRareButton;
+	private IconButton classicRareButton;
 	
 	// Expansions rare cards webpages links
-	private final String classicRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=classic";
+	private final String barrensRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=forged-in-the-barrens";
 	private final String darkmoonRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=madness-at-the-darkmoon-faire";
 	private final String scholomanceRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=scholomance-academy";
 	private final String outlandRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=ashes-of-outland";
@@ -718,10 +749,11 @@ public class HSPityTimerTracker implements ActionListener
 	private final String oldGodsRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=whispers-of-the-old-gods";
 	private final String tournamentRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=the-grand-tournament";
 	private final String goblinsRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=goblins-vs-gnomes";
+	private final String classicRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=classic";
 	
 	ArrayList<URI> rareButtonsUrls;
 	
-	private URI classicRareUrl;
+	private URI barrensRareUrl;
 	private URI darkmoonRareUrl;
 	private URI scholomanceRareUrl;
 	private URI outlandRareUrl;
@@ -738,11 +770,12 @@ public class HSPityTimerTracker implements ActionListener
 	private URI oldGodsRareUrl;
 	private URI tournamentRareUrl;
 	private URI goblinsRareUrl;
+	private URI classicRareUrl;
 	
 	// Epic buttons
 	ArrayList<IconButton> epicButtons;
 	
-	private IconButton classicEpicButton;
+	private IconButton barrensEpicButton;
 	private IconButton darkmoonEpicButton;
 	private IconButton scholomanceEpicButton;
 	private IconButton outlandEpicButton;
@@ -759,9 +792,10 @@ public class HSPityTimerTracker implements ActionListener
 	private IconButton oldGodsEpicButton;
 	private IconButton tournamentEpicButton;
 	private IconButton goblinsEpicButton;
+	private IconButton classicEpicButton;
 	
 	// Expansions epic cards webpages links
-	private final String classicEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=classic";
+	private final String barrensEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=forged-in-the-barrens";
 	private final String darkmoonEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=madness-at-the-darkmoon-faire";
 	private final String scholomanceEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=scholomance-academy";
 	private final String outlandEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=ashes-of-outland";
@@ -778,10 +812,11 @@ public class HSPityTimerTracker implements ActionListener
 	private final String oldGodsEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=whispers-of-the-old-gods";
 	private final String tournamentEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=the-grand-tournament";
 	private final String goblinsEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=goblins-vs-gnomes";
+	private final String classicEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=classic";
 	
 	ArrayList<URI> epicButtonsUrls;
 	
-	private URI classicEpicUrl;
+	private URI barrensEpicUrl;
 	private URI darkmoonEpicUrl;
 	private URI scholomanceEpicUrl;
 	private URI outlandEpicUrl;
@@ -798,11 +833,12 @@ public class HSPityTimerTracker implements ActionListener
 	private URI oldGodsEpicUrl;
 	private URI tournamentEpicUrl;
 	private URI goblinsEpicUrl;
+	private URI classicEpicUrl;
 	
 	// Legendary buttons
 	ArrayList<IconButton> legendaryButtons;
 	
-	private IconButton classicLegendaryButton;
+	private IconButton barrensLegendaryButton;
 	private IconButton darkmoonLegendaryButton;
 	private IconButton scholomanceLegendaryButton;
 	private IconButton outlandLegendaryButton;
@@ -819,9 +855,10 @@ public class HSPityTimerTracker implements ActionListener
 	private IconButton oldGodsLegendaryButton;
 	private IconButton tournamentLegendaryButton;
 	private IconButton goblinsLegendaryButton;
+	private IconButton classicLegendaryButton;
 	
 	// Expansions legendary cards webpages links
-	private final String classicLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=classic";
+	private final String barrensLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=forged-in-the-barrens";
 	private final String darkmoonLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=madness-at-the-darkmoon-faire";
 	private final String scholomanceLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=scholomance-academy";
 	private final String outlandLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=ashes-of-outland";
@@ -838,10 +875,11 @@ public class HSPityTimerTracker implements ActionListener
 	private final String oldGodsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=whispers-of-the-old-gods";
 	private final String tournamentLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=the-grand-tournament";
 	private final String goblinsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=goblins-vs-gnomes";
+	private final String classicLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=classic";
 	
 	ArrayList<URI> legendaryButtonsUrls;
 	
-	private URI classicLegendaryUrl;
+	private URI barrensLegendaryUrl;
 	private URI darkmoonLegendaryUrl;
 	private URI scholomanceLegendaryUrl;
 	private URI outlandLegendaryUrl;
@@ -858,6 +896,7 @@ public class HSPityTimerTracker implements ActionListener
 	private URI oldGodsLegendaryUrl;
 	private URI tournamentLegendaryUrl;
 	private URI goblinsLegendaryUrl;
+	private URI classicLegendaryUrl;
 	
 	// Constructor
 	public HSPityTimerTracker() 
@@ -921,8 +960,8 @@ public class HSPityTimerTracker implements ActionListener
 				baseTextTokens = baseText.split(nextLine);
 				saveFileTokens = saveFileData.split(nextLine);
 				
-				// Check if the file's text is different compared to the base text (6 is the position in the tokens array list after 'Classic')
-				if (saveFileTokens[6].equals(baseTextTokens[6])) 
+				// Check if the file's text is different compared to the base text (5 is the position in the tokens array list after '- Expansions')
+				if (saveFileTokens[5].equals(baseTextTokens[5])) 
 					return;
 				// If it's not, insert the new expansions in the file
 				else {
@@ -957,54 +996,54 @@ public class HSPityTimerTracker implements ActionListener
 					for (int j = 0; j < newSaveFileTokens.size(); j++) {
 						// The new expansions in the "Expansions" section of the file
 						newExpansionsNo = newExpansions.size();
-						if (newSaveFileTokens.get(j).equals("- Expansions") && ((j + 2) < newSaveFileTokens.size())) {
+						if (newSaveFileTokens.get(j).equals("- Expansions") && ((j + 1) < newSaveFileTokens.size())) {
 							while (newExpansionsNo != 0) {
-								newSaveFileTokens.add(j+2, newExpansions.get(newExpansions.size() - newExpansionsNo));
+								newSaveFileTokens.add(j+1, newExpansions.get(newExpansions.size() - newExpansionsNo));
 								newExpansionsNo--;
 							}
 						}
 						
 						// The new expansions in the "Epic counters" section of the file
 						newExpansionsNo = newExpansions.size();
-						if (newSaveFileTokens.get(j).equals("- Epic counters") && ((j + 2) < newSaveFileTokens.size())) {
+						if (newSaveFileTokens.get(j).equals("- Epic counters") && ((j + 1) < newSaveFileTokens.size())) {
 							while (newExpansionsNo != 0) {
-								newSaveFileTokens.add(j+2, newExpansions.get(newExpansions.size() - newExpansionsNo) + ": 0");
+								newSaveFileTokens.add(j+1, newExpansions.get(newExpansions.size() - newExpansionsNo) + ": 0");
 								newExpansionsNo--;
 							}
 						}
 						
 						// The new expansions in the "Epic probabilities" section of the file
 						newExpansionsNo = newExpansions.size();
-						if (newSaveFileTokens.get(j).equals("- Epic probabilities") && ((j + 2) < newSaveFileTokens.size())) {
+						if (newSaveFileTokens.get(j).equals("- Epic probabilities") && ((j + 1) < newSaveFileTokens.size())) {
 							while (newExpansionsNo != 0) {
-								newSaveFileTokens.add(j+2, newExpansions.get(newExpansions.size() - newExpansionsNo) + ": 0");
+								newSaveFileTokens.add(j+1, newExpansions.get(newExpansions.size() - newExpansionsNo) + ": 0");
 								newExpansionsNo--;
 							}
 						}
 						
 						// The new expansions in the "Legendary counters" section of the file
 						newExpansionsNo = newExpansions.size();
-						if (newSaveFileTokens.get(j).equals("- Legendary counters") && ((j + 2) < newSaveFileTokens.size())) {
+						if (newSaveFileTokens.get(j).equals("- Legendary counters") && ((j + 1) < newSaveFileTokens.size())) {
 							while (newExpansionsNo != 0) {
-								newSaveFileTokens.add(j+2, newExpansions.get(newExpansions.size() - newExpansionsNo) + ": 0");
+								newSaveFileTokens.add(j+1, newExpansions.get(newExpansions.size() - newExpansionsNo) + ": 0");
 								newExpansionsNo--;
 							}
 						}
 						
 						// The new expansions in the "Legendary probabilities" section of the file
 						newExpansionsNo = newExpansions.size();
-						if (newSaveFileTokens.get(j).equals("- Legendary probabilities") && ((j + 2) < newSaveFileTokens.size())) {
+						if (newSaveFileTokens.get(j).equals("- Legendary probabilities") && ((j + 1) < newSaveFileTokens.size())) {
 							while (newExpansionsNo != 0) {
-								newSaveFileTokens.add(j+2, newExpansions.get(newExpansions.size() - newExpansionsNo) + ": 0");
+								newSaveFileTokens.add(j+1, newExpansions.get(newExpansions.size() - newExpansionsNo) + ": 0");
 								newExpansionsNo--;
 							}
 						}
 						
 						// The new expansions in the "Total counters" section of the file
 						newExpansionsNo = newExpansions.size();
-						if (newSaveFileTokens.get(j).equals("- Total counters") && ((j + 2) < newSaveFileTokens.size())) {
+						if (newSaveFileTokens.get(j).equals("- Total counters") && ((j + 1) < newSaveFileTokens.size())) {
 							while (newExpansionsNo != 0) {
-								newSaveFileTokens.add(j+2, newExpansions.get(newExpansions.size() - newExpansionsNo) + ": 0");
+								newSaveFileTokens.add(j+1, newExpansions.get(newExpansions.size() - newExpansionsNo) + ": 0");
 								newExpansionsNo--;
 							}
 						}
@@ -1018,8 +1057,6 @@ public class HSPityTimerTracker implements ActionListener
 						else
 							newSaveFileData = newSaveFileData + newSaveFileTokens.get(j);
 					}
-					
-					System.out.println(newSaveFileData);
 					
 					// Write the new save file data in the file
 					saveFile.setWritable(true);
@@ -1156,6 +1193,7 @@ public class HSPityTimerTracker implements ActionListener
 	private void createExpansionsURIs() 
 	{
 		// Links to expansions webpages
+		barrensUrl = URI.create(barrensUrlText);
 		darkmoonUrl = URI.create(darkmoonUrlText);
 		scholomanceUrl = URI.create(scholomanceUrlText);
 		outlandUrl = URI.create(outlandUrlText);
@@ -1174,7 +1212,7 @@ public class HSPityTimerTracker implements ActionListener
 		goblinsUrl = URI.create(goblinsUrlText);
 		
 		// Links to expansions common cards
-		classicCommonUrl = URI.create(classicCommonUrlText);
+		barrensCommonUrl = URI.create(barrensCommonUrlText);
 		darkmoonCommonUrl = URI.create(darkmoonCommonUrlText);
 		scholomanceCommonUrl = URI.create(scholomanceCommonUrlText);
 		outlandCommonUrl = URI.create(outlandCommonUrlText);
@@ -1191,9 +1229,10 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsCommonUrl = URI.create(oldGodsCommonUrlText);
 		tournamentCommonUrl = URI.create(tournamentCommonUrlText);
 		goblinsCommonUrl = URI.create(goblinsCommonUrlText);
+		classicCommonUrl = URI.create(classicCommonUrlText);
 		
 		// Links to expansions rare cards
-		classicRareUrl = URI.create(classicRareUrlText);
+		barrensRareUrl = URI.create(barrensRareUrlText);
 		darkmoonRareUrl = URI.create(darkmoonRareUrlText);
 		scholomanceRareUrl = URI.create(scholomanceRareUrlText);
 		outlandRareUrl = URI.create(outlandRareUrlText);
@@ -1210,9 +1249,10 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsRareUrl = URI.create(oldGodsRareUrlText);
 		tournamentRareUrl = URI.create(tournamentRareUrlText);
 		goblinsRareUrl = URI.create(goblinsRareUrlText);
+		classicRareUrl = URI.create(classicRareUrlText);
 		
 		// Links to expansions epic cards
-		classicEpicUrl = URI.create(classicEpicUrlText);
+		barrensEpicUrl = URI.create(barrensEpicUrlText);
 		darkmoonEpicUrl = URI.create(darkmoonEpicUrlText);
 		scholomanceEpicUrl = URI.create(scholomanceEpicUrlText);
 		outlandEpicUrl = URI.create(outlandEpicUrlText);
@@ -1229,9 +1269,10 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsEpicUrl = URI.create(oldGodsEpicUrlText);
 		tournamentEpicUrl = URI.create(tournamentEpicUrlText);
 		goblinsEpicUrl = URI.create(goblinsEpicUrlText);
+		classicEpicUrl = URI.create(classicEpicUrlText);
 		
 		// Links to expansions legendary cards
-		classicLegendaryUrl = URI.create(classicLegendaryUrlText);
+		barrensLegendaryUrl = URI.create(barrensLegendaryUrlText);
 		darkmoonLegendaryUrl = URI.create(darkmoonLegendaryUrlText);
 		scholomanceLegendaryUrl = URI.create(scholomanceLegendaryUrlText);
 		outlandLegendaryUrl = URI.create(outlandLegendaryUrlText);
@@ -1248,6 +1289,7 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsLegendaryUrl = URI.create(oldGodsLegendaryUrlText);
 		tournamentLegendaryUrl = URI.create(tournamentLegendaryUrlText);
 		goblinsLegendaryUrl = URI.create(goblinsLegendaryUrlText);
+		classicLegendaryUrl = URI.create(classicLegendaryUrlText);
 	}
 	
 	// Initializes the tracker variables
@@ -1263,6 +1305,7 @@ public class HSPityTimerTracker implements ActionListener
 		toggleWild = tracker.getShowWild();
 		
 		// Wild sets
+		dragon = tracker.getYearOfTheDragon();
 		raven = tracker.getYearOfTheRaven();
 		mammoth = tracker.getYearOfTheMammoth();
 		kraken = tracker.getYearOfTheKraken();
@@ -1288,6 +1331,7 @@ public class HSPityTimerTracker implements ActionListener
 		// Image buttons
 		imageButtons = new ArrayList<JButton>();
 		
+		barrensImage = tracker.getBarrensImage();
 		darkmoonImage = tracker.getDarkmoonImage();
 		scholomanceImage = tracker.getScholomanceImage();
 		outlandImage = tracker.getOutlandImage();
@@ -1305,42 +1349,44 @@ public class HSPityTimerTracker implements ActionListener
 		tournamentImage = tracker.getTournamentImage();
 		goblinsImage = tracker.getGoblinsImage();
 		
-		imageButtons.add(darkmoonImage);
-		imageButtons.add(scholomanceImage);
-		imageButtons.add(outlandImage);
-		imageButtons.add(dragonsImage);
-		imageButtons.add(uldumImage);
-		imageButtons.add(shadowsImage);
-		imageButtons.add(rumbleImage);
-		imageButtons.add(boomsdayImage);
-		imageButtons.add(witchwoodImage);
-		imageButtons.add(koboldsImage);
-		imageButtons.add(knightsImage);
-		imageButtons.add(ungoroImage);
-		imageButtons.add(gadgetzanImage);
-		imageButtons.add(oldGodsImage);
-		imageButtons.add(tournamentImage);
 		imageButtons.add(goblinsImage);
+		imageButtons.add(tournamentImage);
+		imageButtons.add(oldGodsImage);
+		imageButtons.add(gadgetzanImage);
+		imageButtons.add(ungoroImage);
+		imageButtons.add(knightsImage);
+		imageButtons.add(koboldsImage);
+		imageButtons.add(witchwoodImage);
+		imageButtons.add(boomsdayImage);
+		imageButtons.add(rumbleImage);
+		imageButtons.add(shadowsImage);
+		imageButtons.add(uldumImage);
+		imageButtons.add(dragonsImage);
+		imageButtons.add(outlandImage);
+		imageButtons.add(scholomanceImage);
+		imageButtons.add(darkmoonImage);
+		imageButtons.add(barrensImage);
 		
 		// Image buttons links
 		imageButtonsUrls = new ArrayList<URI>();
 		
-		imageButtonsUrls.add(darkmoonUrl);
-		imageButtonsUrls.add(scholomanceUrl);
-		imageButtonsUrls.add(outlandUrl);
-		imageButtonsUrls.add(dragonsUrl);
-		imageButtonsUrls.add(uldumUrl);
-		imageButtonsUrls.add(shadowsUrl);
-		imageButtonsUrls.add(rumbleUrl);
-		imageButtonsUrls.add(boomsdayUrl);
-		imageButtonsUrls.add(witchwoodUrl);
-		imageButtonsUrls.add(koboldsUrl);
-		imageButtonsUrls.add(knightsUrl);
-		imageButtonsUrls.add(ungoroUrl);
-		imageButtonsUrls.add(gadgetzanUrl);
-		imageButtonsUrls.add(oldGodsUrl);
-		imageButtonsUrls.add(tournamentUrl);
 		imageButtonsUrls.add(goblinsUrl);
+		imageButtonsUrls.add(tournamentUrl);
+		imageButtonsUrls.add(oldGodsUrl);
+		imageButtonsUrls.add(gadgetzanUrl);
+		imageButtonsUrls.add(ungoroUrl);
+		imageButtonsUrls.add(knightsUrl);
+		imageButtonsUrls.add(koboldsUrl);
+		imageButtonsUrls.add(witchwoodUrl);
+		imageButtonsUrls.add(boomsdayUrl);
+		imageButtonsUrls.add(rumbleUrl);
+		imageButtonsUrls.add(shadowsUrl);
+		imageButtonsUrls.add(uldumUrl);
+		imageButtonsUrls.add(dragonsUrl);
+		imageButtonsUrls.add(outlandUrl);
+		imageButtonsUrls.add(scholomanceUrl);
+		imageButtonsUrls.add(darkmoonUrl);
+		imageButtonsUrls.add(barrensUrl);
 	}
 	
 	// Initializes the counters
@@ -1350,26 +1396,27 @@ public class HSPityTimerTracker implements ActionListener
 		saveFileTokens = saveFileData.split(nextLine);
 		
 		// Epic counters (displayed values)
-		tracker.setClassicEpicCounter(saveFileTokens[26].substring(9));
-		tracker.setDarkmoonEpicCounter(saveFileTokens[27].substring(31));
-		tracker.setScholomanceEpicCounter(saveFileTokens[28].substring(21));
-		tracker.setOutlandEpicCounter(saveFileTokens[29].substring(18));
-		tracker.setDragonsEpicCounter(saveFileTokens[30].substring(20));
-		tracker.setUldumEpicCounter(saveFileTokens[31].substring(18));
-		tracker.setShadowsEpicCounter(saveFileTokens[32].substring(17));
-		tracker.setRumbleEpicCounter(saveFileTokens[33].substring(20));
-		tracker.setBoomsdayEpicCounter(saveFileTokens[34].substring(22));
-		tracker.setWitchwoodEpicCounter(saveFileTokens[35].substring(15));
-		tracker.setKoboldsEpicCounter(saveFileTokens[36].substring(21));
-		tracker.setKnightsEpicCounter(saveFileTokens[37].substring(30));
-		tracker.setUngoroEpicCounter(saveFileTokens[38].substring(20));
-		tracker.setGadgetzanEpicCounter(saveFileTokens[39].substring(27));
-		tracker.setOldGodsEpicCounter(saveFileTokens[40].substring(26));
-		tracker.setTournamentEpicCounter(saveFileTokens[41].substring(22));
-		tracker.setGoblinsEpicCounter(saveFileTokens[42].substring(19));
+		tracker.setBarrensEpicCounter(saveFileTokens[27].substring(23));
+		tracker.setDarkmoonEpicCounter(saveFileTokens[28].substring(31));
+		tracker.setScholomanceEpicCounter(saveFileTokens[29].substring(21));
+		tracker.setOutlandEpicCounter(saveFileTokens[30].substring(18));
+		tracker.setDragonsEpicCounter(saveFileTokens[31].substring(20));
+		tracker.setUldumEpicCounter(saveFileTokens[32].substring(18));
+		tracker.setShadowsEpicCounter(saveFileTokens[33].substring(17));
+		tracker.setRumbleEpicCounter(saveFileTokens[34].substring(20));
+		tracker.setBoomsdayEpicCounter(saveFileTokens[35].substring(22));
+		tracker.setWitchwoodEpicCounter(saveFileTokens[36].substring(15));
+		tracker.setKoboldsEpicCounter(saveFileTokens[37].substring(21));
+		tracker.setKnightsEpicCounter(saveFileTokens[38].substring(30));
+		tracker.setUngoroEpicCounter(saveFileTokens[39].substring(20));
+		tracker.setGadgetzanEpicCounter(saveFileTokens[40].substring(27));
+		tracker.setOldGodsEpicCounter(saveFileTokens[41].substring(26));
+		tracker.setTournamentEpicCounter(saveFileTokens[42].substring(22));
+		tracker.setGoblinsEpicCounter(saveFileTokens[43].substring(19));
+		tracker.setClassicEpicCounter(saveFileTokens[44].substring(9));
 		
 		// Epic counters (internal values)
-		classicEpicCounter = Integer.valueOf(tracker.getClassicEpicCounter());
+		barrensEpicCounter = Integer.valueOf(tracker.getBarrensEpicCounter());
 		darkmoonEpicCounter = Integer.valueOf(tracker.getDarkmoonEpicCounter());
 		scholomanceEpicCounter = Integer.valueOf(tracker.getScholomanceEpicCounter());
 		outlandEpicCounter = Integer.valueOf(tracker.getOutlandEpicCounter());
@@ -1386,28 +1433,30 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsEpicCounter = Integer.valueOf(tracker.getOldGodsEpicCounter());
 		tournamentEpicCounter = Integer.valueOf(tracker.getTournamentEpicCounter());
 		goblinsEpicCounter = Integer.valueOf(tracker.getGoblinsEpicCounter());
+		classicEpicCounter = Integer.valueOf(tracker.getClassicEpicCounter());
 		
 		// Epic probabilities (displayed values)
-		tracker.setClassicEpicProbability(nf.format(Double.valueOf(saveFileTokens[45].substring(9))));
-		tracker.setDarkmoonEpicProbability(nf.format(Double.valueOf(saveFileTokens[46].substring(31))));
-		tracker.setScholomanceEpicProbability(nf.format(Double.valueOf(saveFileTokens[47].substring(21))));
-		tracker.setOutlandEpicProbability(nf.format(Double.valueOf(saveFileTokens[48].substring(18))));
-		tracker.setDragonsEpicProbability(nf.format(Double.valueOf(saveFileTokens[49].substring(20))));
-		tracker.setUldumEpicProbability(nf.format(Double.valueOf(saveFileTokens[50].substring(18))));
-		tracker.setShadowsEpicProbability(nf.format(Double.valueOf(saveFileTokens[51].substring(17))));
-		tracker.setRumbleEpicProbability(nf.format(Double.valueOf(saveFileTokens[52].substring(20))));
-		tracker.setBoomsdayEpicProbability(nf.format(Double.valueOf(saveFileTokens[53].substring(22))));
-		tracker.setWitchwoodEpicProbability(nf.format(Double.valueOf(saveFileTokens[54].substring(15))));
-		tracker.setKoboldsEpicProbability(nf.format(Double.valueOf(saveFileTokens[55].substring(21))));
-		tracker.setKnightsEpicProbability(nf.format(Double.valueOf(saveFileTokens[56].substring(30))));
-		tracker.setUngoroEpicProbability(nf.format(Double.valueOf(saveFileTokens[57].substring(20))));
-		tracker.setGadgetzanEpicProbability(nf.format(Double.valueOf(saveFileTokens[58].substring(27))));
-		tracker.setOldGodsEpicProbability(nf.format(Double.valueOf(saveFileTokens[59].substring(26))));
-		tracker.setTournamentEpicProbability(nf.format(Double.valueOf(saveFileTokens[60].substring(22))));
-		tracker.setGoblinsEpicProbability(nf.format(Double.valueOf(saveFileTokens[61].substring(19))));
+		tracker.setBarrensEpicProbability(nf.format(Double.valueOf(saveFileTokens[47].substring(23))));
+		tracker.setDarkmoonEpicProbability(nf.format(Double.valueOf(saveFileTokens[48].substring(31))));
+		tracker.setScholomanceEpicProbability(nf.format(Double.valueOf(saveFileTokens[49].substring(21))));
+		tracker.setOutlandEpicProbability(nf.format(Double.valueOf(saveFileTokens[50].substring(18))));
+		tracker.setDragonsEpicProbability(nf.format(Double.valueOf(saveFileTokens[51].substring(20))));
+		tracker.setUldumEpicProbability(nf.format(Double.valueOf(saveFileTokens[52].substring(18))));
+		tracker.setShadowsEpicProbability(nf.format(Double.valueOf(saveFileTokens[53].substring(17))));
+		tracker.setRumbleEpicProbability(nf.format(Double.valueOf(saveFileTokens[54].substring(20))));
+		tracker.setBoomsdayEpicProbability(nf.format(Double.valueOf(saveFileTokens[55].substring(22))));
+		tracker.setWitchwoodEpicProbability(nf.format(Double.valueOf(saveFileTokens[56].substring(15))));
+		tracker.setKoboldsEpicProbability(nf.format(Double.valueOf(saveFileTokens[57].substring(21))));
+		tracker.setKnightsEpicProbability(nf.format(Double.valueOf(saveFileTokens[58].substring(30))));
+		tracker.setUngoroEpicProbability(nf.format(Double.valueOf(saveFileTokens[59].substring(20))));
+		tracker.setGadgetzanEpicProbability(nf.format(Double.valueOf(saveFileTokens[60].substring(27))));
+		tracker.setOldGodsEpicProbability(nf.format(Double.valueOf(saveFileTokens[61].substring(26))));
+		tracker.setTournamentEpicProbability(nf.format(Double.valueOf(saveFileTokens[62].substring(22))));
+		tracker.setGoblinsEpicProbability(nf.format(Double.valueOf(saveFileTokens[63].substring(19))));
+		tracker.setClassicEpicProbability(nf.format(Double.valueOf(saveFileTokens[64].substring(9))));
 		
 		// Epic probabilities (internal values)
-		classicEpicProbability = Double.valueOf(tracker.getClassicEpicProbability());
+		barrensEpicProbability = Double.valueOf(tracker.getBarrensEpicProbability());
 		darkmoonEpicProbability = Double.valueOf(tracker.getDarkmoonEpicProbability());
 		scholomanceEpicProbability = Double.valueOf(tracker.getScholomanceEpicProbability());
 		outlandEpicProbability = Double.valueOf(tracker.getOutlandEpicProbability());
@@ -1424,28 +1473,30 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsEpicProbability = Double.valueOf(tracker.getOldGodsEpicProbability());
 		tournamentEpicProbability = Double.valueOf(tracker.getTournamentEpicProbability());
 		goblinsEpicProbability = Double.valueOf(tracker.getGoblinsEpicProbability());
+		classicEpicProbability = Double.valueOf(tracker.getClassicEpicProbability());
 		
 		// Legendary counters (displayed values)
-		tracker.setClassicLegendaryCounter(saveFileTokens[66].substring(9));
-		tracker.setDarkmoonLegendaryCounter(saveFileTokens[67].substring(31));
-		tracker.setScholomanceLegendaryCounter(saveFileTokens[68].substring(21));
-		tracker.setOutlandLegendaryCounter(saveFileTokens[69].substring(18));
-		tracker.setDragonsLegendaryCounter(saveFileTokens[70].substring(20));
-		tracker.setUldumLegendaryCounter(saveFileTokens[71].substring(18));
-		tracker.setShadowsLegendaryCounter(saveFileTokens[72].substring(17));
-		tracker.setRumbleLegendaryCounter(saveFileTokens[73].substring(20));
-		tracker.setBoomsdayLegendaryCounter(saveFileTokens[74].substring(22));
-		tracker.setWitchwoodLegendaryCounter(saveFileTokens[75].substring(15));
-		tracker.setKoboldsLegendaryCounter(saveFileTokens[76].substring(21));
-		tracker.setKnightsLegendaryCounter(saveFileTokens[77].substring(30));
-		tracker.setUngoroLegendaryCounter(saveFileTokens[78].substring(20));
-		tracker.setGadgetzanLegendaryCounter(saveFileTokens[79].substring(27));
-		tracker.setOldGodsLegendaryCounter(saveFileTokens[80].substring(26));
-		tracker.setTournamentLegendaryCounter(saveFileTokens[81].substring(22));
-		tracker.setGoblinsLegendaryCounter(saveFileTokens[82].substring(19));
+		tracker.setBarrensLegendaryCounter(saveFileTokens[69].substring(23));
+		tracker.setDarkmoonLegendaryCounter(saveFileTokens[70].substring(31));
+		tracker.setScholomanceLegendaryCounter(saveFileTokens[71].substring(21));
+		tracker.setOutlandLegendaryCounter(saveFileTokens[72].substring(18));
+		tracker.setDragonsLegendaryCounter(saveFileTokens[73].substring(20));
+		tracker.setUldumLegendaryCounter(saveFileTokens[74].substring(18));
+		tracker.setShadowsLegendaryCounter(saveFileTokens[75].substring(17));
+		tracker.setRumbleLegendaryCounter(saveFileTokens[76].substring(20));
+		tracker.setBoomsdayLegendaryCounter(saveFileTokens[77].substring(22));
+		tracker.setWitchwoodLegendaryCounter(saveFileTokens[78].substring(15));
+		tracker.setKoboldsLegendaryCounter(saveFileTokens[79].substring(21));
+		tracker.setKnightsLegendaryCounter(saveFileTokens[80].substring(30));
+		tracker.setUngoroLegendaryCounter(saveFileTokens[81].substring(20));
+		tracker.setGadgetzanLegendaryCounter(saveFileTokens[82].substring(27));
+		tracker.setOldGodsLegendaryCounter(saveFileTokens[83].substring(26));
+		tracker.setTournamentLegendaryCounter(saveFileTokens[84].substring(22));
+		tracker.setGoblinsLegendaryCounter(saveFileTokens[85].substring(19));
+		tracker.setClassicLegendaryCounter(saveFileTokens[86].substring(9));
 		
 		// Legendary counters (internal values)
-		classicLegendaryCounter = Integer.valueOf(tracker.getClassicLegendaryCounter());
+		barrensLegendaryCounter = Integer.valueOf(tracker.getBarrensLegendaryCounter());
 		darkmoonLegendaryCounter = Integer.valueOf(tracker.getDarkmoonLegendaryCounter());
 		scholomanceLegendaryCounter = Integer.valueOf(tracker.getScholomanceLegendaryCounter());
 		outlandLegendaryCounter = Integer.valueOf(tracker.getOutlandLegendaryCounter());
@@ -1462,28 +1513,30 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsLegendaryCounter = Integer.valueOf(tracker.getOldGodsLegendaryCounter());
 		tournamentLegendaryCounter = Integer.valueOf(tracker.getTournamentLegendaryCounter());
 		goblinsLegendaryCounter = Integer.valueOf(tracker.getGoblinsLegendaryCounter());
+		classicLegendaryCounter = Integer.valueOf(tracker.getClassicLegendaryCounter());
 		
 		// Legendary probabilities (displayed values)
-		tracker.setClassicLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[85].substring(9))));
-		tracker.setDarkmoonLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[86].substring(31))));
-		tracker.setScholomanceLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[87].substring(21))));
-		tracker.setOutlandLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[88].substring(18))));
-		tracker.setDragonsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[89].substring(20))));
-		tracker.setUldumLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[90].substring(18))));
-		tracker.setShadowsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[91].substring(17))));
-		tracker.setRumbleLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[92].substring(20))));
-		tracker.setBoomsdayLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[93].substring(22))));
-		tracker.setWitchwoodLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[94].substring(15))));
-		tracker.setKoboldsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[95].substring(21))));
-		tracker.setKnightsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[96].substring(30))));
-		tracker.setUngoroLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[97].substring(20))));
-		tracker.setGadgetzanLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[98].substring(27))));
-		tracker.setOldGodsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[99].substring(26))));
-		tracker.setTournamentLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[100].substring(22))));
-		tracker.setGoblinsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[101].substring(19))));
+		tracker.setBarrensLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[89].substring(23))));
+		tracker.setDarkmoonLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[90].substring(31))));
+		tracker.setScholomanceLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[91].substring(21))));
+		tracker.setOutlandLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[92].substring(18))));
+		tracker.setDragonsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[93].substring(20))));
+		tracker.setUldumLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[94].substring(18))));
+		tracker.setShadowsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[95].substring(17))));
+		tracker.setRumbleLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[96].substring(20))));
+		tracker.setBoomsdayLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[97].substring(22))));
+		tracker.setWitchwoodLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[98].substring(15))));
+		tracker.setKoboldsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[99].substring(21))));
+		tracker.setKnightsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[100].substring(30))));
+		tracker.setUngoroLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[101].substring(20))));
+		tracker.setGadgetzanLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[102].substring(27))));
+		tracker.setOldGodsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[103].substring(26))));
+		tracker.setTournamentLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[104].substring(22))));
+		tracker.setGoblinsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[105].substring(19))));
+		tracker.setClassicLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[106].substring(9))));
 		
 		// Legendary probabilities (internal values)
-		classicLegendaryProbability = Double.valueOf(tracker.getClassicLegendaryProbability());
+		barrensLegendaryProbability = Double.valueOf(tracker.getBarrensLegendaryProbability());
 		darkmoonLegendaryProbability = Double.valueOf(tracker.getDarkmoonLegendaryProbability());
 		scholomanceLegendaryProbability = Double.valueOf(tracker.getScholomanceLegendaryProbability());
 		outlandLegendaryProbability = Double.valueOf(tracker.getOutlandLegendaryProbability());
@@ -1500,28 +1553,30 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsLegendaryProbability = Double.valueOf(tracker.getOldGodsLegendaryProbability());
 		tournamentLegendaryProbability = Double.valueOf(tracker.getTournamentLegendaryProbability());
 		goblinsLegendaryProbability = Double.valueOf(tracker.getGoblinsLegendaryProbability());
+		classicLegendaryProbability = Double.valueOf(tracker.getClassicLegendaryProbability());
 		
 		// Total counters (displayed values)
-		tracker.setClassicTotalCounter(saveFileTokens[106].substring(9));
-		tracker.setDarkmoonTotalCounter(saveFileTokens[107].substring(31));
-		tracker.setScholomanceTotalCounter(saveFileTokens[108].substring(21));
-		tracker.setOutlandTotalCounter(saveFileTokens[109].substring(18));
-		tracker.setDragonsTotalCounter(saveFileTokens[110].substring(20));
-		tracker.setUldumTotalCounter(saveFileTokens[111].substring(18));
-		tracker.setShadowsTotalCounter(saveFileTokens[112].substring(17));
-		tracker.setRumbleTotalCounter(saveFileTokens[113].substring(20));
-		tracker.setBoomsdayTotalCounter(saveFileTokens[114].substring(22));
-		tracker.setWitchwoodTotalCounter(saveFileTokens[115].substring(15));
-		tracker.setKoboldsTotalCounter(saveFileTokens[116].substring(21));
-		tracker.setKnightsTotalCounter(saveFileTokens[117].substring(30));
-		tracker.setUngoroTotalCounter(saveFileTokens[118].substring(20));
-		tracker.setGadgetzanTotalCounter(saveFileTokens[119].substring(27));
-		tracker.setOldGodsTotalCounter(saveFileTokens[120].substring(26));
-		tracker.setTournamentTotalCounter(saveFileTokens[121].substring(22));
-		tracker.setGoblinsTotalCounter(saveFileTokens[122].substring(19));
+		tracker.setBarrensTotalCounter(saveFileTokens[111].substring(23));
+		tracker.setDarkmoonTotalCounter(saveFileTokens[112].substring(31));
+		tracker.setScholomanceTotalCounter(saveFileTokens[113].substring(21));
+		tracker.setOutlandTotalCounter(saveFileTokens[114].substring(18));
+		tracker.setDragonsTotalCounter(saveFileTokens[115].substring(20));
+		tracker.setUldumTotalCounter(saveFileTokens[116].substring(18));
+		tracker.setShadowsTotalCounter(saveFileTokens[117].substring(17));
+		tracker.setRumbleTotalCounter(saveFileTokens[118].substring(20));
+		tracker.setBoomsdayTotalCounter(saveFileTokens[119].substring(22));
+		tracker.setWitchwoodTotalCounter(saveFileTokens[120].substring(15));
+		tracker.setKoboldsTotalCounter(saveFileTokens[121].substring(21));
+		tracker.setKnightsTotalCounter(saveFileTokens[122].substring(30));
+		tracker.setUngoroTotalCounter(saveFileTokens[123].substring(20));
+		tracker.setGadgetzanTotalCounter(saveFileTokens[124].substring(27));
+		tracker.setOldGodsTotalCounter(saveFileTokens[125].substring(26));
+		tracker.setTournamentTotalCounter(saveFileTokens[126].substring(22));
+		tracker.setGoblinsTotalCounter(saveFileTokens[127].substring(19));
+		tracker.setClassicTotalCounter(saveFileTokens[128].substring(9));
 		
 		// Total counters (internal values)
-		classicTotalCounter = Integer.valueOf(tracker.getClassicTotalCounter());
+		barrensTotalCounter = Integer.valueOf(tracker.getBarrensTotalCounter());
 		darkmoonTotalCounter = Integer.valueOf(tracker.getDarkmoonTotalCounter());
 		scholomanceTotalCounter = Integer.valueOf(tracker.getScholomanceTotalCounter());
 		outlandTotalCounter = Integer.valueOf(tracker.getOutlandTotalCounter());
@@ -1538,6 +1593,7 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsTotalCounter = Integer.valueOf(tracker.getOldGodsTotalCounter());
 		tournamentTotalCounter = Integer.valueOf(tracker.getTournamentTotalCounter());
 		goblinsTotalCounter = Integer.valueOf(tracker.getGoblinsTotalCounter());
+		classicTotalCounter = Integer.valueOf(tracker.getClassicTotalCounter());
 	}
 	
 	// Initializes the modify buttons
@@ -1546,7 +1602,7 @@ public class HSPityTimerTracker implements ActionListener
 		// Epic reset buttons
 		epicResetButtons = new ArrayList<ModifierButton>();
 		
-		classicEpicReset = tracker.getClassicEpicReset();
+		barrensEpicReset = tracker.getBarrensEpicReset();
 		darkmoonEpicReset = tracker.getDarkmoonEpicReset();
 		scholomanceEpicReset = tracker.getScholomanceEpicReset();
 		outlandEpicReset = tracker.getOutlandEpicReset();
@@ -1563,29 +1619,31 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsEpicReset = tracker.getOldGodsEpicReset();
 		tournamentEpicReset = tracker.getTournamentEpicReset();
 		goblinsEpicReset = tracker.getGoblinsEpicReset();
+		classicEpicReset = tracker.getClassicEpicReset();
 		
 		epicResetButtons.add(classicEpicReset);
-		epicResetButtons.add(darkmoonEpicReset);
-		epicResetButtons.add(scholomanceEpicReset);
-		epicResetButtons.add(outlandEpicReset);
-		epicResetButtons.add(dragonsEpicReset);
-		epicResetButtons.add(uldumEpicReset);
-		epicResetButtons.add(shadowsEpicReset);
-		epicResetButtons.add(rumbleEpicReset);
-		epicResetButtons.add(boomsdayEpicReset);
-		epicResetButtons.add(witchwoodEpicReset);
-		epicResetButtons.add(koboldsEpicReset);
-		epicResetButtons.add(knightsEpicReset);
-		epicResetButtons.add(ungoroEpicReset);
-		epicResetButtons.add(gadgetzanEpicReset);
-		epicResetButtons.add(oldGodsEpicReset);
-		epicResetButtons.add(tournamentEpicReset);
 		epicResetButtons.add(goblinsEpicReset);
+		epicResetButtons.add(tournamentEpicReset);
+		epicResetButtons.add(oldGodsEpicReset);
+		epicResetButtons.add(gadgetzanEpicReset);
+		epicResetButtons.add(ungoroEpicReset);
+		epicResetButtons.add(knightsEpicReset);
+		epicResetButtons.add(koboldsEpicReset);
+		epicResetButtons.add(witchwoodEpicReset);
+		epicResetButtons.add(boomsdayEpicReset);
+		epicResetButtons.add(rumbleEpicReset);
+		epicResetButtons.add(shadowsEpicReset);
+		epicResetButtons.add(uldumEpicReset);
+		epicResetButtons.add(dragonsEpicReset);
+		epicResetButtons.add(outlandEpicReset);
+		epicResetButtons.add(scholomanceEpicReset);
+		epicResetButtons.add(darkmoonEpicReset);
+		epicResetButtons.add(barrensEpicReset);
 		
 		// Epic add buttons
 		epicAddButtons = new ArrayList<RoundButton>();
 		
-		classicEpicAdd = tracker.getClassicEpicAdd();
+		barrensEpicAdd = tracker.getBarrensEpicAdd();
 		darkmoonEpicAdd = tracker.getDarkmoonEpicAdd();
 		scholomanceEpicAdd = tracker.getScholomanceEpicAdd();
 		outlandEpicAdd = tracker.getOutlandEpicAdd();
@@ -1602,27 +1660,29 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsEpicAdd = tracker.getOldGodsEpicAdd();
 		tournamentEpicAdd = tracker.getTournamentEpicAdd();
 		goblinsEpicAdd = tracker.getGoblinsEpicAdd();
+		classicEpicAdd = tracker.getClassicEpicAdd();
 		
 		epicAddButtons.add(classicEpicAdd);
-		epicAddButtons.add(darkmoonEpicAdd);
-		epicAddButtons.add(scholomanceEpicAdd);
-		epicAddButtons.add(outlandEpicAdd);
-		epicAddButtons.add(dragonsEpicAdd);
-		epicAddButtons.add(uldumEpicAdd);
-		epicAddButtons.add(shadowsEpicAdd);
-		epicAddButtons.add(rumbleEpicAdd);
-		epicAddButtons.add(boomsdayEpicAdd);
-		epicAddButtons.add(witchwoodEpicAdd);
-		epicAddButtons.add(koboldsEpicAdd);
-		epicAddButtons.add(knightsEpicAdd);
-		epicAddButtons.add(ungoroEpicAdd);
-		epicAddButtons.add(gadgetzanEpicAdd);
-		epicAddButtons.add(oldGodsEpicAdd);
-		epicAddButtons.add(tournamentEpicAdd);
 		epicAddButtons.add(goblinsEpicAdd);
+		epicAddButtons.add(tournamentEpicAdd);
+		epicAddButtons.add(oldGodsEpicAdd);
+		epicAddButtons.add(gadgetzanEpicAdd);
+		epicAddButtons.add(ungoroEpicAdd);
+		epicAddButtons.add(knightsEpicAdd);
+		epicAddButtons.add(koboldsEpicAdd);
+		epicAddButtons.add(witchwoodEpicAdd);
+		epicAddButtons.add(boomsdayEpicAdd);
+		epicAddButtons.add(rumbleEpicAdd);
+		epicAddButtons.add(shadowsEpicAdd);
+		epicAddButtons.add(uldumEpicAdd);
+		epicAddButtons.add(dragonsEpicAdd);
+		epicAddButtons.add(outlandEpicAdd);
+		epicAddButtons.add(scholomanceEpicAdd);
+		epicAddButtons.add(darkmoonEpicAdd);
+		epicAddButtons.add(barrensEpicAdd);
 		
 		// Epic increment fields
-		classicEpicIncrement = tracker.getClassicEpicIncrement();
+		barrensEpicIncrement = tracker.getBarrensEpicIncrement();
 		darkmoonEpicIncrement = tracker.getDarkmoonEpicIncrement();
 		scholomanceEpicIncrement = tracker.getScholomanceEpicIncrement();
 		outlandEpicIncrement = tracker.getOutlandEpicIncrement();
@@ -1639,11 +1699,12 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsEpicIncrement = tracker.getOldGodsEpicIncrement();
 		tournamentEpicIncrement = tracker.getTournamentEpicIncrement();
 		goblinsEpicIncrement = tracker.getGoblinsEpicIncrement();
+		classicEpicIncrement = tracker.getClassicEpicIncrement();
 		
 		// Legendary reset buttons
 		legendaryResetButtons = new ArrayList<ModifierButton>();
 		
-		classicLegendaryReset = tracker.getClassicLegendaryReset();
+		barrensLegendaryReset = tracker.getBarrensLegendaryReset();
 		darkmoonLegendaryReset = tracker.getDarkmoonLegendaryReset();
 		scholomanceLegendaryReset = tracker.getScholomanceLegendaryReset();
 		outlandLegendaryReset = tracker.getOutlandLegendaryReset();
@@ -1660,29 +1721,31 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsLegendaryReset = tracker.getOldGodsLegendaryReset();
 		tournamentLegendaryReset = tracker.getTournamentLegendaryReset();
 		goblinsLegendaryReset = tracker.getGoblinsLegendaryReset();
+		classicLegendaryReset = tracker.getClassicLegendaryReset();
 		
 		legendaryResetButtons.add(classicLegendaryReset);
-		legendaryResetButtons.add(darkmoonLegendaryReset);
-		legendaryResetButtons.add(scholomanceLegendaryReset);
-		legendaryResetButtons.add(outlandLegendaryReset);
-		legendaryResetButtons.add(dragonsLegendaryReset);
-		legendaryResetButtons.add(uldumLegendaryReset);
-		legendaryResetButtons.add(shadowsLegendaryReset);
-		legendaryResetButtons.add(rumbleLegendaryReset);
-		legendaryResetButtons.add(boomsdayLegendaryReset);
-		legendaryResetButtons.add(witchwoodLegendaryReset);
-		legendaryResetButtons.add(koboldsLegendaryReset);
-		legendaryResetButtons.add(knightsLegendaryReset);
-		legendaryResetButtons.add(ungoroLegendaryReset);
-		legendaryResetButtons.add(gadgetzanLegendaryReset);
-		legendaryResetButtons.add(oldGodsLegendaryReset);
-		legendaryResetButtons.add(tournamentLegendaryReset);
 		legendaryResetButtons.add(goblinsLegendaryReset);
+		legendaryResetButtons.add(tournamentLegendaryReset);
+		legendaryResetButtons.add(oldGodsLegendaryReset);
+		legendaryResetButtons.add(gadgetzanLegendaryReset);
+		legendaryResetButtons.add(ungoroLegendaryReset);
+		legendaryResetButtons.add(knightsLegendaryReset);
+		legendaryResetButtons.add(koboldsLegendaryReset);
+		legendaryResetButtons.add(witchwoodLegendaryReset);
+		legendaryResetButtons.add(boomsdayLegendaryReset);
+		legendaryResetButtons.add(rumbleLegendaryReset);
+		legendaryResetButtons.add(shadowsLegendaryReset);
+		legendaryResetButtons.add(uldumLegendaryReset);
+		legendaryResetButtons.add(dragonsLegendaryReset);
+		legendaryResetButtons.add(outlandLegendaryReset);
+		legendaryResetButtons.add(scholomanceLegendaryReset);
+		legendaryResetButtons.add(darkmoonLegendaryReset);
+		legendaryResetButtons.add(barrensLegendaryReset);
 		
 		// Legendary add buttons
 		legendaryAddButtons = new ArrayList<RoundButton>();
 		
-		classicLegendaryAdd = tracker.getClassicLegendaryAdd();
+		barrensLegendaryAdd = tracker.getBarrensLegendaryAdd();
 		darkmoonLegendaryAdd = tracker.getDarkmoonLegendaryAdd();
 		scholomanceLegendaryAdd = tracker.getScholomanceLegendaryAdd();
 		outlandLegendaryAdd = tracker.getOutlandLegendaryAdd();
@@ -1699,27 +1762,29 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsLegendaryAdd = tracker.getOldGodsLegendaryAdd();
 		tournamentLegendaryAdd = tracker.getTournamentLegendaryAdd();
 		goblinsLegendaryAdd = tracker.getGoblinsLegendaryAdd();
+		classicLegendaryAdd = tracker.getClassicLegendaryAdd();
 		
 		legendaryAddButtons.add(classicLegendaryAdd);
-		legendaryAddButtons.add(darkmoonLegendaryAdd);
-		legendaryAddButtons.add(scholomanceLegendaryAdd);
-		legendaryAddButtons.add(outlandLegendaryAdd);
-		legendaryAddButtons.add(dragonsLegendaryAdd);
-		legendaryAddButtons.add(uldumLegendaryAdd);
-		legendaryAddButtons.add(shadowsLegendaryAdd);
-		legendaryAddButtons.add(rumbleLegendaryAdd);
-		legendaryAddButtons.add(boomsdayLegendaryAdd);
-		legendaryAddButtons.add(witchwoodLegendaryAdd);
-		legendaryAddButtons.add(koboldsLegendaryAdd);
-		legendaryAddButtons.add(knightsLegendaryAdd);
-		legendaryAddButtons.add(ungoroLegendaryAdd);
-		legendaryAddButtons.add(gadgetzanLegendaryAdd);
-		legendaryAddButtons.add(oldGodsLegendaryAdd);
-		legendaryAddButtons.add(tournamentLegendaryAdd);
 		legendaryAddButtons.add(goblinsLegendaryAdd);
+		legendaryAddButtons.add(tournamentLegendaryAdd);
+		legendaryAddButtons.add(oldGodsLegendaryAdd);
+		legendaryAddButtons.add(gadgetzanLegendaryAdd);
+		legendaryAddButtons.add(ungoroLegendaryAdd);
+		legendaryAddButtons.add(knightsLegendaryAdd);
+		legendaryAddButtons.add(koboldsLegendaryAdd);
+		legendaryAddButtons.add(witchwoodLegendaryAdd);
+		legendaryAddButtons.add(boomsdayLegendaryAdd);
+		legendaryAddButtons.add(rumbleLegendaryAdd);
+		legendaryAddButtons.add(shadowsLegendaryAdd);
+		legendaryAddButtons.add(uldumLegendaryAdd);
+		legendaryAddButtons.add(dragonsLegendaryAdd);
+		legendaryAddButtons.add(outlandLegendaryAdd);
+		legendaryAddButtons.add(scholomanceLegendaryAdd);
+		legendaryAddButtons.add(darkmoonLegendaryAdd);
+		legendaryAddButtons.add(barrensLegendaryAdd);
 		
 		// Legendary increment fields
-		classicLegendaryIncrement = tracker.getClassicLegendaryIncrement();
+		barrensLegendaryIncrement = tracker.getBarrensLegendaryIncrement();
 		darkmoonLegendaryIncrement = tracker.getDarkmoonLegendaryIncrement();
 		scholomanceLegendaryIncrement = tracker.getScholomanceLegendaryIncrement();
 		outlandLegendaryIncrement = tracker.getOutlandLegendaryIncrement();
@@ -1736,11 +1801,12 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsLegendaryIncrement = tracker.getOldGodsLegendaryIncrement();
 		tournamentLegendaryIncrement = tracker.getTournamentLegendaryIncrement();
 		goblinsLegendaryIncrement = tracker.getGoblinsLegendaryIncrement();
+		classicLegendaryIncrement = tracker.getClassicLegendaryIncrement();
 		
 		// Total modify buttons
 		totalModifyButtons = new ArrayList<ModifierButton>();
 		
-		classicTotalModify = tracker.getClassicTotalModify();
+		barrensTotalModify = tracker.getBarrensTotalModify();
 		darkmoonTotalModify = tracker.getDarkmoonTotalModify();
 		scholomanceTotalModify = tracker.getScholomanceTotalModify();
 		outlandTotalModify = tracker.getOutlandTotalModify();
@@ -1757,29 +1823,31 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsTotalModify = tracker.getOldGodsTotalModify();
 		tournamentTotalModify = tracker.getTournamentTotalModify();
 		goblinsTotalModify = tracker.getGoblinsTotalModify();
+		classicTotalModify = tracker.getClassicTotalModify();
 		
 		totalModifyButtons.add(classicTotalModify);
-		totalModifyButtons.add(darkmoonTotalModify);
-		totalModifyButtons.add(scholomanceTotalModify);
-		totalModifyButtons.add(outlandTotalModify);
-		totalModifyButtons.add(dragonsTotalModify);
-		totalModifyButtons.add(uldumTotalModify);
-		totalModifyButtons.add(shadowsTotalModify);
-		totalModifyButtons.add(rumbleTotalModify);
-		totalModifyButtons.add(boomsdayTotalModify);
-		totalModifyButtons.add(witchwoodTotalModify);
-		totalModifyButtons.add(koboldsTotalModify);
-		totalModifyButtons.add(knightsTotalModify);
-		totalModifyButtons.add(ungoroTotalModify);
-		totalModifyButtons.add(gadgetzanTotalModify);
-		totalModifyButtons.add(oldGodsTotalModify);
-		totalModifyButtons.add(tournamentTotalModify);
 		totalModifyButtons.add(goblinsTotalModify);
+		totalModifyButtons.add(tournamentTotalModify);
+		totalModifyButtons.add(oldGodsTotalModify);
+		totalModifyButtons.add(gadgetzanTotalModify);
+		totalModifyButtons.add(ungoroTotalModify);
+		totalModifyButtons.add(knightsTotalModify);
+		totalModifyButtons.add(koboldsTotalModify);
+		totalModifyButtons.add(witchwoodTotalModify);
+		totalModifyButtons.add(boomsdayTotalModify);
+		totalModifyButtons.add(rumbleTotalModify);
+		totalModifyButtons.add(shadowsTotalModify);
+		totalModifyButtons.add(uldumTotalModify);
+		totalModifyButtons.add(dragonsTotalModify);
+		totalModifyButtons.add(outlandTotalModify);
+		totalModifyButtons.add(scholomanceTotalModify);
+		totalModifyButtons.add(darkmoonTotalModify);
+		totalModifyButtons.add(barrensTotalModify);
 		
 		// Total add buttons
 		totalAddButtons = new ArrayList<RoundButton>();
 		
-		classicTotalAdd = tracker.getClassicTotalAdd();
+		barrensTotalAdd = tracker.getBarrensTotalAdd();
 		darkmoonTotalAdd = tracker.getDarkmoonTotalAdd();
 		scholomanceTotalAdd = tracker.getScholomanceTotalAdd();
 		outlandTotalAdd = tracker.getOutlandTotalAdd();
@@ -1796,27 +1864,29 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsTotalAdd = tracker.getOldGodsTotalAdd();
 		tournamentTotalAdd = tracker.getTournamentTotalAdd();
 		goblinsTotalAdd = tracker.getGoblinsTotalAdd();
+		classicTotalAdd = tracker.getClassicTotalAdd();
 		
 		totalAddButtons.add(classicTotalAdd);
-		totalAddButtons.add(darkmoonTotalAdd);
-		totalAddButtons.add(scholomanceTotalAdd);
-		totalAddButtons.add(outlandTotalAdd);
-		totalAddButtons.add(dragonsTotalAdd);
-		totalAddButtons.add(uldumTotalAdd);
-		totalAddButtons.add(shadowsTotalAdd);
-		totalAddButtons.add(rumbleTotalAdd);
-		totalAddButtons.add(boomsdayTotalAdd);
-		totalAddButtons.add(witchwoodTotalAdd);
-		totalAddButtons.add(koboldsTotalAdd);
-		totalAddButtons.add(knightsTotalAdd);
-		totalAddButtons.add(ungoroTotalAdd);
-		totalAddButtons.add(gadgetzanTotalAdd);
-		totalAddButtons.add(oldGodsTotalAdd);
-		totalAddButtons.add(tournamentTotalAdd);
 		totalAddButtons.add(goblinsTotalAdd);
+		totalAddButtons.add(tournamentTotalAdd);
+		totalAddButtons.add(oldGodsTotalAdd);
+		totalAddButtons.add(gadgetzanTotalAdd);
+		totalAddButtons.add(ungoroTotalAdd);
+		totalAddButtons.add(knightsTotalAdd);
+		totalAddButtons.add(koboldsTotalAdd);
+		totalAddButtons.add(witchwoodTotalAdd);
+		totalAddButtons.add(boomsdayTotalAdd);
+		totalAddButtons.add(rumbleTotalAdd);
+		totalAddButtons.add(shadowsTotalAdd);
+		totalAddButtons.add(uldumTotalAdd);
+		totalAddButtons.add(dragonsTotalAdd);
+		totalAddButtons.add(outlandTotalAdd);
+		totalAddButtons.add(scholomanceTotalAdd);
+		totalAddButtons.add(darkmoonTotalAdd);
+		totalAddButtons.add(barrensTotalAdd);
 		
 		// Total increment fields
-		classicTotalIncrement = tracker.getClassicTotalIncrement();
+		barrensTotalIncrement = tracker.getBarrensTotalIncrement();
 		darkmoonTotalIncrement = tracker.getDarkmoonTotalIncrement();
 		scholomanceTotalIncrement = tracker.getScholomanceTotalIncrement();
 		outlandTotalIncrement = tracker.getOutlandTotalIncrement();
@@ -1833,6 +1903,7 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsTotalIncrement = tracker.getOldGodsTotalIncrement();
 		tournamentTotalIncrement = tracker.getTournamentTotalIncrement();
 		goblinsTotalIncrement = tracker.getGoblinsTotalIncrement();
+		classicTotalIncrement = tracker.getClassicTotalIncrement();
 	}
 	
 	// Initializes the rarity buttons
@@ -1841,7 +1912,7 @@ public class HSPityTimerTracker implements ActionListener
 		// Common buttons
 		commonButtons = new ArrayList<IconButton>();
 		
-		classicCommonButton = tracker.getClassicCommonButton();
+		barrensCommonButton = tracker.getBarrensCommonButton();
 		darkmoonCommonButton = tracker.getDarkmoonCommonButton();
 		scholomanceCommonButton = tracker.getScholomanceCommonButton();
 		outlandCommonButton = tracker.getOutlandCommonButton();
@@ -1858,50 +1929,53 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsCommonButton = tracker.getOldGodsCommonButton();
 		tournamentCommonButton = tracker.getTournamentCommonButton();
 		goblinsCommonButton = tracker.getGoblinsCommonButton();
+		classicCommonButton = tracker.getClassicCommonButton();
 		
 		commonButtons.add(classicCommonButton);
-		commonButtons.add(darkmoonCommonButton);
-		commonButtons.add(scholomanceCommonButton);
-		commonButtons.add(outlandCommonButton);
-		commonButtons.add(dragonsCommonButton);
-		commonButtons.add(uldumCommonButton);
-		commonButtons.add(shadowsCommonButton);
-		commonButtons.add(rumbleCommonButton);
-		commonButtons.add(boomsdayCommonButton);
-		commonButtons.add(witchwoodCommonButton);
-		commonButtons.add(koboldsCommonButton);
-		commonButtons.add(knightsCommonButton);
-		commonButtons.add(ungoroCommonButton);
-		commonButtons.add(gadgetzanCommonButton);
-		commonButtons.add(oldGodsCommonButton);
-		commonButtons.add(tournamentCommonButton);
 		commonButtons.add(goblinsCommonButton);
+		commonButtons.add(tournamentCommonButton);
+		commonButtons.add(oldGodsCommonButton);
+		commonButtons.add(gadgetzanCommonButton);
+		commonButtons.add(ungoroCommonButton);
+		commonButtons.add(knightsCommonButton);
+		commonButtons.add(koboldsCommonButton);
+		commonButtons.add(witchwoodCommonButton);
+		commonButtons.add(boomsdayCommonButton);
+		commonButtons.add(rumbleCommonButton);
+		commonButtons.add(shadowsCommonButton);
+		commonButtons.add(uldumCommonButton);
+		commonButtons.add(dragonsCommonButton);
+		commonButtons.add(outlandCommonButton);
+		commonButtons.add(scholomanceCommonButton);
+		commonButtons.add(darkmoonCommonButton);
+		commonButtons.add(barrensCommonButton);
 		
 		// Common buttons links
 		commonButtonsUrls = new ArrayList<URI>();
 		
 		commonButtonsUrls.add(classicCommonUrl);
-		commonButtonsUrls.add(darkmoonCommonUrl);
-		commonButtonsUrls.add(scholomanceCommonUrl);
-		commonButtonsUrls.add(outlandCommonUrl);
-		commonButtonsUrls.add(dragonsCommonUrl);
-		commonButtonsUrls.add(uldumCommonUrl);
-		commonButtonsUrls.add(shadowsCommonUrl);
-		commonButtonsUrls.add(rumbleCommonUrl);
-		commonButtonsUrls.add(boomsdayCommonUrl);
-		commonButtonsUrls.add(witchwoodCommonUrl);
-		commonButtonsUrls.add(koboldsCommonUrl);
-		commonButtonsUrls.add(knightsCommonUrl);
-		commonButtonsUrls.add(ungoroCommonUrl);
-		commonButtonsUrls.add(gadgetzanCommonUrl);
-		commonButtonsUrls.add(oldGodsCommonUrl);
-		commonButtonsUrls.add(tournamentCommonUrl);
 		commonButtonsUrls.add(goblinsCommonUrl);
+		commonButtonsUrls.add(tournamentCommonUrl);
+		commonButtonsUrls.add(oldGodsCommonUrl);
+		commonButtonsUrls.add(gadgetzanCommonUrl);
+		commonButtonsUrls.add(ungoroCommonUrl);
+		commonButtonsUrls.add(knightsCommonUrl);
+		commonButtonsUrls.add(koboldsCommonUrl);
+		commonButtonsUrls.add(witchwoodCommonUrl);
+		commonButtonsUrls.add(boomsdayCommonUrl);
+		commonButtonsUrls.add(rumbleCommonUrl);
+		commonButtonsUrls.add(shadowsCommonUrl);
+		commonButtonsUrls.add(uldumCommonUrl);
+		commonButtonsUrls.add(dragonsCommonUrl);
+		commonButtonsUrls.add(outlandCommonUrl);
+		commonButtonsUrls.add(scholomanceCommonUrl);
+		commonButtonsUrls.add(darkmoonCommonUrl);
+		commonButtonsUrls.add(barrensCommonUrl);
 		
 		// Rare buttons
 		rareButtons = new ArrayList<IconButton>();
 		
-		classicRareButton = tracker.getClassicRareButton();
+		barrensRareButton = tracker.getBarrensRareButton();
 		darkmoonRareButton = tracker.getDarkmoonRareButton();
 		scholomanceRareButton = tracker.getScholomanceRareButton();
 		outlandRareButton = tracker.getOutlandRareButton();
@@ -1918,50 +1992,53 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsRareButton = tracker.getOldGodsRareButton();
 		tournamentRareButton = tracker.getTournamentRareButton();
 		goblinsRareButton = tracker.getGoblinsRareButton();
+		classicRareButton = tracker.getClassicRareButton();
 		
 		rareButtons.add(classicRareButton);
-		rareButtons.add(darkmoonRareButton);
-		rareButtons.add(scholomanceRareButton);
-		rareButtons.add(outlandRareButton);
-		rareButtons.add(dragonsRareButton);
-		rareButtons.add(uldumRareButton);
-		rareButtons.add(shadowsRareButton);
-		rareButtons.add(rumbleRareButton);
-		rareButtons.add(boomsdayRareButton);
-		rareButtons.add(witchwoodRareButton);
-		rareButtons.add(koboldsRareButton);
-		rareButtons.add(knightsRareButton);
-		rareButtons.add(ungoroRareButton);
-		rareButtons.add(gadgetzanRareButton);
-		rareButtons.add(oldGodsRareButton);
-		rareButtons.add(tournamentRareButton);
 		rareButtons.add(goblinsRareButton);
+		rareButtons.add(tournamentRareButton);
+		rareButtons.add(oldGodsRareButton);
+		rareButtons.add(gadgetzanRareButton);
+		rareButtons.add(ungoroRareButton);
+		rareButtons.add(knightsRareButton);
+		rareButtons.add(koboldsRareButton);
+		rareButtons.add(witchwoodRareButton);
+		rareButtons.add(boomsdayRareButton);
+		rareButtons.add(rumbleRareButton);
+		rareButtons.add(shadowsRareButton);
+		rareButtons.add(uldumRareButton);
+		rareButtons.add(dragonsRareButton);
+		rareButtons.add(outlandRareButton);
+		rareButtons.add(scholomanceRareButton);
+		rareButtons.add(darkmoonRareButton);
+		rareButtons.add(barrensRareButton);
 		
 		// Rare buttons links
 		rareButtonsUrls = new ArrayList<URI>();
 		
 		rareButtonsUrls.add(classicRareUrl);
-		rareButtonsUrls.add(darkmoonRareUrl);
-		rareButtonsUrls.add(scholomanceRareUrl);
-		rareButtonsUrls.add(outlandRareUrl);
-		rareButtonsUrls.add(dragonsRareUrl);
-		rareButtonsUrls.add(uldumRareUrl);
-		rareButtonsUrls.add(shadowsRareUrl);
-		rareButtonsUrls.add(rumbleRareUrl);
-		rareButtonsUrls.add(boomsdayRareUrl);
-		rareButtonsUrls.add(witchwoodRareUrl);
-		rareButtonsUrls.add(koboldsRareUrl);
-		rareButtonsUrls.add(knightsRareUrl);
-		rareButtonsUrls.add(ungoroRareUrl);
-		rareButtonsUrls.add(gadgetzanRareUrl);
-		rareButtonsUrls.add(oldGodsRareUrl);
-		rareButtonsUrls.add(tournamentRareUrl);
 		rareButtonsUrls.add(goblinsRareUrl);
+		rareButtonsUrls.add(tournamentRareUrl);
+		rareButtonsUrls.add(oldGodsRareUrl);
+		rareButtonsUrls.add(gadgetzanRareUrl);
+		rareButtonsUrls.add(ungoroRareUrl);
+		rareButtonsUrls.add(knightsRareUrl);
+		rareButtonsUrls.add(koboldsRareUrl);
+		rareButtonsUrls.add(witchwoodRareUrl);
+		rareButtonsUrls.add(boomsdayRareUrl);
+		rareButtonsUrls.add(rumbleRareUrl);
+		rareButtonsUrls.add(shadowsRareUrl);
+		rareButtonsUrls.add(uldumRareUrl);
+		rareButtonsUrls.add(dragonsRareUrl);
+		rareButtonsUrls.add(outlandRareUrl);
+		rareButtonsUrls.add(scholomanceRareUrl);
+		rareButtonsUrls.add(darkmoonRareUrl);
+		rareButtonsUrls.add(barrensRareUrl);
 		
 		// Epic buttons
 		epicButtons = new ArrayList<IconButton>();
 		
-		classicEpicButton = tracker.getClassicEpicButton();
+		barrensEpicButton = tracker.getBarrensEpicButton();
 		darkmoonEpicButton = tracker.getDarkmoonEpicButton();
 		scholomanceEpicButton = tracker.getScholomanceEpicButton();
 		outlandEpicButton = tracker.getOutlandEpicButton();
@@ -1978,50 +2055,53 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsEpicButton = tracker.getOldGodsEpicButton();
 		tournamentEpicButton = tracker.getTournamentEpicButton();
 		goblinsEpicButton = tracker.getGoblinsEpicButton();
+		classicEpicButton = tracker.getClassicEpicButton();
 		
 		epicButtons.add(classicEpicButton);
-		epicButtons.add(darkmoonEpicButton);
-		epicButtons.add(scholomanceEpicButton);
-		epicButtons.add(outlandEpicButton);
-		epicButtons.add(dragonsEpicButton);
-		epicButtons.add(uldumEpicButton);
-		epicButtons.add(shadowsEpicButton);
-		epicButtons.add(rumbleEpicButton);
-		epicButtons.add(boomsdayEpicButton);
-		epicButtons.add(witchwoodEpicButton);
-		epicButtons.add(koboldsEpicButton);
-		epicButtons.add(knightsEpicButton);
-		epicButtons.add(ungoroEpicButton);
-		epicButtons.add(gadgetzanEpicButton);
-		epicButtons.add(oldGodsEpicButton);
-		epicButtons.add(tournamentEpicButton);
 		epicButtons.add(goblinsEpicButton);
+		epicButtons.add(tournamentEpicButton);
+		epicButtons.add(oldGodsEpicButton);
+		epicButtons.add(gadgetzanEpicButton);
+		epicButtons.add(ungoroEpicButton);
+		epicButtons.add(knightsEpicButton);
+		epicButtons.add(koboldsEpicButton);
+		epicButtons.add(witchwoodEpicButton);
+		epicButtons.add(boomsdayEpicButton);
+		epicButtons.add(rumbleEpicButton);
+		epicButtons.add(shadowsEpicButton);
+		epicButtons.add(uldumEpicButton);
+		epicButtons.add(dragonsEpicButton);
+		epicButtons.add(outlandEpicButton);
+		epicButtons.add(scholomanceEpicButton);
+		epicButtons.add(darkmoonEpicButton);
+		epicButtons.add(barrensEpicButton);
 		
 		// Epic buttons links
 		epicButtonsUrls = new ArrayList<URI>();
 		
 		epicButtonsUrls.add(classicEpicUrl);
-		epicButtonsUrls.add(darkmoonEpicUrl);
-		epicButtonsUrls.add(scholomanceEpicUrl);
-		epicButtonsUrls.add(outlandEpicUrl);
-		epicButtonsUrls.add(dragonsEpicUrl);
-		epicButtonsUrls.add(uldumEpicUrl);
-		epicButtonsUrls.add(shadowsEpicUrl);
-		epicButtonsUrls.add(rumbleEpicUrl);
-		epicButtonsUrls.add(boomsdayEpicUrl);
-		epicButtonsUrls.add(witchwoodEpicUrl);
-		epicButtonsUrls.add(koboldsEpicUrl);
-		epicButtonsUrls.add(knightsEpicUrl);
-		epicButtonsUrls.add(ungoroEpicUrl);
-		epicButtonsUrls.add(gadgetzanEpicUrl);
-		epicButtonsUrls.add(oldGodsEpicUrl);
-		epicButtonsUrls.add(tournamentEpicUrl);
 		epicButtonsUrls.add(goblinsEpicUrl);
+		epicButtonsUrls.add(tournamentEpicUrl);
+		epicButtonsUrls.add(oldGodsEpicUrl);
+		epicButtonsUrls.add(gadgetzanEpicUrl);
+		epicButtonsUrls.add(ungoroEpicUrl);
+		epicButtonsUrls.add(knightsEpicUrl);
+		epicButtonsUrls.add(koboldsEpicUrl);
+		epicButtonsUrls.add(witchwoodEpicUrl);
+		epicButtonsUrls.add(boomsdayEpicUrl);
+		epicButtonsUrls.add(rumbleEpicUrl);
+		epicButtonsUrls.add(shadowsEpicUrl);
+		epicButtonsUrls.add(uldumEpicUrl);
+		epicButtonsUrls.add(dragonsEpicUrl);
+		epicButtonsUrls.add(outlandEpicUrl);
+		epicButtonsUrls.add(scholomanceEpicUrl);
+		epicButtonsUrls.add(darkmoonEpicUrl);
+		epicButtonsUrls.add(barrensEpicUrl);
 		
 		// Legendary buttons
 		legendaryButtons = new ArrayList<IconButton>();
 		
-		classicLegendaryButton = tracker.getClassicLegendaryButton();
+		barrensLegendaryButton = tracker.getBarrensLegendaryButton();
 		darkmoonLegendaryButton = tracker.getDarkmoonLegendaryButton();
 		scholomanceLegendaryButton = tracker.getScholomanceLegendaryButton();
 		outlandLegendaryButton = tracker.getOutlandLegendaryButton();
@@ -2038,45 +2118,48 @@ public class HSPityTimerTracker implements ActionListener
 		oldGodsLegendaryButton = tracker.getOldGodsLegendaryButton();
 		tournamentLegendaryButton = tracker.getTournamentLegendaryButton();
 		goblinsLegendaryButton = tracker.getGoblinsLegendaryButton();
+		classicLegendaryButton = tracker.getClassicLegendaryButton();
 		
 		legendaryButtons.add(classicLegendaryButton);
-		legendaryButtons.add(darkmoonLegendaryButton);
-		legendaryButtons.add(scholomanceLegendaryButton);
-		legendaryButtons.add(outlandLegendaryButton);
-		legendaryButtons.add(dragonsLegendaryButton);
-		legendaryButtons.add(uldumLegendaryButton);
-		legendaryButtons.add(shadowsLegendaryButton);
-		legendaryButtons.add(rumbleLegendaryButton);
-		legendaryButtons.add(boomsdayLegendaryButton);
-		legendaryButtons.add(witchwoodLegendaryButton);
-		legendaryButtons.add(koboldsLegendaryButton);
-		legendaryButtons.add(knightsLegendaryButton);
-		legendaryButtons.add(ungoroLegendaryButton);
-		legendaryButtons.add(gadgetzanLegendaryButton);
-		legendaryButtons.add(oldGodsLegendaryButton);
-		legendaryButtons.add(tournamentLegendaryButton);
 		legendaryButtons.add(goblinsLegendaryButton);
+		legendaryButtons.add(tournamentLegendaryButton);
+		legendaryButtons.add(oldGodsLegendaryButton);
+		legendaryButtons.add(gadgetzanLegendaryButton);
+		legendaryButtons.add(ungoroLegendaryButton);
+		legendaryButtons.add(knightsLegendaryButton);
+		legendaryButtons.add(koboldsLegendaryButton);
+		legendaryButtons.add(witchwoodLegendaryButton);
+		legendaryButtons.add(boomsdayLegendaryButton);
+		legendaryButtons.add(rumbleLegendaryButton);
+		legendaryButtons.add(shadowsLegendaryButton);
+		legendaryButtons.add(uldumLegendaryButton);
+		legendaryButtons.add(dragonsLegendaryButton);
+		legendaryButtons.add(outlandLegendaryButton);
+		legendaryButtons.add(scholomanceLegendaryButton);
+		legendaryButtons.add(darkmoonLegendaryButton);
+		legendaryButtons.add(barrensLegendaryButton);
 		
 		// Legendary buttons links
 		legendaryButtonsUrls = new ArrayList<URI>();
 		
 		legendaryButtonsUrls.add(classicLegendaryUrl);
-		legendaryButtonsUrls.add(darkmoonLegendaryUrl);
-		legendaryButtonsUrls.add(scholomanceLegendaryUrl);
-		legendaryButtonsUrls.add(outlandLegendaryUrl);
-		legendaryButtonsUrls.add(dragonsLegendaryUrl);
-		legendaryButtonsUrls.add(uldumLegendaryUrl);
-		legendaryButtonsUrls.add(shadowsLegendaryUrl);
-		legendaryButtonsUrls.add(rumbleLegendaryUrl);
-		legendaryButtonsUrls.add(boomsdayLegendaryUrl);
-		legendaryButtonsUrls.add(witchwoodLegendaryUrl);
-		legendaryButtonsUrls.add(koboldsLegendaryUrl);
-		legendaryButtonsUrls.add(knightsLegendaryUrl);
-		legendaryButtonsUrls.add(ungoroLegendaryUrl);
-		legendaryButtonsUrls.add(gadgetzanLegendaryUrl);
-		legendaryButtonsUrls.add(oldGodsLegendaryUrl);
-		legendaryButtonsUrls.add(tournamentLegendaryUrl);
 		legendaryButtonsUrls.add(goblinsLegendaryUrl);
+		legendaryButtonsUrls.add(tournamentLegendaryUrl);
+		legendaryButtonsUrls.add(oldGodsLegendaryUrl);
+		legendaryButtonsUrls.add(gadgetzanLegendaryUrl);
+		legendaryButtonsUrls.add(ungoroLegendaryUrl);
+		legendaryButtonsUrls.add(knightsLegendaryUrl);
+		legendaryButtonsUrls.add(koboldsLegendaryUrl);
+		legendaryButtonsUrls.add(witchwoodLegendaryUrl);
+		legendaryButtonsUrls.add(boomsdayLegendaryUrl);
+		legendaryButtonsUrls.add(rumbleLegendaryUrl);
+		legendaryButtonsUrls.add(shadowsLegendaryUrl);
+		legendaryButtonsUrls.add(uldumLegendaryUrl);
+		legendaryButtonsUrls.add(dragonsLegendaryUrl);
+		legendaryButtonsUrls.add(outlandLegendaryUrl);
+		legendaryButtonsUrls.add(scholomanceLegendaryUrl);
+		legendaryButtonsUrls.add(darkmoonLegendaryUrl);
+		legendaryButtonsUrls.add(barrensLegendaryUrl);
 	}
 	
 	// Adds action listeners to the tracker buttons
@@ -2244,6 +2327,7 @@ public class HSPityTimerTracker implements ActionListener
 	{
 		toggleWild.setToolTipText("Hide Wild Sets");
 		
+		dragon.setVisible(true);
 		raven.setVisible(true);
 		mammoth.setVisible(true);
 		kraken.setVisible(true);
@@ -2255,6 +2339,7 @@ public class HSPityTimerTracker implements ActionListener
 	{
 		toggleWild.setToolTipText("Show Wild Sets");
 		
+		dragon.setVisible(false);
 		raven.setVisible(false);
 		mammoth.setVisible(false);
 		kraken.setVisible(false);
@@ -2291,176 +2376,20 @@ public class HSPityTimerTracker implements ActionListener
 			classicEpicProbability = probabilityCalculator(classicEpicCounter, 10);
 			tracker.setClassicEpicProbability(nf.format(classicEpicProbability));
 		}
-		// "Madness at the Darkmoon Faire" epic reset button
+		// "Goblins vs Gnomes" epic reset button
 		else if (index == 1) {
-			darkmoonEpicCounter = 0;
-			tracker.setDarkmoonEpicCounter(Integer.toString(darkmoonEpicCounter));
+			goblinsEpicCounter = 0;
+			tracker.setGoblinsEpicCounter(Integer.toString(goblinsEpicCounter));
 			
 			// Reset the increment field to '1'
-			darkmoonEpicIncrement.setText("1");
+			goblinsEpicIncrement.setText("1");
 			
 			// Calculate probability
-			darkmoonEpicProbability = probabilityCalculator(darkmoonEpicCounter, 10);
-			tracker.setDarkmoonEpicProbability(nf.format(darkmoonEpicProbability));
-		}
-		// "Scholomance Academy" epic reset button
-		else if (index == 2) {
-			scholomanceEpicCounter = 0;
-			tracker.setScholomanceEpicCounter(Integer.toString(scholomanceEpicCounter));
-			
-			// Reset the increment field to '1'
-			scholomanceEpicIncrement.setText("1");
-			
-			// Calculate probability
-			scholomanceEpicProbability = probabilityCalculator(scholomanceEpicCounter, 10);
-			tracker.setScholomanceEpicProbability(nf.format(scholomanceEpicProbability));
-		}
-		// "Ashes of Outland" epic reset button
-		else if (index == 3) {
-			outlandEpicCounter = 0;
-			tracker.setOutlandEpicCounter(Integer.toString(outlandEpicCounter));
-			
-			// Reset the increment field to '1'
-			outlandEpicIncrement.setText("1");
-			
-			// Calculate probability
-			outlandEpicProbability = probabilityCalculator(outlandEpicCounter, 10);
-			tracker.setOutlandEpicProbability(nf.format(outlandEpicProbability));
-		}
-		// "Descent of Dragons" epic reset button
-		else if (index == 4) {
-			dragonsEpicCounter = 0;
-			tracker.setDragonsEpicCounter(Integer.toString(dragonsEpicCounter));
-			
-			// Reset the increment field to '1'
-			dragonsEpicIncrement.setText("1");
-			
-			// Calculate probability
-			dragonsEpicProbability = probabilityCalculator(dragonsEpicCounter, 10);
-			tracker.setDragonsEpicProbability(nf.format(dragonsEpicProbability));
-		}
-		// "Saviors of Uldum" epic reset button
-		else if (index == 5) {
-			uldumEpicCounter = 0;
-			tracker.setUldumEpicCounter(Integer.toString(uldumEpicCounter));
-			
-			// Reset the increment field to '1'
-			uldumEpicIncrement.setText("1");
-			
-			// Calculate probability
-			uldumEpicProbability = probabilityCalculator(uldumEpicCounter, 10);
-			tracker.setUldumEpicProbability(nf.format(uldumEpicProbability));
-		}
-		// "Rise of Shadows" epic reset button
-		else if (index == 6) {
-			shadowsEpicCounter = 0;
-			tracker.setShadowsEpicCounter(Integer.toString(shadowsEpicCounter));
-			
-			// Reset the increment field to '1'
-			shadowsEpicIncrement.setText("1");
-			
-			// Calculate probability
-			shadowsEpicProbability = probabilityCalculator(shadowsEpicCounter, 10);
-			tracker.setShadowsEpicProbability(nf.format(shadowsEpicProbability));
-		}
-		// "Rastakhan's Rumble" epic reset button
-		else if (index == 7) {
-			rumbleEpicCounter = 0;
-			tracker.setRumbleEpicCounter(Integer.toString(rumbleEpicCounter));
-			
-			// Reset the increment field to '1'
-			rumbleEpicIncrement.setText("1");
-			
-			// Calculate probability
-			rumbleEpicProbability = probabilityCalculator(rumbleEpicCounter, 10);
-			tracker.setRumbleEpicProbability(nf.format(rumbleEpicProbability));
-		}
-		// "The Boomsday Project" epic reset button
-		else if (index == 8) {
-			boomsdayEpicCounter = 0;
-			tracker.setBoomsdayEpicCounter(Integer.toString(boomsdayEpicCounter));
-			
-			// Reset the increment field to '1'
-			boomsdayEpicIncrement.setText("1");
-			
-			// Calculate probability
-			boomsdayEpicProbability = probabilityCalculator(boomsdayEpicCounter, 10);
-			tracker.setBoomsdayEpicProbability(nf.format(boomsdayEpicProbability));
-		}
-		// "The Witchwood" epic reset button
-		else if (index == 9) {
-			witchwoodEpicCounter = 0;
-			tracker.setWitchwoodEpicCounter(Integer.toString(witchwoodEpicCounter));
-			
-			// Reset the increment field to '1'
-			witchwoodEpicIncrement.setText("1");
-			
-			// Calculate probability
-			witchwoodEpicProbability = probabilityCalculator(witchwoodEpicCounter, 10);
-			tracker.setWitchwoodEpicProbability(nf.format(witchwoodEpicProbability));
-		}
-		// "Kobolds & Catacombs" epic reset button
-		else if (index == 10) {
-			koboldsEpicCounter = 0;
-			tracker.setKoboldsEpicCounter(Integer.toString(koboldsEpicCounter));
-			
-			// Reset the increment field to '1'
-			koboldsEpicIncrement.setText("1");
-			
-			// Calculate probability
-			koboldsEpicProbability = probabilityCalculator(koboldsEpicCounter, 10);
-			tracker.setKoboldsEpicProbability(nf.format(koboldsEpicProbability));
-		}
-		// "Knights of the Frozen Throne" epic reset button
-		else if (index == 11) {
-			knightsEpicCounter = 0;
-			tracker.setKnightsEpicCounter(Integer.toString(knightsEpicCounter));
-			
-			// Reset the increment field to '1'
-			knightsEpicIncrement.setText("1");
-			
-			// Calculate probability
-			knightsEpicProbability = probabilityCalculator(knightsEpicCounter, 10);
-			tracker.setKnightsEpicProbability(nf.format(knightsEpicProbability));
-		}
-		// "Journey to Un'Goro" epic reset button
-		else if (index == 12) {
-			ungoroEpicCounter = 0;
-			tracker.setUngoroEpicCounter(Integer.toString(ungoroEpicCounter));
-			
-			// Reset the increment field to '1'
-			ungoroEpicIncrement.setText("1");
-			
-			// Calculate probability
-			ungoroEpicProbability = probabilityCalculator(ungoroEpicCounter, 10);
-			tracker.setUngoroEpicProbability(nf.format(ungoroEpicProbability));
-		}
-		// "Mean Streets of Gadzetzan" epic reset button
-		else if (index == 13) {
-			gadgetzanEpicCounter = 0;
-			tracker.setGadgetzanEpicCounter(Integer.toString(gadgetzanEpicCounter));
-			
-			// Reset the increment field to '1'
-			gadgetzanEpicIncrement.setText("1");
-			
-			// Calculate probability
-			gadgetzanEpicProbability = probabilityCalculator(gadgetzanEpicCounter, 10);
-			tracker.setGadgetzanEpicProbability(nf.format(gadgetzanEpicProbability));
-		}
-		// "Whispers of the Old Gods" epic reset button
-		else if (index == 14) {
-			oldGodsEpicCounter = 0;
-			tracker.setOldGodsEpicCounter(Integer.toString(oldGodsEpicCounter));
-			
-			// Reset the increment field to '1'
-			oldGodsEpicIncrement.setText("1");
-			
-			// Calculate probability
-			oldGodsEpicProbability = probabilityCalculator(oldGodsEpicCounter, 10);
-			tracker.setOldGodsEpicProbability(nf.format(oldGodsEpicProbability));
+			goblinsEpicProbability = probabilityCalculator(goblinsEpicCounter, 10);
+			tracker.setGoblinsEpicProbability(nf.format(goblinsEpicProbability));
 		}
 		// "The Grand Tournament" epic reset button
-		else if (index == 15) {
+		else if (index == 2) {
 			tournamentEpicCounter = 0;
 			tracker.setTournamentEpicCounter(Integer.toString(tournamentEpicCounter));
 			
@@ -2471,17 +2400,185 @@ public class HSPityTimerTracker implements ActionListener
 			tournamentEpicProbability = probabilityCalculator(tournamentEpicCounter, 10);
 			tracker.setTournamentEpicProbability(nf.format(tournamentEpicProbability));
 		}
-		// "Goblins vs Gnomes" epic reset button
-		else {
-			goblinsEpicCounter = 0;
-			tracker.setGoblinsEpicCounter(Integer.toString(goblinsEpicCounter));
+		// "Whispers of the Old Gods" epic reset button
+		else if (index == 3) {
+			oldGodsEpicCounter = 0;
+			tracker.setOldGodsEpicCounter(Integer.toString(oldGodsEpicCounter));
 			
 			// Reset the increment field to '1'
-			goblinsEpicIncrement.setText("1");
+			oldGodsEpicIncrement.setText("1");
 			
 			// Calculate probability
-			goblinsEpicProbability = probabilityCalculator(goblinsEpicCounter, 10);
-			tracker.setGoblinsEpicProbability(nf.format(goblinsEpicProbability));
+			oldGodsEpicProbability = probabilityCalculator(oldGodsEpicCounter, 10);
+			tracker.setOldGodsEpicProbability(nf.format(oldGodsEpicProbability));
+		}
+		// "Mean Streets of Gadzetzan" epic reset button
+		else if (index == 4) {
+			gadgetzanEpicCounter = 0;
+			tracker.setGadgetzanEpicCounter(Integer.toString(gadgetzanEpicCounter));
+			
+			// Reset the increment field to '1'
+			gadgetzanEpicIncrement.setText("1");
+			
+			// Calculate probability
+			gadgetzanEpicProbability = probabilityCalculator(gadgetzanEpicCounter, 10);
+			tracker.setGadgetzanEpicProbability(nf.format(gadgetzanEpicProbability));
+		}
+		// "Journey to Un'Goro" epic reset button
+		else if (index == 5) {
+			ungoroEpicCounter = 0;
+			tracker.setUngoroEpicCounter(Integer.toString(ungoroEpicCounter));
+			
+			// Reset the increment field to '1'
+			ungoroEpicIncrement.setText("1");
+			
+			// Calculate probability
+			ungoroEpicProbability = probabilityCalculator(ungoroEpicCounter, 10);
+			tracker.setUngoroEpicProbability(nf.format(ungoroEpicProbability));
+		}
+		// "Knights of the Frozen Throne" epic reset button
+		else if (index == 6) {
+			knightsEpicCounter = 0;
+			tracker.setKnightsEpicCounter(Integer.toString(knightsEpicCounter));
+			
+			// Reset the increment field to '1'
+			knightsEpicIncrement.setText("1");
+			
+			// Calculate probability
+			knightsEpicProbability = probabilityCalculator(knightsEpicCounter, 10);
+			tracker.setKnightsEpicProbability(nf.format(knightsEpicProbability));
+		}
+		// "Kobolds & Catacombs" epic reset button
+		else if (index == 7) {
+			koboldsEpicCounter = 0;
+			tracker.setKoboldsEpicCounter(Integer.toString(koboldsEpicCounter));
+			
+			// Reset the increment field to '1'
+			koboldsEpicIncrement.setText("1");
+			
+			// Calculate probability
+			koboldsEpicProbability = probabilityCalculator(koboldsEpicCounter, 10);
+			tracker.setKoboldsEpicProbability(nf.format(koboldsEpicProbability));
+		}
+		// "The Witchwood" epic reset button
+		else if (index == 8) {
+			witchwoodEpicCounter = 0;
+			tracker.setWitchwoodEpicCounter(Integer.toString(witchwoodEpicCounter));
+			
+			// Reset the increment field to '1'
+			witchwoodEpicIncrement.setText("1");
+			
+			// Calculate probability
+			witchwoodEpicProbability = probabilityCalculator(witchwoodEpicCounter, 10);
+			tracker.setWitchwoodEpicProbability(nf.format(witchwoodEpicProbability));
+		}
+		// "The Boomsday Project" epic reset button
+		else if (index == 9) {
+			boomsdayEpicCounter = 0;
+			tracker.setBoomsdayEpicCounter(Integer.toString(boomsdayEpicCounter));
+			
+			// Reset the increment field to '1'
+			boomsdayEpicIncrement.setText("1");
+			
+			// Calculate probability
+			boomsdayEpicProbability = probabilityCalculator(boomsdayEpicCounter, 10);
+			tracker.setBoomsdayEpicProbability(nf.format(boomsdayEpicProbability));
+		}
+		// "Rastakhan's Rumble" epic reset button
+		else if (index == 10) {
+			rumbleEpicCounter = 0;
+			tracker.setRumbleEpicCounter(Integer.toString(rumbleEpicCounter));
+			
+			// Reset the increment field to '1'
+			rumbleEpicIncrement.setText("1");
+			
+			// Calculate probability
+			rumbleEpicProbability = probabilityCalculator(rumbleEpicCounter, 10);
+			tracker.setRumbleEpicProbability(nf.format(rumbleEpicProbability));
+		}
+		// "Rise of Shadows" epic reset button
+		else if (index == 11) {
+			shadowsEpicCounter = 0;
+			tracker.setShadowsEpicCounter(Integer.toString(shadowsEpicCounter));
+			
+			// Reset the increment field to '1'
+			shadowsEpicIncrement.setText("1");
+			
+			// Calculate probability
+			shadowsEpicProbability = probabilityCalculator(shadowsEpicCounter, 10);
+			tracker.setShadowsEpicProbability(nf.format(shadowsEpicProbability));
+		}
+		// "Saviors of Uldum" epic reset button
+		else if (index == 12) {
+			uldumEpicCounter = 0;
+			tracker.setUldumEpicCounter(Integer.toString(uldumEpicCounter));
+			
+			// Reset the increment field to '1'
+			uldumEpicIncrement.setText("1");
+			
+			// Calculate probability
+			uldumEpicProbability = probabilityCalculator(uldumEpicCounter, 10);
+			tracker.setUldumEpicProbability(nf.format(uldumEpicProbability));
+		}
+		// "Descent of Dragons" epic reset button
+		else if (index == 13) {
+			dragonsEpicCounter = 0;
+			tracker.setDragonsEpicCounter(Integer.toString(dragonsEpicCounter));
+			
+			// Reset the increment field to '1'
+			dragonsEpicIncrement.setText("1");
+			
+			// Calculate probability
+			dragonsEpicProbability = probabilityCalculator(dragonsEpicCounter, 10);
+			tracker.setDragonsEpicProbability(nf.format(dragonsEpicProbability));
+		}
+		// "Ashes of Outland" epic reset button
+		else if (index == 14) {
+			outlandEpicCounter = 0;
+			tracker.setOutlandEpicCounter(Integer.toString(outlandEpicCounter));
+			
+			// Reset the increment field to '1'
+			outlandEpicIncrement.setText("1");
+			
+			// Calculate probability
+			outlandEpicProbability = probabilityCalculator(outlandEpicCounter, 10);
+			tracker.setOutlandEpicProbability(nf.format(outlandEpicProbability));
+		}
+		// "Scholomance Academy" epic reset button
+		else if (index == 15) {
+			scholomanceEpicCounter = 0;
+			tracker.setScholomanceEpicCounter(Integer.toString(scholomanceEpicCounter));
+			
+			// Reset the increment field to '1'
+			scholomanceEpicIncrement.setText("1");
+			
+			// Calculate probability
+			scholomanceEpicProbability = probabilityCalculator(scholomanceEpicCounter, 10);
+			tracker.setScholomanceEpicProbability(nf.format(scholomanceEpicProbability));
+		}
+		// "Madness at the Darkmoon Faire" epic reset button
+		else if (index == 16) {
+			darkmoonEpicCounter = 0;
+			tracker.setDarkmoonEpicCounter(Integer.toString(darkmoonEpicCounter));
+			
+			// Reset the increment field to '1'
+			darkmoonEpicIncrement.setText("1");
+			
+			// Calculate probability
+			darkmoonEpicProbability = probabilityCalculator(darkmoonEpicCounter, 10);
+			tracker.setDarkmoonEpicProbability(nf.format(darkmoonEpicProbability));
+		}
+		// "Forged in the Barrens" epic reset button
+		else {
+			barrensEpicCounter = 0;
+			tracker.setBarrensEpicCounter(Integer.toString(barrensEpicCounter));
+			
+			// Reset the increment field to '1'
+			barrensEpicIncrement.setText("1");
+			
+			// Calculate probability
+			barrensEpicProbability = probabilityCalculator(barrensEpicCounter, 10);
+			tracker.setBarrensEpicProbability(nf.format(barrensEpicProbability));
 		}
 		
 		// Update the save file
@@ -2510,274 +2607,27 @@ public class HSPityTimerTracker implements ActionListener
 			classicEpicProbability = probabilityCalculator(classicEpicCounter, 10);
 			tracker.setClassicEpicProbability(nf.format(classicEpicProbability));
 		}
-		// "Madness at the Darkmoon Faire" epic add button
+		// "Goblins vs Gnomes" epic add button
 		else if (index == 1) {
 			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (darkmoonEpicCounter + Integer.valueOf(darkmoonEpicIncrement.getText()) < 10) {
-				darkmoonEpicCounter = darkmoonEpicCounter + Integer.valueOf(darkmoonEpicIncrement.getText());
+			if (goblinsEpicCounter + Integer.valueOf(goblinsEpicIncrement.getText()) < 10) {
+				goblinsEpicCounter = goblinsEpicCounter + Integer.valueOf(goblinsEpicIncrement.getText());
 				
 				// Reset the increment field to '1'
-				darkmoonEpicIncrement.setText("1");
+				goblinsEpicIncrement.setText("1");
 			}
 			else {
 				java.awt.Toolkit.getDefaultToolkit().beep();
 				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
 			}
-			tracker.setDarkmoonEpicCounter(Integer.toString(darkmoonEpicCounter));
+			tracker.setGoblinsEpicCounter(Integer.toString(goblinsEpicCounter));
 			
 			// Calculate probability
-			darkmoonEpicProbability = probabilityCalculator(darkmoonEpicCounter, 10);
-			tracker.setDarkmoonEpicProbability(nf.format(darkmoonEpicProbability));
-		}
-		// "Scholomance Academy" epic add button
-		else if (index == 2) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (scholomanceEpicCounter + Integer.valueOf(scholomanceEpicIncrement.getText()) < 10) {
-				scholomanceEpicCounter = scholomanceEpicCounter + Integer.valueOf(scholomanceEpicIncrement.getText());
-				
-				// Reset the increment field to '1'
-				scholomanceEpicIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setScholomanceEpicCounter(Integer.toString(scholomanceEpicCounter));
-			
-			// Calculate probability
-			scholomanceEpicProbability = probabilityCalculator(scholomanceEpicCounter, 10);
-			tracker.setScholomanceEpicProbability(nf.format(scholomanceEpicProbability));
-		}
-		// "Ashes of Outland" epic add button
-		else if (index == 3) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (outlandEpicCounter + Integer.valueOf(outlandEpicIncrement.getText()) < 10) {
-				outlandEpicCounter = outlandEpicCounter + Integer.valueOf(outlandEpicIncrement.getText());
-				
-				// Reset the increment field to '1'
-				outlandEpicIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setOutlandEpicCounter(Integer.toString(outlandEpicCounter));
-			
-			// Calculate probability
-			outlandEpicProbability = probabilityCalculator(outlandEpicCounter, 10);
-			tracker.setOutlandEpicProbability(nf.format(outlandEpicProbability));
-		}
-		// "Descent of Dragons" epic add button
-		else if (index == 4) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (dragonsEpicCounter + Integer.valueOf(dragonsEpicIncrement.getText()) < 10) {
-				dragonsEpicCounter = dragonsEpicCounter + Integer.valueOf(dragonsEpicIncrement.getText());
-				
-				// Reset the increment field to '1'
-				dragonsEpicIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setDragonsEpicCounter(Integer.toString(dragonsEpicCounter));
-			
-			// Calculate probability
-			dragonsEpicProbability = probabilityCalculator(dragonsEpicCounter, 10);
-			tracker.setDragonsEpicProbability(nf.format(dragonsEpicProbability));
-		}
-		// "Saviors of Uldum" epic add button
-		else if (index == 5) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (uldumEpicCounter + Integer.valueOf(uldumEpicIncrement.getText()) < 10) {
-				uldumEpicCounter = uldumEpicCounter + Integer.valueOf(uldumEpicIncrement.getText());
-				
-				// Reset the increment field to '1'
-				uldumEpicIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setUldumEpicCounter(Integer.toString(uldumEpicCounter));
-			
-			// Calculate probability
-			uldumEpicProbability = probabilityCalculator(uldumEpicCounter, 10);
-			tracker.setUldumEpicProbability(nf.format(uldumEpicProbability));
-		}
-		// "Rise of Shadows" epic add button
-		else if (index == 6) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (shadowsEpicCounter + Integer.valueOf(shadowsEpicIncrement.getText()) < 10) {
-				shadowsEpicCounter = shadowsEpicCounter + Integer.valueOf(shadowsEpicIncrement.getText());
-				
-				// Reset the increment field to '1'
-				shadowsEpicIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setShadowsEpicCounter(Integer.toString(shadowsEpicCounter));
-			
-			// Calculate probability
-			shadowsEpicProbability = probabilityCalculator(shadowsEpicCounter, 10);
-			tracker.setShadowsEpicProbability(nf.format(shadowsEpicProbability));
-		}
-		// "Rastakhan's Rumble" epic add button
-		else if (index == 7) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (rumbleEpicCounter + Integer.valueOf(rumbleEpicIncrement.getText()) < 10) {
-				rumbleEpicCounter = rumbleEpicCounter + Integer.valueOf(rumbleEpicIncrement.getText());
-				
-				// Reset the increment field to '1'
-				rumbleEpicIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setRumbleEpicCounter(Integer.toString(rumbleEpicCounter));
-			
-			// Calculate probability
-			rumbleEpicProbability = probabilityCalculator(rumbleEpicCounter, 10);
-			tracker.setRumbleEpicProbability(nf.format(rumbleEpicProbability));
-		}
-		// "The Boomsday Project" epic add button
-		else if (index == 8) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (boomsdayEpicCounter + Integer.valueOf(boomsdayEpicIncrement.getText()) < 10) {
-				boomsdayEpicCounter = boomsdayEpicCounter + Integer.valueOf(boomsdayEpicIncrement.getText());
-				
-				// Reset the increment field to '1'
-				boomsdayEpicIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setBoomsdayEpicCounter(Integer.toString(boomsdayEpicCounter));
-			
-			// Calculate probability
-			boomsdayEpicProbability = probabilityCalculator(boomsdayEpicCounter, 10);
-			tracker.setBoomsdayEpicProbability(nf.format(boomsdayEpicProbability));
-		}
-		// "The Witchwood" epic add button
-		else if (index == 9) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (witchwoodEpicCounter + Integer.valueOf(witchwoodEpicIncrement.getText()) < 10) {
-				witchwoodEpicCounter = witchwoodEpicCounter + Integer.valueOf(witchwoodEpicIncrement.getText());
-				
-				// Reset the increment field to '1'
-				witchwoodEpicIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setWitchwoodEpicCounter(Integer.toString(witchwoodEpicCounter));
-			
-			// Calculate probability
-			witchwoodEpicProbability = probabilityCalculator(witchwoodEpicCounter, 10);
-			tracker.setWitchwoodEpicProbability(nf.format(witchwoodEpicProbability));
-		}
-		// "Kobolds & Catacombs" epic add button
-		else if (index == 10) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (koboldsEpicCounter + Integer.valueOf(koboldsEpicIncrement.getText()) < 10) {
-				koboldsEpicCounter = koboldsEpicCounter + Integer.valueOf(koboldsEpicIncrement.getText());
-				
-				// Reset the increment field to '1'
-				koboldsEpicIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setKoboldsEpicCounter(Integer.toString(koboldsEpicCounter));
-			
-			// Calculate probability
-			koboldsEpicProbability = probabilityCalculator(koboldsEpicCounter, 10);
-			tracker.setKoboldsEpicProbability(nf.format(koboldsEpicProbability));
-		}
-		// "Knights of the Frozen Throne" epic add button
-		else if (index == 11) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (knightsEpicCounter + Integer.valueOf(knightsEpicIncrement.getText()) < 10) {
-				knightsEpicCounter = knightsEpicCounter + Integer.valueOf(knightsEpicIncrement.getText());
-				
-				// Reset the increment field to '1'
-				knightsEpicIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setKnightsEpicCounter(Integer.toString(knightsEpicCounter));
-			
-			// Calculate probability
-			knightsEpicProbability = probabilityCalculator(knightsEpicCounter, 10);
-			tracker.setKnightsEpicProbability(nf.format(knightsEpicProbability));
-		}
-		// "Journey to Un'Goro" epic add button
-		else if (index == 12) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (ungoroEpicCounter + Integer.valueOf(ungoroEpicIncrement.getText()) < 10) {
-				ungoroEpicCounter = ungoroEpicCounter + Integer.valueOf(ungoroEpicIncrement.getText());
-				
-				// Reset the increment field to '1'
-				ungoroEpicIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setUngoroEpicCounter(Integer.toString(ungoroEpicCounter));
-			
-			// Calculate probability
-			ungoroEpicProbability = probabilityCalculator(ungoroEpicCounter, 10);
-			tracker.setUngoroEpicProbability(nf.format(ungoroEpicProbability));
-		}
-		// "Mean Streets of Gadzetzan" epic add button
-		else if (index == 13) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (gadgetzanEpicCounter + Integer.valueOf(gadgetzanEpicIncrement.getText()) < 10) {
-				gadgetzanEpicCounter = gadgetzanEpicCounter + Integer.valueOf(gadgetzanEpicIncrement.getText());
-				
-				// Reset the increment field to '1'
-				gadgetzanEpicIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setGadgetzanEpicCounter(Integer.toString(gadgetzanEpicCounter));
-			
-			// Calculate probability
-			gadgetzanEpicProbability = probabilityCalculator(gadgetzanEpicCounter, 10);
-			tracker.setGadgetzanEpicProbability(nf.format(gadgetzanEpicProbability));
-		}
-		// "Whispers of the Old Gods" epic add button
-		else if (index == 14) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (oldGodsEpicCounter + Integer.valueOf(oldGodsEpicIncrement.getText()) < 10) {
-				oldGodsEpicCounter = oldGodsEpicCounter + Integer.valueOf(oldGodsEpicIncrement.getText());
-				
-				// Reset the increment field to '1'
-				oldGodsEpicIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setOldGodsEpicCounter(Integer.toString(oldGodsEpicCounter));
-			
-			// Calculate probability
-			oldGodsEpicProbability = probabilityCalculator(oldGodsEpicCounter, 10);
-			tracker.setOldGodsEpicProbability(nf.format(oldGodsEpicProbability));
+			goblinsEpicProbability = probabilityCalculator(goblinsEpicCounter, 10);
+			tracker.setGoblinsEpicProbability(nf.format(goblinsEpicProbability));
 		}
 		// "The Grand Tournament" epic add button
-		else if (index == 15) {
+		else if (index == 2) {
 			// Check if the increment is valid, then add. Otherwise, show pop-up error message
 			if (tournamentEpicCounter + Integer.valueOf(tournamentEpicIncrement.getText()) < 10) {
 				tournamentEpicCounter = tournamentEpicCounter + Integer.valueOf(tournamentEpicIncrement.getText());
@@ -2795,24 +2645,290 @@ public class HSPityTimerTracker implements ActionListener
 			tournamentEpicProbability = probabilityCalculator(tournamentEpicCounter, 10);
 			tracker.setTournamentEpicProbability(nf.format(tournamentEpicProbability));
 		}
-		// "Goblins vs Gnomes" epic add button
-		else {
+		// "Whispers of the Old Gods" epic add button
+		else if (index == 3) {
 			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (goblinsEpicCounter + Integer.valueOf(goblinsEpicIncrement.getText()) < 10) {
-				goblinsEpicCounter = goblinsEpicCounter + Integer.valueOf(goblinsEpicIncrement.getText());
+			if (oldGodsEpicCounter + Integer.valueOf(oldGodsEpicIncrement.getText()) < 10) {
+				oldGodsEpicCounter = oldGodsEpicCounter + Integer.valueOf(oldGodsEpicIncrement.getText());
 				
 				// Reset the increment field to '1'
-				goblinsEpicIncrement.setText("1");
+				oldGodsEpicIncrement.setText("1");
 			}
 			else {
 				java.awt.Toolkit.getDefaultToolkit().beep();
 				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
 			}
-			tracker.setGoblinsEpicCounter(Integer.toString(goblinsEpicCounter));
+			tracker.setOldGodsEpicCounter(Integer.toString(oldGodsEpicCounter));
 			
 			// Calculate probability
-			goblinsEpicProbability = probabilityCalculator(goblinsEpicCounter, 10);
-			tracker.setGoblinsEpicProbability(nf.format(goblinsEpicProbability));
+			oldGodsEpicProbability = probabilityCalculator(oldGodsEpicCounter, 10);
+			tracker.setOldGodsEpicProbability(nf.format(oldGodsEpicProbability));
+		}
+		// "Mean Streets of Gadzetzan" epic add button
+		else if (index == 4) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (gadgetzanEpicCounter + Integer.valueOf(gadgetzanEpicIncrement.getText()) < 10) {
+				gadgetzanEpicCounter = gadgetzanEpicCounter + Integer.valueOf(gadgetzanEpicIncrement.getText());
+				
+				// Reset the increment field to '1'
+				gadgetzanEpicIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setGadgetzanEpicCounter(Integer.toString(gadgetzanEpicCounter));
+			
+			// Calculate probability
+			gadgetzanEpicProbability = probabilityCalculator(gadgetzanEpicCounter, 10);
+			tracker.setGadgetzanEpicProbability(nf.format(gadgetzanEpicProbability));
+		}
+		// "Journey to Un'Goro" epic add button
+		else if (index == 5) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (ungoroEpicCounter + Integer.valueOf(ungoroEpicIncrement.getText()) < 10) {
+				ungoroEpicCounter = ungoroEpicCounter + Integer.valueOf(ungoroEpicIncrement.getText());
+				
+				// Reset the increment field to '1'
+				ungoroEpicIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setUngoroEpicCounter(Integer.toString(ungoroEpicCounter));
+			
+			// Calculate probability
+			ungoroEpicProbability = probabilityCalculator(ungoroEpicCounter, 10);
+			tracker.setUngoroEpicProbability(nf.format(ungoroEpicProbability));
+		}
+		// "Knights of the Frozen Throne" epic add button
+		else if (index == 6) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (knightsEpicCounter + Integer.valueOf(knightsEpicIncrement.getText()) < 10) {
+				knightsEpicCounter = knightsEpicCounter + Integer.valueOf(knightsEpicIncrement.getText());
+				
+				// Reset the increment field to '1'
+				knightsEpicIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setKnightsEpicCounter(Integer.toString(knightsEpicCounter));
+			
+			// Calculate probability
+			knightsEpicProbability = probabilityCalculator(knightsEpicCounter, 10);
+			tracker.setKnightsEpicProbability(nf.format(knightsEpicProbability));
+		}
+		// "Kobolds & Catacombs" epic add button
+		else if (index == 7) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (koboldsEpicCounter + Integer.valueOf(koboldsEpicIncrement.getText()) < 10) {
+				koboldsEpicCounter = koboldsEpicCounter + Integer.valueOf(koboldsEpicIncrement.getText());
+				
+				// Reset the increment field to '1'
+				koboldsEpicIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setKoboldsEpicCounter(Integer.toString(koboldsEpicCounter));
+			
+			// Calculate probability
+			koboldsEpicProbability = probabilityCalculator(koboldsEpicCounter, 10);
+			tracker.setKoboldsEpicProbability(nf.format(koboldsEpicProbability));
+		}
+		// "The Witchwood" epic add button
+		else if (index == 8) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (witchwoodEpicCounter + Integer.valueOf(witchwoodEpicIncrement.getText()) < 10) {
+				witchwoodEpicCounter = witchwoodEpicCounter + Integer.valueOf(witchwoodEpicIncrement.getText());
+				
+				// Reset the increment field to '1'
+				witchwoodEpicIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setWitchwoodEpicCounter(Integer.toString(witchwoodEpicCounter));
+			
+			// Calculate probability
+			witchwoodEpicProbability = probabilityCalculator(witchwoodEpicCounter, 10);
+			tracker.setWitchwoodEpicProbability(nf.format(witchwoodEpicProbability));
+		}
+		// "The Boomsday Project" epic add button
+		else if (index == 9) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (boomsdayEpicCounter + Integer.valueOf(boomsdayEpicIncrement.getText()) < 10) {
+				boomsdayEpicCounter = boomsdayEpicCounter + Integer.valueOf(boomsdayEpicIncrement.getText());
+				
+				// Reset the increment field to '1'
+				boomsdayEpicIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setBoomsdayEpicCounter(Integer.toString(boomsdayEpicCounter));
+			
+			// Calculate probability
+			boomsdayEpicProbability = probabilityCalculator(boomsdayEpicCounter, 10);
+			tracker.setBoomsdayEpicProbability(nf.format(boomsdayEpicProbability));
+		}
+		// "Rastakhan's Rumble" epic add button
+		else if (index == 10) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (rumbleEpicCounter + Integer.valueOf(rumbleEpicIncrement.getText()) < 10) {
+				rumbleEpicCounter = rumbleEpicCounter + Integer.valueOf(rumbleEpicIncrement.getText());
+				
+				// Reset the increment field to '1'
+				rumbleEpicIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setRumbleEpicCounter(Integer.toString(rumbleEpicCounter));
+			
+			// Calculate probability
+			rumbleEpicProbability = probabilityCalculator(rumbleEpicCounter, 10);
+			tracker.setRumbleEpicProbability(nf.format(rumbleEpicProbability));
+		}
+		// "Rise of Shadows" epic add button
+		else if (index == 11) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (shadowsEpicCounter + Integer.valueOf(shadowsEpicIncrement.getText()) < 10) {
+				shadowsEpicCounter = shadowsEpicCounter + Integer.valueOf(shadowsEpicIncrement.getText());
+				
+				// Reset the increment field to '1'
+				shadowsEpicIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setShadowsEpicCounter(Integer.toString(shadowsEpicCounter));
+			
+			// Calculate probability
+			shadowsEpicProbability = probabilityCalculator(shadowsEpicCounter, 10);
+			tracker.setShadowsEpicProbability(nf.format(shadowsEpicProbability));
+		}
+		// "Saviors of Uldum" epic add button
+		else if (index == 12) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (uldumEpicCounter + Integer.valueOf(uldumEpicIncrement.getText()) < 10) {
+				uldumEpicCounter = uldumEpicCounter + Integer.valueOf(uldumEpicIncrement.getText());
+				
+				// Reset the increment field to '1'
+				uldumEpicIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setUldumEpicCounter(Integer.toString(uldumEpicCounter));
+			
+			// Calculate probability
+			uldumEpicProbability = probabilityCalculator(uldumEpicCounter, 10);
+			tracker.setUldumEpicProbability(nf.format(uldumEpicProbability));
+		}
+		// "Descent of Dragons" epic add button
+		else if (index == 13) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (dragonsEpicCounter + Integer.valueOf(dragonsEpicIncrement.getText()) < 10) {
+				dragonsEpicCounter = dragonsEpicCounter + Integer.valueOf(dragonsEpicIncrement.getText());
+				
+				// Reset the increment field to '1'
+				dragonsEpicIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setDragonsEpicCounter(Integer.toString(dragonsEpicCounter));
+			
+			// Calculate probability
+			dragonsEpicProbability = probabilityCalculator(dragonsEpicCounter, 10);
+			tracker.setDragonsEpicProbability(nf.format(dragonsEpicProbability));
+		}
+		// "Ashes of Outland" epic add button
+		else if (index == 14) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (outlandEpicCounter + Integer.valueOf(outlandEpicIncrement.getText()) < 10) {
+				outlandEpicCounter = outlandEpicCounter + Integer.valueOf(outlandEpicIncrement.getText());
+				
+				// Reset the increment field to '1'
+				outlandEpicIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setOutlandEpicCounter(Integer.toString(outlandEpicCounter));
+			
+			// Calculate probability
+			outlandEpicProbability = probabilityCalculator(outlandEpicCounter, 10);
+			tracker.setOutlandEpicProbability(nf.format(outlandEpicProbability));
+		}
+		// "Scholomance Academy" epic add button
+		else if (index == 15) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (scholomanceEpicCounter + Integer.valueOf(scholomanceEpicIncrement.getText()) < 10) {
+				scholomanceEpicCounter = scholomanceEpicCounter + Integer.valueOf(scholomanceEpicIncrement.getText());
+				
+				// Reset the increment field to '1'
+				scholomanceEpicIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setScholomanceEpicCounter(Integer.toString(scholomanceEpicCounter));
+			
+			// Calculate probability
+			scholomanceEpicProbability = probabilityCalculator(scholomanceEpicCounter, 10);
+			tracker.setScholomanceEpicProbability(nf.format(scholomanceEpicProbability));
+		}
+		// "Madness at the Darkmoon Faire" epic add button
+		else if (index == 16) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (darkmoonEpicCounter + Integer.valueOf(darkmoonEpicIncrement.getText()) < 10) {
+				darkmoonEpicCounter = darkmoonEpicCounter + Integer.valueOf(darkmoonEpicIncrement.getText());
+				
+				// Reset the increment field to '1'
+				darkmoonEpicIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setDarkmoonEpicCounter(Integer.toString(darkmoonEpicCounter));
+			
+			// Calculate probability
+			darkmoonEpicProbability = probabilityCalculator(darkmoonEpicCounter, 10);
+			tracker.setDarkmoonEpicProbability(nf.format(darkmoonEpicProbability));
+		}
+		// "Forged in the Barrens" epic add button
+		else {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (barrensEpicCounter + Integer.valueOf(barrensEpicIncrement.getText()) < 10) {
+				barrensEpicCounter = barrensEpicCounter + Integer.valueOf(barrensEpicIncrement.getText());
+				
+				// Reset the increment field to '1'
+				barrensEpicIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setBarrensEpicCounter(Integer.toString(barrensEpicCounter));
+			
+			// Calculate probability
+			barrensEpicProbability = probabilityCalculator(barrensEpicCounter, 10);
+			tracker.setBarrensEpicProbability(nf.format(barrensEpicProbability));
 		}
 		
 		// Update the save file
@@ -2834,176 +2950,20 @@ public class HSPityTimerTracker implements ActionListener
 			classicLegendaryProbability = probabilityCalculator(classicLegendaryCounter, 40);
 			tracker.setClassicLegendaryProbability(nf.format(classicLegendaryProbability));
 		}
-		// "Madness at the Darkmoon Faire" legendary reset button
+		// "Goblins vs Gnomes" legendary reset button
 		else if (index == 1) {
-			darkmoonLegendaryCounter = 0;
-			tracker.setDarkmoonLegendaryCounter(Integer.toString(darkmoonLegendaryCounter));
+			goblinsLegendaryCounter = 0;
+			tracker.setGoblinsLegendaryCounter(Integer.toString(goblinsLegendaryCounter));
 			
 			// Reset the increment field to '1'
-			darkmoonLegendaryIncrement.setText("1");
+			goblinsLegendaryIncrement.setText("1");
 			
 			// Calculate probability
-			darkmoonLegendaryProbability = probabilityCalculator(darkmoonLegendaryCounter, 40);
-			tracker.setDarkmoonLegendaryProbability(nf.format(darkmoonLegendaryProbability));
-		}
-		// "Scholomance Academy" legendary reset button
-		else if (index == 2) {
-			scholomanceLegendaryCounter = 0;
-			tracker.setScholomanceLegendaryCounter(Integer.toString(scholomanceLegendaryCounter));
-			
-			// Reset the increment field to '1'
-			scholomanceLegendaryIncrement.setText("1");
-			
-			// Calculate probability
-			scholomanceLegendaryProbability = probabilityCalculator(scholomanceLegendaryCounter, 40);
-			tracker.setScholomanceLegendaryProbability(nf.format(scholomanceLegendaryProbability));
-		}
-		// "Ashes of Outland" legendary reset button
-		else if (index == 3) {
-			outlandLegendaryCounter = 0;
-			tracker.setOutlandLegendaryCounter(Integer.toString(outlandLegendaryCounter));
-			
-			// Reset the increment field to '1'
-			outlandLegendaryIncrement.setText("1");
-			
-			// Calculate probability
-			outlandLegendaryProbability = probabilityCalculator(outlandLegendaryCounter, 40);
-			tracker.setOutlandLegendaryProbability(nf.format(outlandLegendaryProbability));
-		}
-		// "Descent of Dragons" legendary reset button
-		else if (index == 4) {
-			dragonsLegendaryCounter = 0;
-			tracker.setDragonsLegendaryCounter(Integer.toString(dragonsLegendaryCounter));
-			
-			// Reset the increment field to '1'
-			dragonsLegendaryIncrement.setText("1");
-			
-			// Calculate probability
-			dragonsLegendaryProbability = probabilityCalculator(dragonsLegendaryCounter, 40);
-			tracker.setDragonsLegendaryProbability(nf.format(dragonsLegendaryProbability));
-		}
-		// "Saviors of Uldum" legendary reset button
-		else if (index == 5) {
-			uldumLegendaryCounter = 0;
-			tracker.setUldumLegendaryCounter(Integer.toString(uldumLegendaryCounter));
-			
-			// Reset the increment field to '1'
-			uldumLegendaryIncrement.setText("1");
-			
-			// Calculate probability
-			uldumLegendaryProbability = probabilityCalculator(uldumLegendaryCounter, 40);
-			tracker.setUldumLegendaryProbability(nf.format(uldumLegendaryProbability));
-		}
-		// "Rise of Shadows" legendary reset button
-		else if (index == 6) {
-			shadowsLegendaryCounter = 0;
-			tracker.setShadowsLegendaryCounter(Integer.toString(shadowsLegendaryCounter));
-			
-			// Reset the increment field to '1'
-			shadowsLegendaryIncrement.setText("1");
-			
-			// Calculate probability
-			shadowsLegendaryProbability = probabilityCalculator(shadowsLegendaryCounter, 40);
-			tracker.setShadowsLegendaryProbability(nf.format(shadowsLegendaryProbability));
-		}
-		// "Rastakhan's Rumble" legendary reset button
-		else if (index == 7) {
-			rumbleLegendaryCounter = 0;
-			tracker.setRumbleLegendaryCounter(Integer.toString(rumbleLegendaryCounter));
-			
-			// Reset the increment field to '1'
-			rumbleLegendaryIncrement.setText("1");
-			
-			// Calculate probability
-			rumbleLegendaryProbability = probabilityCalculator(rumbleLegendaryCounter, 40);
-			tracker.setRumbleLegendaryProbability(nf.format(rumbleLegendaryProbability));
-		}
-		// "The Boomsday Project" legendary reset button
-		else if (index == 8) {
-			boomsdayLegendaryCounter = 0;
-			tracker.setBoomsdayLegendaryCounter(Integer.toString(boomsdayLegendaryCounter));
-			
-			// Reset the increment field to '1'
-			boomsdayLegendaryIncrement.setText("1");
-			
-			// Calculate probability
-			boomsdayLegendaryProbability = probabilityCalculator(boomsdayLegendaryCounter, 40);
-			tracker.setBoomsdayLegendaryProbability(nf.format(boomsdayLegendaryProbability));
-		}
-		// "The Witchwood" legendary reset button
-		else if (index == 9) {
-			witchwoodLegendaryCounter = 0;
-			tracker.setWitchwoodLegendaryCounter(Integer.toString(witchwoodLegendaryCounter));
-			
-			// Reset the increment field to '1'
-			witchwoodLegendaryIncrement.setText("1");
-			
-			// Calculate probability
-			witchwoodLegendaryProbability = probabilityCalculator(witchwoodLegendaryCounter, 40);
-			tracker.setWitchwoodLegendaryProbability(nf.format(witchwoodLegendaryProbability));
-		}
-		// "Kobolds & Catacombs" legendary reset button
-		else if (index == 10) {
-			koboldsLegendaryCounter = 0;
-			tracker.setKoboldsLegendaryCounter(Integer.toString(koboldsLegendaryCounter));
-			
-			// Reset the increment field to '1'
-			koboldsLegendaryIncrement.setText("1");
-			
-			// Calculate probability
-			koboldsLegendaryProbability = probabilityCalculator(koboldsLegendaryCounter, 40);
-			tracker.setKoboldsLegendaryProbability(nf.format(koboldsLegendaryProbability));
-		}
-		// "Knights of the Frozen Throne" legendary reset button
-		else if (index == 11) {
-			knightsLegendaryCounter = 0;
-			tracker.setKnightsLegendaryCounter(Integer.toString(knightsLegendaryCounter));
-			
-			// Reset the increment field to '1'
-			knightsLegendaryIncrement.setText("1");
-			
-			// Calculate probability
-			knightsLegendaryProbability = probabilityCalculator(knightsLegendaryCounter, 40);
-			tracker.setKnightsLegendaryProbability(nf.format(knightsLegendaryProbability));
-		}
-		// "Journey to Un'Goro" legendary reset button
-		else if (index == 12) {
-			ungoroLegendaryCounter = 0;
-			tracker.setUngoroLegendaryCounter(Integer.toString(ungoroLegendaryCounter));
-			
-			// Reset the increment field to '1'
-			ungoroLegendaryIncrement.setText("1");
-			
-			// Calculate probability
-			ungoroLegendaryProbability = probabilityCalculator(ungoroLegendaryCounter, 40);
-			tracker.setUngoroLegendaryProbability(nf.format(ungoroLegendaryProbability));
-		}
-		// "Mean Streets of Gadzetzan" legendary reset button
-		else if (index == 13) {
-			gadgetzanLegendaryCounter = 0;
-			tracker.setGadgetzanLegendaryCounter(Integer.toString(gadgetzanLegendaryCounter));
-			
-			// Reset the increment field to '1'
-			gadgetzanLegendaryIncrement.setText("1");
-			
-			// Calculate probability
-			gadgetzanLegendaryProbability = probabilityCalculator(gadgetzanLegendaryCounter, 40);
-			tracker.setGadgetzanLegendaryProbability(nf.format(gadgetzanLegendaryProbability));
-		}
-		// "Whispers of the Old Gods" legendary reset button
-		else if (index == 14) {
-			oldGodsLegendaryCounter = 0;
-			tracker.setOldGodsLegendaryCounter(Integer.toString(oldGodsLegendaryCounter));
-			
-			// Reset the increment field to '1'
-			oldGodsLegendaryIncrement.setText("1");
-			
-			// Calculate probability
-			oldGodsLegendaryProbability = probabilityCalculator(oldGodsLegendaryCounter, 40);
-			tracker.setOldGodsLegendaryProbability(nf.format(oldGodsLegendaryProbability));
+			goblinsLegendaryProbability = probabilityCalculator(goblinsLegendaryCounter, 40);
+			tracker.setGoblinsLegendaryProbability(nf.format(goblinsLegendaryProbability));
 		}
 		// "The Grand Tournament" legendary reset button
-		else if (index == 15) {
+		else if (index == 2) {
 			tournamentLegendaryCounter = 0;
 			tracker.setTournamentLegendaryCounter(Integer.toString(tournamentLegendaryCounter));
 			
@@ -3014,17 +2974,185 @@ public class HSPityTimerTracker implements ActionListener
 			tournamentLegendaryProbability = probabilityCalculator(tournamentLegendaryCounter, 40);
 			tracker.setTournamentLegendaryProbability(nf.format(tournamentLegendaryProbability));
 		}
-		// "Goblins vs Gnomes" legendary reset button
-		else {
-			goblinsLegendaryCounter = 0;
-			tracker.setGoblinsLegendaryCounter(Integer.toString(goblinsLegendaryCounter));
+		// "Whispers of the Old Gods" legendary reset button
+		else if (index == 3) {
+			oldGodsLegendaryCounter = 0;
+			tracker.setOldGodsLegendaryCounter(Integer.toString(oldGodsLegendaryCounter));
 			
 			// Reset the increment field to '1'
-			goblinsLegendaryIncrement.setText("1");
+			oldGodsLegendaryIncrement.setText("1");
 			
 			// Calculate probability
-			goblinsLegendaryProbability = probabilityCalculator(goblinsLegendaryCounter, 40);
-			tracker.setGoblinsLegendaryProbability(nf.format(goblinsLegendaryProbability));
+			oldGodsLegendaryProbability = probabilityCalculator(oldGodsLegendaryCounter, 40);
+			tracker.setOldGodsLegendaryProbability(nf.format(oldGodsLegendaryProbability));
+		}
+		// "Mean Streets of Gadzetzan" legendary reset button
+		else if (index == 4) {
+			gadgetzanLegendaryCounter = 0;
+			tracker.setGadgetzanLegendaryCounter(Integer.toString(gadgetzanLegendaryCounter));
+			
+			// Reset the increment field to '1'
+			gadgetzanLegendaryIncrement.setText("1");
+			
+			// Calculate probability
+			gadgetzanLegendaryProbability = probabilityCalculator(gadgetzanLegendaryCounter, 40);
+			tracker.setGadgetzanLegendaryProbability(nf.format(gadgetzanLegendaryProbability));
+		}
+		// "Journey to Un'Goro" legendary reset button
+		else if (index == 5) {
+			ungoroLegendaryCounter = 0;
+			tracker.setUngoroLegendaryCounter(Integer.toString(ungoroLegendaryCounter));
+			
+			// Reset the increment field to '1'
+			ungoroLegendaryIncrement.setText("1");
+			
+			// Calculate probability
+			ungoroLegendaryProbability = probabilityCalculator(ungoroLegendaryCounter, 40);
+			tracker.setUngoroLegendaryProbability(nf.format(ungoroLegendaryProbability));
+		}
+		// "Knights of the Frozen Throne" legendary reset button
+		else if (index == 6) {
+			knightsLegendaryCounter = 0;
+			tracker.setKnightsLegendaryCounter(Integer.toString(knightsLegendaryCounter));
+			
+			// Reset the increment field to '1'
+			knightsLegendaryIncrement.setText("1");
+			
+			// Calculate probability
+			knightsLegendaryProbability = probabilityCalculator(knightsLegendaryCounter, 40);
+			tracker.setKnightsLegendaryProbability(nf.format(knightsLegendaryProbability));
+		}
+		// "Kobolds & Catacombs" legendary reset button
+		else if (index == 7) {
+			koboldsLegendaryCounter = 0;
+			tracker.setKoboldsLegendaryCounter(Integer.toString(koboldsLegendaryCounter));
+			
+			// Reset the increment field to '1'
+			koboldsLegendaryIncrement.setText("1");
+			
+			// Calculate probability
+			koboldsLegendaryProbability = probabilityCalculator(koboldsLegendaryCounter, 40);
+			tracker.setKoboldsLegendaryProbability(nf.format(koboldsLegendaryProbability));
+		}
+		// "The Witchwood" legendary reset button
+		else if (index == 8) {
+			witchwoodLegendaryCounter = 0;
+			tracker.setWitchwoodLegendaryCounter(Integer.toString(witchwoodLegendaryCounter));
+			
+			// Reset the increment field to '1'
+			witchwoodLegendaryIncrement.setText("1");
+			
+			// Calculate probability
+			witchwoodLegendaryProbability = probabilityCalculator(witchwoodLegendaryCounter, 40);
+			tracker.setWitchwoodLegendaryProbability(nf.format(witchwoodLegendaryProbability));
+		}
+		// "The Boomsday Project" legendary reset button
+		else if (index == 9) {
+			boomsdayLegendaryCounter = 0;
+			tracker.setBoomsdayLegendaryCounter(Integer.toString(boomsdayLegendaryCounter));
+			
+			// Reset the increment field to '1'
+			boomsdayLegendaryIncrement.setText("1");
+			
+			// Calculate probability
+			boomsdayLegendaryProbability = probabilityCalculator(boomsdayLegendaryCounter, 40);
+			tracker.setBoomsdayLegendaryProbability(nf.format(boomsdayLegendaryProbability));
+		}
+		// "Rastakhan's Rumble" legendary reset button
+		else if (index == 10) {
+			rumbleLegendaryCounter = 0;
+			tracker.setRumbleLegendaryCounter(Integer.toString(rumbleLegendaryCounter));
+			
+			// Reset the increment field to '1'
+			rumbleLegendaryIncrement.setText("1");
+			
+			// Calculate probability
+			rumbleLegendaryProbability = probabilityCalculator(rumbleLegendaryCounter, 40);
+			tracker.setRumbleLegendaryProbability(nf.format(rumbleLegendaryProbability));
+		}
+		// "Rise of Shadows" legendary reset button
+		else if (index == 11) {
+			shadowsLegendaryCounter = 0;
+			tracker.setShadowsLegendaryCounter(Integer.toString(shadowsLegendaryCounter));
+			
+			// Reset the increment field to '1'
+			shadowsLegendaryIncrement.setText("1");
+			
+			// Calculate probability
+			shadowsLegendaryProbability = probabilityCalculator(shadowsLegendaryCounter, 40);
+			tracker.setShadowsLegendaryProbability(nf.format(shadowsLegendaryProbability));
+		}
+		// "Saviors of Uldum" legendary reset button
+		else if (index == 12) {
+			uldumLegendaryCounter = 0;
+			tracker.setUldumLegendaryCounter(Integer.toString(uldumLegendaryCounter));
+			
+			// Reset the increment field to '1'
+			uldumLegendaryIncrement.setText("1");
+			
+			// Calculate probability
+			uldumLegendaryProbability = probabilityCalculator(uldumLegendaryCounter, 40);
+			tracker.setUldumLegendaryProbability(nf.format(uldumLegendaryProbability));
+		}
+		// "Descent of Dragons" legendary reset button
+		else if (index == 13) {
+			dragonsLegendaryCounter = 0;
+			tracker.setDragonsLegendaryCounter(Integer.toString(dragonsLegendaryCounter));
+			
+			// Reset the increment field to '1'
+			dragonsLegendaryIncrement.setText("1");
+			
+			// Calculate probability
+			dragonsLegendaryProbability = probabilityCalculator(dragonsLegendaryCounter, 40);
+			tracker.setDragonsLegendaryProbability(nf.format(dragonsLegendaryProbability));
+		}
+		// "Ashes of Outland" legendary reset button
+		else if (index == 14) {
+			outlandLegendaryCounter = 0;
+			tracker.setOutlandLegendaryCounter(Integer.toString(outlandLegendaryCounter));
+			
+			// Reset the increment field to '1'
+			outlandLegendaryIncrement.setText("1");
+			
+			// Calculate probability
+			outlandLegendaryProbability = probabilityCalculator(outlandLegendaryCounter, 40);
+			tracker.setOutlandLegendaryProbability(nf.format(outlandLegendaryProbability));
+		}
+		// "Scholomance Academy" legendary reset button
+		else if (index == 15) {
+			scholomanceLegendaryCounter = 0;
+			tracker.setScholomanceLegendaryCounter(Integer.toString(scholomanceLegendaryCounter));
+			
+			// Reset the increment field to '1'
+			scholomanceLegendaryIncrement.setText("1");
+			
+			// Calculate probability
+			scholomanceLegendaryProbability = probabilityCalculator(scholomanceLegendaryCounter, 40);
+			tracker.setScholomanceLegendaryProbability(nf.format(scholomanceLegendaryProbability));
+		}
+		// "Madness at the Darkmoon Faire" legendary reset button
+		else if (index == 16) {
+			darkmoonLegendaryCounter = 0;
+			tracker.setDarkmoonLegendaryCounter(Integer.toString(darkmoonLegendaryCounter));
+			
+			// Reset the increment field to '1'
+			darkmoonLegendaryIncrement.setText("1");
+			
+			// Calculate probability
+			darkmoonLegendaryProbability = probabilityCalculator(darkmoonLegendaryCounter, 40);
+			tracker.setDarkmoonLegendaryProbability(nf.format(darkmoonLegendaryProbability));
+		}
+		// "Forged in the Barrens" legendary reset button
+		else {
+			barrensLegendaryCounter = 0;
+			tracker.setBarrensLegendaryCounter(Integer.toString(barrensLegendaryCounter));
+			
+			// Reset the increment field to '1'
+			barrensLegendaryIncrement.setText("1");
+			
+			// Calculate probability
+			barrensLegendaryProbability = probabilityCalculator(barrensLegendaryCounter, 40);
+			tracker.setBarrensLegendaryProbability(nf.format(barrensLegendaryProbability));
 		}
 		
 		// Update the save file
@@ -3053,274 +3181,27 @@ public class HSPityTimerTracker implements ActionListener
 			classicLegendaryProbability = probabilityCalculator(classicLegendaryCounter, 40);
 			tracker.setClassicLegendaryProbability(nf.format(classicLegendaryProbability));
 		}
-		// "Madness at the Darkmoon Faire" legendary add button
+		// "Goblins vs Gnomes" legendary add button
 		else if (index == 1) {
 			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (darkmoonLegendaryCounter + Integer.valueOf(darkmoonLegendaryIncrement.getText()) < 40) {
-				darkmoonLegendaryCounter = darkmoonLegendaryCounter + Integer.valueOf(darkmoonLegendaryIncrement.getText());
+			if (goblinsLegendaryCounter + Integer.valueOf(goblinsLegendaryIncrement.getText()) < 40) {
+				goblinsLegendaryCounter = goblinsLegendaryCounter + Integer.valueOf(goblinsLegendaryIncrement.getText());
 				
 				// Reset the increment field to '1'
-				darkmoonLegendaryIncrement.setText("1");
+				goblinsLegendaryIncrement.setText("1");
 			}
 			else {
 				java.awt.Toolkit.getDefaultToolkit().beep();
 				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
 			}
-			tracker.setDarkmoonLegendaryCounter(Integer.toString(darkmoonLegendaryCounter));
+			tracker.setGoblinsLegendaryCounter(Integer.toString(goblinsLegendaryCounter));
 			
 			// Calculate probability
-			darkmoonLegendaryProbability = probabilityCalculator(darkmoonLegendaryCounter, 40);
-			tracker.setDarkmoonLegendaryProbability(nf.format(darkmoonLegendaryProbability));
-		}
-		// "Scholomance Academy" legendary add button
-		else if (index == 2) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (scholomanceLegendaryCounter + Integer.valueOf(scholomanceLegendaryIncrement.getText()) < 40) {
-				scholomanceLegendaryCounter = scholomanceLegendaryCounter + Integer.valueOf(scholomanceLegendaryIncrement.getText());
-				
-				// Reset the increment field to '1'
-				scholomanceLegendaryIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setScholomanceLegendaryCounter(Integer.toString(scholomanceLegendaryCounter));
-			
-			// Calculate probability
-			scholomanceLegendaryProbability = probabilityCalculator(scholomanceLegendaryCounter, 40);
-			tracker.setScholomanceLegendaryProbability(nf.format(scholomanceLegendaryProbability));
-		}
-		// "Ashes of Outland" legendary add button
-		else if (index == 3) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (outlandLegendaryCounter + Integer.valueOf(outlandLegendaryIncrement.getText()) < 40) {
-				outlandLegendaryCounter = outlandLegendaryCounter + Integer.valueOf(outlandLegendaryIncrement.getText());
-				
-				// Reset the increment field to '1'
-				outlandLegendaryIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setOutlandLegendaryCounter(Integer.toString(outlandLegendaryCounter));
-			
-			// Calculate probability
-			outlandLegendaryProbability = probabilityCalculator(outlandLegendaryCounter, 40);
-			tracker.setOutlandLegendaryProbability(nf.format(outlandLegendaryProbability));
-		}
-		// "Descent of Dragons" legendary add button
-		else if (index == 4) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (dragonsLegendaryCounter + Integer.valueOf(dragonsLegendaryIncrement.getText()) < 40) {
-				dragonsLegendaryCounter = dragonsLegendaryCounter + Integer.valueOf(dragonsLegendaryIncrement.getText());
-				
-				// Reset the increment field to '1'
-				dragonsLegendaryIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setDragonsLegendaryCounter(Integer.toString(dragonsLegendaryCounter));
-			
-			// Calculate probability
-			dragonsLegendaryProbability = probabilityCalculator(dragonsLegendaryCounter, 40);
-			tracker.setDragonsLegendaryProbability(nf.format(dragonsLegendaryProbability));
-		}
-		// "Saviors of Uldum" legendary add button
-		else if (index == 5) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (uldumLegendaryCounter + Integer.valueOf(uldumLegendaryIncrement.getText()) < 40) {
-				uldumLegendaryCounter = uldumLegendaryCounter + Integer.valueOf(uldumLegendaryIncrement.getText());
-				
-				// Reset the increment field to '1'
-				uldumLegendaryIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setUldumLegendaryCounter(Integer.toString(uldumLegendaryCounter));
-			
-			// Calculate probability
-			uldumLegendaryProbability = probabilityCalculator(uldumLegendaryCounter, 40);
-			tracker.setUldumLegendaryProbability(nf.format(uldumLegendaryProbability));
-		}
-		// "Rise of Shadows" legendary add button
-		else if (index == 6) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (shadowsLegendaryCounter + Integer.valueOf(shadowsLegendaryIncrement.getText()) < 40) {
-				shadowsLegendaryCounter = shadowsLegendaryCounter + Integer.valueOf(shadowsLegendaryIncrement.getText());
-				
-				// Reset the increment field to '1'
-				shadowsLegendaryIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setShadowsLegendaryCounter(Integer.toString(shadowsLegendaryCounter));
-			
-			// Calculate probability
-			shadowsLegendaryProbability = probabilityCalculator(shadowsLegendaryCounter, 40);
-			tracker.setShadowsLegendaryProbability(nf.format(shadowsLegendaryProbability));
-		}
-		// "Rastakhan's Rumble" legendary add button
-		else if (index == 7) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (rumbleLegendaryCounter + Integer.valueOf(rumbleLegendaryIncrement.getText()) < 40) {
-				rumbleLegendaryCounter = rumbleLegendaryCounter + Integer.valueOf(rumbleLegendaryIncrement.getText());
-				
-				// Reset the increment field to '1'
-				rumbleLegendaryIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setRumbleLegendaryCounter(Integer.toString(rumbleLegendaryCounter));
-			
-			// Calculate probability
-			rumbleLegendaryProbability = probabilityCalculator(rumbleLegendaryCounter, 40);
-			tracker.setRumbleLegendaryProbability(nf.format(rumbleLegendaryProbability));
-		}
-		// "The Boomsday Project" legendary add button
-		else if (index == 8) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (boomsdayLegendaryCounter + Integer.valueOf(boomsdayLegendaryIncrement.getText()) < 40) {
-				boomsdayLegendaryCounter = boomsdayLegendaryCounter + Integer.valueOf(boomsdayLegendaryIncrement.getText());
-				
-				// Reset the increment field to '1'
-				boomsdayLegendaryIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setBoomsdayLegendaryCounter(Integer.toString(boomsdayLegendaryCounter));
-			
-			// Calculate probability
-			boomsdayLegendaryProbability = probabilityCalculator(boomsdayLegendaryCounter, 40);
-			tracker.setBoomsdayLegendaryProbability(nf.format(boomsdayLegendaryProbability));
-		}
-		// "The Witchwood" legendary add button
-		else if (index == 9) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (witchwoodLegendaryCounter + Integer.valueOf(witchwoodLegendaryIncrement.getText()) < 40) {
-				witchwoodLegendaryCounter = witchwoodLegendaryCounter + Integer.valueOf(witchwoodLegendaryIncrement.getText());
-				
-				// Reset the increment field to '1'
-				witchwoodLegendaryIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setWitchwoodLegendaryCounter(Integer.toString(witchwoodLegendaryCounter));
-			
-			// Calculate probability
-			witchwoodLegendaryProbability = probabilityCalculator(witchwoodLegendaryCounter, 40);
-			tracker.setWitchwoodLegendaryProbability(nf.format(witchwoodLegendaryProbability));
-		}
-		// "Kobolds & Catacombs" legendary add button
-		else if (index == 10) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (koboldsLegendaryCounter + Integer.valueOf(koboldsLegendaryIncrement.getText()) < 40) {
-				koboldsLegendaryCounter = koboldsLegendaryCounter + Integer.valueOf(koboldsLegendaryIncrement.getText());
-				
-				// Reset the increment field to '1'
-				koboldsLegendaryIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setKoboldsLegendaryCounter(Integer.toString(koboldsLegendaryCounter));
-			
-			// Calculate probability
-			koboldsLegendaryProbability = probabilityCalculator(koboldsLegendaryCounter, 40);
-			tracker.setKoboldsLegendaryProbability(nf.format(koboldsLegendaryProbability));
-		}
-		// "Knights of the Frozen Throne" legendary add button
-		else if (index == 11) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (knightsLegendaryCounter + Integer.valueOf(knightsLegendaryIncrement.getText()) < 40) {
-				knightsLegendaryCounter = knightsLegendaryCounter + Integer.valueOf(knightsLegendaryIncrement.getText());
-				
-				// Reset the increment field to '1'
-				knightsLegendaryIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setKnightsLegendaryCounter(Integer.toString(knightsLegendaryCounter));
-			
-			// Calculate probability
-			knightsLegendaryProbability = probabilityCalculator(knightsLegendaryCounter, 40);
-			tracker.setKnightsLegendaryProbability(nf.format(knightsLegendaryProbability));
-		}
-		// "Journey to Un'Goro" legendary add button
-		else if (index == 12) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (ungoroLegendaryCounter + Integer.valueOf(ungoroLegendaryIncrement.getText()) < 40) {
-				ungoroLegendaryCounter = ungoroLegendaryCounter + Integer.valueOf(ungoroLegendaryIncrement.getText());
-				
-				// Reset the increment field to '1'
-				ungoroLegendaryIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setUngoroLegendaryCounter(Integer.toString(ungoroLegendaryCounter));
-			
-			// Calculate probability
-			ungoroLegendaryProbability = probabilityCalculator(ungoroLegendaryCounter, 40);
-			tracker.setUngoroLegendaryProbability(nf.format(ungoroLegendaryProbability));
-		}
-		// "Mean Streets of Gadzetzan" legendary add button
-		else if (index == 13) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (gadgetzanLegendaryCounter + Integer.valueOf(gadgetzanLegendaryIncrement.getText()) < 40) {
-				gadgetzanLegendaryCounter = gadgetzanLegendaryCounter + Integer.valueOf(gadgetzanLegendaryIncrement.getText());
-				
-				// Reset the increment field to '1'
-				gadgetzanLegendaryIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setGadgetzanLegendaryCounter(Integer.toString(gadgetzanLegendaryCounter));
-			
-			// Calculate probability
-			gadgetzanLegendaryProbability = probabilityCalculator(gadgetzanLegendaryCounter, 40);
-			tracker.setGadgetzanLegendaryProbability(nf.format(gadgetzanLegendaryProbability));
-		}
-		// "Whispers of the Old Gods" legendary add button
-		else if (index == 14) {
-			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (oldGodsLegendaryCounter + Integer.valueOf(oldGodsLegendaryIncrement.getText()) < 40) {
-				oldGodsLegendaryCounter = oldGodsLegendaryCounter + Integer.valueOf(oldGodsLegendaryIncrement.getText());
-				
-				// Reset the increment field to '1'
-				oldGodsLegendaryIncrement.setText("1");
-			}
-			else {
-				java.awt.Toolkit.getDefaultToolkit().beep();
-				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
-			}
-			tracker.setOldGodsLegendaryCounter(Integer.toString(oldGodsLegendaryCounter));
-			
-			// Calculate probability
-			oldGodsLegendaryProbability = probabilityCalculator(oldGodsLegendaryCounter, 40);
-			tracker.setOldGodsLegendaryProbability(nf.format(oldGodsLegendaryProbability));
+			goblinsLegendaryProbability = probabilityCalculator(goblinsLegendaryCounter, 40);
+			tracker.setGoblinsLegendaryProbability(nf.format(goblinsLegendaryProbability));
 		}
 		// "The Grand Tournament" legendary add button
-		else if (index == 15) {
+		else if (index == 2) {
 			// Check if the increment is valid, then add. Otherwise, show pop-up error message
 			if (tournamentLegendaryCounter + Integer.valueOf(tournamentLegendaryIncrement.getText()) < 40) {
 				tournamentLegendaryCounter = tournamentLegendaryCounter + Integer.valueOf(tournamentLegendaryIncrement.getText());
@@ -3338,24 +3219,290 @@ public class HSPityTimerTracker implements ActionListener
 			tournamentLegendaryProbability = probabilityCalculator(tournamentLegendaryCounter, 40);
 			tracker.setTournamentLegendaryProbability(nf.format(tournamentLegendaryProbability));
 		}
-		// "Goblins vs Gnomes" legendary add button
-		else {
+		// "Whispers of the Old Gods" legendary add button
+		else if (index == 3) {
 			// Check if the increment is valid, then add. Otherwise, show pop-up error message
-			if (goblinsLegendaryCounter + Integer.valueOf(goblinsLegendaryIncrement.getText()) < 40) {
-				goblinsLegendaryCounter = goblinsLegendaryCounter + Integer.valueOf(goblinsLegendaryIncrement.getText());
+			if (oldGodsLegendaryCounter + Integer.valueOf(oldGodsLegendaryIncrement.getText()) < 40) {
+				oldGodsLegendaryCounter = oldGodsLegendaryCounter + Integer.valueOf(oldGodsLegendaryIncrement.getText());
 				
 				// Reset the increment field to '1'
-				goblinsLegendaryIncrement.setText("1");
+				oldGodsLegendaryIncrement.setText("1");
 			}
 			else {
 				java.awt.Toolkit.getDefaultToolkit().beep();
 				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
 			}
-			tracker.setGoblinsLegendaryCounter(Integer.toString(goblinsLegendaryCounter));
+			tracker.setOldGodsLegendaryCounter(Integer.toString(oldGodsLegendaryCounter));
 			
 			// Calculate probability
-			goblinsLegendaryProbability = probabilityCalculator(goblinsLegendaryCounter, 40);
-			tracker.setGoblinsLegendaryProbability(nf.format(goblinsLegendaryProbability));
+			oldGodsLegendaryProbability = probabilityCalculator(oldGodsLegendaryCounter, 40);
+			tracker.setOldGodsLegendaryProbability(nf.format(oldGodsLegendaryProbability));
+		}
+		// "Mean Streets of Gadzetzan" legendary add button
+		else if (index == 4) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (gadgetzanLegendaryCounter + Integer.valueOf(gadgetzanLegendaryIncrement.getText()) < 40) {
+				gadgetzanLegendaryCounter = gadgetzanLegendaryCounter + Integer.valueOf(gadgetzanLegendaryIncrement.getText());
+				
+				// Reset the increment field to '1'
+				gadgetzanLegendaryIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setGadgetzanLegendaryCounter(Integer.toString(gadgetzanLegendaryCounter));
+			
+			// Calculate probability
+			gadgetzanLegendaryProbability = probabilityCalculator(gadgetzanLegendaryCounter, 40);
+			tracker.setGadgetzanLegendaryProbability(nf.format(gadgetzanLegendaryProbability));
+		}
+		// "Journey to Un'Goro" legendary add button
+		else if (index == 5) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (ungoroLegendaryCounter + Integer.valueOf(ungoroLegendaryIncrement.getText()) < 40) {
+				ungoroLegendaryCounter = ungoroLegendaryCounter + Integer.valueOf(ungoroLegendaryIncrement.getText());
+				
+				// Reset the increment field to '1'
+				ungoroLegendaryIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setUngoroLegendaryCounter(Integer.toString(ungoroLegendaryCounter));
+			
+			// Calculate probability
+			ungoroLegendaryProbability = probabilityCalculator(ungoroLegendaryCounter, 40);
+			tracker.setUngoroLegendaryProbability(nf.format(ungoroLegendaryProbability));
+		}
+		// "Knights of the Frozen Throne" legendary add button
+		else if (index == 6) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (knightsLegendaryCounter + Integer.valueOf(knightsLegendaryIncrement.getText()) < 40) {
+				knightsLegendaryCounter = knightsLegendaryCounter + Integer.valueOf(knightsLegendaryIncrement.getText());
+				
+				// Reset the increment field to '1'
+				knightsLegendaryIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setKnightsLegendaryCounter(Integer.toString(knightsLegendaryCounter));
+			
+			// Calculate probability
+			knightsLegendaryProbability = probabilityCalculator(knightsLegendaryCounter, 40);
+			tracker.setKnightsLegendaryProbability(nf.format(knightsLegendaryProbability));
+		}
+		// "Kobolds & Catacombs" legendary add button
+		else if (index == 7) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (koboldsLegendaryCounter + Integer.valueOf(koboldsLegendaryIncrement.getText()) < 40) {
+				koboldsLegendaryCounter = koboldsLegendaryCounter + Integer.valueOf(koboldsLegendaryIncrement.getText());
+				
+				// Reset the increment field to '1'
+				koboldsLegendaryIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setKoboldsLegendaryCounter(Integer.toString(koboldsLegendaryCounter));
+			
+			// Calculate probability
+			koboldsLegendaryProbability = probabilityCalculator(koboldsLegendaryCounter, 40);
+			tracker.setKoboldsLegendaryProbability(nf.format(koboldsLegendaryProbability));
+		}
+		// "The Witchwood" legendary add button
+		else if (index == 8) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (witchwoodLegendaryCounter + Integer.valueOf(witchwoodLegendaryIncrement.getText()) < 40) {
+				witchwoodLegendaryCounter = witchwoodLegendaryCounter + Integer.valueOf(witchwoodLegendaryIncrement.getText());
+				
+				// Reset the increment field to '1'
+				witchwoodLegendaryIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setWitchwoodLegendaryCounter(Integer.toString(witchwoodLegendaryCounter));
+			
+			// Calculate probability
+			witchwoodLegendaryProbability = probabilityCalculator(witchwoodLegendaryCounter, 40);
+			tracker.setWitchwoodLegendaryProbability(nf.format(witchwoodLegendaryProbability));
+		}
+		// "The Boomsday Project" legendary add button
+		else if (index == 9) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (boomsdayLegendaryCounter + Integer.valueOf(boomsdayLegendaryIncrement.getText()) < 40) {
+				boomsdayLegendaryCounter = boomsdayLegendaryCounter + Integer.valueOf(boomsdayLegendaryIncrement.getText());
+				
+				// Reset the increment field to '1'
+				boomsdayLegendaryIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setBoomsdayLegendaryCounter(Integer.toString(boomsdayLegendaryCounter));
+			
+			// Calculate probability
+			boomsdayLegendaryProbability = probabilityCalculator(boomsdayLegendaryCounter, 40);
+			tracker.setBoomsdayLegendaryProbability(nf.format(boomsdayLegendaryProbability));
+		}
+		// "Rastakhan's Rumble" legendary add button
+		else if (index == 10) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (rumbleLegendaryCounter + Integer.valueOf(rumbleLegendaryIncrement.getText()) < 40) {
+				rumbleLegendaryCounter = rumbleLegendaryCounter + Integer.valueOf(rumbleLegendaryIncrement.getText());
+				
+				// Reset the increment field to '1'
+				rumbleLegendaryIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setRumbleLegendaryCounter(Integer.toString(rumbleLegendaryCounter));
+			
+			// Calculate probability
+			rumbleLegendaryProbability = probabilityCalculator(rumbleLegendaryCounter, 40);
+			tracker.setRumbleLegendaryProbability(nf.format(rumbleLegendaryProbability));
+		}
+		// "Rise of Shadows" legendary add button
+		else if (index == 11) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (shadowsLegendaryCounter + Integer.valueOf(shadowsLegendaryIncrement.getText()) < 40) {
+				shadowsLegendaryCounter = shadowsLegendaryCounter + Integer.valueOf(shadowsLegendaryIncrement.getText());
+				
+				// Reset the increment field to '1'
+				shadowsLegendaryIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setShadowsLegendaryCounter(Integer.toString(shadowsLegendaryCounter));
+			
+			// Calculate probability
+			shadowsLegendaryProbability = probabilityCalculator(shadowsLegendaryCounter, 40);
+			tracker.setShadowsLegendaryProbability(nf.format(shadowsLegendaryProbability));
+		}
+		// "Saviors of Uldum" legendary add button
+		else if (index == 12) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (uldumLegendaryCounter + Integer.valueOf(uldumLegendaryIncrement.getText()) < 40) {
+				uldumLegendaryCounter = uldumLegendaryCounter + Integer.valueOf(uldumLegendaryIncrement.getText());
+				
+				// Reset the increment field to '1'
+				uldumLegendaryIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setUldumLegendaryCounter(Integer.toString(uldumLegendaryCounter));
+			
+			// Calculate probability
+			uldumLegendaryProbability = probabilityCalculator(uldumLegendaryCounter, 40);
+			tracker.setUldumLegendaryProbability(nf.format(uldumLegendaryProbability));
+		}
+		// "Descent of Dragons" legendary add button
+		else if (index == 13) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (dragonsLegendaryCounter + Integer.valueOf(dragonsLegendaryIncrement.getText()) < 40) {
+				dragonsLegendaryCounter = dragonsLegendaryCounter + Integer.valueOf(dragonsLegendaryIncrement.getText());
+				
+				// Reset the increment field to '1'
+				dragonsLegendaryIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setDragonsLegendaryCounter(Integer.toString(dragonsLegendaryCounter));
+			
+			// Calculate probability
+			dragonsLegendaryProbability = probabilityCalculator(dragonsLegendaryCounter, 40);
+			tracker.setDragonsLegendaryProbability(nf.format(dragonsLegendaryProbability));
+		}
+		// "Ashes of Outland" legendary add button
+		else if (index == 14) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (outlandLegendaryCounter + Integer.valueOf(outlandLegendaryIncrement.getText()) < 40) {
+				outlandLegendaryCounter = outlandLegendaryCounter + Integer.valueOf(outlandLegendaryIncrement.getText());
+				
+				// Reset the increment field to '1'
+				outlandLegendaryIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setOutlandLegendaryCounter(Integer.toString(outlandLegendaryCounter));
+			
+			// Calculate probability
+			outlandLegendaryProbability = probabilityCalculator(outlandLegendaryCounter, 40);
+			tracker.setOutlandLegendaryProbability(nf.format(outlandLegendaryProbability));
+		}
+		// "Scholomance Academy" legendary add button
+		else if (index == 15) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (scholomanceLegendaryCounter + Integer.valueOf(scholomanceLegendaryIncrement.getText()) < 40) {
+				scholomanceLegendaryCounter = scholomanceLegendaryCounter + Integer.valueOf(scholomanceLegendaryIncrement.getText());
+				
+				// Reset the increment field to '1'
+				scholomanceLegendaryIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setScholomanceLegendaryCounter(Integer.toString(scholomanceLegendaryCounter));
+			
+			// Calculate probability
+			scholomanceLegendaryProbability = probabilityCalculator(scholomanceLegendaryCounter, 40);
+			tracker.setScholomanceLegendaryProbability(nf.format(scholomanceLegendaryProbability));
+		}
+		// "Madness at the Darkmoon Faire" legendary add button
+		else if (index == 16) {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (darkmoonLegendaryCounter + Integer.valueOf(darkmoonLegendaryIncrement.getText()) < 40) {
+				darkmoonLegendaryCounter = darkmoonLegendaryCounter + Integer.valueOf(darkmoonLegendaryIncrement.getText());
+				
+				// Reset the increment field to '1'
+				darkmoonLegendaryIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setDarkmoonLegendaryCounter(Integer.toString(darkmoonLegendaryCounter));
+			
+			// Calculate probability
+			darkmoonLegendaryProbability = probabilityCalculator(darkmoonLegendaryCounter, 40);
+			tracker.setDarkmoonLegendaryProbability(nf.format(darkmoonLegendaryProbability));
+		}
+		// "Forged in the Barrens" legendary add button
+		else {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (barrensLegendaryCounter + Integer.valueOf(barrensLegendaryIncrement.getText()) < 40) {
+				barrensLegendaryCounter = barrensLegendaryCounter + Integer.valueOf(barrensLegendaryIncrement.getText());
+				
+				// Reset the increment field to '1'
+				barrensLegendaryIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setBarrensLegendaryCounter(Integer.toString(barrensLegendaryCounter));
+			
+			// Calculate probability
+			barrensLegendaryProbability = probabilityCalculator(barrensLegendaryCounter, 40);
+			tracker.setBarrensLegendaryProbability(nf.format(barrensLegendaryProbability));
 		}
 		
 		// Update the save file
@@ -3388,176 +3535,20 @@ public class HSPityTimerTracker implements ActionListener
 			// Reset the increment field to '1'
 			classicTotalIncrement.setText("1");
 		}
-		// "Madness at the Darkmoon Faire" total modify button
+		// "Goblins vs Gnomes" total modify button
 		else if (index == 1) {
-			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, darkmoonTotalCounter);
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, goblinsTotalCounter);
 			if (isInteger(modifyValue)) 
-				darkmoonTotalCounter = Integer.valueOf(modifyValue);
+				goblinsTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
-			tracker.setDarkmoonTotalCounter(Integer.toString(darkmoonTotalCounter));
+			tracker.setGoblinsTotalCounter(Integer.toString(goblinsTotalCounter));
 			
 			// Reset the increment field to '1'
-			darkmoonTotalIncrement.setText("1");
-		}
-		// "Scholomance Academy" total modify button
-		else if (index == 2) {
-			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, scholomanceTotalCounter);
-			if (isInteger(modifyValue)) 
-				scholomanceTotalCounter = Integer.valueOf(modifyValue);
-			else
-				java.awt.Toolkit.getDefaultToolkit().beep();
-			tracker.setScholomanceTotalCounter(Integer.toString(scholomanceTotalCounter));
-			
-			// Reset the increment field to '1'
-			scholomanceTotalIncrement.setText("1");
-		}
-		// "Ashes of Outland" total modify button
-		else if (index == 3) {
-			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, outlandTotalCounter);
-			if (isInteger(modifyValue)) 
-				outlandTotalCounter = Integer.valueOf(modifyValue);
-			else
-				java.awt.Toolkit.getDefaultToolkit().beep();
-			tracker.setOutlandTotalCounter(Integer.toString(outlandTotalCounter));
-			
-			// Reset the increment field to '1'
-			outlandTotalIncrement.setText("1");
-		}
-		// "Descent of Dragons" total modify button
-		else if (index == 4) {
-			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, dragonsTotalCounter);
-			if (isInteger(modifyValue)) 
-				dragonsTotalCounter = Integer.valueOf(modifyValue);
-			else
-				java.awt.Toolkit.getDefaultToolkit().beep();
-			tracker.setDragonsTotalCounter(Integer.toString(dragonsTotalCounter));
-			
-			// Reset the increment field to '1'
-			dragonsTotalIncrement.setText("1");
-		}
-		// "Saviors of Uldum" total modify button
-		else if (index == 5) {
-			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, uldumTotalCounter);
-			if (isInteger(modifyValue)) 
-				uldumTotalCounter = Integer.valueOf(modifyValue);
-			else
-				java.awt.Toolkit.getDefaultToolkit().beep();
-			tracker.setUldumTotalCounter(Integer.toString(uldumTotalCounter));
-			
-			// Reset the increment field to '1'
-			uldumTotalIncrement.setText("1");
-		}
-		// "Rise of Shadows" total modify button
-		else if (index == 6) {
-			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, shadowsTotalCounter);
-			if (isInteger(modifyValue)) 
-				shadowsTotalCounter = Integer.valueOf(modifyValue);
-			else
-				java.awt.Toolkit.getDefaultToolkit().beep();
-			tracker.setShadowsTotalCounter(Integer.toString(shadowsTotalCounter));
-			
-			// Reset the increment field to '1'
-			shadowsTotalIncrement.setText("1");
-		}
-		// "Rastakhan's Rumble" total modify button
-		else if (index == 7) {
-			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, rumbleTotalCounter);
-			if (isInteger(modifyValue)) 
-				rumbleTotalCounter = Integer.valueOf(modifyValue);
-			else
-				java.awt.Toolkit.getDefaultToolkit().beep();
-			tracker.setRumbleTotalCounter(Integer.toString(rumbleTotalCounter));
-			
-			// Reset the increment field to '1'
-			rumbleTotalIncrement.setText("1");
-		}
-		// "The Boomsday Project" total modify button
-		else if (index == 8) {
-			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, boomsdayTotalCounter);
-			if (isInteger(modifyValue)) 
-				boomsdayTotalCounter = Integer.valueOf(modifyValue);
-			else
-				java.awt.Toolkit.getDefaultToolkit().beep();
-			tracker.setBoomsdayTotalCounter(Integer.toString(boomsdayTotalCounter));
-			
-			// Reset the increment field to '1'
-			boomsdayTotalIncrement.setText("1");
-		}
-		// "The Witchwood" total modify button
-		else if (index == 9) {
-			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, witchwoodTotalCounter);
-			if (isInteger(modifyValue)) 
-				witchwoodTotalCounter = Integer.valueOf(modifyValue);
-			else
-				java.awt.Toolkit.getDefaultToolkit().beep();
-			tracker.setWitchwoodTotalCounter(Integer.toString(witchwoodTotalCounter));
-			
-			// Reset the increment field to '1'
-			witchwoodTotalIncrement.setText("1");
-		}
-		// "Kobolds & Catacombs" total modify button
-		else if (index == 10) {
-			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, koboldsTotalCounter);
-			if (isInteger(modifyValue)) 
-				koboldsTotalCounter = Integer.valueOf(modifyValue);
-			else
-				java.awt.Toolkit.getDefaultToolkit().beep();
-			tracker.setKoboldsTotalCounter(Integer.toString(koboldsTotalCounter));
-			
-			// Reset the increment field to '1'
-			koboldsTotalIncrement.setText("1");
-		}
-		// "Knights of the Frozen Throne" total modify button
-		else if (index == 11) {
-			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, knightsTotalCounter);
-			if (isInteger(modifyValue)) 
-				knightsTotalCounter = Integer.valueOf(modifyValue);
-			else
-				java.awt.Toolkit.getDefaultToolkit().beep();
-			tracker.setKnightsTotalCounter(Integer.toString(knightsTotalCounter));
-			
-			// Reset the increment field to '1'
-			knightsTotalIncrement.setText("1");
-		}
-		// "Journey to Un'Goro" total modify button
-		else if (index == 12) {
-			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, ungoroTotalCounter);
-			if (isInteger(modifyValue)) 
-				ungoroTotalCounter = Integer.valueOf(modifyValue);
-			else
-				java.awt.Toolkit.getDefaultToolkit().beep();
-			tracker.setUngoroTotalCounter(Integer.toString(ungoroTotalCounter));
-			
-			// Reset the increment field to '1'
-			ungoroTotalIncrement.setText("1");
-		}
-		// "Mean Streets of Gadzetzan" total modify button
-		else if (index == 13) {
-			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, gadgetzanTotalCounter);
-			if (isInteger(modifyValue)) 
-				gadgetzanTotalCounter = Integer.valueOf(modifyValue);
-			else
-				java.awt.Toolkit.getDefaultToolkit().beep();
-			tracker.setGadgetzanTotalCounter(Integer.toString(gadgetzanTotalCounter));
-			
-			// Reset the increment field to '1'
-			gadgetzanTotalIncrement.setText("1");
-		}
-		// "Whispers of the Old Gods" total modify button
-		else if (index == 14) {
-			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, oldGodsTotalCounter);
-			if (isInteger(modifyValue)) 
-				oldGodsTotalCounter = Integer.valueOf(modifyValue);
-			else
-				java.awt.Toolkit.getDefaultToolkit().beep();
-			tracker.setOldGodsTotalCounter(Integer.toString(oldGodsTotalCounter));
-			
-			// Reset the increment field to '1'
-			oldGodsTotalIncrement.setText("1");
+			goblinsTotalIncrement.setText("1");
 		}
 		// "The Grand Tournament" total modify button
-		else if (index == 15) {
+		else if (index == 2) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, tournamentTotalCounter);
 			if (isInteger(modifyValue)) 
 				tournamentTotalCounter = Integer.valueOf(modifyValue);
@@ -3568,17 +3559,185 @@ public class HSPityTimerTracker implements ActionListener
 			// Reset the increment field to '1'
 			tournamentTotalIncrement.setText("1");
 		}
-		// "Goblins vs Gnomes" total modify button
-		else {
-			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, goblinsTotalCounter);
+		// "Whispers of the Old Gods" total modify button
+		else if (index == 3) {
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, oldGodsTotalCounter);
 			if (isInteger(modifyValue)) 
-				goblinsTotalCounter = Integer.valueOf(modifyValue);
+				oldGodsTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
-			tracker.setGoblinsTotalCounter(Integer.toString(goblinsTotalCounter));
+			tracker.setOldGodsTotalCounter(Integer.toString(oldGodsTotalCounter));
 			
 			// Reset the increment field to '1'
-			goblinsTotalIncrement.setText("1");
+			oldGodsTotalIncrement.setText("1");
+		}
+		// "Mean Streets of Gadzetzan" total modify button
+		else if (index == 4) {
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, gadgetzanTotalCounter);
+			if (isInteger(modifyValue)) 
+				gadgetzanTotalCounter = Integer.valueOf(modifyValue);
+			else
+				java.awt.Toolkit.getDefaultToolkit().beep();
+			tracker.setGadgetzanTotalCounter(Integer.toString(gadgetzanTotalCounter));
+			
+			// Reset the increment field to '1'
+			gadgetzanTotalIncrement.setText("1");
+		}
+		// "Journey to Un'Goro" total modify button
+		else if (index == 5) {
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, ungoroTotalCounter);
+			if (isInteger(modifyValue)) 
+				ungoroTotalCounter = Integer.valueOf(modifyValue);
+			else
+				java.awt.Toolkit.getDefaultToolkit().beep();
+			tracker.setUngoroTotalCounter(Integer.toString(ungoroTotalCounter));
+			
+			// Reset the increment field to '1'
+			ungoroTotalIncrement.setText("1");
+		}
+		// "Knights of the Frozen Throne" total modify button
+		else if (index == 6) {
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, knightsTotalCounter);
+			if (isInteger(modifyValue)) 
+				knightsTotalCounter = Integer.valueOf(modifyValue);
+			else
+				java.awt.Toolkit.getDefaultToolkit().beep();
+			tracker.setKnightsTotalCounter(Integer.toString(knightsTotalCounter));
+			
+			// Reset the increment field to '1'
+			knightsTotalIncrement.setText("1");
+		}
+		// "Kobolds & Catacombs" total modify button
+		else if (index == 7) {
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, koboldsTotalCounter);
+			if (isInteger(modifyValue)) 
+				koboldsTotalCounter = Integer.valueOf(modifyValue);
+			else
+				java.awt.Toolkit.getDefaultToolkit().beep();
+			tracker.setKoboldsTotalCounter(Integer.toString(koboldsTotalCounter));
+			
+			// Reset the increment field to '1'
+			koboldsTotalIncrement.setText("1");
+		}
+		// "The Witchwood" total modify button
+		else if (index == 8) {
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, witchwoodTotalCounter);
+			if (isInteger(modifyValue)) 
+				witchwoodTotalCounter = Integer.valueOf(modifyValue);
+			else
+				java.awt.Toolkit.getDefaultToolkit().beep();
+			tracker.setWitchwoodTotalCounter(Integer.toString(witchwoodTotalCounter));
+			
+			// Reset the increment field to '1'
+			witchwoodTotalIncrement.setText("1");
+		}
+		// "The Boomsday Project" total modify button
+		else if (index == 9) {
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, boomsdayTotalCounter);
+			if (isInteger(modifyValue)) 
+				boomsdayTotalCounter = Integer.valueOf(modifyValue);
+			else
+				java.awt.Toolkit.getDefaultToolkit().beep();
+			tracker.setBoomsdayTotalCounter(Integer.toString(boomsdayTotalCounter));
+			
+			// Reset the increment field to '1'
+			boomsdayTotalIncrement.setText("1");
+		}
+		// "Rastakhan's Rumble" total modify button
+		else if (index == 10) {
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, rumbleTotalCounter);
+			if (isInteger(modifyValue)) 
+				rumbleTotalCounter = Integer.valueOf(modifyValue);
+			else
+				java.awt.Toolkit.getDefaultToolkit().beep();
+			tracker.setRumbleTotalCounter(Integer.toString(rumbleTotalCounter));
+			
+			// Reset the increment field to '1'
+			rumbleTotalIncrement.setText("1");
+		}
+		// "Rise of Shadows" total modify button
+		else if (index == 11) {
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, shadowsTotalCounter);
+			if (isInteger(modifyValue)) 
+				shadowsTotalCounter = Integer.valueOf(modifyValue);
+			else
+				java.awt.Toolkit.getDefaultToolkit().beep();
+			tracker.setShadowsTotalCounter(Integer.toString(shadowsTotalCounter));
+			
+			// Reset the increment field to '1'
+			shadowsTotalIncrement.setText("1");
+		}
+		// "Saviors of Uldum" total modify button
+		else if (index == 12) {
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, uldumTotalCounter);
+			if (isInteger(modifyValue)) 
+				uldumTotalCounter = Integer.valueOf(modifyValue);
+			else
+				java.awt.Toolkit.getDefaultToolkit().beep();
+			tracker.setUldumTotalCounter(Integer.toString(uldumTotalCounter));
+			
+			// Reset the increment field to '1'
+			uldumTotalIncrement.setText("1");
+		}
+		// "Descent of Dragons" total modify button
+		else if (index == 13) {
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, dragonsTotalCounter);
+			if (isInteger(modifyValue)) 
+				dragonsTotalCounter = Integer.valueOf(modifyValue);
+			else
+				java.awt.Toolkit.getDefaultToolkit().beep();
+			tracker.setDragonsTotalCounter(Integer.toString(dragonsTotalCounter));
+			
+			// Reset the increment field to '1'
+			dragonsTotalIncrement.setText("1");
+		}
+		// "Ashes of Outland" total modify button
+		else if (index == 14) {
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, outlandTotalCounter);
+			if (isInteger(modifyValue)) 
+				outlandTotalCounter = Integer.valueOf(modifyValue);
+			else
+				java.awt.Toolkit.getDefaultToolkit().beep();
+			tracker.setOutlandTotalCounter(Integer.toString(outlandTotalCounter));
+			
+			// Reset the increment field to '1'
+			outlandTotalIncrement.setText("1");
+		}
+		// "Scholomance Academy" total modify button
+		else if (index == 15) {
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, scholomanceTotalCounter);
+			if (isInteger(modifyValue)) 
+				scholomanceTotalCounter = Integer.valueOf(modifyValue);
+			else
+				java.awt.Toolkit.getDefaultToolkit().beep();
+			tracker.setScholomanceTotalCounter(Integer.toString(scholomanceTotalCounter));
+			
+			// Reset the increment field to '1'
+			scholomanceTotalIncrement.setText("1");
+		}
+		// "Madness at the Darkmoon Faire" total modify button
+		else if (index == 16) {
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, darkmoonTotalCounter);
+			if (isInteger(modifyValue)) 
+				darkmoonTotalCounter = Integer.valueOf(modifyValue);
+			else
+				java.awt.Toolkit.getDefaultToolkit().beep();
+			tracker.setDarkmoonTotalCounter(Integer.toString(darkmoonTotalCounter));
+			
+			// Reset the increment field to '1'
+			darkmoonTotalIncrement.setText("1");
+		}
+		// "Forged in the Barrens" total modify button
+		else {
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, barrensTotalCounter);
+			if (isInteger(modifyValue)) 
+				barrensTotalCounter = Integer.valueOf(modifyValue);
+			else
+				java.awt.Toolkit.getDefaultToolkit().beep();
+			tracker.setBarrensTotalCounter(Integer.toString(barrensTotalCounter));
+			
+			// Reset the increment field to '1'
+			barrensTotalIncrement.setText("1");
 		}
 		
 		// Update the save file
@@ -3596,133 +3755,141 @@ public class HSPityTimerTracker implements ActionListener
 			// Reset the increment field to '1'
 			classicTotalIncrement.setText("1");
 		}
-		// "Madness at the Darkmoon Faire" total add button
+		// "Goblins vs Gnomes" total add button
 		else if (index == 1) {
-			darkmoonTotalCounter = darkmoonTotalCounter + Integer.valueOf(darkmoonTotalIncrement.getText());
-			tracker.setDarkmoonTotalCounter(Integer.toString(darkmoonTotalCounter));
+			goblinsTotalCounter = goblinsTotalCounter + Integer.valueOf(goblinsTotalIncrement.getText());
+			tracker.setGoblinsTotalCounter(Integer.toString(goblinsTotalCounter));
 			
 			// Reset the increment field to '1'
-			darkmoonTotalIncrement.setText("1");
-		}
-		// "Scholomance Academy" total add button
-		else if (index == 2) {
-			scholomanceTotalCounter = scholomanceTotalCounter + Integer.valueOf(scholomanceTotalIncrement.getText());
-			tracker.setScholomanceTotalCounter(Integer.toString(scholomanceTotalCounter));
-			
-			// Reset the increment field to '1'
-			scholomanceTotalIncrement.setText("1");
-		}
-		// "Ashes of Outland" total add button
-		else if (index == 3) {
-			outlandTotalCounter = outlandTotalCounter + Integer.valueOf(outlandTotalIncrement.getText());
-			tracker.setOutlandTotalCounter(Integer.toString(outlandTotalCounter));
-			
-			// Reset the increment field to '1'
-			outlandTotalIncrement.setText("1");
-		}
-		// "Descent of Dragons" total add button
-		else if (index == 4) {
-			dragonsTotalCounter = dragonsTotalCounter + Integer.valueOf(dragonsTotalIncrement.getText());
-			tracker.setDragonsTotalCounter(Integer.toString(dragonsTotalCounter));
-			
-			// Reset the increment field to '1'
-			dragonsTotalIncrement.setText("1");
-		}
-		// "Saviors of Uldum" total add button
-		else if (index == 5) {
-			uldumTotalCounter = uldumTotalCounter + Integer.valueOf(uldumTotalIncrement.getText());
-			tracker.setUldumTotalCounter(Integer.toString(uldumTotalCounter));
-			
-			// Reset the increment field to '1'
-			uldumTotalIncrement.setText("1");
-		}
-		// "Rise of Shadows" total add button
-		else if (index == 6) {
-			shadowsTotalCounter = shadowsTotalCounter + Integer.valueOf(shadowsTotalIncrement.getText());
-			tracker.setShadowsTotalCounter(Integer.toString(shadowsTotalCounter));
-			
-			// Reset the increment field to '1'
-			shadowsTotalIncrement.setText("1");
-		}
-		// "Rastakhan's Rumble" total add button
-		else if (index == 7) {
-			rumbleTotalCounter = rumbleTotalCounter + Integer.valueOf(rumbleTotalIncrement.getText());
-			tracker.setRumbleTotalCounter(Integer.toString(rumbleTotalCounter));
-			
-			// Reset the increment field to '1'
-			rumbleTotalIncrement.setText("1");
-		}
-		// "The Boomsday Project" total add button
-		else if (index == 8) {
-			boomsdayTotalCounter = boomsdayTotalCounter + Integer.valueOf(boomsdayTotalIncrement.getText());
-			tracker.setBoomsdayTotalCounter(Integer.toString(boomsdayTotalCounter));
-			
-			// Reset the increment field to '1'
-			boomsdayTotalIncrement.setText("1");
-		}
-		// "The Witchwood" total add button
-		else if (index == 9) {
-			witchwoodTotalCounter = witchwoodTotalCounter + Integer.valueOf(witchwoodTotalIncrement.getText());
-			tracker.setWitchwoodTotalCounter(Integer.toString(witchwoodTotalCounter));
-			
-			// Reset the increment field to '1'
-			witchwoodTotalIncrement.setText("1");
-		}
-		// "Kobolds & Catacombs" total add button
-		else if (index == 10) {
-			koboldsTotalCounter = koboldsTotalCounter + Integer.valueOf(koboldsTotalIncrement.getText());
-			tracker.setKoboldsTotalCounter(Integer.toString(koboldsTotalCounter));
-			
-			// Reset the increment field to '1'
-			koboldsTotalIncrement.setText("1");
-		}
-		// "Knights of the Frozen Throne" total add button
-		else if (index == 11) {
-			knightsTotalCounter = knightsTotalCounter + Integer.valueOf(knightsTotalIncrement.getText());
-			tracker.setKnightsTotalCounter(Integer.toString(knightsTotalCounter));
-			
-			// Reset the increment field to '1'
-			knightsTotalIncrement.setText("1");
-		}
-		// "Journey to Un'Goro" total add button
-		else if (index == 12) {
-			ungoroTotalCounter = ungoroTotalCounter + Integer.valueOf(ungoroTotalIncrement.getText());
-			tracker.setUngoroTotalCounter(Integer.toString(ungoroTotalCounter));
-			
-			// Reset the increment field to '1'
-			ungoroTotalIncrement.setText("1");
-		}
-		// "Mean Streets of Gadzetzan" total add button
-		else if (index == 13) {
-			gadgetzanTotalCounter = gadgetzanTotalCounter + Integer.valueOf(gadgetzanTotalIncrement.getText());
-			tracker.setGadgetzanTotalCounter(Integer.toString(gadgetzanTotalCounter));
-			
-			// Reset the increment field to '1'
-			gadgetzanTotalIncrement.setText("1");
-		}
-		// "Whispers of the Old Gods" total add button
-		else if (index == 14) {
-			oldGodsTotalCounter = oldGodsTotalCounter + Integer.valueOf(oldGodsTotalIncrement.getText());
-			tracker.setOldGodsTotalCounter(Integer.toString(oldGodsTotalCounter));
-			
-			// Reset the increment field to '1'
-			oldGodsTotalIncrement.setText("1");
+			goblinsTotalIncrement.setText("1");
 		}
 		// "The Grand Tournament" total add button
-		else if (index == 15) {
+		else if (index == 2) {
 			tournamentTotalCounter = tournamentTotalCounter + Integer.valueOf(tournamentTotalIncrement.getText());
 			tracker.setTournamentTotalCounter(Integer.toString(tournamentTotalCounter));
 			
 			// Reset the increment field to '1'
 			tournamentTotalIncrement.setText("1");
 		}
-		// "Goblins vs Gnomes" total add button
-		else {
-			goblinsTotalCounter = goblinsTotalCounter + Integer.valueOf(goblinsTotalIncrement.getText());
-			tracker.setGoblinsTotalCounter(Integer.toString(goblinsTotalCounter));
+		// "Whispers of the Old Gods" total add button
+		else if (index == 3) {
+			oldGodsTotalCounter = oldGodsTotalCounter + Integer.valueOf(oldGodsTotalIncrement.getText());
+			tracker.setOldGodsTotalCounter(Integer.toString(oldGodsTotalCounter));
 			
 			// Reset the increment field to '1'
-			goblinsTotalIncrement.setText("1");
+			oldGodsTotalIncrement.setText("1");
+		}
+		// "Mean Streets of Gadzetzan" total add button
+		else if (index == 4) {
+			gadgetzanTotalCounter = gadgetzanTotalCounter + Integer.valueOf(gadgetzanTotalIncrement.getText());
+			tracker.setGadgetzanTotalCounter(Integer.toString(gadgetzanTotalCounter));
+			
+			// Reset the increment field to '1'
+			gadgetzanTotalIncrement.setText("1");
+		}
+		// "Journey to Un'Goro" total add button
+		else if (index == 5) {
+			ungoroTotalCounter = ungoroTotalCounter + Integer.valueOf(ungoroTotalIncrement.getText());
+			tracker.setUngoroTotalCounter(Integer.toString(ungoroTotalCounter));
+			
+			// Reset the increment field to '1'
+			ungoroTotalIncrement.setText("1");
+		}
+		// "Knights of the Frozen Throne" total add button
+		else if (index == 6) {
+			knightsTotalCounter = knightsTotalCounter + Integer.valueOf(knightsTotalIncrement.getText());
+			tracker.setKnightsTotalCounter(Integer.toString(knightsTotalCounter));
+			
+			// Reset the increment field to '1'
+			knightsTotalIncrement.setText("1");
+		}
+		// "Kobolds & Catacombs" total add button
+		else if (index == 7) {
+			koboldsTotalCounter = koboldsTotalCounter + Integer.valueOf(koboldsTotalIncrement.getText());
+			tracker.setKoboldsTotalCounter(Integer.toString(koboldsTotalCounter));
+			
+			// Reset the increment field to '1'
+			koboldsTotalIncrement.setText("1");
+		}
+		// "The Witchwood" total add button
+		else if (index == 8) {
+			witchwoodTotalCounter = witchwoodTotalCounter + Integer.valueOf(witchwoodTotalIncrement.getText());
+			tracker.setWitchwoodTotalCounter(Integer.toString(witchwoodTotalCounter));
+			
+			// Reset the increment field to '1'
+			witchwoodTotalIncrement.setText("1");
+		}
+		// "The Boomsday Project" total add button
+		else if (index == 9) {
+			boomsdayTotalCounter = boomsdayTotalCounter + Integer.valueOf(boomsdayTotalIncrement.getText());
+			tracker.setBoomsdayTotalCounter(Integer.toString(boomsdayTotalCounter));
+			
+			// Reset the increment field to '1'
+			boomsdayTotalIncrement.setText("1");
+		}
+		// "Rastakhan's Rumble" total add button
+		else if (index == 10) {
+			rumbleTotalCounter = rumbleTotalCounter + Integer.valueOf(rumbleTotalIncrement.getText());
+			tracker.setRumbleTotalCounter(Integer.toString(rumbleTotalCounter));
+			
+			// Reset the increment field to '1'
+			rumbleTotalIncrement.setText("1");
+		}
+		// "Rise of Shadows" total add button
+		else if (index == 11) {
+			shadowsTotalCounter = shadowsTotalCounter + Integer.valueOf(shadowsTotalIncrement.getText());
+			tracker.setShadowsTotalCounter(Integer.toString(shadowsTotalCounter));
+			
+			// Reset the increment field to '1'
+			shadowsTotalIncrement.setText("1");
+		}
+		// "Saviors of Uldum" total add button
+		else if (index == 12) {
+			uldumTotalCounter = uldumTotalCounter + Integer.valueOf(uldumTotalIncrement.getText());
+			tracker.setUldumTotalCounter(Integer.toString(uldumTotalCounter));
+			
+			// Reset the increment field to '1'
+			uldumTotalIncrement.setText("1");
+		}
+		// "Descent of Dragons" total add button
+		else if (index == 13) {
+			dragonsTotalCounter = dragonsTotalCounter + Integer.valueOf(dragonsTotalIncrement.getText());
+			tracker.setDragonsTotalCounter(Integer.toString(dragonsTotalCounter));
+			
+			// Reset the increment field to '1'
+			dragonsTotalIncrement.setText("1");
+		}
+		// "Ashes of Outland" total add button
+		else if (index == 14) {
+			outlandTotalCounter = outlandTotalCounter + Integer.valueOf(outlandTotalIncrement.getText());
+			tracker.setOutlandTotalCounter(Integer.toString(outlandTotalCounter));
+			
+			// Reset the increment field to '1'
+			outlandTotalIncrement.setText("1");
+		}
+		// "Scholomance Academy" total add button
+		else if (index == 15) {
+			scholomanceTotalCounter = scholomanceTotalCounter + Integer.valueOf(scholomanceTotalIncrement.getText());
+			tracker.setScholomanceTotalCounter(Integer.toString(scholomanceTotalCounter));
+			
+			// Reset the increment field to '1'
+			scholomanceTotalIncrement.setText("1");
+		}
+		// "Madness at the Darkmoon Faire" total add button
+		else if (index == 16) {
+			darkmoonTotalCounter = darkmoonTotalCounter + Integer.valueOf(darkmoonTotalIncrement.getText());
+			tracker.setDarkmoonTotalCounter(Integer.toString(darkmoonTotalCounter));
+			
+			// Reset the increment field to '1'
+			darkmoonTotalIncrement.setText("1");
+		}
+		// "Forged in the Barrens" total add button
+		else {
+			barrensTotalCounter = barrensTotalCounter + Integer.valueOf(barrensTotalIncrement.getText());
+			tracker.setBarrensTotalCounter(Integer.toString(barrensTotalCounter));
+			
+			// Reset the increment field to '1'
+			barrensTotalIncrement.setText("1");
 		}
 		
 		// Update the save file
@@ -3738,7 +3905,7 @@ public class HSPityTimerTracker implements ActionListener
 				"~ Hearthstone Packs Counter ~" + nextLine + 
 				nextLine + 
 				"- Expansions" + nextLine + 
-				"Classic" + nextLine + 
+				"Forged in the Barrens" + nextLine + 
 				"Madness at the Darkmoon Faire" + nextLine + 
 				"Scholomance Academy" + nextLine + 
 				"Ashes of Outland" + nextLine + 
@@ -3755,11 +3922,12 @@ public class HSPityTimerTracker implements ActionListener
 				"Whispers of the Old Gods" + nextLine + 
 				"The Grand Tournament" + nextLine + 
 				"Goblins vs Gnomes" + nextLine + 
+				"Classic" + nextLine + 
 				nextLine + 
 				"----------" + nextLine + 
 				nextLine + 
 				"- Epic counters" + nextLine + 
-				"Classic: " + tracker.getClassicEpicCounter() + nextLine + 
+				"Forged in the Barrens: " + tracker.getBarrensEpicCounter() + nextLine + 
 				"Madness at the Darkmoon Faire: " + tracker.getDarkmoonEpicCounter() + nextLine + 
 				"Scholomance Academy: " + tracker.getScholomanceEpicCounter() + nextLine + 
 				"Ashes of Outland: " + tracker.getOutlandEpicCounter() + nextLine + 
@@ -3776,9 +3944,10 @@ public class HSPityTimerTracker implements ActionListener
 				"Whispers of the Old Gods: " + tracker.getOldGodsEpicCounter() + nextLine + 
 				"The Grand Tournament: " + tracker.getTournamentEpicCounter() + nextLine + 
 				"Goblins vs Gnomes: " + tracker.getGoblinsEpicCounter() + nextLine + 
+				"Classic: " + tracker.getClassicEpicCounter() + nextLine + 
 				nextLine + 
 				"- Epic probabilities" + nextLine + 
-				"Classic: " + tracker.getClassicEpicProbability() + nextLine + 
+				"Forged in the Barrens: " + tracker.getBarrensEpicProbability() + nextLine + 
 				"Madness at the Darkmoon Faire: " + tracker.getDarkmoonEpicProbability() + nextLine + 
 				"Scholomance Academy: " + tracker.getScholomanceEpicProbability() + nextLine + 
 				"Ashes of Outland: " + tracker.getOutlandEpicProbability() + nextLine + 
@@ -3795,11 +3964,12 @@ public class HSPityTimerTracker implements ActionListener
 				"Whispers of the Old Gods: " + tracker.getOldGodsEpicProbability() + nextLine + 
 				"The Grand Tournament: " + tracker.getTournamentEpicProbability() + nextLine + 
 				"Goblins vs Gnomes: " + tracker.getGoblinsEpicProbability() + nextLine + 
+				"Classic: " + tracker.getClassicEpicProbability() + nextLine + 
 				nextLine + 
 				"----------" + nextLine + 
 				nextLine + 
 				"- Legendary counters" + nextLine + 
-				"Classic: " + tracker.getClassicLegendaryCounter() + nextLine + 
+				"Forged in the Barrens: " + tracker.getBarrensLegendaryCounter() + nextLine + 
 				"Madness at the Darkmoon Faire: " + tracker.getDarkmoonLegendaryCounter() + nextLine + 
 				"Scholomance Academy: " + tracker.getScholomanceLegendaryCounter() + nextLine + 
 				"Ashes of Outland: " + tracker.getOutlandLegendaryCounter() + nextLine + 
@@ -3816,9 +3986,10 @@ public class HSPityTimerTracker implements ActionListener
 				"Whispers of the Old Gods: " + tracker.getOldGodsLegendaryCounter() + nextLine + 
 				"The Grand Tournament: " + tracker.getTournamentLegendaryCounter() + nextLine + 
 				"Goblins vs Gnomes: " + tracker.getGoblinsLegendaryCounter() + nextLine + 
+				"Classic: " + tracker.getClassicLegendaryCounter() + nextLine + 
 				nextLine + 
 				"- Legendary probabilities" + nextLine + 
-				"Classic: " + tracker.getClassicLegendaryProbability() + nextLine + 
+				"Forged in the Barrens: " + tracker.getBarrensLegendaryProbability() + nextLine + 
 				"Madness at the Darkmoon Faire: " + tracker.getDarkmoonLegendaryProbability() + nextLine + 
 				"Scholomance Academy: " + tracker.getScholomanceLegendaryProbability() + nextLine + 
 				"Ashes of Outland: " + tracker.getOutlandLegendaryProbability() + nextLine + 
@@ -3835,11 +4006,12 @@ public class HSPityTimerTracker implements ActionListener
 				"Whispers of the Old Gods: " + tracker.getOldGodsLegendaryProbability() + nextLine + 
 				"The Grand Tournament: " + tracker.getTournamentLegendaryProbability() + nextLine + 
 				"Goblins vs Gnomes: " + tracker.getGoblinsLegendaryProbability() + nextLine + 
+				"Classic: " + tracker.getClassicLegendaryProbability() + nextLine + 
 				nextLine + 
 				"----------" + nextLine + 
 				nextLine + 
 				"- Total counters" + nextLine + 
-				"Classic: " + tracker.getClassicTotalCounter() + nextLine + 
+				"Forged in the Barrens: " + tracker.getBarrensTotalCounter() + nextLine + 
 				"Madness at the Darkmoon Faire: " + tracker.getDarkmoonTotalCounter() + nextLine + 
 				"Scholomance Academy: " + tracker.getScholomanceTotalCounter() + nextLine + 
 				"Ashes of Outland: " + tracker.getOutlandTotalCounter() + nextLine + 
@@ -3855,7 +4027,8 @@ public class HSPityTimerTracker implements ActionListener
 				"Mean Streets of Gadgetzan: " + tracker.getGadgetzanTotalCounter() + nextLine + 
 				"Whispers of the Old Gods: " + tracker.getOldGodsTotalCounter() + nextLine + 
 				"The Grand Tournament: " + tracker.getTournamentTotalCounter() + nextLine + 
-				"Goblins vs Gnomes: " + tracker.getGoblinsTotalCounter();
+				"Goblins vs Gnomes: " + tracker.getGoblinsTotalCounter() + nextLine + 
+				"Classic: " + tracker.getClassicTotalCounter();
 		
 		// Write the updated data in the save file
 		saveFile.setWritable(true);
