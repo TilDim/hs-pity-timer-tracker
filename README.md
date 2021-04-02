@@ -26,6 +26,10 @@ For each expansion there is a dedicated panel containing:
 This program does not operate automatically. All the timers and counters are modified manually by the user with the usage of buttons.
 You can find more details on how this program works by pressing the program's help button.
 
+You must have JAVA installed in your system in order to run this program. Download JAVA here: https://www.java.com/en/download/.
+
+If you don't like the default JAVA icon for your shortcut, you can download the icon used in the program here: https://github.com/TilDim/hs-pity-timer-tracker/blob/main/HSPityTimerTracker/counter_icon.ico and change it by going to the properties of the shortcut.
+
 
 Created by:
 
