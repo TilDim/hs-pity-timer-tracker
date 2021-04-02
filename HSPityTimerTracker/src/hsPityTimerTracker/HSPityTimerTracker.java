@@ -671,22 +671,22 @@ public class HSPityTimerTracker implements ActionListener
 	// Expansions common cards webpages links
 	private final String barrensCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=forged-in-the-barrens";
 	private final String darkmoonCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=madness-at-the-darkmoon-faire";
-	private final String scholomanceCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=scholomance-academy";
-	private final String outlandCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=ashes-of-outland";
-	private final String dragonsCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=descent-of-dragons";
-	private final String uldumCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=saviors-of-uldum";
-	private final String shadowsCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=rise-of-shadows";
-	private final String rumbleCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=rastakhans-rumble";
-	private final String boomsdayCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=the-boomsday-project";
-	private final String witchwoodCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=the-witchwood";
-	private final String koboldsCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=kobolds-and-catacombs";
-	private final String knightsCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=knights-of-the-frozen-throne";
-	private final String ungoroCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=journey-to-ungoro";
-	private final String gadgetzanCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=mean-streets-of-gadgetzan";
-	private final String oldGodsCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=whispers-of-the-old-gods";
-	private final String tournamentCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=the-grand-tournament";
-	private final String goblinsCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=goblins-vs-gnomes";
-	private final String classicCommonUrlText = "https://playhearthstone.com/en-us/cards?&rarity=common&set=classic";
+	private final String scholomanceCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=scholomance-academy";
+	private final String outlandCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=ashes-of-outland";
+	private final String dragonsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=descent-of-dragons";
+	private final String uldumCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=saviors-of-uldum";
+	private final String shadowsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=rise-of-shadows";
+	private final String rumbleCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=rastakhans-rumble";
+	private final String boomsdayCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=the-boomsday-project";
+	private final String witchwoodCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=the-witchwood";
+	private final String koboldsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=kobolds-and-catacombs";
+	private final String knightsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=knights-of-the-frozen-throne";
+	private final String ungoroCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=journey-to-ungoro";
+	private final String gadgetzanCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=mean-streets-of-gadgetzan";
+	private final String oldGodsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=whispers-of-the-old-gods";
+	private final String tournamentCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=the-grand-tournament";
+	private final String goblinsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=goblins-vs-gnomes";
+	private final String classicCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=legacy";
 	
 	ArrayList<URI> commonButtonsUrls;
 	
@@ -734,22 +734,22 @@ public class HSPityTimerTracker implements ActionListener
 	// Expansions rare cards webpages links
 	private final String barrensRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=forged-in-the-barrens";
 	private final String darkmoonRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=madness-at-the-darkmoon-faire";
-	private final String scholomanceRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=scholomance-academy";
-	private final String outlandRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=ashes-of-outland";
-	private final String dragonsRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=descent-of-dragons";
-	private final String uldumRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=saviors-of-uldum";
-	private final String shadowsRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=rise-of-shadows";
-	private final String rumbleRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=rastakhans-rumble";
-	private final String boomsdayRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=the-boomsday-project";
-	private final String witchwoodRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=the-witchwood";
-	private final String koboldsRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=kobolds-and-catacombs";
-	private final String knightsRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=knights-of-the-frozen-throne";
-	private final String ungoroRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=journey-to-ungoro";
-	private final String gadgetzanRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=mean-streets-of-gadgetzan";
-	private final String oldGodsRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=whispers-of-the-old-gods";
-	private final String tournamentRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=the-grand-tournament";
-	private final String goblinsRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=goblins-vs-gnomes";
-	private final String classicRareUrlText = "https://playhearthstone.com/en-us/cards?&rarity=rare&set=classic";
+	private final String scholomanceRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=scholomance-academy";
+	private final String outlandRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=ashes-of-outland";
+	private final String dragonsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=descent-of-dragons";
+	private final String uldumRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=saviors-of-uldum";
+	private final String shadowsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=rise-of-shadows";
+	private final String rumbleRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=rastakhans-rumble";
+	private final String boomsdayRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=the-boomsday-project";
+	private final String witchwoodRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=the-witchwood";
+	private final String koboldsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=kobolds-and-catacombs";
+	private final String knightsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=knights-of-the-frozen-throne";
+	private final String ungoroRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=journey-to-ungoro";
+	private final String gadgetzanRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=mean-streets-of-gadgetzan";
+	private final String oldGodsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=whispers-of-the-old-gods";
+	private final String tournamentRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=the-grand-tournament";
+	private final String goblinsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=goblins-vs-gnomes";
+	private final String classicRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=legacy";
 	
 	ArrayList<URI> rareButtonsUrls;
 	
@@ -796,23 +796,23 @@ public class HSPityTimerTracker implements ActionListener
 	
 	// Expansions epic cards webpages links
 	private final String barrensEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=forged-in-the-barrens";
-	private final String darkmoonEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=madness-at-the-darkmoon-faire";
-	private final String scholomanceEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=scholomance-academy";
-	private final String outlandEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=ashes-of-outland";
-	private final String dragonsEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=descent-of-dragons";
-	private final String uldumEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=saviors-of-uldum";
-	private final String shadowsEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=rise-of-shadows";
-	private final String rumbleEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=rastakhans-rumble";
-	private final String boomsdayEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=the-boomsday-project";
-	private final String witchwoodEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=the-witchwood";
-	private final String koboldsEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=kobolds-and-catacombs";
-	private final String knightsEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=knights-of-the-frozen-throne";
-	private final String ungoroEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=journey-to-ungoro";
-	private final String gadgetzanEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=mean-streets-of-gadgetzan";
-	private final String oldGodsEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=whispers-of-the-old-gods";
-	private final String tournamentEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=the-grand-tournament";
-	private final String goblinsEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=goblins-vs-gnomes";
-	private final String classicEpicUrlText = "https://playhearthstone.com/en-us/cards?&rarity=epic&set=classic";
+	private final String darkmoonEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=madness-at-the-darkmoon-faire";
+	private final String scholomanceEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=scholomance-academy";
+	private final String outlandEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=ashes-of-outland";
+	private final String dragonsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=descent-of-dragons";
+	private final String uldumEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=saviors-of-uldum";
+	private final String shadowsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=rise-of-shadows";
+	private final String rumbleEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=rastakhans-rumble";
+	private final String boomsdayEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=the-boomsday-project";
+	private final String witchwoodEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=the-witchwood";
+	private final String koboldsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=kobolds-and-catacombs";
+	private final String knightsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=knights-of-the-frozen-throne";
+	private final String ungoroEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=journey-to-ungoro";
+	private final String gadgetzanEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=mean-streets-of-gadgetzan";
+	private final String oldGodsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=whispers-of-the-old-gods";
+	private final String tournamentEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=the-grand-tournament";
+	private final String goblinsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=goblins-vs-gnomes";
+	private final String classicEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=legacy";
 	
 	ArrayList<URI> epicButtonsUrls;
 	
@@ -859,23 +859,23 @@ public class HSPityTimerTracker implements ActionListener
 	
 	// Expansions legendary cards webpages links
 	private final String barrensLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=forged-in-the-barrens";
-	private final String darkmoonLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=madness-at-the-darkmoon-faire";
-	private final String scholomanceLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=scholomance-academy";
-	private final String outlandLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=ashes-of-outland";
-	private final String dragonsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=descent-of-dragons";
-	private final String uldumLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=saviors-of-uldum";
-	private final String shadowsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=rise-of-shadows";
-	private final String rumbleLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=rastakhans-rumble";
-	private final String boomsdayLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=the-boomsday-project";
-	private final String witchwoodLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=the-witchwood";
-	private final String koboldsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=kobolds-and-catacombs";
-	private final String knightsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=knights-of-the-frozen-throne";
-	private final String ungoroLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=journey-to-ungoro";
-	private final String gadgetzanLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=mean-streets-of-gadgetzan";
-	private final String oldGodsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=whispers-of-the-old-gods";
-	private final String tournamentLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=the-grand-tournament";
-	private final String goblinsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=goblins-vs-gnomes";
-	private final String classicLegendaryUrlText = "https://playhearthstone.com/en-us/cards?&rarity=legendary&set=classic";
+	private final String darkmoonLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=madness-at-the-darkmoon-faire";
+	private final String scholomanceLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=scholomance-academy";
+	private final String outlandLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=ashes-of-outland";
+	private final String dragonsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=descent-of-dragons";
+	private final String uldumLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=saviors-of-uldum";
+	private final String shadowsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=rise-of-shadows";
+	private final String rumbleLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=rastakhans-rumble";
+	private final String boomsdayLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=the-boomsday-project";
+	private final String witchwoodLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=the-witchwood";
+	private final String koboldsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=kobolds-and-catacombs";
+	private final String knightsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=knights-of-the-frozen-throne";
+	private final String ungoroLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=journey-to-ungoro";
+	private final String gadgetzanLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=mean-streets-of-gadgetzan";
+	private final String oldGodsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=whispers-of-the-old-gods";
+	private final String tournamentLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=the-grand-tournament";
+	private final String goblinsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=goblins-vs-gnomes";
+	private final String classicLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=legacy";
 	
 	ArrayList<URI> legendaryButtonsUrls;
 	

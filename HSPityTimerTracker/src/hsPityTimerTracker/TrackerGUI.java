@@ -1211,40 +1211,40 @@ public class TrackerGUI
 	private final String legendaryButtonDarkHoverIconPath = "rarities_icons/legendary_dark_hover.png";
 	
 	// Tracker colors
-	private final Color titleFontColor;
-	private final Color headerBGColor;
-	private final Color setsColor;
-	private final Color yearsColor;
-	private final Color buttonsHoverColor;
-	private final Color buttonsDarkHoverColor;
+	private Color titleFontColor;
+	private Color headerBGColor;
+	private Color setsColor;
+	private Color yearsColor;
+	private Color buttonsHoverColor;
+	private Color buttonsDarkHoverColor;
 	
-	private final Color barrensColor;
-	private final Color darkmoonColor;
-	private final Color scholomanceColor;
-	private final Color outlandColor;
-	private final Color dragonsColor;
-	private final Color uldumColor;
-	private final Color shadowsColor;
-	private final Color rumbleColor;
-	private final Color boomsdayColor;
-	private final Color witchwoodColor;
-	private final Color koboldsColor;
-	private final Color knightsColor;
-	private final Color ungoroColor;
-	private final Color gadgetzanColor;
-	private final Color oldGodsColor;
-	private final Color tournamentColor;
-	private final Color goblinsColor;
-	private final Color classicColor;
+	private Color barrensColor;
+	private Color darkmoonColor;
+	private Color scholomanceColor;
+	private Color outlandColor;
+	private Color dragonsColor;
+	private Color uldumColor;
+	private Color shadowsColor;
+	private Color rumbleColor;
+	private Color boomsdayColor;
+	private Color witchwoodColor;
+	private Color koboldsColor;
+	private Color knightsColor;
+	private Color ungoroColor;
+	private Color gadgetzanColor;
+	private Color oldGodsColor;
+	private Color tournamentColor;
+	private Color goblinsColor;
+	private Color classicColor;
 	
 	// Tracker fonts
-	private final Font titleFont;
-	private final Font modesFont;
-	private final Font yearsFont;
-	private final Font incrementFieldFont;
-	private final Font buttonsTextFont;
-	private final Font addButtonTextFont;	
-	private final Font tooltipTextFont;
+	private Font titleFont;
+	private Font modesFont;
+	private Font yearsFont;
+	private Font incrementFieldFont;
+	private Font buttonsTextFont;
+	private Font addButtonTextFont;	
+	private Font tooltipTextFont;
 	
 	// Variables for changing text style
 	private StyledDocument doc;
@@ -1252,6 +1252,16 @@ public class TrackerGUI
 	
 	// Constructor
 	public TrackerGUI() 
+	{
+		setColorsAndFonts();
+		
+		createImages();
+		
+		createWindowComponents();
+	}
+	
+	// Tracker colors and fonts
+	private void setColorsAndFonts() 
 	{
 		// Colors
 		headerBGColor = new Color(50, 50, 50);
@@ -1274,9 +1284,9 @@ public class TrackerGUI
 		witchwoodColor = new Color(115, 185, 165);
 		koboldsColor = new Color(165, 115, 80);
 		knightsColor = new Color(150, 190, 210);
-		ungoroColor = new Color(240, 180, 0);
+		ungoroColor = new Color(95, 115, 40);
 		gadgetzanColor = new Color(210, 165, 25);
-		oldGodsColor = new Color(200, 130, 200);
+		oldGodsColor = new Color(190, 120, 190);
 		tournamentColor = new Color(95, 70, 50);
 		goblinsColor = new Color(220, 95, 10);
 		
@@ -1292,13 +1302,9 @@ public class TrackerGUI
 		// Buttons tooltip style
 		UIManager.put("ToolTip.background", titleFontColor);
 		UIManager.put("ToolTip.font", tooltipTextFont);
-		
-		createImages();
-		
-		createWindowComponents();
 	}
 	
-	// r images creator
+	// Tracker images creator
 	private void createImages() 
 	{
 		// "Help" icon
@@ -1524,7 +1530,7 @@ public class TrackerGUI
 		
 		standardLabel = new JLabel(standardTitle);
 		standardLabel.setFont(modesFont);
-		standardLabel.setBorder(new EmptyBorder(5, 25, 5, 5));
+		standardLabel.setBorder(new EmptyBorder(5, 10, 5, 5));
 		
 		standardHeader.add(standardImageLabel);
 		standardHeader.add(standardLabel);
@@ -1558,7 +1564,7 @@ public class TrackerGUI
 		
 		wildLabel = new JLabel(wildTitle);
 		wildLabel.setFont(modesFont);
-		wildLabel.setBorder(new EmptyBorder(5, 25, 5, 25));
+		wildLabel.setBorder(new EmptyBorder(5, 10, 5, 20));
 		
 		// "Show wild" toggle button
 		showWild = new JCheckBox();
@@ -1591,8 +1597,7 @@ public class TrackerGUI
 		createYearOfTheRavenPanel();
 		createYearOfTheMammothPanel();
 		createYearOfTheKrakenPanel();
-		createClassicSetsPanel();
-		createClassicPanel();
+		createClassicSetsPanel();		
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -1602,7 +1607,6 @@ public class TrackerGUI
 				wild.add(mammoth);
 				wild.add(kraken);
 				wild.add(classicSets);
-				wild.add(classic);
 			}
 		});
 	}
@@ -1615,7 +1619,7 @@ public class TrackerGUI
 		gryphon.setLayout(new BoxLayout(gryphon, BoxLayout.Y_AXIS));
 		
 		// "Year of the Gryphon" title header
-		gryphonHeader = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		gryphonHeader = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		gryphonHeader.setBackground(yearsColor);
 		
 		gryphonImageLabel = new JLabel(new ImageIcon(gryphonImage));
@@ -1623,7 +1627,7 @@ public class TrackerGUI
 		
 		gryphonLabel = new JLabel(gryphonTitle);
 		gryphonLabel.setFont(yearsFont);
-		gryphonLabel.setBorder(new EmptyBorder(5, 25, 5, 5));
+		gryphonLabel.setBorder(new EmptyBorder(5, 10, 5, 5));
 		
 		gryphonHeader.add(gryphonImageLabel);
 		gryphonHeader.add(gryphonLabel);
@@ -1863,7 +1867,7 @@ public class TrackerGUI
 		phoenix.setLayout(new BoxLayout(phoenix, BoxLayout.Y_AXIS));
 		
 		// "Year of the Phoenix" title header
-		phoenixHeader = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		phoenixHeader = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		phoenixHeader.setBackground(yearsColor);
 		
 		phoenixImageLabel = new JLabel(new ImageIcon(phoenixImage));
@@ -1871,7 +1875,7 @@ public class TrackerGUI
 		
 		phoenixLabel = new JLabel(phoenixTitle);
 		phoenixLabel.setFont(yearsFont);
-		phoenixLabel.setBorder(new EmptyBorder(5, 25, 5, 5));
+		phoenixLabel.setBorder(new EmptyBorder(5, 10, 5, 5));
 		
 		phoenixHeader.add(phoenixImageLabel);
 		phoenixHeader.add(phoenixLabel);
@@ -2539,7 +2543,7 @@ public class TrackerGUI
 		dragon.setLayout(new BoxLayout(dragon, BoxLayout.Y_AXIS));
 		
 		// "Year of the Dragon" title header
-		dragonHeader = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		dragonHeader = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		dragonHeader.setBackground(yearsColor);
 		
 		dragonImageLabel = new JLabel(new ImageIcon(dragonImage));
@@ -2547,7 +2551,7 @@ public class TrackerGUI
 		
 		dragonLabel = new JLabel(dragonTitle);
 		dragonLabel.setFont(yearsFont);
-		dragonLabel.setBorder(new EmptyBorder(5, 25, 5, 5));
+		dragonLabel.setBorder(new EmptyBorder(5, 10, 5, 5));
 		
 		dragonHeader.add(dragonImageLabel);
 		dragonHeader.add(dragonLabel);
@@ -3209,7 +3213,7 @@ public class TrackerGUI
 		raven.setLayout(new BoxLayout(raven, BoxLayout.Y_AXIS));
 		
 		// "Year of the Raven" title header
-		ravenHeader = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		ravenHeader = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		ravenHeader.setBackground(yearsColor);
 		
 		ravenImageLabel = new JLabel(new ImageIcon(ravenImage));
@@ -3217,7 +3221,7 @@ public class TrackerGUI
 		
 		ravenLabel = new JLabel(ravenTitle);
 		ravenLabel.setFont(yearsFont);
-		ravenLabel.setBorder(new EmptyBorder(5, 25, 5, 5));
+		ravenLabel.setBorder(new EmptyBorder(5, 10, 5, 5));
 		
 		ravenHeader.add(ravenImageLabel);
 		ravenHeader.add(ravenLabel);
@@ -3879,7 +3883,7 @@ public class TrackerGUI
 		mammoth.setLayout(new BoxLayout(mammoth, BoxLayout.Y_AXIS));
 		
 		// "Year of the Mammoth" title header
-		mammothHeader = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		mammothHeader = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		mammothHeader.setBackground(yearsColor);
 		
 		mammothImageLabel = new JLabel(new ImageIcon(mammothImage));
@@ -3887,7 +3891,7 @@ public class TrackerGUI
 		
 		mammothLabel = new JLabel(mammothTitle);
 		mammothLabel.setFont(yearsFont);
-		mammothLabel.setBorder(new EmptyBorder(5, 25, 5, 5));
+		mammothLabel.setBorder(new EmptyBorder(5, 10, 5, 5));
 		
 		mammothHeader.add(mammothImageLabel);
 		mammothHeader.add(mammothLabel);
@@ -4541,7 +4545,7 @@ public class TrackerGUI
 		kraken.setLayout(new BoxLayout(kraken, BoxLayout.Y_AXIS));
 		
 		// "Year of the Kraken" title header
-		krakenHeader = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		krakenHeader = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		krakenHeader.setBackground(yearsColor);
 		
 		krakenImageLabel = new JLabel(new ImageIcon(krakenImage));
@@ -4549,7 +4553,7 @@ public class TrackerGUI
 		
 		krakenLabel = new JLabel(krakenTitle);
 		krakenLabel.setFont(yearsFont);
-		krakenLabel.setBorder(new EmptyBorder(5, 25, 5, 5));
+		krakenLabel.setBorder(new EmptyBorder(5, 10, 5, 5));
 		
 		krakenHeader.add(krakenImageLabel);
 		krakenHeader.add(krakenLabel);
@@ -4993,7 +4997,7 @@ public class TrackerGUI
 		classicSets.setLayout(new BoxLayout(classicSets, BoxLayout.Y_AXIS));
 		
 		// "Classic Sets" title header
-		classicSetsHeader = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		classicSetsHeader = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		classicSetsHeader.setBackground(yearsColor);
 		
 		classicSetsImageLabel = new JLabel(new ImageIcon(classicSetsImage));
@@ -5001,7 +5005,7 @@ public class TrackerGUI
 		
 		classicSetsLabel = new JLabel(classicSetsTitle);
 		classicSetsLabel.setFont(yearsFont);
-		classicSetsLabel.setBorder(new EmptyBorder(5, 25, 5, 5));
+		classicSetsLabel.setBorder(new EmptyBorder(5, 10, 5, 5));
 		
 		classicSetsHeader.add(classicSetsImageLabel);
 		classicSetsHeader.add(classicSetsLabel);
@@ -5009,12 +5013,14 @@ public class TrackerGUI
 		// "Classic Sets" expansions
 		createTheGrandTournamentPanel();
 		createGoblinsVsGnomesPanel();
+		createClassicPanel();
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				classicSets.add(classicSetsHeader);
 				classicSets.add(tournament);
 				classicSets.add(goblins);
+				classicSets.add(classic);
 				
 				classicSets.setVisible(false);
 			}
