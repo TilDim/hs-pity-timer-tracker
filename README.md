@@ -9,7 +9,7 @@ This program has a pity timer tracker for both epic and legendary cards of every
 
 How to install:
 
-No installation required for this program to work. Just download and run the .jar file anywhere in your system.
+No installation is required for this program to work. Just download and run the .jar file anywhere in your system.
 
 How it works:
 
