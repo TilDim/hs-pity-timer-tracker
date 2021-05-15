@@ -1,5 +1,5 @@
 # Hearthstone Pity Timer Tracker
-Helps you keep track of the pity timers in Hearthstone
+Helps you keep track of the pity timers in Hearthstone.
 
 What is a pity timer?
 
