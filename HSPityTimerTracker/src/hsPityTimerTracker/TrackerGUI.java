@@ -16,9 +16,9 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
@@ -34,7 +34,9 @@ public class TrackerGUI
 	// Variables
 	
 	// Tracker Panel
+	private JPanel trackerWindowContentPanel;
 	private ScrollablePanel trackerPanel;
+	private JScrollPane trackerPanelScrollBar;
 	
 	// Tracker header
 	private JPanel trackerHeader;
@@ -83,54 +85,93 @@ public class TrackerGUI
 	// Message displaying when hovering over the "Show save file" button
 	private final String showSaveFileFolderToolTipText = "Show the save file in the folder it is located";
 	
-	// Hearthstone Game Modes sets
-	private JPanel standard;
-	private JPanel wild;
+	// Hearthstone Game Modes buttons panel
+	private JPanel modeButtonsPanel;
 	
-	// Game Modes sets title headers
-	private JPanel standardHeader;
-	private JPanel wildHeader;
+	// Standard button
+	private JButton standardButton;
 	
-	// Game Modes sets titles
+	// Standard button label
 	private final String standardTitle = "Standard Sets";
-	private final String wildTitle = "Wild Sets";
 	
-	private JLabel standardLabel;
-	private JLabel wildLabel;
-	
-	// Game Modes sets logos
-	private JLabel standardImageLabel;
+	// Standard button image
 	private BufferedImage standardImage;
 	private URL standardImageURL;
 	private final String standardImagePath = "hs_game_modes_icons/standard_mode.png";
 	
-	private JLabel wildImageLabel;
+	// Message displayed when hovering over the "Standard Sets" button
+	private final String standardButtonToolTipText = "Show Standard Sets";
+	
+	// Wild button
+	private JButton wildButton;
+	
+	// Wild button label
+	private final String wildTitle = "Wild Sets";
+	
+	// Wild button image
 	private BufferedImage wildImage;
 	private URL wildImageURL;
 	private final String wildImagePath = "hs_game_modes_icons/wild_mode.png";
 	
-	// Checkbox toggling showing "Wild Sets"
-	private JCheckBox showWild;
-	private final String showWildToolTipText = "Show Wild Sets"; // Message displaying when hovering over the toggle "Wild Sets" button
+	// Message displayed when hovering over the "Wild Sets" button
+	private final String wildButtonToolTipText = "Show Wild Sets";
 	
-	// Checkbox state icons
-	private BufferedImage showWildUnselectedIcon;
-	private URL showWildUnselectedIconURL;
-	private final String showWildUnselectedIconPath = "wild_checkbox_icons/checkbox_unselected.png";
+	// Hearthstone Years shortcut buttons panels
+	private JPanel standardYearsShortcutsPanel;
+	private JPanel wildYearsShortcutsPanel;
 	
-	private BufferedImage showWildSelectedIcon;
-	private URL showWildSelectedIconURL;
-	private final String showWildSelectedIconPath = "wild_checkbox_icons/checkbox_selected.png";
+	// Years shortcut buttons
+	private JButton gryphonShortcut;
+	private JButton phoenixShortcut;
+	private JButton dragonShortcut;
+	private JButton ravenShortcut;
+	private JButton mammothShortcut;
+	private JButton krakenShortcut;
+	private JButton classicSetsShortcut;
 	
-	private BufferedImage showWildUnselectedHoverIcon;
-	private URL showWildUnselectedHoverIconURL;
-	private final String showWildUnselectedHoverIconPath = "wild_checkbox_icons/checkbox_unselected_hover.png";
+	// Years shortcut buttons images
+	private BufferedImage gryphonShortcutImage;
+	private URL gryphonShortcutImageURL;
+	private final String gryphonShortcutImagePath = "hs_years_icons/shortcuts/year_of_the_gryphon_s.png";
 	
-	private BufferedImage showWildSelectedHoverIcon;
-	private URL showWildSelectedHoverIconURL;
-	private final String showWildSelectedHoverIconPath = "wild_checkbox_icons/checkbox_selected_hover.png";
+	private BufferedImage phoenixShortcutImage;
+	private URL phoenixShortcutImageURL;
+	private final String phoenixShortcutImagePath = "hs_years_icons/shortcuts/year_of_the_phoenix_s.png";
 	
-	// Hearthstone Years
+	private BufferedImage dragonShortcutImage;
+	private URL dragonShortcutImageURL;
+	private final String dragonShortcutImagePath = "hs_years_icons/shortcuts/year_of_the_dragon_s.png";
+	
+	private BufferedImage ravenShortcutImage;
+	private URL ravenShortcutImageURL;
+	private final String ravenShortcutImagePath = "hs_years_icons/shortcuts/year_of_the_raven_s.png";
+	
+	private BufferedImage mammothShortcutImage;
+	private URL mammothShortcutImageURL;
+	private final String mammothShortcutImagePath = "hs_years_icons/shortcuts/year_of_the_mammoth_s.png";
+	
+	private BufferedImage krakenShortcutImage;
+	private URL krakenShortcutImageURL;
+	private final String krakenShortcutImagePath = "hs_years_icons/shortcuts/year_of_the_kraken_s.png";
+	
+	private BufferedImage classicSetsShortcutImage;
+	private URL classicSetsShortcutImageURL;
+	private final String classicSetsShortcutImagePath = "hs_years_icons/shortcuts/classic_sets_s.png";
+	
+	// Messages displayed when hovering over the Years shortcut buttons
+	private final String gryphonShortcutToolTipText = "Go to 'Year of the Gryphon'";
+	private final String phoenixShortcutToolTipText = "Go to 'Year of the Phoenix'";
+	private final String dragonShortcutToolTipText = "Go to 'Year of the Dragon'";
+	private final String ravenShortcutToolTipText = "Go to 'Year of the Raven'";
+	private final String mammothShortcutToolTipText = "Go to 'Year of the Mammoth'";
+	private final String krakenShortcutToolTipText = "Go to 'Year of the Kraken'";
+	private final String classicSetsShortcutToolTipText = "Go to 'Classic Sets'";
+	
+	// Hearthstone Game Modes panels
+	private JPanel standard;
+	private JPanel wild;
+	
+	// Hearthstone Years panels
 	private JPanel gryphon; // Year of the Gryphon
 	private JPanel phoenix; // Year of the Phoenix
 	private JPanel dragon; // Year of the Dragon
@@ -201,7 +242,7 @@ public class TrackerGUI
 	private URL classicSetsImageURL;
 	private final String classicSetsImagePath = "hs_years_icons/classic_sets.png";
 	
-	// Hearthstone Expansions
+	// Hearthstone Expansions panels
 	// Year of the Gryphon
 	private JPanel barrens; // Forged in the Barrens
 	// Year of the Phoenix
@@ -228,7 +269,7 @@ public class TrackerGUI
 	private JPanel goblins; // Goblins vs Gnomes
 	private JPanel classic; // Classic
 	
-	// Expansions logos	
+	// Expansions logos
 	private JButton barrensImageButton;
 	private BufferedImage barrensImage;
 	private URL barrensImageURL;
@@ -282,7 +323,7 @@ public class TrackerGUI
 	private JButton koboldsImageButton;
 	private BufferedImage koboldsImage;
 	private URL koboldsImageURL;
-	private final String koboldsImagePath = "hs_expansions_icons/kobolds_and_catacombs.png";
+	private final String koboldsImagePath = "hs_expansions_icons/kobolds_&_catacombs.png";
 	
 	private JButton knightsImageButton;
 	private BufferedImage knightsImage;
@@ -292,7 +333,7 @@ public class TrackerGUI
 	private JButton ungoroImageButton;
 	private BufferedImage ungoroImage;
 	private URL ungoroImageURL;
-	private final String ungoroImagePath = "hs_expansions_icons/journey_to_ungoro.png";
+	private final String ungoroImagePath = "hs_expansions_icons/journey_to_un'goro.png";
 	
 	private JButton gadgetzanImageButton;
 	private BufferedImage gadgetzanImage;
@@ -319,9 +360,10 @@ public class TrackerGUI
 	private URL classicImageURL;
 	private final String classicImagePath = "hs_expansions_icons/classic.png";
 	
-	// Message displaying when hovering over an expansion logo
+	// Message displayed when hovering over an expansion logo
 	private final String imageButtonToolTipText = "Go to the expansion's official webpage";
 	
+	// Expansions logos panels
 	private JPanel barrensImagePanel;
 	private JPanel darkmoonImagePanel;
 	private JPanel scholomanceImagePanel;
@@ -340,85 +382,7 @@ public class TrackerGUI
 	private JPanel tournamentImagePanel;
 	private JPanel goblinsImagePanel;
 	private JPanel classicImagePanel;
-/*	
-	// Expansions title labels
-	private final String barrensTitle = "Forged in the Barrens";
-	private final String darkmoonTitle = "Madness at the Darkmoon Faire";
-	private final String scholomanceTitle = "Scholomance Academy";
-	private final String outlandTitle = "Ashes of Outland";
-	private final String dragonsTitle = "Descent of Dragons";
-	private final String uldumTitle = "Saviors of Uldum";
-	private final String shadowsTitle = "Rise of Shadows";
-	private final String rumbleTitle = "Rastakhan's Rumble";
-	private final String boomsdayTitle = "The Boomsday Project";
-	private final String witchwoodTitle = "The Witchwood";
-	private final String koboldsTitle = "Kobolds & Catacombs";
-	private final String knightsTitle = "Knights of the Frozen Throne";
-	private final String ungoroTitle = "Journey to Un'Goro";
-	private final String gadgetzanTitle = "Mean Streets of Gadgetzan";
-	private final String oldGodsTitle = "Whispers of the Old Gods";
-	private final String tournamentTitle = "The Grand Tournament";
-	private final String goblinsTitle = "Goblins vs Gnomes";
-	private final String classicTitle = "Classic";
 	
-	private JTextPane barrensTitleLabel;
-	private JTextPane darkmoonTitleLabel;
-	private JTextPane scholomanceTitleLabel;
-	private JTextPane outlandTitleLabel;
-	private JTextPane dragonsTitleLabel;
-	private JTextPane uldumTitleLabel;
-	private JTextPane shadowsTitleLabel;
-	private JTextPane rumbleTitleLabel;
-	private JTextPane boomsdayTitleLabel;
-	private JTextPane witchwoodTitleLabel;
-	private JTextPane koboldsTitleLabel;
-	private JTextPane knightsTitleLabel;
-	private JTextPane ungoroTitleLabel;
-	private JTextPane gadgetzanTitleLabel;
-	private JTextPane oldGodsTitleLabel;
-	private JTextPane tournamentTitleLabel;
-	private JTextPane goblinsTitleLabel;
-	private JTextPane classicTitleLabel;
-	
-	// Expansions title labels
-	private final String barrensDate = "(March 2021)";
-	private final String darkmoonDate = "(November 2020)";
-	private final String scholomanceDate = "(August 2020)";
-	private final String outlandDate = "(April 2020)";
-	private final String dragonsDate = "(December 2019)";
-	private final String uldumDate = "(August 2019)";
-	private final String shadowsDate = "(April 2019)";
-	private final String rumbleDate = "(December 2018)";
-	private final String boomsdayDate = "(July 2018)";
-	private final String witchwoodDate = "(April 2018)";
-	private final String koboldsDate = "(December 2017)";
-	private final String knightsDate = "(August 2017)";
-	private final String ungoroDate = "(April 2017)";
-	private final String gadgetzanDate = "(December 2016)";
-	private final String oldGodsDate = "(April 2016)";
-	private final String tournamentDate = "(August 2015)";
-	private final String goblinsDate = "(December 2014)";
-	private final String classicDate = "(March 2014)";
-	
-	private JTextPane barrensDateLabel;
-	private JTextPane darkmoonDateLabel;
-	private JTextPane scholomanceDateLabel;
-	private JTextPane outlandDateLabel;
-	private JTextPane dragonsDateLabel;
-	private JTextPane uldumDateLabel;
-	private JTextPane shadowsDateLabel;
-	private JTextPane rumbleDateLabel;
-	private JTextPane boomsdayDateLabel;
-	private JTextPane witchwoodDateLabel;
-	private JTextPane koboldsDateLabel;
-	private JTextPane knightsDateLabel;
-	private JTextPane ungoroDateLabel;
-	private JTextPane gadgetzanDateLabel;
-	private JTextPane oldGodsDateLabel;
-	private JTextPane tournamentDateLabel;
-	private JTextPane goblinsDateLabel;
-	private JTextPane classicDateLabel;
-*/	
 	// Epic counter panel title
 	private final String epicPanelTitle = "Epic Pity Timer";
 	private JTextPane epicPanelTitleLabel;
@@ -443,8 +407,8 @@ public class TrackerGUI
 	private JPanel goblinsEpicPanel;
 	private JPanel classicEpicPanel;
 	
-	// Message displaying the amount of packs opened without an epic card
-	private final String epicCounterText = "Packs opened without an epic card:   ";
+	// Message displayed the amount of packs opened without an epic card
+	private final String epicCounterText = "Card packs opened without an epic card:   ";
 	
 	private JTextPane barrensEpicCounterText;
 	private JTextPane darkmoonEpicCounterText;
@@ -566,8 +530,8 @@ public class TrackerGUI
 	private JTextArea goblinsEpicIncrement;
 	private JTextArea classicEpicIncrement;
 	
-	// Message displaying the probability of finding an epic card
-	private final String epicProbabilityText = "Probability of finding an epic card in the next pack:   ";
+	// Message displayed the probability of finding an epic card
+	private final String epicProbabilityText = "Probability of finding an epic card in the next card pack:   ";
 	
 	private JTextPane barrensEpicProbabilityText;
 	private JTextPane darkmoonEpicProbabilityText;
@@ -632,8 +596,8 @@ public class TrackerGUI
 	private JPanel goblinsLegendaryPanel;
 	private JPanel classicLegendaryPanel;
 	
-	// Message displaying the amount of packs opened without a legendary card
-	private final String legendaryCounterText = "Packs opened without a legendary card:   ";
+	// Message displayed the amount of packs opened without a legendary card
+	private final String legendaryCounterText = "Card packs opened without a legendary card:   ";
 	
 	private JTextPane barrensLegendaryCounterText;
 	private JTextPane darkmoonLegendaryCounterText;
@@ -755,8 +719,8 @@ public class TrackerGUI
 	private JTextArea goblinsLegendaryIncrement;
 	private JTextArea classicLegendaryIncrement;
 	
-	// Message displaying the probability of finding a legendary card
-	private final String legendaryProbabilityText = "Probability of finding a legendary card in the next pack:   ";
+	// Message displayed the probability of finding a legendary card
+	private final String legendaryProbabilityText = "Probability of finding a legendary card in the next card pack:   ";
 	
 	private JTextPane barrensLegendaryProbabilityText;
 	private JTextPane darkmoonLegendaryProbabilityText;
@@ -798,7 +762,7 @@ public class TrackerGUI
 	private String classicLegendaryProbability;
 	
 	// Total packs counter panel title
-	private final String totalPanelTitle = "Total Packs Counter";
+	private final String totalPanelTitle = "Total Card Packs";
 	private JTextPane totalPanelTitleLabel;
 	
 	// Total packs counter panels
@@ -821,8 +785,8 @@ public class TrackerGUI
 	private JPanel goblinsTotalPanel;
 	private JPanel classicTotalPanel;
 	
-	// Message displaying the total amount of packs opened from each expansion
-	private final String totalCounterText = "Total amount of packs opened:   ";
+	// Message displayed the total amount of packs opened from each expansion
+	private final String totalCounterText = "Total amount of card packs opened:   ";
 	
 	private JTextPane barrensTotalCounterText;
 	private JTextPane darkmoonTotalCounterText;
@@ -944,7 +908,7 @@ public class TrackerGUI
 	private JTextArea goblinsTotalIncrement;
 	private JTextArea classicTotalIncrement;
 	
-	// Messages displaying when hovering over a counter modify button
+	// Messages displayed when hovering over a counter modify button
 	private final String resetButtonToolTipText = "Reset the counter";
 	private final String modifyButtonToolTipText = "Modify the counter";
 	private final String addButtonToolTipText = "Add packs to the counter";
@@ -1012,7 +976,7 @@ public class TrackerGUI
 	private IconButton goblinsCommonButton;
 	private IconButton classicCommonButton;
 	
-	// Message displaying when hovering over a common button
+	// Message displayed when hovering over a common button
 	private final String commonButtonToolTipText = "See the expansion's common cards";
 	
 	// Rare buttons
@@ -1054,7 +1018,7 @@ public class TrackerGUI
 	private IconButton goblinsRareButton;
 	private IconButton classicRareButton;
 	
-	// Message displaying when hovering over a rare button
+	// Message displayed when hovering over a rare button
 	private final String rareButtonToolTipText = "See the expansion's rare cards";
 	
 	// Epic buttons
@@ -1096,7 +1060,7 @@ public class TrackerGUI
 	private IconButton goblinsEpicButton;
 	private IconButton classicEpicButton;
 	
-	// Message displaying when hovering over an epic button
+	// Message displayed when hovering over an epic button
 	private final String epicButtonToolTipText = "See the expansion's epic cards";
 	
 	// Legendary buttons
@@ -1138,7 +1102,7 @@ public class TrackerGUI
 	private IconButton goblinsLegendaryButton;
 	private IconButton classicLegendaryButton;
 	
-	// Message displaying when hovering over a legendary button
+	// Message displayed when hovering over a legendary button
 	private final String legendaryButtonToolTipText = "See the expansion's legendary cards";
 	
 	// Rarity buttons icons
@@ -1214,6 +1178,8 @@ public class TrackerGUI
 	private Color titleFontColor;
 	private Color headerBGColor;
 	private Color setsColor;
+	private Color setsHoverColor;
+	private Color setsSelectedColor;
 	private Color yearsColor;
 	private Color buttonsHoverColor;
 	private Color buttonsDarkHoverColor;
@@ -1266,7 +1232,9 @@ public class TrackerGUI
 		// Colors
 		headerBGColor = new Color(50, 50, 50);
 		titleFontColor = new Color(255, 255, 255);
-		setsColor = new Color(240, 200, 95);
+		setsColor = new Color(240, 215, 105);
+		setsHoverColor = new Color(240, 200, 95);
+		setsSelectedColor = new Color(220, 170, 85);
 		yearsColor = new Color(245, 220, 160);
 		buttonsHoverColor = new Color(75, 75, 75);
 		buttonsDarkHoverColor = new Color(225, 225, 225);
@@ -1291,9 +1259,9 @@ public class TrackerGUI
 		goblinsColor = new Color(220, 95, 10);
 		
 		// Fonts
-		titleFont = new Font("Comic Sans MS", Font.BOLD, 42);
-		modesFont = new Font("Comic Sans MS", Font.BOLD, 32);
-		yearsFont = new Font("Comic Sans MS", Font.BOLD, 28);
+		titleFont = new Font("Comic Sans MS", Font.BOLD, 36);
+		modesFont = new Font("Comic Sans MS", Font.BOLD, 30);
+		yearsFont = new Font("Comic Sans MS", Font.BOLD, 26);
 		incrementFieldFont = new Font("Comic Sans MS", Font.PLAIN, 24);
 		buttonsTextFont = new Font("Comic Sans MS", Font.BOLD, 22);
 		addButtonTextFont = new Font("Arial Black", Font.BOLD, 32);
@@ -1322,11 +1290,14 @@ public class TrackerGUI
 		standardImage = imageURLReader(standardImageURL, standardImagePath);
 		wildImage = imageURLReader(wildImageURL, wildImagePath);
 		
-		// "Show wild" toggle button
-		showWildUnselectedIcon = imageURLReader(showWildUnselectedIconURL, showWildUnselectedIconPath);
-		showWildSelectedIcon = imageURLReader(showWildSelectedIconURL,showWildSelectedIconPath);
-		showWildUnselectedHoverIcon = imageURLReader(showWildUnselectedHoverIconURL, showWildUnselectedHoverIconPath);
-		showWildSelectedHoverIcon = imageURLReader(showWildSelectedHoverIconURL, showWildSelectedHoverIconPath);
+		// Years shortcut buttons images
+		gryphonShortcutImage = imageURLReader(gryphonShortcutImageURL, gryphonShortcutImagePath);
+		phoenixShortcutImage = imageURLReader(phoenixShortcutImageURL, phoenixShortcutImagePath);
+		dragonShortcutImage = imageURLReader(dragonShortcutImageURL, dragonShortcutImagePath);
+		ravenShortcutImage = imageURLReader(ravenShortcutImageURL, ravenShortcutImagePath);
+		mammothShortcutImage = imageURLReader(mammothShortcutImageURL, mammothShortcutImagePath);
+		krakenShortcutImage = imageURLReader(krakenShortcutImageURL, krakenShortcutImagePath);
+		classicSetsShortcutImage = imageURLReader(classicSetsShortcutImageURL, classicSetsShortcutImagePath);
 		
 		// Years images
 		gryphonImage = imageURLReader(gryphonImageURL, gryphonImagePath);
@@ -1401,6 +1372,10 @@ public class TrackerGUI
 	// Tracker window components creator
 	private void createWindowComponents() 
 	{
+		// Tracker Window Content panel
+		trackerWindowContentPanel = new JPanel();
+		trackerWindowContentPanel.setLayout(new BoxLayout(trackerWindowContentPanel, BoxLayout.Y_AXIS));
+		
 		// Tracker panel
 		trackerPanel = new ScrollablePanel();
 		trackerPanel.setScrollableWidth(ScrollablePanel.ScrollableSizeHint.FIT);
@@ -1409,15 +1384,38 @@ public class TrackerGUI
 		// Tracker header
 		createHeader();
 		
+		// Modes buttons panel
+		createModeButtonsPanel();
+		
+		// Years shortcut buttons panels
+		createStandardYearsShortcutButtonsPanel();
+		createWildYearsShortcutButtonsPanel();
+		
 		// Game Modes sets panels
 		createStandardPanel();
 		createWildPanel();
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				trackerPanel.add(trackerHeader);
 				trackerPanel.add(standard);
 				trackerPanel.add(wild);
+			}
+		});
+		
+		// Window Scroll Bar
+		trackerPanelScrollBar = new JScrollPane(trackerPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		trackerPanelScrollBar.getVerticalScrollBar().setUnitIncrement(25);
+		trackerPanelScrollBar.setBorder(BorderFactory.createEmptyBorder());
+		trackerPanelScrollBar.getVerticalScrollBar().setValue(0);
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				trackerWindowContentPanel.add(trackerHeader);
+				trackerWindowContentPanel.add(modeButtonsPanel);
+				trackerWindowContentPanel.add(standardYearsShortcutsPanel);
+				trackerWindowContentPanel.add(wildYearsShortcutsPanel);
+				wildYearsShortcutsPanel.setVisible(false);
+				trackerWindowContentPanel.add(trackerPanelScrollBar);
 			}
 		});
 	}
@@ -1432,7 +1430,7 @@ public class TrackerGUI
 		// "Help" button panel
 		helpButtonPanel = new JPanel();
 		helpButtonPanel.setBackground(headerBGColor);
-		helpButtonPanel.setBorder(new EmptyBorder(15, 20, 0, 0));
+		helpButtonPanel.setBorder(new EmptyBorder(10, 15, 0, 0));
 		
 		// "Help" button
 		help = new JButton("");
@@ -1462,17 +1460,17 @@ public class TrackerGUI
 		
 		// Title image
 		headerImageLabel = new JLabel(new ImageIcon(headerImage));
-		headerImageLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		headerImageLabel.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		// Title
 		headerTitle = new JLabel(headerTitleText);
 		headerTitle.setFont(titleFont);
 		headerTitle.setForeground(titleFontColor);
-		headerTitle.setBorder(new EmptyBorder(5, 5, 5, 5));
+		headerTitle.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		// Title image #2
 		headerImageTwoLabel = new JLabel(new ImageIcon(headerImage));
-		headerImageTwoLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		headerImageTwoLabel.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		headerTitlePanel.add(headerImageLabel);
 		headerTitlePanel.add(headerTitle);
@@ -1481,7 +1479,7 @@ public class TrackerGUI
 		// "Show save file" button panel
 		showSaveButtonPanel = new JPanel();
 		showSaveButtonPanel.setBackground(headerBGColor);
-		showSaveButtonPanel.setBorder(new EmptyBorder(15, 0, 0, 20));
+		showSaveButtonPanel.setBorder(new EmptyBorder(10, 0, 0, 15));
 		
 		// "Show save file" button
 		showSaveFileFolder = new JButton("");
@@ -1514,6 +1512,123 @@ public class TrackerGUI
 		});
 	}
 	
+	// Mode buttons panel creator
+	private void createModeButtonsPanel() 
+	{
+		// Mode buttons panel
+		modeButtonsPanel = new JPanel(new GridLayout(1, 2, 0, 0));
+		modeButtonsPanel.setBackground(setsColor);
+		
+		// "Standard" sets button
+		standardButton = new ModeButton(" " + standardTitle, modesFont);
+		standardButton.setIcon(new ImageIcon(standardImage));
+		standardButton.setToolTipText(standardButtonToolTipText);
+		standardButton.setBackground(setsSelectedColor);
+		standardButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			@Override
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+				standardButton.setBackground(setsSelectedColor);
+		    }
+			
+		    @Override
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	standardButton.setBackground(setsSelectedColor);
+		    }
+		});
+		
+		// "Wild" sets button
+		wildButton = new ModeButton(" " + wildTitle, modesFont);
+		wildButton.setIcon(new ImageIcon(wildImage));
+		wildButton.setToolTipText(wildButtonToolTipText);
+		wildButton.setBackground(setsColor);
+		wildButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			@Override
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+				wildButton.setBackground(setsHoverColor);
+		    }
+			
+		    @Override
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	wildButton.setBackground(setsColor);
+		    }
+		});
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				modeButtonsPanel.add(standardButton);
+				modeButtonsPanel.add(wildButton);
+			}
+		});
+	}
+	
+	// Standard Years shortcut buttons panel creator
+	private void createStandardYearsShortcutButtonsPanel() 
+	{
+		// Standard Years shortcut buttons panel
+		standardYearsShortcutsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 3));
+		standardYearsShortcutsPanel.setBackground(setsSelectedColor);
+		
+		// "Year of the Gryphon" shortcut button
+		gryphonShortcut = new ShortcutButton(setsSelectedColor, setsColor);
+		gryphonShortcut.setIcon(new ImageIcon(gryphonShortcutImage));
+		gryphonShortcut.setToolTipText(gryphonShortcutToolTipText);
+		
+		// "Year of the Phoenix" shortcut button
+		phoenixShortcut = new ShortcutButton(setsSelectedColor, setsColor);
+		phoenixShortcut.setIcon(new ImageIcon(phoenixShortcutImage));
+		phoenixShortcut.setToolTipText(phoenixShortcutToolTipText);
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				standardYearsShortcutsPanel.add(gryphonShortcut);
+				standardYearsShortcutsPanel.add(phoenixShortcut);
+			}
+		});
+	}
+	
+	// Wild Years shortcut buttons panel creator
+	private void createWildYearsShortcutButtonsPanel() 
+	{
+		// Standard Years shortcut buttons panel
+		wildYearsShortcutsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 3));
+		wildYearsShortcutsPanel.setBackground(setsSelectedColor);
+		
+		// "Year of the Dragon" shortcut button
+		dragonShortcut = new ShortcutButton(setsSelectedColor, setsColor);
+		dragonShortcut.setIcon(new ImageIcon(dragonShortcutImage));
+		dragonShortcut.setToolTipText(dragonShortcutToolTipText);
+		
+		// "Year of the Raven" shortcut button
+		ravenShortcut = new ShortcutButton(setsSelectedColor, setsColor);
+		ravenShortcut.setIcon(new ImageIcon(ravenShortcutImage));
+		ravenShortcut.setToolTipText(ravenShortcutToolTipText);
+		
+		// "Year of the Mammoth" shortcut button
+		mammothShortcut = new ShortcutButton(setsSelectedColor, setsColor);
+		mammothShortcut.setIcon(new ImageIcon(mammothShortcutImage));
+		mammothShortcut.setToolTipText(mammothShortcutToolTipText);
+		
+		// "Year of the Kraken" shortcut button
+		krakenShortcut = new ShortcutButton(setsSelectedColor, setsColor);
+		krakenShortcut.setIcon(new ImageIcon(krakenShortcutImage));
+		krakenShortcut.setToolTipText(krakenShortcutToolTipText);
+		
+		// "Classic Sets" shortcut button
+		classicSetsShortcut = new ShortcutButton(setsSelectedColor, setsColor);
+		classicSetsShortcut.setIcon(new ImageIcon(classicSetsShortcutImage));
+		classicSetsShortcut.setToolTipText(classicSetsShortcutToolTipText);
+		
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				wildYearsShortcutsPanel.add(dragonShortcut);
+				wildYearsShortcutsPanel.add(ravenShortcut);
+				wildYearsShortcutsPanel.add(mammothShortcut);
+				wildYearsShortcutsPanel.add(krakenShortcut);
+				wildYearsShortcutsPanel.add(classicSetsShortcut);
+			}
+		});
+	}
+	
 	// "Standard" sets panel creator
 	private void createStandardPanel() 
 	{
@@ -1521,27 +1636,12 @@ public class TrackerGUI
 		standard = new JPanel();
 		standard.setLayout(new BoxLayout(standard, BoxLayout.Y_AXIS));
 		
-		// "Standard" sets title header
-		standardHeader = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		standardHeader.setBackground(setsColor);
-		
-		standardImageLabel = new JLabel(new ImageIcon(standardImage));
-		standardImageLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
-		standardLabel = new JLabel(standardTitle);
-		standardLabel.setFont(modesFont);
-		standardLabel.setBorder(new EmptyBorder(5, 10, 5, 5));
-		
-		standardHeader.add(standardImageLabel);
-		standardHeader.add(standardLabel);
-		
 		// "Standard" sets panels
 		createYearOfTheGryphonPanel();
 		createYearOfThePhoenixPanel();
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				standard.add(standardHeader);
 				standard.add(gryphon);
 				standard.add(phoenix);
 			}
@@ -1555,43 +1655,6 @@ public class TrackerGUI
 		wild = new JPanel();
 		wild.setLayout(new BoxLayout(wild, BoxLayout.Y_AXIS));
 		
-		// "Wild" sets title header
-		wildHeader = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		wildHeader.setBackground(setsColor);
-		
-		wildImageLabel = new JLabel(new ImageIcon(wildImage));
-		wildImageLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
-		wildLabel = new JLabel(wildTitle);
-		wildLabel.setFont(modesFont);
-		wildLabel.setBorder(new EmptyBorder(5, 10, 5, 20));
-		
-		// "Show wild" toggle button
-		showWild = new JCheckBox();
-		showWild.setIcon(new ImageIcon(showWildUnselectedIcon));
-		showWild.setSelectedIcon(new ImageIcon(showWildSelectedIcon));
-		showWild.setBackground(setsColor);
-		showWild.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-		showWild.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		showWild.setToolTipText(showWildToolTipText);
-		showWild.addMouseListener(new java.awt.event.MouseAdapter() {
-			@Override
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-				showWild.setIcon(new ImageIcon(showWildUnselectedHoverIcon));
-				showWild.setSelectedIcon(new ImageIcon(showWildSelectedHoverIcon));
-		    }
-		    
-		    @Override
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	showWild.setIcon(new ImageIcon(showWildUnselectedIcon));
-				showWild.setSelectedIcon(new ImageIcon(showWildSelectedIcon));
-		    }
-		});
-		
-		wildHeader.add(wildImageLabel);
-		wildHeader.add(wildLabel);
-		wildHeader.add(showWild);
-		
 		// "Wild" sets panels
 		createYearOfTheDragonPanel();
 		createYearOfTheRavenPanel();
@@ -1601,12 +1664,13 @@ public class TrackerGUI
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				wild.add(wildHeader);
 				wild.add(dragon);
 				wild.add(raven);
 				wild.add(mammoth);
 				wild.add(kraken);
 				wild.add(classicSets);
+				
+				wild.setVisible(false);
 			}
 		});
 	}
@@ -1623,7 +1687,7 @@ public class TrackerGUI
 		gryphonHeader.setBackground(yearsColor);
 		
 		gryphonImageLabel = new JLabel(new ImageIcon(gryphonImage));
-		gryphonImageLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		gryphonImageLabel.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		gryphonLabel = new JLabel(gryphonTitle);
 		gryphonLabel.setFont(yearsFont);
@@ -1871,7 +1935,7 @@ public class TrackerGUI
 		phoenixHeader.setBackground(yearsColor);
 		
 		phoenixImageLabel = new JLabel(new ImageIcon(phoenixImage));
-		phoenixImageLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		phoenixImageLabel.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		phoenixLabel = new JLabel(phoenixTitle);
 		phoenixLabel.setFont(yearsFont);
@@ -2547,7 +2611,7 @@ public class TrackerGUI
 		dragonHeader.setBackground(yearsColor);
 		
 		dragonImageLabel = new JLabel(new ImageIcon(dragonImage));
-		dragonImageLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		dragonImageLabel.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		dragonLabel = new JLabel(dragonTitle);
 		dragonLabel.setFont(yearsFont);
@@ -2567,8 +2631,6 @@ public class TrackerGUI
 				dragon.add(dragons);
 				dragon.add(uldum);
 				dragon.add(shadows);
-				
-				dragon.setVisible(false);
 			}
 		});
 	}
@@ -3217,7 +3279,7 @@ public class TrackerGUI
 		ravenHeader.setBackground(yearsColor);
 		
 		ravenImageLabel = new JLabel(new ImageIcon(ravenImage));
-		ravenImageLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		ravenImageLabel.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		ravenLabel = new JLabel(ravenTitle);
 		ravenLabel.setFont(yearsFont);
@@ -3237,8 +3299,6 @@ public class TrackerGUI
 				raven.add(rumble);
 				raven.add(boomsday);
 				raven.add(witchwood);
-				
-				raven.setVisible(false);
 			}
 		});
 	}
@@ -3887,7 +3947,7 @@ public class TrackerGUI
 		mammothHeader.setBackground(yearsColor);
 		
 		mammothImageLabel = new JLabel(new ImageIcon(mammothImage));
-		mammothImageLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		mammothImageLabel.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		mammothLabel = new JLabel(mammothTitle);
 		mammothLabel.setFont(yearsFont);
@@ -3907,8 +3967,6 @@ public class TrackerGUI
 				mammoth.add(kobolds);
 				mammoth.add(knights);
 				mammoth.add(ungoro);
-				
-				mammoth.setVisible(false);
 			}
 		});
 	}
@@ -4549,7 +4607,7 @@ public class TrackerGUI
 		krakenHeader.setBackground(yearsColor);
 		
 		krakenImageLabel = new JLabel(new ImageIcon(krakenImage));
-		krakenImageLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		krakenImageLabel.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		krakenLabel = new JLabel(krakenTitle);
 		krakenLabel.setFont(yearsFont);
@@ -4567,8 +4625,6 @@ public class TrackerGUI
 				kraken.add(krakenHeader);
 				kraken.add(gadgetzan);
 				kraken.add(oldGods);
-				
-				kraken.setVisible(false);
 			}
 		});
 	}
@@ -5001,7 +5057,7 @@ public class TrackerGUI
 		classicSetsHeader.setBackground(yearsColor);
 		
 		classicSetsImageLabel = new JLabel(new ImageIcon(classicSetsImage));
-		classicSetsImageLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		classicSetsImageLabel.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		classicSetsLabel = new JLabel(classicSetsTitle);
 		classicSetsLabel.setFont(yearsFont);
@@ -5021,8 +5077,6 @@ public class TrackerGUI
 				classicSets.add(tournament);
 				classicSets.add(goblins);
 				classicSets.add(classic);
-				
-				classicSets.setVisible(false);
 			}
 		});
 	}
@@ -5804,9 +5858,16 @@ public class TrackerGUI
 		field.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 	}
 	
-	public ScrollablePanel getTrackerPanel() 
+	// Returns the tracker window content panel
+	public JPanel getTrackerWindowContentPanel() 
 	{
-		return trackerPanel;
+		return trackerWindowContentPanel;
+	}
+	
+	// Returns the tracker panel scroll bar
+	public JScrollPane getTrackerPanelScrollBar() 
+	{
+		return trackerPanelScrollBar;
 	}
 	
 	// Returns the "Help" button
@@ -5821,10 +5882,82 @@ public class TrackerGUI
 		return showSaveFileFolder;
 	}
 	
-	// Returns the "Wild sets" toggle button
-	public JCheckBox getShowWild() 
+	// Returns the "Standard sets" button
+	public JButton getStandardButton() 
 	{
-		return showWild;
+		return standardButton;
+	}
+	
+	// Returns the "Wild sets" button
+	public JButton getWildButton() 
+	{
+		return wildButton;
+	}
+	
+	// Returns the Standard years shortcut buttons panel
+	public JPanel getStandardYearsShortcutsPanel() 
+	{
+		return standardYearsShortcutsPanel;
+	}
+	
+	// Returns the Wild years shortcut buttons panel
+	public JPanel getWildYearsShortcutsPanel() 
+	{
+		return wildYearsShortcutsPanel;
+	}
+	
+	// Returns the "Year of the Gryphon" shortcut button
+	public JButton getGryphonShortcut() 
+	{
+		return gryphonShortcut;
+	}
+	
+	// Returns the "Year of the Phoenix" shortcut button
+	public JButton getPhoenixShortcut() 
+	{
+		return phoenixShortcut;
+	}
+	
+	// Returns the "Year of the Dragon" shortcut button
+	public JButton getDragonShortcut() 
+	{
+		return dragonShortcut;
+	}
+	
+	// Returns the "Year of the Raven" shortcut button
+	public JButton getRavenShortcut() 
+	{
+		return ravenShortcut;
+	}
+	
+	// Returns the "Year of the Mammoth" shortcut button
+	public JButton getMammothShortcut() 
+	{
+		return mammothShortcut;
+	}
+	
+	// Returns the "Year of the Kraken" shortcut button
+	public JButton getKrakenShortcut() 
+	{
+		return krakenShortcut;
+	}
+	
+	// Returns the "Classic Sets" shortcut button
+	public JButton getClassicSetsShortcut() 
+	{
+		return classicSetsShortcut;
+	}
+	
+	// Returns the "Standard Sets" panel
+	public JPanel getStandard() 
+	{
+		return standard;
+	}
+	
+	// Returns the "Wild Sets" panel
+	public JPanel getWild() 
+	{
+		return wild;
 	}
 	
 	// Returns the "Year of the Gryphon" panel

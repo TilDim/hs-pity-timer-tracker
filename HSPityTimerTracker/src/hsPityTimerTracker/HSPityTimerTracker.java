@@ -11,6 +11,7 @@ import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -28,8 +29,8 @@ import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -57,8 +58,7 @@ public class HSPityTimerTracker implements ActionListener
 	private static JFrame trackerWindow;
 	private static Container contentPane;
 	private static TrackerGUI tracker;
-	private static JScrollPane trackerWindowScrollBar;
-	private static ScrollablePanel trackerPanel;
+	private static JPanel trackerWindowContentPanel;
 	
 	// Tracker Window title
 	private final static String trackerTitle = "Hearthstone Pity Timer Tracker";
@@ -81,7 +81,7 @@ public class HSPityTimerTracker implements ActionListener
 	// Base text (The text written in the save file when it is created for the first time)
 	private final String baseText = "(WARNING! DO NOT MODIFY THIS FILE BY YOURSELF OR THE PROGRAM MIGHT NOT WORK PROPERLY)" + nextLine + 
 			nextLine + 
-			"~ Hearthstone Packs Counter ~" + nextLine + 
+			"~ Hearthstone Pity Timer Tracker ~" + nextLine + 
 			nextLine + 
 			"- Expansions" + nextLine + 
 			"Forged in the Barrens" + nextLine + 
@@ -220,31 +220,37 @@ public class HSPityTimerTracker implements ActionListener
 	private SimpleAttributeSet set;
 	
 	// "Help" pop-up window
-	private JScrollPane helpPanel;
+	private JPanel helpPanel;
+	private JScrollPane helpMessagePanel;
 	private final String helpTitle = "Help";
+	private JTextPane helpMessageTitle;
 	private JTextPane helpMessage;
-	private final String helpMessageTextTitle = "Hearthstone Pity Timer Tracker" + nextLine + nextLine;
+	private final String helpMessageTitleText = "Hearthstone Pity Timer Tracker" + nextLine;
 	private final String helpMessageText = "What is a pity timer?" + nextLine
 			+ "When you open card packs in Hearthstone, you are guaranteed to find an epic card within 10 packs and a legendary one within 40. "
 			+ "This is called a pity timer and there is one for each expansion." + nextLine + nextLine
 			+ "This program has a pity timer tracker for both epic and legendary cards of every expansion "
-			+ "and a total pack counter for each expansion to keep track of how many packs you open." + nextLine + nextLine
+			+ "and a total card packs counter for each expansion to keep track of how many packs you have opened." + nextLine + nextLine
 			+ "How it works:" + nextLine + nextLine
 			+ "For each expansion there is a dedicated panel containing:" + nextLine
-			+ "1) The icon of the expansion, which is a link to the expansion's official website (except 'Clsssic')" + nextLine
-			+ "2) A pity timer tracker for epic cards with buttons to modify the tracker and a label displaying the probability of finding an epic card in the next pack" + nextLine
+			+ "1) The icon of the expansion, which is a link to the expansion's official webpage (except 'Classic')" + nextLine
+			+ "2) A pity timer tracker for epic cards with buttons to modify the tracker "
+			+ "and a label displaying the probability of finding an epic card in the next pack" + nextLine
 			+ "3) A pity timer tracker for legendary cards with buttons to modify the tracker "
-			+ "and a label displaying the probability of finding an epic legendary in the next pack" + nextLine
-			+ "4) A total pack counter with buttons and fields to modify it "
-			+ "and four buttons, each one being a link to the 'Common', 'Rare', 'Epic' and 'Legendary' cards of the expansion respectively" + nextLine + nextLine
-			+ "'Wild' sets' panels are hidden by default. In order to view them, you must press the arrow button next to the 'Wild' sets label. "
-			+ "This button toggles between showing and hiding the 'Wild' sets." + nextLine + nextLine
-			+ "Every number on the tracker (timers, probabilities, totals) is stored in a file located in the 'Documents' folder "
-			+ "and you can find it directly by pressing the folder icon on the top right, next to the title." + nextLine
+			+ "and a label displaying the probability of finding a legendary card in the next pack" + nextLine
+			+ "4) A total card packs counter with buttons and fields to modify the counter "
+			+ "and four buttons, each one being a link to the expansion's 'Common', 'Rare', 'Epic' and 'Legendary' cards webpage respectively" + nextLine + nextLine
+			+ "'Wild' sets are hidden by default. You can switch between 'Standard' and 'Wild' sets by pressing the 'Standard Sets' and 'Wild Sets' "
+			+ "buttons respectively." + nextLine
+			+ "Whenever either of these buttons is pressed, some buttons corresponding to the Hearthstone years will be displayed. "
+			+ "These buttons work as shortcuts and when you press them, you are instantly shown the respective year's expansions. "
+			+ "(This is especially helpful in 'Wild', where there are many more sets and it takes a bit longer to navigate through the panels.)"  + nextLine + nextLine
+			+ "Every number on the tracker (pity timers, probabilities, pack totals) is stored in a file located in the 'Documents' folder "
+			+ "and you can access it directly by pressing the folder icon on the top right." + nextLine
 			+ "If you want to back up the data of your tracker or move it to another system, just copy this file." + nextLine
 			+ "It is also very important to keep a back-up of this file in another folder on your system in case the file is overwritten improperly "
 			+ "when a newer version of the program is executed for the first time. This is a rare case, but it could happen due to a bug "
-			+ "or a change in the structure of the file. In the latter case, you will be noticed in time." + nextLine
+			+ "or a change in the structure of the file. In the latter case, you will be notified in time." + nextLine
 			+ "(Warning! Do not modify this file by yourself or the program might not work properly. For this reason, the file is in read-only mode.)" + nextLine + nextLine
 			+ "More details on the modify buttons and fields:" + nextLine
 			+ "Reset:   Sets the tracker value to '0'" + nextLine
@@ -253,10 +259,10 @@ public class HSPityTimerTracker implements ActionListener
 			+ "Modify:   Opens a pop-up window in which you can enter the number of packs you have opened manually" + nextLine
 			+ "               (it does not add to the counter, it sets the counter value to the input number)" + nextLine + nextLine
 			+ "Note: " + nextLine
-			+ "The probability of finding an epic or a legendary card in the next pack is not calculated based on statistical data from Blizzard or other users, "
-			+ "so it might not be very accurate. " + nextLine
-			+ "It is just the result of this formula: 1 / (pity - counter) * 100, " + nextLine
-			+ "where pity is the pity timer and counter the number packs currently opened. " + nextLine
+			+ "The probability of finding an epic or a legendary card in the next pack is not calculated based on statistical data from Hearthstone or other users, "
+			+ "so it might not be so accurate. " + nextLine
+			+ "It is just the result of this probability formula: 1 / (pity - counter) * 100, " + nextLine
+			+ "where pity is the pity timer and counter the number of packs currently opened. " + nextLine
 			+ "For example, if you have opened 6 packs and have not found a legendary card, the probability of finding one in the next pack is "
 			+ "1 / (40 - 6) * 100 = 2.94%." + nextLine + nextLine
 			+ "Created by: Tilemachos D                                                                                                    October 2020";
@@ -271,7 +277,7 @@ public class HSPityTimerTracker implements ActionListener
 	
 	// Modify pop-up window
 	private JTextPane modifyWindow;
-	private final String modifyWindowText = "Total amount of packs opened:";
+	private final String modifyWindowText = "Total amount of card packs opened:";
 	private String modifyValue;
 	
 	// "Help" button
@@ -280,15 +286,42 @@ public class HSPityTimerTracker implements ActionListener
 	// "Show save file" button
 	private JButton showSaveFileFolder;
 	
-	// "Wild sets" toggle button
-	private JCheckBox toggleWild;
+	// Game Modes switch buttons
+	private JButton standardButton;
+	private JButton wildButton;
 	
-	// Wild sets panels
+	// Mode buttons colors
+	private Color setsColor;
+	private Color setsHoverColor;
+	private Color setsSelectedColor;
+	
+	// Years shortcut buttons panels
+	private JPanel standardYearsShortcutsPanel;
+	private JPanel wildYearsShortcutsPanel;
+	
+	// Years shortcut buttons
+	ArrayList<JButton> shortcutButtons;
+	
+	private JButton gryphonShortcut;
+	private JButton phoenixShortcut;
+	private JButton dragonShortcut;
+	private JButton ravenShortcut;
+	private JButton mammothShortcut;
+	private JButton krakenShortcut;
+	private JButton classicSetsShortcut;
+	
+	// Mode panels
+	private JPanel standard;
+	private JPanel wild;
+	
+	// Years panels
+	private JPanel gryphon;
+	private JPanel phoenix;
 	private JPanel dragon;
 	private JPanel raven;
 	private JPanel mammoth;
 	private JPanel kraken;
-	private JPanel classicSets;	
+	private JPanel classicSets;
 	
 	// Expansions image buttons
 	ArrayList<JButton> imageButtons;
@@ -908,9 +941,14 @@ public class HSPityTimerTracker implements ActionListener
 		nf = new DecimalFormat("##.##");
 		
 		// Pop-up windows background color
-		popUpColor = new Color(235, 235, 235);
-		UIManager.put("OptionPane.background", popUpColor);
-		UIManager.put("Panel.background", popUpColor);
+		popUpColor = new Color(240, 240, 240);
+		// Modify pop-up window text field font
+		UIManager.put("TextField.font", new Font("Comic Sans MS", Font.PLAIN, 20));
+		
+		// Game Mode buttons colors
+		setsColor = new Color(240, 215, 105);
+		setsHoverColor = new Color(240, 200, 95);
+		setsSelectedColor = new Color(220, 170, 85);
 		
 		// Help pop-up window
 		createHelpPopUpWindow(popUpColor);
@@ -1099,17 +1137,30 @@ public class HSPityTimerTracker implements ActionListener
 	// "Help" pop-up window
 	private void createHelpPopUpWindow(Color backgroundColor) 
 	{
-		helpMessage = new JTextPane();
-		doc = helpMessage.getStyledDocument();
+		helpPanel = new JPanel();
+		helpPanel.setLayout(new BoxLayout(helpPanel, BoxLayout.Y_AXIS));
+		
+		helpMessageTitle = new JTextPane();
+		doc = helpMessageTitle.getStyledDocument();
 		set = new SimpleAttributeSet();
 		StyleConstants.setBold(set, true);
 		StyleConstants.setFontSize(set, 24);
-		helpMessage.setCharacterAttributes(set, true);
+		StyleConstants.setFontFamily(set, "Comic Sans MS");
+		StyleConstants.setAlignment(set, StyleConstants.ALIGN_CENTER);
+		helpMessageTitle.setCharacterAttributes(set, true);
 		try {
-			doc.insertString(doc.getLength(), helpMessageTextTitle, set);
+			doc.insertString(doc.getLength(), helpMessageTitleText, set);
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
+		doc.setParagraphAttributes(0, doc.getLength(), set, false);
+		
+		helpMessageTitle.setBackground(backgroundColor);
+		helpMessageTitle.setEditable(false);
+		helpMessageTitle.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+		
+		helpMessage = new JTextPane();
+		doc = helpMessage.getStyledDocument();
 		set = new SimpleAttributeSet();
 		StyleConstants.setFontSize(set, 18);
 		StyleConstants.setFontFamily(set, "Comic Sans MS");
@@ -1126,10 +1177,13 @@ public class HSPityTimerTracker implements ActionListener
 		helpMessage.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 		
 		// "Help" pop-up window scroll bar
-		helpPanel = new JScrollPane(helpMessage);
-		helpPanel.getVerticalScrollBar().setUnitIncrement(15);
-		helpPanel.setPreferredSize(new Dimension(900, 500));
-		helpPanel.setBorder(BorderFactory.createEmptyBorder());
+		helpMessagePanel = new JScrollPane(helpMessage);
+		helpMessagePanel.getVerticalScrollBar().setUnitIncrement(15);
+		helpMessagePanel.setPreferredSize(new Dimension(900, 450));
+		helpMessagePanel.setBorder(BorderFactory.createEmptyBorder());
+		
+		helpPanel.add(helpMessageTitle);
+		helpPanel.add(helpMessagePanel);
 	}
 	
 	// Input error pop-up window
@@ -1167,7 +1221,6 @@ public class HSPityTimerTracker implements ActionListener
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
-		
 		doc.setParagraphAttributes(0, doc.getLength(), set, false);
 		
 		modifyWindow.setBackground(backgroundColor);
@@ -1301,8 +1354,24 @@ public class HSPityTimerTracker implements ActionListener
 		// "Show save file" button
 		showSaveFileFolder = tracker.getShowSaveFileFolder();
 		
-		// "Wild sets" toggle button
-		toggleWild = tracker.getShowWild();
+		// Game Mode buttons
+		standardButton = tracker.getStandardButton();
+		wildButton = tracker.getWildButton();
+		
+		// Years shortcut buttons panels
+		standardYearsShortcutsPanel = tracker.getStandardYearsShortcutsPanel();
+		wildYearsShortcutsPanel = tracker.getWildYearsShortcutsPanel();
+		
+		// Years shortcut buttons
+		shortcutButtonsInitialization();
+		
+		// Mode panels
+		standard = tracker.getStandard();
+		wild = tracker.getWild();
+		
+		// Standard sets
+		gryphon = tracker.getYearOfTheGryphon();
+		phoenix = tracker.getYearOfThePhoenix();
 		
 		// Wild sets
 		dragon = tracker.getYearOfTheDragon();
@@ -1387,6 +1456,29 @@ public class HSPityTimerTracker implements ActionListener
 		imageButtonsUrls.add(scholomanceUrl);
 		imageButtonsUrls.add(darkmoonUrl);
 		imageButtonsUrls.add(barrensUrl);
+	}
+	
+	// Initializes the Years shortcut buttons
+	private void shortcutButtonsInitialization() 
+	{
+		// Years shortcut buttons
+		shortcutButtons = new ArrayList<JButton>();
+		
+		gryphonShortcut = tracker.getGryphonShortcut();
+		phoenixShortcut = tracker.getPhoenixShortcut();
+		dragonShortcut = tracker.getDragonShortcut();
+		ravenShortcut = tracker.getRavenShortcut();
+		mammothShortcut = tracker.getMammothShortcut();
+		krakenShortcut = tracker.getKrakenShortcut();
+		classicSetsShortcut = tracker.getClassicSetsShortcut();
+		
+		shortcutButtons.add(classicSetsShortcut);
+		shortcutButtons.add(krakenShortcut);
+		shortcutButtons.add(mammothShortcut);
+		shortcutButtons.add(ravenShortcut);
+		shortcutButtons.add(dragonShortcut);
+		shortcutButtons.add(phoenixShortcut);
+		shortcutButtons.add(gryphonShortcut);
 	}
 	
 	// Initializes the counters
@@ -2171,8 +2263,18 @@ public class HSPityTimerTracker implements ActionListener
 		// "Show save file" button
 		showSaveFileFolder.addActionListener(this);
 		
-		// "Wild sets" toggle button
-		toggleWild.addActionListener(this);
+		// Game Modes button
+		standardButton.addActionListener(this);
+		wildButton.addActionListener(this);
+		
+		// Years shortcut buttons
+		gryphonShortcut.addActionListener(this);
+		phoenixShortcut.addActionListener(this);
+		dragonShortcut.addActionListener(this);
+		ravenShortcut.addActionListener(this);
+		mammothShortcut.addActionListener(this);
+		krakenShortcut.addActionListener(this);
+		classicSetsShortcut.addActionListener(this);
 		
 		// Expansions image buttons
 		for (int i = 0; i < imageButtons.size(); i++) {
@@ -2247,13 +2349,18 @@ public class HSPityTimerTracker implements ActionListener
 			}
 		}
 		
-		// "Wild sets" show button
-		if (e.getSource() == toggleWild && toggleWild.isSelected())
-			showWildAction();
+		// Game Modes buttons
+		if (e.getSource() == standardButton) 
+			standardAction();
 		
-		// "Wild sets" hide button
-		if (e.getSource() == toggleWild && !toggleWild.isSelected())
-			hideWildAction();
+		if (e.getSource() == wildButton) 
+			wildAction();
+		
+		// Years shortcut buttons
+		for (int i = 0; i < shortcutButtons.size(); i++) {
+			if (e.getSource() == shortcutButtons.get(i))
+				shortcutButtonAction(i);
+		}
 		
 		// Image buttons
 		for (int i = 0; i < imageButtons.size(); i++) {
@@ -2322,28 +2429,136 @@ public class HSPityTimerTracker implements ActionListener
 		}
 	}
 	
-	// Action performed when the "Wild sets" toggle button is pressed while not selected
-	private void showWildAction() 
+	// Action performed when the "Standard sets" button is pressed
+	private void standardAction() 
 	{
-		toggleWild.setToolTipText("Hide Wild Sets");
+		// Show Standard sets
+		standard.setVisible(true);
 		
-		dragon.setVisible(true);
-		raven.setVisible(true);
-		mammoth.setVisible(true);
-		kraken.setVisible(true);
-		classicSets.setVisible(true);
+		// Hide Wild sets
+		wild.setVisible(false);
+		
+		// Selected Mode button customization
+		standardButton.setBackground(setsSelectedColor);
+		standardButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			@Override
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+				standardButton.setBackground(setsSelectedColor);
+		    }
+			
+		    @Override
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	standardButton.setBackground(setsSelectedColor);
+		    }
+		});
+		
+		// Unselected Mode button customization
+		wildButton.setBackground(setsColor);
+		wildButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			@Override
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+				wildButton.setBackground(setsHoverColor);
+		    }
+			
+		    @Override
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	wildButton.setBackground(setsColor);
+		    }
+		});
+		
+		// Show Standard Years shortcut buttons panel
+		standardYearsShortcutsPanel.setVisible(true);
+		// Hide Wild Years shortcut buttons panel
+		wildYearsShortcutsPanel.setVisible(false);
+		
+		// Move the scrollbar to the top
+		tracker.getTrackerPanelScrollBar().getVerticalScrollBar().setValue(0);
 	}
 	
-	// Action performed when the "Wild sets" toggle button is pressed while selected
-	private void hideWildAction() 
+	// Action performed when the "Wild sets" button is pressed
+	private void wildAction() 
 	{
-		toggleWild.setToolTipText("Show Wild Sets");
+		// Hide Standard sets
+		standard.setVisible(false);
 		
-		dragon.setVisible(false);
-		raven.setVisible(false);
-		mammoth.setVisible(false);
-		kraken.setVisible(false);
-		classicSets.setVisible(false);
+		// Show Wild sets
+		wild.setVisible(true);
+		
+		// Unselected Mode button customization
+		standardButton.setBackground(setsColor);
+		standardButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			@Override
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+				standardButton.setBackground(setsHoverColor);
+		    }
+			
+		    @Override
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	standardButton.setBackground(setsColor);
+		    }
+		});
+		
+		// Selected Mode button customization
+		wildButton.setBackground(setsSelectedColor);
+		wildButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			@Override
+		    public void mouseEntered(java.awt.event.MouseEvent evt) {
+				wildButton.setBackground(setsSelectedColor);
+		    }
+			
+		    @Override
+		    public void mouseExited(java.awt.event.MouseEvent evt) {
+		    	wildButton.setBackground(setsSelectedColor);
+		    }
+		});
+		
+		// Hide Standard Years shortcut buttons panel
+		standardYearsShortcutsPanel.setVisible(false);
+		// Show Wild Years shortcut buttons panel
+		wildYearsShortcutsPanel.setVisible(true);
+		
+		// Move the scrollbar to the top
+		tracker.getTrackerPanelScrollBar().getVerticalScrollBar().setValue(0);
+	}
+	
+	// Action performed when a Year shortcut button is pressed
+	private void shortcutButtonAction(int index) 
+	{
+		// "Classic Sets" shortcut button
+		if (index == 0) {
+			// Move the scrollbar to the start of this year's panel
+			tracker.getTrackerPanelScrollBar().getVerticalScrollBar().setValue(classicSets.getY());
+		}
+		// "Year of the Kraken" shortcut button
+		else if (index == 1) {
+			// Move the scrollbar to the start of this year's panel
+			tracker.getTrackerPanelScrollBar().getVerticalScrollBar().setValue(kraken.getY());
+		}
+		// "Year of the Mammoth" shortcut button
+		else if (index == 2) {
+			// Move the scrollbar to the start of this year's panel
+			tracker.getTrackerPanelScrollBar().getVerticalScrollBar().setValue(mammoth.getY());
+		}
+		// "Year of the Raven" shortcut button
+		else if (index == 3) {
+			// Move the scrollbar to the start of this year's panel
+			tracker.getTrackerPanelScrollBar().getVerticalScrollBar().setValue(raven.getY());
+		}
+		// "Year of the Dragon" shortcut button
+		else if (index == 4) {
+			// Move the scrollbar to the start of this year's panel
+			tracker.getTrackerPanelScrollBar().getVerticalScrollBar().setValue(dragon.getY());
+		}
+		// "Year of the Phoenix" shortcut button
+		else if (index == 5) {
+			// Move the scrollbar to the start of this year's panel
+			tracker.getTrackerPanelScrollBar().getVerticalScrollBar().setValue(phoenix.getY());
+		}
+		// "Year of the Gryphon" shortcut button
+		else {
+			// Move the scrollbar to the start of this year's panel
+			tracker.getTrackerPanelScrollBar().getVerticalScrollBar().setValue(gryphon.getY());
+		}
 	}
 	
 	// Opens a link to a webpage
@@ -3526,7 +3741,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "Classic" total modify button
 		if (index == 0) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, classicTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				classicTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3538,7 +3753,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "Goblins vs Gnomes" total modify button
 		else if (index == 1) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, goblinsTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				goblinsTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3550,7 +3765,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "The Grand Tournament" total modify button
 		else if (index == 2) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, tournamentTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				tournamentTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3562,7 +3777,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "Whispers of the Old Gods" total modify button
 		else if (index == 3) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, oldGodsTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				oldGodsTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3574,7 +3789,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "Mean Streets of Gadzetzan" total modify button
 		else if (index == 4) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, gadgetzanTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				gadgetzanTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3586,7 +3801,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "Journey to Un'Goro" total modify button
 		else if (index == 5) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, ungoroTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				ungoroTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3598,7 +3813,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "Knights of the Frozen Throne" total modify button
 		else if (index == 6) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, knightsTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				knightsTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3610,7 +3825,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "Kobolds & Catacombs" total modify button
 		else if (index == 7) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, koboldsTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				koboldsTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3622,7 +3837,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "The Witchwood" total modify button
 		else if (index == 8) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, witchwoodTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				witchwoodTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3634,7 +3849,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "The Boomsday Project" total modify button
 		else if (index == 9) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, boomsdayTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				boomsdayTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3646,7 +3861,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "Rastakhan's Rumble" total modify button
 		else if (index == 10) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, rumbleTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				rumbleTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3658,7 +3873,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "Rise of Shadows" total modify button
 		else if (index == 11) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, shadowsTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				shadowsTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3670,7 +3885,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "Saviors of Uldum" total modify button
 		else if (index == 12) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, uldumTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				uldumTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3682,7 +3897,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "Descent of Dragons" total modify button
 		else if (index == 13) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, dragonsTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				dragonsTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3694,7 +3909,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "Ashes of Outland" total modify button
 		else if (index == 14) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, outlandTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				outlandTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3706,7 +3921,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "Scholomance Academy" total modify button
 		else if (index == 15) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, scholomanceTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				scholomanceTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3718,7 +3933,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "Madness at the Darkmoon Faire" total modify button
 		else if (index == 16) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, darkmoonTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				darkmoonTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3730,7 +3945,7 @@ public class HSPityTimerTracker implements ActionListener
 		// "Forged in the Barrens" total modify button
 		else {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, barrensTotalCounter);
-			if (isInteger(modifyValue)) 
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				barrensTotalCounter = Integer.valueOf(modifyValue);
 			else
 				java.awt.Toolkit.getDefaultToolkit().beep();
@@ -3902,7 +4117,7 @@ public class HSPityTimerTracker implements ActionListener
 		// Update the save file data with the new values
 		saveFileData = "(WARNING! DO NOT MODIFY THIS FILE BY YOURSELF OR THE PROGRAM MIGHT NOT WORK PROPERLY)" + nextLine + 
 				nextLine + 
-				"~ Hearthstone Packs Counter ~" + nextLine + 
+				"~ Hearthstone Pity Timer Tracker ~" + nextLine + 
 				nextLine + 
 				"- Expansions" + nextLine + 
 				"Forged in the Barrens" + nextLine + 
@@ -4056,7 +4271,7 @@ public class HSPityTimerTracker implements ActionListener
 				    e.printStackTrace();
 				}
 				trackerWindow.setIconImage(trackerIcon);
-				trackerWindow.setMinimumSize(new Dimension(1200, 475));
+				trackerWindow.setMinimumSize(new Dimension(1200, 530));
 				trackerWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				trackerWindow.setResizable(true);
 			}
@@ -4067,19 +4282,13 @@ public class HSPityTimerTracker implements ActionListener
 		// Tracker window components
 	    SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				trackerPanel = tracker.getTrackerPanel();
-				
-				// Window Scroll Bar
-				trackerWindowScrollBar = new JScrollPane(trackerPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-				trackerWindowScrollBar.getVerticalScrollBar().setUnitIncrement(25);
-				trackerWindowScrollBar.setBorder(BorderFactory.createEmptyBorder());
-				trackerWindowScrollBar.getVerticalScrollBar().setValue(0);
+				trackerWindowContentPanel = tracker.getTrackerWindowContentPanel();
 				
 				contentPane = trackerWindow.getContentPane();
-				contentPane.add(trackerWindowScrollBar);
+				contentPane.add(trackerWindowContentPanel);
 				
 				trackerWindow.pack();
-				trackerWindow.setSize(1300, 700);
+				trackerWindow.setSize(1300, 730);
 				trackerWindow.setLocationRelativeTo(null);
 			}
 	    });
