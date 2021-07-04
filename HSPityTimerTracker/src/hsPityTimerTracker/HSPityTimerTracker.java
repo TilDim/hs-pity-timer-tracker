@@ -79,11 +79,12 @@ public class HSPityTimerTracker implements ActionListener
 	private final String nextLine = System.getProperty("line.separator");
 	
 	// Base text (The text written in the save file when it is created for the first time)
-	private final String baseText = "(WARNING! DO NOT MODIFY THIS FILE BY YOURSELF OR THE PROGRAM MIGHT NOT WORK PROPERLY)" + nextLine + 
+	private final String baseText = "(WARNING! DO NOT MODIFY THIS FILE BY YOURSELF OR THE PROGRAM MIGHT NOT WORK PROPERLY AND YOU MAY LOSE YOUR TRACKER'S DATA)" + nextLine + 
 			nextLine + 
 			"~ Hearthstone Pity Timer Tracker ~" + nextLine + 
 			nextLine + 
 			"- Expansions" + nextLine + 
+			"United in Stormwind" + nextLine + 
 			"Forged in the Barrens" + nextLine + 
 			"Madness at the Darkmoon Faire" + nextLine + 
 			"Scholomance Academy" + nextLine + 
@@ -106,6 +107,7 @@ public class HSPityTimerTracker implements ActionListener
 			"----------" + nextLine + 
 			nextLine + 
 			"- Epic counters" + nextLine + 
+			"United in Stormwind: 0" + nextLine + 
 			"Forged in the Barrens: 0" + nextLine + 
 			"Madness at the Darkmoon Faire: 0" + nextLine + 
 			"Scholomance Academy: 0" + nextLine + 
@@ -126,6 +128,7 @@ public class HSPityTimerTracker implements ActionListener
 			"Classic: 0" + nextLine + 
 			nextLine + 
 			"- Epic probabilities" + nextLine + 
+			"United in Stormwind: 0" + nextLine + 
 			"Forged in the Barrens: 0" + nextLine + 
 			"Madness at the Darkmoon Faire: 0" + nextLine + 
 			"Scholomance Academy: 0" + nextLine + 
@@ -148,6 +151,7 @@ public class HSPityTimerTracker implements ActionListener
 			"----------" + nextLine + 
 			nextLine + 
 			"- Legendary counters" + nextLine + 
+			"United in Stormwind: 0" + nextLine + 
 			"Forged in the Barrens: 0" + nextLine + 
 			"Madness at the Darkmoon Faire: 0" + nextLine + 
 			"Scholomance Academy: 0" + nextLine + 
@@ -168,6 +172,7 @@ public class HSPityTimerTracker implements ActionListener
 			"Classic: 0" + nextLine + 
 			nextLine + 
 			"- Legendary probabilities" + nextLine + 
+			"United in Stormwind: 0" + nextLine + 
 			"Forged in the Barrens: 0" + nextLine + 
 			"Madness at the Darkmoon Faire: 0" + nextLine + 
 			"Scholomance Academy: 0" + nextLine + 
@@ -190,6 +195,7 @@ public class HSPityTimerTracker implements ActionListener
 			"----------" + nextLine + 
 			nextLine + 
 			"- Total counters" + nextLine + 
+			"United in Stormwind: 0" + nextLine + 
 			"Forged in the Barrens: 0" + nextLine + 
 			"Madness at the Darkmoon Faire: 0" + nextLine + 
 			"Scholomance Academy: 0" + nextLine + 
@@ -246,12 +252,14 @@ public class HSPityTimerTracker implements ActionListener
 			+ "These buttons work as shortcuts and when you press them, you are instantly shown the respective year's expansions. "
 			+ "(This is especially helpful in 'Wild', where there are many more sets and it takes a bit longer to navigate through the panels.)"  + nextLine + nextLine
 			+ "Every number on the tracker (pity timers, probabilities, pack totals) is stored in a file located in the 'Documents' folder "
-			+ "and you can access it directly by pressing the folder icon on the top right." + nextLine
+			+ "and you can locate it easily in your system by pressing the folder icon on the top right." + nextLine
 			+ "If you want to back up the data of your tracker or move it to another system, just copy this file." + nextLine
 			+ "It is also very important to keep a back-up of this file in another folder on your system in case the file is overwritten improperly "
 			+ "when a newer version of the program is executed for the first time. This is a rare case, but it could happen due to a bug "
 			+ "or a change in the structure of the file. In the latter case, you will be notified in time." + nextLine
-			+ "(Warning! Do not modify this file by yourself or the program might not work properly. For this reason, the file is in read-only mode.)" + nextLine + nextLine
+			+ "(Warning! Do not modify this file by yourself or the program might not work properly and you may lose your tracker's data. "
+			+ "For this reason, the file is in read-only mode.)" + nextLine 
+			+ "(Attention! This program will not open if you have changed the default 'Documents' folder in your system.)" + nextLine + nextLine
 			+ "More details on the modify buttons and fields:" + nextLine
 			+ "Reset:   Sets the tracker value to '0'" + nextLine
 			+ "+:   Sets the tracker value according to the value of the field on its right" + nextLine
@@ -295,6 +303,10 @@ public class HSPityTimerTracker implements ActionListener
 	private Color setsHoverColor;
 	private Color setsSelectedColor;
 	
+	// Mode panels
+	private JPanel standard;
+	private JPanel wild;
+	
 	// Years shortcut buttons panels
 	private JPanel standardYearsShortcutsPanel;
 	private JPanel wildYearsShortcutsPanel;
@@ -310,10 +322,6 @@ public class HSPityTimerTracker implements ActionListener
 	private JButton krakenShortcut;
 	private JButton classicSetsShortcut;
 	
-	// Mode panels
-	private JPanel standard;
-	private JPanel wild;
-	
 	// Years panels
 	private JPanel gryphon;
 	private JPanel phoenix;
@@ -326,6 +334,7 @@ public class HSPityTimerTracker implements ActionListener
 	// Expansions image buttons
 	ArrayList<JButton> imageButtons;
 	
+	private JButton stormwindImage;
 	private JButton barrensImage;
 	private JButton darkmoonImage;
 	private JButton scholomanceImage;
@@ -345,26 +354,9 @@ public class HSPityTimerTracker implements ActionListener
 	private JButton goblinsImage;
 	
 	// Expansions webpages links
-	private final String barrensUrlText = "https://playhearthstone.com/en-us/expansions-adventures/forged-in-the-barrens";
-	private final String darkmoonUrlText = "https://playhearthstone.com/en-us/expansions-adventures/madness-at-the-darkmoon-faire";
-	private final String scholomanceUrlText = "https://playhearthstone.com/en-us/expansions-adventures/scholomance-academy";
-	private final String outlandUrlText = "https://playhearthstone.com/en-us/expansions-adventures/ashes-of-outland";
-	private final String dragonsUrlText = "https://playhearthstone.com/en-us/expansions-adventures/descent-of-dragons";
-	private final String uldumUrlText = "https://playhearthstone.com/en-us/expansions-adventures/saviors-of-uldum";
-	private final String shadowsUrlText = "https://playhearthstone.com/en-us/expansions-adventures/rise-of-shadows";
-	private final String rumbleUrlText = "https://playhearthstone.com/en-us/expansions-adventures/rastakhans-rumble";
-	private final String boomsdayUrlText = "https://playhearthstone.com/en-us/expansions-adventures/the-boomsday-project";
-	private final String witchwoodUrlText = "https://playhearthstone.com/en-us/expansions-adventures/the-witchwood";
-	private final String koboldsUrlText = "https://playhearthstone.com/en-us/expansions-adventures/kobolds-and-catacombs";
-	private final String knightsUrlText = "https://playhearthstone.com/en-us/expansions-adventures/knights-of-the-frozen-throne";
-	private final String ungoroUrlText = "https://playhearthstone.com/en-us/expansions-adventures/journey-to-ungoro";
-	private final String gadgetzanUrlText = "https://playhearthstone.com/en-us/expansions-adventures/mean-streets-of-gadgetzan";
-	private final String oldGodsUrlText = "https://playhearthstone.com/en-us/expansions-adventures/whispers-of-the-old-gods";
-	private final String tournamentUrlText = "https://playhearthstone.com/en-us/expansions-adventures/the-grand-tournament";
-	private final String goblinsUrlText = "https://playhearthstone.com/en-us/expansions-adventures/goblins-vs-gnomes";
-	
 	ArrayList<URI> imageButtonsUrls;
 	
+	private URI stormwindUrl;
 	private URI barrensUrl;
 	private URI darkmoonUrl;
 	private URI scholomanceUrl;
@@ -383,7 +375,27 @@ public class HSPityTimerTracker implements ActionListener
 	private URI tournamentUrl;
 	private URI goblinsUrl;
 	
+	private final String stormwindUrlText = "https://playhearthstone.com/en-us/expansions-adventures/united-in-stormwind";
+	private final String barrensUrlText = "https://playhearthstone.com/en-us/expansions-adventures/forged-in-the-barrens";
+	private final String darkmoonUrlText = "https://playhearthstone.com/en-us/expansions-adventures/madness-at-the-darkmoon-faire";
+	private final String scholomanceUrlText = "https://playhearthstone.com/en-us/expansions-adventures/scholomance-academy";
+	private final String outlandUrlText = "https://playhearthstone.com/en-us/expansions-adventures/ashes-of-outland";
+	private final String dragonsUrlText = "https://playhearthstone.com/en-us/expansions-adventures/descent-of-dragons";
+	private final String uldumUrlText = "https://playhearthstone.com/en-us/expansions-adventures/saviors-of-uldum";
+	private final String shadowsUrlText = "https://playhearthstone.com/en-us/expansions-adventures/rise-of-shadows";
+	private final String rumbleUrlText = "https://playhearthstone.com/en-us/expansions-adventures/rastakhans-rumble";
+	private final String boomsdayUrlText = "https://playhearthstone.com/en-us/expansions-adventures/the-boomsday-project";
+	private final String witchwoodUrlText = "https://playhearthstone.com/en-us/expansions-adventures/the-witchwood";
+	private final String koboldsUrlText = "https://playhearthstone.com/en-us/expansions-adventures/kobolds-and-catacombs";
+	private final String knightsUrlText = "https://playhearthstone.com/en-us/expansions-adventures/knights-of-the-frozen-throne";
+	private final String ungoroUrlText = "https://playhearthstone.com/en-us/expansions-adventures/journey-to-ungoro";
+	private final String gadgetzanUrlText = "https://playhearthstone.com/en-us/expansions-adventures/mean-streets-of-gadgetzan";
+	private final String oldGodsUrlText = "https://playhearthstone.com/en-us/expansions-adventures/whispers-of-the-old-gods";
+	private final String tournamentUrlText = "https://playhearthstone.com/en-us/expansions-adventures/the-grand-tournament";
+	private final String goblinsUrlText = "https://playhearthstone.com/en-us/expansions-adventures/goblins-vs-gnomes";
+	
 	// Epic packs counters (Labels showing the current amount of packs opened without finding an epic card from each expansion)
+	private int stormwindEpicCounter;
 	private int barrensEpicCounter;
 	private int darkmoonEpicCounter;
 	private int scholomanceEpicCounter;
@@ -404,6 +416,7 @@ public class HSPityTimerTracker implements ActionListener
 	private int classicEpicCounter;
 	
 	// Epic probabilities (Labels showing the probability of finding an epic card from each expansion)
+	private double stormwindEpicProbability;
 	private double barrensEpicProbability;
 	private double darkmoonEpicProbability;
 	private double scholomanceEpicProbability;
@@ -427,6 +440,7 @@ public class HSPityTimerTracker implements ActionListener
 	// Reset buttons
 	ArrayList<ModifierButton> epicResetButtons;
 	
+	private ModifierButton stormwindEpicReset;
 	private ModifierButton barrensEpicReset;
 	private ModifierButton darkmoonEpicReset;
 	private ModifierButton scholomanceEpicReset;
@@ -449,6 +463,7 @@ public class HSPityTimerTracker implements ActionListener
 	// Add buttons
 	ArrayList<RoundButton> epicAddButtons;
 	
+	private RoundButton stormwindEpicAdd;
 	private RoundButton barrensEpicAdd;
 	private RoundButton darkmoonEpicAdd;
 	private RoundButton scholomanceEpicAdd;
@@ -468,7 +483,8 @@ public class HSPityTimerTracker implements ActionListener
 	private RoundButton goblinsEpicAdd;
 	private RoundButton classicEpicAdd;
 	
-	// Increment fields	
+	// Increment fields
+	private JTextArea stormwindEpicIncrement;
 	private JTextArea barrensEpicIncrement;
 	private JTextArea darkmoonEpicIncrement;
 	private JTextArea scholomanceEpicIncrement;
@@ -489,6 +505,7 @@ public class HSPityTimerTracker implements ActionListener
 	private JTextArea classicEpicIncrement;
 	
 	// Legendary packs counters (Labels showing the current amount of packs opened without finding a legendary card from each expansion)
+	private int stormwindLegendaryCounter;
 	private int barrensLegendaryCounter;
 	private int darkmoonLegendaryCounter;
 	private int scholomanceLegendaryCounter;
@@ -509,6 +526,7 @@ public class HSPityTimerTracker implements ActionListener
 	private int classicLegendaryCounter;
 	
 	// Legendary probabilities (Labels showing the probability of finding a legendary card from each expansion)
+	private double stormwindLegendaryProbability;
 	private double barrensLegendaryProbability;
 	private double darkmoonLegendaryProbability;
 	private double scholomanceLegendaryProbability;
@@ -532,6 +550,7 @@ public class HSPityTimerTracker implements ActionListener
 	// Reset buttons
 	ArrayList<ModifierButton> legendaryResetButtons;
 	
+	private ModifierButton stormwindLegendaryReset;
 	private ModifierButton barrensLegendaryReset;
 	private ModifierButton darkmoonLegendaryReset;
 	private ModifierButton scholomanceLegendaryReset;
@@ -554,6 +573,7 @@ public class HSPityTimerTracker implements ActionListener
 	// Add buttons
 	ArrayList<RoundButton> legendaryAddButtons;
 	
+	private RoundButton stormwindLegendaryAdd;
 	private RoundButton barrensLegendaryAdd;
 	private RoundButton darkmoonLegendaryAdd;
 	private RoundButton scholomanceLegendaryAdd;
@@ -574,6 +594,7 @@ public class HSPityTimerTracker implements ActionListener
 	private RoundButton classicLegendaryAdd;
 	
 	// Increment fields
+	private JTextArea stormwindLegendaryIncrement;
 	private JTextArea barrensLegendaryIncrement;
 	private JTextArea darkmoonLegendaryIncrement;
 	private JTextArea scholomanceLegendaryIncrement;
@@ -594,6 +615,7 @@ public class HSPityTimerTracker implements ActionListener
 	private JTextArea classicLegendaryIncrement;
 	
 	// Total Packs counters (Labels showing the total amount of packs opened from each expansion)
+	private int stormwindTotalCounter;
 	private int barrensTotalCounter;
 	private int darkmoonTotalCounter;
 	private int scholomanceTotalCounter;
@@ -617,6 +639,7 @@ public class HSPityTimerTracker implements ActionListener
 	// Modify buttons
 	ArrayList<ModifierButton> totalModifyButtons;
 	
+	private ModifierButton stormwindTotalModify;
 	private ModifierButton barrensTotalModify;
 	private ModifierButton darkmoonTotalModify;
 	private ModifierButton scholomanceTotalModify;
@@ -639,6 +662,7 @@ public class HSPityTimerTracker implements ActionListener
 	// Add buttons
 	ArrayList<RoundButton> totalAddButtons;
 	
+	private RoundButton stormwindTotalAdd;
 	private RoundButton barrensTotalAdd;
 	private RoundButton darkmoonTotalAdd;
 	private RoundButton scholomanceTotalAdd;
@@ -659,6 +683,7 @@ public class HSPityTimerTracker implements ActionListener
 	private RoundButton classicTotalAdd;
 	
 	// Increment fields
+	private JTextArea stormwindTotalIncrement;
 	private JTextArea barrensTotalIncrement;
 	private JTextArea darkmoonTotalIncrement;
 	private JTextArea scholomanceTotalIncrement;
@@ -682,6 +707,7 @@ public class HSPityTimerTracker implements ActionListener
 	// Common buttons
 	ArrayList<IconButton> commonButtons;
 	
+	private IconButton stormwindCommonButton;
 	private IconButton barrensCommonButton;
 	private IconButton darkmoonCommonButton;
 	private IconButton scholomanceCommonButton;
@@ -702,27 +728,9 @@ public class HSPityTimerTracker implements ActionListener
 	private IconButton classicCommonButton;
 	
 	// Expansions common cards webpages links
-	private final String barrensCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=forged-in-the-barrens";
-	private final String darkmoonCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=madness-at-the-darkmoon-faire";
-	private final String scholomanceCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=scholomance-academy";
-	private final String outlandCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=ashes-of-outland";
-	private final String dragonsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=descent-of-dragons";
-	private final String uldumCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=saviors-of-uldum";
-	private final String shadowsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=rise-of-shadows";
-	private final String rumbleCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=rastakhans-rumble";
-	private final String boomsdayCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=the-boomsday-project";
-	private final String witchwoodCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=the-witchwood";
-	private final String koboldsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=kobolds-and-catacombs";
-	private final String knightsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=knights-of-the-frozen-throne";
-	private final String ungoroCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=journey-to-ungoro";
-	private final String gadgetzanCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=mean-streets-of-gadgetzan";
-	private final String oldGodsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=whispers-of-the-old-gods";
-	private final String tournamentCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=the-grand-tournament";
-	private final String goblinsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=goblins-vs-gnomes";
-	private final String classicCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=legacy";
-	
 	ArrayList<URI> commonButtonsUrls;
 	
+	private URI stormwindCommonUrl;
 	private URI barrensCommonUrl;
 	private URI darkmoonCommonUrl;
 	private URI scholomanceCommonUrl;
@@ -742,9 +750,30 @@ public class HSPityTimerTracker implements ActionListener
 	private URI goblinsCommonUrl;
 	private URI classicCommonUrl;
 	
+	private final String stormwindCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=united-in-stormwind";
+	private final String barrensCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=forged-in-the-barrens";
+	private final String darkmoonCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=madness-at-the-darkmoon-faire";
+	private final String scholomanceCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=scholomance-academy";
+	private final String outlandCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=ashes-of-outland";
+	private final String dragonsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=descent-of-dragons";
+	private final String uldumCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=saviors-of-uldum";
+	private final String shadowsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=rise-of-shadows";
+	private final String rumbleCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=rastakhans-rumble";
+	private final String boomsdayCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=the-boomsday-project";
+	private final String witchwoodCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=the-witchwood";
+	private final String koboldsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=kobolds-and-catacombs";
+	private final String knightsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=knights-of-the-frozen-throne";
+	private final String ungoroCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=journey-to-ungoro";
+	private final String gadgetzanCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=mean-streets-of-gadgetzan";
+	private final String oldGodsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=whispers-of-the-old-gods";
+	private final String tournamentCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=the-grand-tournament";
+	private final String goblinsCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=goblins-vs-gnomes";
+	private final String classicCommonUrlText = "https://playhearthstone.com/en-us/cards?rarity=common&set=legacy";
+	
 	// Rare buttons
 	ArrayList<IconButton> rareButtons;
 	
+	private IconButton stormwindRareButton;
 	private IconButton barrensRareButton;
 	private IconButton darkmoonRareButton;
 	private IconButton scholomanceRareButton;
@@ -765,27 +794,9 @@ public class HSPityTimerTracker implements ActionListener
 	private IconButton classicRareButton;
 	
 	// Expansions rare cards webpages links
-	private final String barrensRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=forged-in-the-barrens";
-	private final String darkmoonRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=madness-at-the-darkmoon-faire";
-	private final String scholomanceRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=scholomance-academy";
-	private final String outlandRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=ashes-of-outland";
-	private final String dragonsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=descent-of-dragons";
-	private final String uldumRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=saviors-of-uldum";
-	private final String shadowsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=rise-of-shadows";
-	private final String rumbleRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=rastakhans-rumble";
-	private final String boomsdayRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=the-boomsday-project";
-	private final String witchwoodRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=the-witchwood";
-	private final String koboldsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=kobolds-and-catacombs";
-	private final String knightsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=knights-of-the-frozen-throne";
-	private final String ungoroRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=journey-to-ungoro";
-	private final String gadgetzanRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=mean-streets-of-gadgetzan";
-	private final String oldGodsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=whispers-of-the-old-gods";
-	private final String tournamentRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=the-grand-tournament";
-	private final String goblinsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=goblins-vs-gnomes";
-	private final String classicRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=legacy";
-	
 	ArrayList<URI> rareButtonsUrls;
 	
+	private URI stormwindRareUrl;
 	private URI barrensRareUrl;
 	private URI darkmoonRareUrl;
 	private URI scholomanceRareUrl;
@@ -805,9 +816,30 @@ public class HSPityTimerTracker implements ActionListener
 	private URI goblinsRareUrl;
 	private URI classicRareUrl;
 	
+	private final String stormwindRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=united-in-stormwind";
+	private final String barrensRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=forged-in-the-barrens";
+	private final String darkmoonRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=madness-at-the-darkmoon-faire";
+	private final String scholomanceRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=scholomance-academy";
+	private final String outlandRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=ashes-of-outland";
+	private final String dragonsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=descent-of-dragons";
+	private final String uldumRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=saviors-of-uldum";
+	private final String shadowsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=rise-of-shadows";
+	private final String rumbleRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=rastakhans-rumble";
+	private final String boomsdayRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=the-boomsday-project";
+	private final String witchwoodRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=the-witchwood";
+	private final String koboldsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=kobolds-and-catacombs";
+	private final String knightsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=knights-of-the-frozen-throne";
+	private final String ungoroRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=journey-to-ungoro";
+	private final String gadgetzanRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=mean-streets-of-gadgetzan";
+	private final String oldGodsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=whispers-of-the-old-gods";
+	private final String tournamentRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=the-grand-tournament";
+	private final String goblinsRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=goblins-vs-gnomes";
+	private final String classicRareUrlText = "https://playhearthstone.com/en-us/cards?rarity=rare&set=legacy";
+	
 	// Epic buttons
 	ArrayList<IconButton> epicButtons;
 	
+	private IconButton stormwindEpicButton;
 	private IconButton barrensEpicButton;
 	private IconButton darkmoonEpicButton;
 	private IconButton scholomanceEpicButton;
@@ -828,27 +860,9 @@ public class HSPityTimerTracker implements ActionListener
 	private IconButton classicEpicButton;
 	
 	// Expansions epic cards webpages links
-	private final String barrensEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=forged-in-the-barrens";
-	private final String darkmoonEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=madness-at-the-darkmoon-faire";
-	private final String scholomanceEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=scholomance-academy";
-	private final String outlandEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=ashes-of-outland";
-	private final String dragonsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=descent-of-dragons";
-	private final String uldumEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=saviors-of-uldum";
-	private final String shadowsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=rise-of-shadows";
-	private final String rumbleEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=rastakhans-rumble";
-	private final String boomsdayEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=the-boomsday-project";
-	private final String witchwoodEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=the-witchwood";
-	private final String koboldsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=kobolds-and-catacombs";
-	private final String knightsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=knights-of-the-frozen-throne";
-	private final String ungoroEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=journey-to-ungoro";
-	private final String gadgetzanEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=mean-streets-of-gadgetzan";
-	private final String oldGodsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=whispers-of-the-old-gods";
-	private final String tournamentEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=the-grand-tournament";
-	private final String goblinsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=goblins-vs-gnomes";
-	private final String classicEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=legacy";
-	
 	ArrayList<URI> epicButtonsUrls;
 	
+	private URI stormwindEpicUrl;
 	private URI barrensEpicUrl;
 	private URI darkmoonEpicUrl;
 	private URI scholomanceEpicUrl;
@@ -868,9 +882,30 @@ public class HSPityTimerTracker implements ActionListener
 	private URI goblinsEpicUrl;
 	private URI classicEpicUrl;
 	
+	private final String stormwindEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=united-in-stormwind";
+	private final String barrensEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=forged-in-the-barrens";
+	private final String darkmoonEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=madness-at-the-darkmoon-faire";
+	private final String scholomanceEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=scholomance-academy";
+	private final String outlandEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=ashes-of-outland";
+	private final String dragonsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=descent-of-dragons";
+	private final String uldumEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=saviors-of-uldum";
+	private final String shadowsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=rise-of-shadows";
+	private final String rumbleEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=rastakhans-rumble";
+	private final String boomsdayEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=the-boomsday-project";
+	private final String witchwoodEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=the-witchwood";
+	private final String koboldsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=kobolds-and-catacombs";
+	private final String knightsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=knights-of-the-frozen-throne";
+	private final String ungoroEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=journey-to-ungoro";
+	private final String gadgetzanEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=mean-streets-of-gadgetzan";
+	private final String oldGodsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=whispers-of-the-old-gods";
+	private final String tournamentEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=the-grand-tournament";
+	private final String goblinsEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=goblins-vs-gnomes";
+	private final String classicEpicUrlText = "https://playhearthstone.com/en-us/cards?rarity=epic&set=legacy";
+	
 	// Legendary buttons
 	ArrayList<IconButton> legendaryButtons;
 	
+	private IconButton stormwindLegendaryButton;
 	private IconButton barrensLegendaryButton;
 	private IconButton darkmoonLegendaryButton;
 	private IconButton scholomanceLegendaryButton;
@@ -891,27 +926,9 @@ public class HSPityTimerTracker implements ActionListener
 	private IconButton classicLegendaryButton;
 	
 	// Expansions legendary cards webpages links
-	private final String barrensLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=forged-in-the-barrens";
-	private final String darkmoonLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=madness-at-the-darkmoon-faire";
-	private final String scholomanceLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=scholomance-academy";
-	private final String outlandLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=ashes-of-outland";
-	private final String dragonsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=descent-of-dragons";
-	private final String uldumLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=saviors-of-uldum";
-	private final String shadowsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=rise-of-shadows";
-	private final String rumbleLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=rastakhans-rumble";
-	private final String boomsdayLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=the-boomsday-project";
-	private final String witchwoodLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=the-witchwood";
-	private final String koboldsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=kobolds-and-catacombs";
-	private final String knightsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=knights-of-the-frozen-throne";
-	private final String ungoroLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=journey-to-ungoro";
-	private final String gadgetzanLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=mean-streets-of-gadgetzan";
-	private final String oldGodsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=whispers-of-the-old-gods";
-	private final String tournamentLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=the-grand-tournament";
-	private final String goblinsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=goblins-vs-gnomes";
-	private final String classicLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=legacy";
-	
 	ArrayList<URI> legendaryButtonsUrls;
 	
+	private URI stormwindLegendaryUrl;
 	private URI barrensLegendaryUrl;
 	private URI darkmoonLegendaryUrl;
 	private URI scholomanceLegendaryUrl;
@@ -930,6 +947,26 @@ public class HSPityTimerTracker implements ActionListener
 	private URI tournamentLegendaryUrl;
 	private URI goblinsLegendaryUrl;
 	private URI classicLegendaryUrl;
+	
+	private final String stormwindLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=united-in-stormwind";
+	private final String barrensLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=forged-in-the-barrens";
+	private final String darkmoonLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=madness-at-the-darkmoon-faire";
+	private final String scholomanceLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=scholomance-academy";
+	private final String outlandLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=ashes-of-outland";
+	private final String dragonsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=descent-of-dragons";
+	private final String uldumLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=saviors-of-uldum";
+	private final String shadowsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=rise-of-shadows";
+	private final String rumbleLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=rastakhans-rumble";
+	private final String boomsdayLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=the-boomsday-project";
+	private final String witchwoodLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=the-witchwood";
+	private final String koboldsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=kobolds-and-catacombs";
+	private final String knightsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=knights-of-the-frozen-throne";
+	private final String ungoroLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=journey-to-ungoro";
+	private final String gadgetzanLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=mean-streets-of-gadgetzan";
+	private final String oldGodsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=whispers-of-the-old-gods";
+	private final String tournamentLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=the-grand-tournament";
+	private final String goblinsLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=goblins-vs-gnomes";
+	private final String classicLegendaryUrlText = "https://playhearthstone.com/en-us/cards?rarity=legendary&set=legacy";
 	
 	// Constructor
 	public HSPityTimerTracker() 
@@ -1246,6 +1283,7 @@ public class HSPityTimerTracker implements ActionListener
 	private void createExpansionsURIs() 
 	{
 		// Links to expansions webpages
+		stormwindUrl = URI.create(stormwindUrlText);
 		barrensUrl = URI.create(barrensUrlText);
 		darkmoonUrl = URI.create(darkmoonUrlText);
 		scholomanceUrl = URI.create(scholomanceUrlText);
@@ -1264,7 +1302,29 @@ public class HSPityTimerTracker implements ActionListener
 		tournamentUrl = URI.create(tournamentUrlText);
 		goblinsUrl = URI.create(goblinsUrlText);
 		
+		imageButtonsUrls = new ArrayList<URI>();
+		
+		imageButtonsUrls.add(goblinsUrl);
+		imageButtonsUrls.add(tournamentUrl);
+		imageButtonsUrls.add(oldGodsUrl);
+		imageButtonsUrls.add(gadgetzanUrl);
+		imageButtonsUrls.add(ungoroUrl);
+		imageButtonsUrls.add(knightsUrl);
+		imageButtonsUrls.add(koboldsUrl);
+		imageButtonsUrls.add(witchwoodUrl);
+		imageButtonsUrls.add(boomsdayUrl);
+		imageButtonsUrls.add(rumbleUrl);
+		imageButtonsUrls.add(shadowsUrl);
+		imageButtonsUrls.add(uldumUrl);
+		imageButtonsUrls.add(dragonsUrl);
+		imageButtonsUrls.add(outlandUrl);
+		imageButtonsUrls.add(scholomanceUrl);
+		imageButtonsUrls.add(darkmoonUrl);
+		imageButtonsUrls.add(barrensUrl);
+		imageButtonsUrls.add(stormwindUrl);
+		
 		// Links to expansions common cards
+		stormwindCommonUrl = URI.create(stormwindCommonUrlText);
 		barrensCommonUrl = URI.create(barrensCommonUrlText);
 		darkmoonCommonUrl = URI.create(darkmoonCommonUrlText);
 		scholomanceCommonUrl = URI.create(scholomanceCommonUrlText);
@@ -1284,7 +1344,30 @@ public class HSPityTimerTracker implements ActionListener
 		goblinsCommonUrl = URI.create(goblinsCommonUrlText);
 		classicCommonUrl = URI.create(classicCommonUrlText);
 		
+		commonButtonsUrls = new ArrayList<URI>();
+		
+		commonButtonsUrls.add(classicCommonUrl);
+		commonButtonsUrls.add(goblinsCommonUrl);
+		commonButtonsUrls.add(tournamentCommonUrl);
+		commonButtonsUrls.add(oldGodsCommonUrl);
+		commonButtonsUrls.add(gadgetzanCommonUrl);
+		commonButtonsUrls.add(ungoroCommonUrl);
+		commonButtonsUrls.add(knightsCommonUrl);
+		commonButtonsUrls.add(koboldsCommonUrl);
+		commonButtonsUrls.add(witchwoodCommonUrl);
+		commonButtonsUrls.add(boomsdayCommonUrl);
+		commonButtonsUrls.add(rumbleCommonUrl);
+		commonButtonsUrls.add(shadowsCommonUrl);
+		commonButtonsUrls.add(uldumCommonUrl);
+		commonButtonsUrls.add(dragonsCommonUrl);
+		commonButtonsUrls.add(outlandCommonUrl);
+		commonButtonsUrls.add(scholomanceCommonUrl);
+		commonButtonsUrls.add(darkmoonCommonUrl);
+		commonButtonsUrls.add(barrensCommonUrl);
+		commonButtonsUrls.add(stormwindCommonUrl);
+		
 		// Links to expansions rare cards
+		stormwindRareUrl = URI.create(stormwindRareUrlText);
 		barrensRareUrl = URI.create(barrensRareUrlText);
 		darkmoonRareUrl = URI.create(darkmoonRareUrlText);
 		scholomanceRareUrl = URI.create(scholomanceRareUrlText);
@@ -1304,7 +1387,30 @@ public class HSPityTimerTracker implements ActionListener
 		goblinsRareUrl = URI.create(goblinsRareUrlText);
 		classicRareUrl = URI.create(classicRareUrlText);
 		
+		rareButtonsUrls = new ArrayList<URI>();
+		
+		rareButtonsUrls.add(classicRareUrl);
+		rareButtonsUrls.add(goblinsRareUrl);
+		rareButtonsUrls.add(tournamentRareUrl);
+		rareButtonsUrls.add(oldGodsRareUrl);
+		rareButtonsUrls.add(gadgetzanRareUrl);
+		rareButtonsUrls.add(ungoroRareUrl);
+		rareButtonsUrls.add(knightsRareUrl);
+		rareButtonsUrls.add(koboldsRareUrl);
+		rareButtonsUrls.add(witchwoodRareUrl);
+		rareButtonsUrls.add(boomsdayRareUrl);
+		rareButtonsUrls.add(rumbleRareUrl);
+		rareButtonsUrls.add(shadowsRareUrl);
+		rareButtonsUrls.add(uldumRareUrl);
+		rareButtonsUrls.add(dragonsRareUrl);
+		rareButtonsUrls.add(outlandRareUrl);
+		rareButtonsUrls.add(scholomanceRareUrl);
+		rareButtonsUrls.add(darkmoonRareUrl);
+		rareButtonsUrls.add(barrensRareUrl);
+		rareButtonsUrls.add(stormwindRareUrl);
+		
 		// Links to expansions epic cards
+		stormwindEpicUrl = URI.create(stormwindEpicUrlText);
 		barrensEpicUrl = URI.create(barrensEpicUrlText);
 		darkmoonEpicUrl = URI.create(darkmoonEpicUrlText);
 		scholomanceEpicUrl = URI.create(scholomanceEpicUrlText);
@@ -1324,7 +1430,30 @@ public class HSPityTimerTracker implements ActionListener
 		goblinsEpicUrl = URI.create(goblinsEpicUrlText);
 		classicEpicUrl = URI.create(classicEpicUrlText);
 		
+		epicButtonsUrls = new ArrayList<URI>();
+		
+		epicButtonsUrls.add(classicEpicUrl);
+		epicButtonsUrls.add(goblinsEpicUrl);
+		epicButtonsUrls.add(tournamentEpicUrl);
+		epicButtonsUrls.add(oldGodsEpicUrl);
+		epicButtonsUrls.add(gadgetzanEpicUrl);
+		epicButtonsUrls.add(ungoroEpicUrl);
+		epicButtonsUrls.add(knightsEpicUrl);
+		epicButtonsUrls.add(koboldsEpicUrl);
+		epicButtonsUrls.add(witchwoodEpicUrl);
+		epicButtonsUrls.add(boomsdayEpicUrl);
+		epicButtonsUrls.add(rumbleEpicUrl);
+		epicButtonsUrls.add(shadowsEpicUrl);
+		epicButtonsUrls.add(uldumEpicUrl);
+		epicButtonsUrls.add(dragonsEpicUrl);
+		epicButtonsUrls.add(outlandEpicUrl);
+		epicButtonsUrls.add(scholomanceEpicUrl);
+		epicButtonsUrls.add(darkmoonEpicUrl);
+		epicButtonsUrls.add(barrensEpicUrl);
+		epicButtonsUrls.add(stormwindEpicUrl);
+		
 		// Links to expansions legendary cards
+		stormwindLegendaryUrl = URI.create(stormwindLegendaryUrlText);
 		barrensLegendaryUrl = URI.create(barrensLegendaryUrlText);
 		darkmoonLegendaryUrl = URI.create(darkmoonLegendaryUrlText);
 		scholomanceLegendaryUrl = URI.create(scholomanceLegendaryUrlText);
@@ -1343,6 +1472,28 @@ public class HSPityTimerTracker implements ActionListener
 		tournamentLegendaryUrl = URI.create(tournamentLegendaryUrlText);
 		goblinsLegendaryUrl = URI.create(goblinsLegendaryUrlText);
 		classicLegendaryUrl = URI.create(classicLegendaryUrlText);
+		
+		legendaryButtonsUrls = new ArrayList<URI>();
+		
+		legendaryButtonsUrls.add(classicLegendaryUrl);
+		legendaryButtonsUrls.add(goblinsLegendaryUrl);
+		legendaryButtonsUrls.add(tournamentLegendaryUrl);
+		legendaryButtonsUrls.add(oldGodsLegendaryUrl);
+		legendaryButtonsUrls.add(gadgetzanLegendaryUrl);
+		legendaryButtonsUrls.add(ungoroLegendaryUrl);
+		legendaryButtonsUrls.add(knightsLegendaryUrl);
+		legendaryButtonsUrls.add(koboldsLegendaryUrl);
+		legendaryButtonsUrls.add(witchwoodLegendaryUrl);
+		legendaryButtonsUrls.add(boomsdayLegendaryUrl);
+		legendaryButtonsUrls.add(rumbleLegendaryUrl);
+		legendaryButtonsUrls.add(shadowsLegendaryUrl);
+		legendaryButtonsUrls.add(uldumLegendaryUrl);
+		legendaryButtonsUrls.add(dragonsLegendaryUrl);
+		legendaryButtonsUrls.add(outlandLegendaryUrl);
+		legendaryButtonsUrls.add(scholomanceLegendaryUrl);
+		legendaryButtonsUrls.add(darkmoonLegendaryUrl);
+		legendaryButtonsUrls.add(barrensLegendaryUrl);
+		legendaryButtonsUrls.add(stormwindLegendaryUrl);
 	}
 	
 	// Initializes the tracker variables
@@ -1354,6 +1505,10 @@ public class HSPityTimerTracker implements ActionListener
 		// "Show save file" button
 		showSaveFileFolder = tracker.getShowSaveFileFolder();
 		
+		// Mode panels
+		standard = tracker.getStandard();
+		wild = tracker.getWild();
+		
 		// Game Mode buttons
 		standardButton = tracker.getStandardButton();
 		wildButton = tracker.getWildButton();
@@ -1364,10 +1519,6 @@ public class HSPityTimerTracker implements ActionListener
 		
 		// Years shortcut buttons
 		shortcutButtonsInitialization();
-		
-		// Mode panels
-		standard = tracker.getStandard();
-		wild = tracker.getWild();
 		
 		// Standard sets
 		gryphon = tracker.getYearOfTheGryphon();
@@ -1398,8 +1549,7 @@ public class HSPityTimerTracker implements ActionListener
 	private void imageButtonsInitialization() 
 	{
 		// Image buttons
-		imageButtons = new ArrayList<JButton>();
-		
+		stormwindImage = tracker.getStormwindImage();
 		barrensImage = tracker.getBarrensImage();
 		darkmoonImage = tracker.getDarkmoonImage();
 		scholomanceImage = tracker.getScholomanceImage();
@@ -1418,6 +1568,8 @@ public class HSPityTimerTracker implements ActionListener
 		tournamentImage = tracker.getTournamentImage();
 		goblinsImage = tracker.getGoblinsImage();
 		
+		imageButtons = new ArrayList<JButton>();
+		
 		imageButtons.add(goblinsImage);
 		imageButtons.add(tournamentImage);
 		imageButtons.add(oldGodsImage);
@@ -1435,35 +1587,13 @@ public class HSPityTimerTracker implements ActionListener
 		imageButtons.add(scholomanceImage);
 		imageButtons.add(darkmoonImage);
 		imageButtons.add(barrensImage);
-		
-		// Image buttons links
-		imageButtonsUrls = new ArrayList<URI>();
-		
-		imageButtonsUrls.add(goblinsUrl);
-		imageButtonsUrls.add(tournamentUrl);
-		imageButtonsUrls.add(oldGodsUrl);
-		imageButtonsUrls.add(gadgetzanUrl);
-		imageButtonsUrls.add(ungoroUrl);
-		imageButtonsUrls.add(knightsUrl);
-		imageButtonsUrls.add(koboldsUrl);
-		imageButtonsUrls.add(witchwoodUrl);
-		imageButtonsUrls.add(boomsdayUrl);
-		imageButtonsUrls.add(rumbleUrl);
-		imageButtonsUrls.add(shadowsUrl);
-		imageButtonsUrls.add(uldumUrl);
-		imageButtonsUrls.add(dragonsUrl);
-		imageButtonsUrls.add(outlandUrl);
-		imageButtonsUrls.add(scholomanceUrl);
-		imageButtonsUrls.add(darkmoonUrl);
-		imageButtonsUrls.add(barrensUrl);
+		imageButtons.add(stormwindImage);
 	}
 	
 	// Initializes the Years shortcut buttons
 	private void shortcutButtonsInitialization() 
 	{
 		// Years shortcut buttons
-		shortcutButtons = new ArrayList<JButton>();
-		
 		gryphonShortcut = tracker.getGryphonShortcut();
 		phoenixShortcut = tracker.getPhoenixShortcut();
 		dragonShortcut = tracker.getDragonShortcut();
@@ -1471,6 +1601,8 @@ public class HSPityTimerTracker implements ActionListener
 		mammothShortcut = tracker.getMammothShortcut();
 		krakenShortcut = tracker.getKrakenShortcut();
 		classicSetsShortcut = tracker.getClassicSetsShortcut();
+		
+		shortcutButtons = new ArrayList<JButton>();
 		
 		shortcutButtons.add(classicSetsShortcut);
 		shortcutButtons.add(krakenShortcut);
@@ -1488,26 +1620,28 @@ public class HSPityTimerTracker implements ActionListener
 		saveFileTokens = saveFileData.split(nextLine);
 		
 		// Epic counters (displayed values)
-		tracker.setBarrensEpicCounter(saveFileTokens[27].substring(23));
-		tracker.setDarkmoonEpicCounter(saveFileTokens[28].substring(31));
-		tracker.setScholomanceEpicCounter(saveFileTokens[29].substring(21));
-		tracker.setOutlandEpicCounter(saveFileTokens[30].substring(18));
-		tracker.setDragonsEpicCounter(saveFileTokens[31].substring(20));
-		tracker.setUldumEpicCounter(saveFileTokens[32].substring(18));
-		tracker.setShadowsEpicCounter(saveFileTokens[33].substring(17));
-		tracker.setRumbleEpicCounter(saveFileTokens[34].substring(20));
-		tracker.setBoomsdayEpicCounter(saveFileTokens[35].substring(22));
-		tracker.setWitchwoodEpicCounter(saveFileTokens[36].substring(15));
-		tracker.setKoboldsEpicCounter(saveFileTokens[37].substring(21));
-		tracker.setKnightsEpicCounter(saveFileTokens[38].substring(30));
-		tracker.setUngoroEpicCounter(saveFileTokens[39].substring(20));
-		tracker.setGadgetzanEpicCounter(saveFileTokens[40].substring(27));
-		tracker.setOldGodsEpicCounter(saveFileTokens[41].substring(26));
-		tracker.setTournamentEpicCounter(saveFileTokens[42].substring(22));
-		tracker.setGoblinsEpicCounter(saveFileTokens[43].substring(19));
-		tracker.setClassicEpicCounter(saveFileTokens[44].substring(9));
+		tracker.setStormwindEpicCounter(saveFileTokens[28].substring(21));
+		tracker.setBarrensEpicCounter(saveFileTokens[29].substring(23));
+		tracker.setDarkmoonEpicCounter(saveFileTokens[30].substring(31));
+		tracker.setScholomanceEpicCounter(saveFileTokens[31].substring(21));
+		tracker.setOutlandEpicCounter(saveFileTokens[32].substring(18));
+		tracker.setDragonsEpicCounter(saveFileTokens[33].substring(20));
+		tracker.setUldumEpicCounter(saveFileTokens[34].substring(18));
+		tracker.setShadowsEpicCounter(saveFileTokens[35].substring(17));
+		tracker.setRumbleEpicCounter(saveFileTokens[36].substring(20));
+		tracker.setBoomsdayEpicCounter(saveFileTokens[37].substring(22));
+		tracker.setWitchwoodEpicCounter(saveFileTokens[38].substring(15));
+		tracker.setKoboldsEpicCounter(saveFileTokens[39].substring(21));
+		tracker.setKnightsEpicCounter(saveFileTokens[40].substring(30));
+		tracker.setUngoroEpicCounter(saveFileTokens[41].substring(20));
+		tracker.setGadgetzanEpicCounter(saveFileTokens[42].substring(27));
+		tracker.setOldGodsEpicCounter(saveFileTokens[43].substring(26));
+		tracker.setTournamentEpicCounter(saveFileTokens[44].substring(22));
+		tracker.setGoblinsEpicCounter(saveFileTokens[45].substring(19));
+		tracker.setClassicEpicCounter(saveFileTokens[46].substring(9));
 		
 		// Epic counters (internal values)
+		stormwindEpicCounter = Integer.valueOf(tracker.getStormwindEpicCounter());
 		barrensEpicCounter = Integer.valueOf(tracker.getBarrensEpicCounter());
 		darkmoonEpicCounter = Integer.valueOf(tracker.getDarkmoonEpicCounter());
 		scholomanceEpicCounter = Integer.valueOf(tracker.getScholomanceEpicCounter());
@@ -1528,26 +1662,28 @@ public class HSPityTimerTracker implements ActionListener
 		classicEpicCounter = Integer.valueOf(tracker.getClassicEpicCounter());
 		
 		// Epic probabilities (displayed values)
-		tracker.setBarrensEpicProbability(nf.format(Double.valueOf(saveFileTokens[47].substring(23))));
-		tracker.setDarkmoonEpicProbability(nf.format(Double.valueOf(saveFileTokens[48].substring(31))));
-		tracker.setScholomanceEpicProbability(nf.format(Double.valueOf(saveFileTokens[49].substring(21))));
-		tracker.setOutlandEpicProbability(nf.format(Double.valueOf(saveFileTokens[50].substring(18))));
-		tracker.setDragonsEpicProbability(nf.format(Double.valueOf(saveFileTokens[51].substring(20))));
-		tracker.setUldumEpicProbability(nf.format(Double.valueOf(saveFileTokens[52].substring(18))));
-		tracker.setShadowsEpicProbability(nf.format(Double.valueOf(saveFileTokens[53].substring(17))));
-		tracker.setRumbleEpicProbability(nf.format(Double.valueOf(saveFileTokens[54].substring(20))));
-		tracker.setBoomsdayEpicProbability(nf.format(Double.valueOf(saveFileTokens[55].substring(22))));
-		tracker.setWitchwoodEpicProbability(nf.format(Double.valueOf(saveFileTokens[56].substring(15))));
-		tracker.setKoboldsEpicProbability(nf.format(Double.valueOf(saveFileTokens[57].substring(21))));
-		tracker.setKnightsEpicProbability(nf.format(Double.valueOf(saveFileTokens[58].substring(30))));
-		tracker.setUngoroEpicProbability(nf.format(Double.valueOf(saveFileTokens[59].substring(20))));
-		tracker.setGadgetzanEpicProbability(nf.format(Double.valueOf(saveFileTokens[60].substring(27))));
-		tracker.setOldGodsEpicProbability(nf.format(Double.valueOf(saveFileTokens[61].substring(26))));
-		tracker.setTournamentEpicProbability(nf.format(Double.valueOf(saveFileTokens[62].substring(22))));
-		tracker.setGoblinsEpicProbability(nf.format(Double.valueOf(saveFileTokens[63].substring(19))));
-		tracker.setClassicEpicProbability(nf.format(Double.valueOf(saveFileTokens[64].substring(9))));
+		tracker.setStormwindEpicProbability(nf.format(Double.valueOf(saveFileTokens[49].substring(21))));
+		tracker.setBarrensEpicProbability(nf.format(Double.valueOf(saveFileTokens[50].substring(23))));
+		tracker.setDarkmoonEpicProbability(nf.format(Double.valueOf(saveFileTokens[51].substring(31))));
+		tracker.setScholomanceEpicProbability(nf.format(Double.valueOf(saveFileTokens[52].substring(21))));
+		tracker.setOutlandEpicProbability(nf.format(Double.valueOf(saveFileTokens[53].substring(18))));
+		tracker.setDragonsEpicProbability(nf.format(Double.valueOf(saveFileTokens[54].substring(20))));
+		tracker.setUldumEpicProbability(nf.format(Double.valueOf(saveFileTokens[55].substring(18))));
+		tracker.setShadowsEpicProbability(nf.format(Double.valueOf(saveFileTokens[56].substring(17))));
+		tracker.setRumbleEpicProbability(nf.format(Double.valueOf(saveFileTokens[57].substring(20))));
+		tracker.setBoomsdayEpicProbability(nf.format(Double.valueOf(saveFileTokens[58].substring(22))));
+		tracker.setWitchwoodEpicProbability(nf.format(Double.valueOf(saveFileTokens[59].substring(15))));
+		tracker.setKoboldsEpicProbability(nf.format(Double.valueOf(saveFileTokens[60].substring(21))));
+		tracker.setKnightsEpicProbability(nf.format(Double.valueOf(saveFileTokens[61].substring(30))));
+		tracker.setUngoroEpicProbability(nf.format(Double.valueOf(saveFileTokens[62].substring(20))));
+		tracker.setGadgetzanEpicProbability(nf.format(Double.valueOf(saveFileTokens[63].substring(27))));
+		tracker.setOldGodsEpicProbability(nf.format(Double.valueOf(saveFileTokens[64].substring(26))));
+		tracker.setTournamentEpicProbability(nf.format(Double.valueOf(saveFileTokens[65].substring(22))));
+		tracker.setGoblinsEpicProbability(nf.format(Double.valueOf(saveFileTokens[66].substring(19))));
+		tracker.setClassicEpicProbability(nf.format(Double.valueOf(saveFileTokens[67].substring(9))));
 		
 		// Epic probabilities (internal values)
+		stormwindEpicProbability = Double.valueOf(tracker.getStormwindEpicProbability());
 		barrensEpicProbability = Double.valueOf(tracker.getBarrensEpicProbability());
 		darkmoonEpicProbability = Double.valueOf(tracker.getDarkmoonEpicProbability());
 		scholomanceEpicProbability = Double.valueOf(tracker.getScholomanceEpicProbability());
@@ -1568,26 +1704,28 @@ public class HSPityTimerTracker implements ActionListener
 		classicEpicProbability = Double.valueOf(tracker.getClassicEpicProbability());
 		
 		// Legendary counters (displayed values)
-		tracker.setBarrensLegendaryCounter(saveFileTokens[69].substring(23));
-		tracker.setDarkmoonLegendaryCounter(saveFileTokens[70].substring(31));
-		tracker.setScholomanceLegendaryCounter(saveFileTokens[71].substring(21));
-		tracker.setOutlandLegendaryCounter(saveFileTokens[72].substring(18));
-		tracker.setDragonsLegendaryCounter(saveFileTokens[73].substring(20));
-		tracker.setUldumLegendaryCounter(saveFileTokens[74].substring(18));
-		tracker.setShadowsLegendaryCounter(saveFileTokens[75].substring(17));
-		tracker.setRumbleLegendaryCounter(saveFileTokens[76].substring(20));
-		tracker.setBoomsdayLegendaryCounter(saveFileTokens[77].substring(22));
-		tracker.setWitchwoodLegendaryCounter(saveFileTokens[78].substring(15));
-		tracker.setKoboldsLegendaryCounter(saveFileTokens[79].substring(21));
-		tracker.setKnightsLegendaryCounter(saveFileTokens[80].substring(30));
-		tracker.setUngoroLegendaryCounter(saveFileTokens[81].substring(20));
-		tracker.setGadgetzanLegendaryCounter(saveFileTokens[82].substring(27));
-		tracker.setOldGodsLegendaryCounter(saveFileTokens[83].substring(26));
-		tracker.setTournamentLegendaryCounter(saveFileTokens[84].substring(22));
-		tracker.setGoblinsLegendaryCounter(saveFileTokens[85].substring(19));
-		tracker.setClassicLegendaryCounter(saveFileTokens[86].substring(9));
+		tracker.setStormwindLegendaryCounter(saveFileTokens[72].substring(21));
+		tracker.setBarrensLegendaryCounter(saveFileTokens[73].substring(23));
+		tracker.setDarkmoonLegendaryCounter(saveFileTokens[74].substring(31));
+		tracker.setScholomanceLegendaryCounter(saveFileTokens[75].substring(21));
+		tracker.setOutlandLegendaryCounter(saveFileTokens[76].substring(18));
+		tracker.setDragonsLegendaryCounter(saveFileTokens[77].substring(20));
+		tracker.setUldumLegendaryCounter(saveFileTokens[78].substring(18));
+		tracker.setShadowsLegendaryCounter(saveFileTokens[79].substring(17));
+		tracker.setRumbleLegendaryCounter(saveFileTokens[80].substring(20));
+		tracker.setBoomsdayLegendaryCounter(saveFileTokens[81].substring(22));
+		tracker.setWitchwoodLegendaryCounter(saveFileTokens[82].substring(15));
+		tracker.setKoboldsLegendaryCounter(saveFileTokens[83].substring(21));
+		tracker.setKnightsLegendaryCounter(saveFileTokens[84].substring(30));
+		tracker.setUngoroLegendaryCounter(saveFileTokens[85].substring(20));
+		tracker.setGadgetzanLegendaryCounter(saveFileTokens[86].substring(27));
+		tracker.setOldGodsLegendaryCounter(saveFileTokens[87].substring(26));
+		tracker.setTournamentLegendaryCounter(saveFileTokens[88].substring(22));
+		tracker.setGoblinsLegendaryCounter(saveFileTokens[89].substring(19));
+		tracker.setClassicLegendaryCounter(saveFileTokens[90].substring(9));
 		
 		// Legendary counters (internal values)
+		stormwindLegendaryCounter = Integer.valueOf(tracker.getStormwindLegendaryCounter());
 		barrensLegendaryCounter = Integer.valueOf(tracker.getBarrensLegendaryCounter());
 		darkmoonLegendaryCounter = Integer.valueOf(tracker.getDarkmoonLegendaryCounter());
 		scholomanceLegendaryCounter = Integer.valueOf(tracker.getScholomanceLegendaryCounter());
@@ -1608,26 +1746,28 @@ public class HSPityTimerTracker implements ActionListener
 		classicLegendaryCounter = Integer.valueOf(tracker.getClassicLegendaryCounter());
 		
 		// Legendary probabilities (displayed values)
-		tracker.setBarrensLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[89].substring(23))));
-		tracker.setDarkmoonLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[90].substring(31))));
-		tracker.setScholomanceLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[91].substring(21))));
-		tracker.setOutlandLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[92].substring(18))));
-		tracker.setDragonsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[93].substring(20))));
-		tracker.setUldumLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[94].substring(18))));
-		tracker.setShadowsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[95].substring(17))));
-		tracker.setRumbleLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[96].substring(20))));
-		tracker.setBoomsdayLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[97].substring(22))));
-		tracker.setWitchwoodLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[98].substring(15))));
-		tracker.setKoboldsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[99].substring(21))));
-		tracker.setKnightsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[100].substring(30))));
-		tracker.setUngoroLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[101].substring(20))));
-		tracker.setGadgetzanLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[102].substring(27))));
-		tracker.setOldGodsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[103].substring(26))));
-		tracker.setTournamentLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[104].substring(22))));
-		tracker.setGoblinsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[105].substring(19))));
-		tracker.setClassicLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[106].substring(9))));
+		tracker.setStormwindLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[93].substring(21))));
+		tracker.setBarrensLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[94].substring(23))));
+		tracker.setDarkmoonLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[95].substring(31))));
+		tracker.setScholomanceLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[96].substring(21))));
+		tracker.setOutlandLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[97].substring(18))));
+		tracker.setDragonsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[98].substring(20))));
+		tracker.setUldumLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[99].substring(18))));
+		tracker.setShadowsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[100].substring(17))));
+		tracker.setRumbleLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[101].substring(20))));
+		tracker.setBoomsdayLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[102].substring(22))));
+		tracker.setWitchwoodLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[103].substring(15))));
+		tracker.setKoboldsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[104].substring(21))));
+		tracker.setKnightsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[105].substring(30))));
+		tracker.setUngoroLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[106].substring(20))));
+		tracker.setGadgetzanLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[107].substring(27))));
+		tracker.setOldGodsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[108].substring(26))));
+		tracker.setTournamentLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[109].substring(22))));
+		tracker.setGoblinsLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[110].substring(19))));
+		tracker.setClassicLegendaryProbability(nf.format(Double.valueOf(saveFileTokens[111].substring(9))));
 		
 		// Legendary probabilities (internal values)
+		stormwindLegendaryProbability = Double.valueOf(tracker.getStormwindLegendaryProbability());
 		barrensLegendaryProbability = Double.valueOf(tracker.getBarrensLegendaryProbability());
 		darkmoonLegendaryProbability = Double.valueOf(tracker.getDarkmoonLegendaryProbability());
 		scholomanceLegendaryProbability = Double.valueOf(tracker.getScholomanceLegendaryProbability());
@@ -1648,26 +1788,28 @@ public class HSPityTimerTracker implements ActionListener
 		classicLegendaryProbability = Double.valueOf(tracker.getClassicLegendaryProbability());
 		
 		// Total counters (displayed values)
-		tracker.setBarrensTotalCounter(saveFileTokens[111].substring(23));
-		tracker.setDarkmoonTotalCounter(saveFileTokens[112].substring(31));
-		tracker.setScholomanceTotalCounter(saveFileTokens[113].substring(21));
-		tracker.setOutlandTotalCounter(saveFileTokens[114].substring(18));
-		tracker.setDragonsTotalCounter(saveFileTokens[115].substring(20));
-		tracker.setUldumTotalCounter(saveFileTokens[116].substring(18));
-		tracker.setShadowsTotalCounter(saveFileTokens[117].substring(17));
-		tracker.setRumbleTotalCounter(saveFileTokens[118].substring(20));
-		tracker.setBoomsdayTotalCounter(saveFileTokens[119].substring(22));
-		tracker.setWitchwoodTotalCounter(saveFileTokens[120].substring(15));
-		tracker.setKoboldsTotalCounter(saveFileTokens[121].substring(21));
-		tracker.setKnightsTotalCounter(saveFileTokens[122].substring(30));
-		tracker.setUngoroTotalCounter(saveFileTokens[123].substring(20));
-		tracker.setGadgetzanTotalCounter(saveFileTokens[124].substring(27));
-		tracker.setOldGodsTotalCounter(saveFileTokens[125].substring(26));
-		tracker.setTournamentTotalCounter(saveFileTokens[126].substring(22));
-		tracker.setGoblinsTotalCounter(saveFileTokens[127].substring(19));
-		tracker.setClassicTotalCounter(saveFileTokens[128].substring(9));
+		tracker.setStormwindTotalCounter(saveFileTokens[116].substring(21));
+		tracker.setBarrensTotalCounter(saveFileTokens[117].substring(23));
+		tracker.setDarkmoonTotalCounter(saveFileTokens[118].substring(31));
+		tracker.setScholomanceTotalCounter(saveFileTokens[119].substring(21));
+		tracker.setOutlandTotalCounter(saveFileTokens[120].substring(18));
+		tracker.setDragonsTotalCounter(saveFileTokens[121].substring(20));
+		tracker.setUldumTotalCounter(saveFileTokens[122].substring(18));
+		tracker.setShadowsTotalCounter(saveFileTokens[123].substring(17));
+		tracker.setRumbleTotalCounter(saveFileTokens[124].substring(20));
+		tracker.setBoomsdayTotalCounter(saveFileTokens[125].substring(22));
+		tracker.setWitchwoodTotalCounter(saveFileTokens[126].substring(15));
+		tracker.setKoboldsTotalCounter(saveFileTokens[127].substring(21));
+		tracker.setKnightsTotalCounter(saveFileTokens[128].substring(30));
+		tracker.setUngoroTotalCounter(saveFileTokens[129].substring(20));
+		tracker.setGadgetzanTotalCounter(saveFileTokens[130].substring(27));
+		tracker.setOldGodsTotalCounter(saveFileTokens[131].substring(26));
+		tracker.setTournamentTotalCounter(saveFileTokens[132].substring(22));
+		tracker.setGoblinsTotalCounter(saveFileTokens[133].substring(19));
+		tracker.setClassicTotalCounter(saveFileTokens[134].substring(9));
 		
 		// Total counters (internal values)
+		stormwindTotalCounter = Integer.valueOf(tracker.getStormwindTotalCounter());
 		barrensTotalCounter = Integer.valueOf(tracker.getBarrensTotalCounter());
 		darkmoonTotalCounter = Integer.valueOf(tracker.getDarkmoonTotalCounter());
 		scholomanceTotalCounter = Integer.valueOf(tracker.getScholomanceTotalCounter());
@@ -1692,8 +1834,7 @@ public class HSPityTimerTracker implements ActionListener
 	private void modifyButtonsInitialization() 
 	{
 		// Epic reset buttons
-		epicResetButtons = new ArrayList<ModifierButton>();
-		
+		stormwindEpicReset = tracker.getStormwindEpicReset();
 		barrensEpicReset = tracker.getBarrensEpicReset();
 		darkmoonEpicReset = tracker.getDarkmoonEpicReset();
 		scholomanceEpicReset = tracker.getScholomanceEpicReset();
@@ -1713,6 +1854,8 @@ public class HSPityTimerTracker implements ActionListener
 		goblinsEpicReset = tracker.getGoblinsEpicReset();
 		classicEpicReset = tracker.getClassicEpicReset();
 		
+		epicResetButtons = new ArrayList<ModifierButton>();
+		
 		epicResetButtons.add(classicEpicReset);
 		epicResetButtons.add(goblinsEpicReset);
 		epicResetButtons.add(tournamentEpicReset);
@@ -1731,10 +1874,10 @@ public class HSPityTimerTracker implements ActionListener
 		epicResetButtons.add(scholomanceEpicReset);
 		epicResetButtons.add(darkmoonEpicReset);
 		epicResetButtons.add(barrensEpicReset);
+		epicResetButtons.add(stormwindEpicReset);
 		
 		// Epic add buttons
-		epicAddButtons = new ArrayList<RoundButton>();
-		
+		stormwindEpicAdd = tracker.getStormwindEpicAdd();
 		barrensEpicAdd = tracker.getBarrensEpicAdd();
 		darkmoonEpicAdd = tracker.getDarkmoonEpicAdd();
 		scholomanceEpicAdd = tracker.getScholomanceEpicAdd();
@@ -1754,6 +1897,8 @@ public class HSPityTimerTracker implements ActionListener
 		goblinsEpicAdd = tracker.getGoblinsEpicAdd();
 		classicEpicAdd = tracker.getClassicEpicAdd();
 		
+		epicAddButtons = new ArrayList<RoundButton>();
+		
 		epicAddButtons.add(classicEpicAdd);
 		epicAddButtons.add(goblinsEpicAdd);
 		epicAddButtons.add(tournamentEpicAdd);
@@ -1772,8 +1917,10 @@ public class HSPityTimerTracker implements ActionListener
 		epicAddButtons.add(scholomanceEpicAdd);
 		epicAddButtons.add(darkmoonEpicAdd);
 		epicAddButtons.add(barrensEpicAdd);
+		epicAddButtons.add(stormwindEpicAdd);
 		
 		// Epic increment fields
+		stormwindEpicIncrement = tracker.getStormwindEpicIncrement();
 		barrensEpicIncrement = tracker.getBarrensEpicIncrement();
 		darkmoonEpicIncrement = tracker.getDarkmoonEpicIncrement();
 		scholomanceEpicIncrement = tracker.getScholomanceEpicIncrement();
@@ -1794,8 +1941,7 @@ public class HSPityTimerTracker implements ActionListener
 		classicEpicIncrement = tracker.getClassicEpicIncrement();
 		
 		// Legendary reset buttons
-		legendaryResetButtons = new ArrayList<ModifierButton>();
-		
+		stormwindLegendaryReset = tracker.getStormwindLegendaryReset();
 		barrensLegendaryReset = tracker.getBarrensLegendaryReset();
 		darkmoonLegendaryReset = tracker.getDarkmoonLegendaryReset();
 		scholomanceLegendaryReset = tracker.getScholomanceLegendaryReset();
@@ -1815,6 +1961,8 @@ public class HSPityTimerTracker implements ActionListener
 		goblinsLegendaryReset = tracker.getGoblinsLegendaryReset();
 		classicLegendaryReset = tracker.getClassicLegendaryReset();
 		
+		legendaryResetButtons = new ArrayList<ModifierButton>();
+		
 		legendaryResetButtons.add(classicLegendaryReset);
 		legendaryResetButtons.add(goblinsLegendaryReset);
 		legendaryResetButtons.add(tournamentLegendaryReset);
@@ -1833,10 +1981,10 @@ public class HSPityTimerTracker implements ActionListener
 		legendaryResetButtons.add(scholomanceLegendaryReset);
 		legendaryResetButtons.add(darkmoonLegendaryReset);
 		legendaryResetButtons.add(barrensLegendaryReset);
+		legendaryResetButtons.add(stormwindLegendaryReset);
 		
 		// Legendary add buttons
-		legendaryAddButtons = new ArrayList<RoundButton>();
-		
+		stormwindLegendaryAdd = tracker.getStormwindLegendaryAdd();
 		barrensLegendaryAdd = tracker.getBarrensLegendaryAdd();
 		darkmoonLegendaryAdd = tracker.getDarkmoonLegendaryAdd();
 		scholomanceLegendaryAdd = tracker.getScholomanceLegendaryAdd();
@@ -1856,6 +2004,8 @@ public class HSPityTimerTracker implements ActionListener
 		goblinsLegendaryAdd = tracker.getGoblinsLegendaryAdd();
 		classicLegendaryAdd = tracker.getClassicLegendaryAdd();
 		
+		legendaryAddButtons = new ArrayList<RoundButton>();
+		
 		legendaryAddButtons.add(classicLegendaryAdd);
 		legendaryAddButtons.add(goblinsLegendaryAdd);
 		legendaryAddButtons.add(tournamentLegendaryAdd);
@@ -1874,8 +2024,10 @@ public class HSPityTimerTracker implements ActionListener
 		legendaryAddButtons.add(scholomanceLegendaryAdd);
 		legendaryAddButtons.add(darkmoonLegendaryAdd);
 		legendaryAddButtons.add(barrensLegendaryAdd);
+		legendaryAddButtons.add(stormwindLegendaryAdd);
 		
 		// Legendary increment fields
+		stormwindLegendaryIncrement = tracker.getStormwindLegendaryIncrement();
 		barrensLegendaryIncrement = tracker.getBarrensLegendaryIncrement();
 		darkmoonLegendaryIncrement = tracker.getDarkmoonLegendaryIncrement();
 		scholomanceLegendaryIncrement = tracker.getScholomanceLegendaryIncrement();
@@ -1896,8 +2048,7 @@ public class HSPityTimerTracker implements ActionListener
 		classicLegendaryIncrement = tracker.getClassicLegendaryIncrement();
 		
 		// Total modify buttons
-		totalModifyButtons = new ArrayList<ModifierButton>();
-		
+		stormwindTotalModify = tracker.getStormwindTotalModify();
 		barrensTotalModify = tracker.getBarrensTotalModify();
 		darkmoonTotalModify = tracker.getDarkmoonTotalModify();
 		scholomanceTotalModify = tracker.getScholomanceTotalModify();
@@ -1917,6 +2068,8 @@ public class HSPityTimerTracker implements ActionListener
 		goblinsTotalModify = tracker.getGoblinsTotalModify();
 		classicTotalModify = tracker.getClassicTotalModify();
 		
+		totalModifyButtons = new ArrayList<ModifierButton>();
+		
 		totalModifyButtons.add(classicTotalModify);
 		totalModifyButtons.add(goblinsTotalModify);
 		totalModifyButtons.add(tournamentTotalModify);
@@ -1935,10 +2088,10 @@ public class HSPityTimerTracker implements ActionListener
 		totalModifyButtons.add(scholomanceTotalModify);
 		totalModifyButtons.add(darkmoonTotalModify);
 		totalModifyButtons.add(barrensTotalModify);
+		totalModifyButtons.add(stormwindTotalModify);
 		
 		// Total add buttons
-		totalAddButtons = new ArrayList<RoundButton>();
-		
+		stormwindTotalAdd = tracker.getStormwindTotalAdd();
 		barrensTotalAdd = tracker.getBarrensTotalAdd();
 		darkmoonTotalAdd = tracker.getDarkmoonTotalAdd();
 		scholomanceTotalAdd = tracker.getScholomanceTotalAdd();
@@ -1958,6 +2111,8 @@ public class HSPityTimerTracker implements ActionListener
 		goblinsTotalAdd = tracker.getGoblinsTotalAdd();
 		classicTotalAdd = tracker.getClassicTotalAdd();
 		
+		totalAddButtons = new ArrayList<RoundButton>();
+		
 		totalAddButtons.add(classicTotalAdd);
 		totalAddButtons.add(goblinsTotalAdd);
 		totalAddButtons.add(tournamentTotalAdd);
@@ -1976,8 +2131,10 @@ public class HSPityTimerTracker implements ActionListener
 		totalAddButtons.add(scholomanceTotalAdd);
 		totalAddButtons.add(darkmoonTotalAdd);
 		totalAddButtons.add(barrensTotalAdd);
+		totalAddButtons.add(stormwindTotalAdd);
 		
 		// Total increment fields
+		stormwindTotalIncrement = tracker.getStormwindTotalIncrement();
 		barrensTotalIncrement = tracker.getBarrensTotalIncrement();
 		darkmoonTotalIncrement = tracker.getDarkmoonTotalIncrement();
 		scholomanceTotalIncrement = tracker.getScholomanceTotalIncrement();
@@ -2002,8 +2159,7 @@ public class HSPityTimerTracker implements ActionListener
 	private void rarityButtonsInitialization() 
 	{
 		// Common buttons
-		commonButtons = new ArrayList<IconButton>();
-		
+		stormwindCommonButton = tracker.getStormwindCommonButton();
 		barrensCommonButton = tracker.getBarrensCommonButton();
 		darkmoonCommonButton = tracker.getDarkmoonCommonButton();
 		scholomanceCommonButton = tracker.getScholomanceCommonButton();
@@ -2023,6 +2179,8 @@ public class HSPityTimerTracker implements ActionListener
 		goblinsCommonButton = tracker.getGoblinsCommonButton();
 		classicCommonButton = tracker.getClassicCommonButton();
 		
+		commonButtons = new ArrayList<IconButton>();
+		
 		commonButtons.add(classicCommonButton);
 		commonButtons.add(goblinsCommonButton);
 		commonButtons.add(tournamentCommonButton);
@@ -2041,32 +2199,10 @@ public class HSPityTimerTracker implements ActionListener
 		commonButtons.add(scholomanceCommonButton);
 		commonButtons.add(darkmoonCommonButton);
 		commonButtons.add(barrensCommonButton);
-		
-		// Common buttons links
-		commonButtonsUrls = new ArrayList<URI>();
-		
-		commonButtonsUrls.add(classicCommonUrl);
-		commonButtonsUrls.add(goblinsCommonUrl);
-		commonButtonsUrls.add(tournamentCommonUrl);
-		commonButtonsUrls.add(oldGodsCommonUrl);
-		commonButtonsUrls.add(gadgetzanCommonUrl);
-		commonButtonsUrls.add(ungoroCommonUrl);
-		commonButtonsUrls.add(knightsCommonUrl);
-		commonButtonsUrls.add(koboldsCommonUrl);
-		commonButtonsUrls.add(witchwoodCommonUrl);
-		commonButtonsUrls.add(boomsdayCommonUrl);
-		commonButtonsUrls.add(rumbleCommonUrl);
-		commonButtonsUrls.add(shadowsCommonUrl);
-		commonButtonsUrls.add(uldumCommonUrl);
-		commonButtonsUrls.add(dragonsCommonUrl);
-		commonButtonsUrls.add(outlandCommonUrl);
-		commonButtonsUrls.add(scholomanceCommonUrl);
-		commonButtonsUrls.add(darkmoonCommonUrl);
-		commonButtonsUrls.add(barrensCommonUrl);
+		commonButtons.add(stormwindCommonButton);
 		
 		// Rare buttons
-		rareButtons = new ArrayList<IconButton>();
-		
+		stormwindRareButton = tracker.getStormwindRareButton();
 		barrensRareButton = tracker.getBarrensRareButton();
 		darkmoonRareButton = tracker.getDarkmoonRareButton();
 		scholomanceRareButton = tracker.getScholomanceRareButton();
@@ -2086,6 +2222,8 @@ public class HSPityTimerTracker implements ActionListener
 		goblinsRareButton = tracker.getGoblinsRareButton();
 		classicRareButton = tracker.getClassicRareButton();
 		
+		rareButtons = new ArrayList<IconButton>();
+		
 		rareButtons.add(classicRareButton);
 		rareButtons.add(goblinsRareButton);
 		rareButtons.add(tournamentRareButton);
@@ -2104,32 +2242,10 @@ public class HSPityTimerTracker implements ActionListener
 		rareButtons.add(scholomanceRareButton);
 		rareButtons.add(darkmoonRareButton);
 		rareButtons.add(barrensRareButton);
-		
-		// Rare buttons links
-		rareButtonsUrls = new ArrayList<URI>();
-		
-		rareButtonsUrls.add(classicRareUrl);
-		rareButtonsUrls.add(goblinsRareUrl);
-		rareButtonsUrls.add(tournamentRareUrl);
-		rareButtonsUrls.add(oldGodsRareUrl);
-		rareButtonsUrls.add(gadgetzanRareUrl);
-		rareButtonsUrls.add(ungoroRareUrl);
-		rareButtonsUrls.add(knightsRareUrl);
-		rareButtonsUrls.add(koboldsRareUrl);
-		rareButtonsUrls.add(witchwoodRareUrl);
-		rareButtonsUrls.add(boomsdayRareUrl);
-		rareButtonsUrls.add(rumbleRareUrl);
-		rareButtonsUrls.add(shadowsRareUrl);
-		rareButtonsUrls.add(uldumRareUrl);
-		rareButtonsUrls.add(dragonsRareUrl);
-		rareButtonsUrls.add(outlandRareUrl);
-		rareButtonsUrls.add(scholomanceRareUrl);
-		rareButtonsUrls.add(darkmoonRareUrl);
-		rareButtonsUrls.add(barrensRareUrl);
+		rareButtons.add(stormwindRareButton);
 		
 		// Epic buttons
-		epicButtons = new ArrayList<IconButton>();
-		
+		stormwindEpicButton = tracker.getStormwindEpicButton();
 		barrensEpicButton = tracker.getBarrensEpicButton();
 		darkmoonEpicButton = tracker.getDarkmoonEpicButton();
 		scholomanceEpicButton = tracker.getScholomanceEpicButton();
@@ -2149,6 +2265,8 @@ public class HSPityTimerTracker implements ActionListener
 		goblinsEpicButton = tracker.getGoblinsEpicButton();
 		classicEpicButton = tracker.getClassicEpicButton();
 		
+		epicButtons = new ArrayList<IconButton>();
+		
 		epicButtons.add(classicEpicButton);
 		epicButtons.add(goblinsEpicButton);
 		epicButtons.add(tournamentEpicButton);
@@ -2167,32 +2285,10 @@ public class HSPityTimerTracker implements ActionListener
 		epicButtons.add(scholomanceEpicButton);
 		epicButtons.add(darkmoonEpicButton);
 		epicButtons.add(barrensEpicButton);
-		
-		// Epic buttons links
-		epicButtonsUrls = new ArrayList<URI>();
-		
-		epicButtonsUrls.add(classicEpicUrl);
-		epicButtonsUrls.add(goblinsEpicUrl);
-		epicButtonsUrls.add(tournamentEpicUrl);
-		epicButtonsUrls.add(oldGodsEpicUrl);
-		epicButtonsUrls.add(gadgetzanEpicUrl);
-		epicButtonsUrls.add(ungoroEpicUrl);
-		epicButtonsUrls.add(knightsEpicUrl);
-		epicButtonsUrls.add(koboldsEpicUrl);
-		epicButtonsUrls.add(witchwoodEpicUrl);
-		epicButtonsUrls.add(boomsdayEpicUrl);
-		epicButtonsUrls.add(rumbleEpicUrl);
-		epicButtonsUrls.add(shadowsEpicUrl);
-		epicButtonsUrls.add(uldumEpicUrl);
-		epicButtonsUrls.add(dragonsEpicUrl);
-		epicButtonsUrls.add(outlandEpicUrl);
-		epicButtonsUrls.add(scholomanceEpicUrl);
-		epicButtonsUrls.add(darkmoonEpicUrl);
-		epicButtonsUrls.add(barrensEpicUrl);
+		epicButtons.add(stormwindEpicButton);
 		
 		// Legendary buttons
-		legendaryButtons = new ArrayList<IconButton>();
-		
+		stormwindLegendaryButton = tracker.getStormwindLegendaryButton();
 		barrensLegendaryButton = tracker.getBarrensLegendaryButton();
 		darkmoonLegendaryButton = tracker.getDarkmoonLegendaryButton();
 		scholomanceLegendaryButton = tracker.getScholomanceLegendaryButton();
@@ -2212,6 +2308,8 @@ public class HSPityTimerTracker implements ActionListener
 		goblinsLegendaryButton = tracker.getGoblinsLegendaryButton();
 		classicLegendaryButton = tracker.getClassicLegendaryButton();
 		
+		legendaryButtons = new ArrayList<IconButton>();
+		
 		legendaryButtons.add(classicLegendaryButton);
 		legendaryButtons.add(goblinsLegendaryButton);
 		legendaryButtons.add(tournamentLegendaryButton);
@@ -2230,28 +2328,7 @@ public class HSPityTimerTracker implements ActionListener
 		legendaryButtons.add(scholomanceLegendaryButton);
 		legendaryButtons.add(darkmoonLegendaryButton);
 		legendaryButtons.add(barrensLegendaryButton);
-		
-		// Legendary buttons links
-		legendaryButtonsUrls = new ArrayList<URI>();
-		
-		legendaryButtonsUrls.add(classicLegendaryUrl);
-		legendaryButtonsUrls.add(goblinsLegendaryUrl);
-		legendaryButtonsUrls.add(tournamentLegendaryUrl);
-		legendaryButtonsUrls.add(oldGodsLegendaryUrl);
-		legendaryButtonsUrls.add(gadgetzanLegendaryUrl);
-		legendaryButtonsUrls.add(ungoroLegendaryUrl);
-		legendaryButtonsUrls.add(knightsLegendaryUrl);
-		legendaryButtonsUrls.add(koboldsLegendaryUrl);
-		legendaryButtonsUrls.add(witchwoodLegendaryUrl);
-		legendaryButtonsUrls.add(boomsdayLegendaryUrl);
-		legendaryButtonsUrls.add(rumbleLegendaryUrl);
-		legendaryButtonsUrls.add(shadowsLegendaryUrl);
-		legendaryButtonsUrls.add(uldumLegendaryUrl);
-		legendaryButtonsUrls.add(dragonsLegendaryUrl);
-		legendaryButtonsUrls.add(outlandLegendaryUrl);
-		legendaryButtonsUrls.add(scholomanceLegendaryUrl);
-		legendaryButtonsUrls.add(darkmoonLegendaryUrl);
-		legendaryButtonsUrls.add(barrensLegendaryUrl);
+		legendaryButtons.add(stormwindLegendaryButton);
 	}
 	
 	// Adds action listeners to the tracker buttons
@@ -2784,7 +2861,7 @@ public class HSPityTimerTracker implements ActionListener
 			tracker.setDarkmoonEpicProbability(nf.format(darkmoonEpicProbability));
 		}
 		// "Forged in the Barrens" epic reset button
-		else {
+		else if (index == 17) {
 			barrensEpicCounter = 0;
 			tracker.setBarrensEpicCounter(Integer.toString(barrensEpicCounter));
 			
@@ -2794,6 +2871,18 @@ public class HSPityTimerTracker implements ActionListener
 			// Calculate probability
 			barrensEpicProbability = probabilityCalculator(barrensEpicCounter, 10);
 			tracker.setBarrensEpicProbability(nf.format(barrensEpicProbability));
+		}
+		// "United in Stormwind" epic reset button
+		else {
+			stormwindEpicCounter = 0;
+			tracker.setStormwindEpicCounter(Integer.toString(stormwindEpicCounter));
+			
+			// Reset the increment field to '1'
+			stormwindEpicIncrement.setText("1");
+			
+			// Calculate probability
+			stormwindEpicProbability = probabilityCalculator(stormwindEpicCounter, 10);
+			tracker.setStormwindEpicProbability(nf.format(stormwindEpicProbability));
 		}
 		
 		// Update the save file
@@ -3127,7 +3216,7 @@ public class HSPityTimerTracker implements ActionListener
 			tracker.setDarkmoonEpicProbability(nf.format(darkmoonEpicProbability));
 		}
 		// "Forged in the Barrens" epic add button
-		else {
+		else if (index == 17) {
 			// Check if the increment is valid, then add. Otherwise, show pop-up error message
 			if (barrensEpicCounter + Integer.valueOf(barrensEpicIncrement.getText()) < 10) {
 				barrensEpicCounter = barrensEpicCounter + Integer.valueOf(barrensEpicIncrement.getText());
@@ -3144,6 +3233,25 @@ public class HSPityTimerTracker implements ActionListener
 			// Calculate probability
 			barrensEpicProbability = probabilityCalculator(barrensEpicCounter, 10);
 			tracker.setBarrensEpicProbability(nf.format(barrensEpicProbability));
+		}
+		// "United in Stormwind" epic add button
+		else {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (stormwindEpicCounter + Integer.valueOf(stormwindEpicIncrement.getText()) < 10) {
+				stormwindEpicCounter = stormwindEpicCounter + Integer.valueOf(stormwindEpicIncrement.getText());
+				
+				// Reset the increment field to '1'
+				stormwindEpicIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setStormwindEpicCounter(Integer.toString(stormwindEpicCounter));
+			
+			// Calculate probability
+			stormwindEpicProbability = probabilityCalculator(stormwindEpicCounter, 10);
+			tracker.setStormwindEpicProbability(nf.format(stormwindEpicProbability));
 		}
 		
 		// Update the save file
@@ -3358,7 +3466,7 @@ public class HSPityTimerTracker implements ActionListener
 			tracker.setDarkmoonLegendaryProbability(nf.format(darkmoonLegendaryProbability));
 		}
 		// "Forged in the Barrens" legendary reset button
-		else {
+		else if (index == 17) {
 			barrensLegendaryCounter = 0;
 			tracker.setBarrensLegendaryCounter(Integer.toString(barrensLegendaryCounter));
 			
@@ -3368,6 +3476,18 @@ public class HSPityTimerTracker implements ActionListener
 			// Calculate probability
 			barrensLegendaryProbability = probabilityCalculator(barrensLegendaryCounter, 40);
 			tracker.setBarrensLegendaryProbability(nf.format(barrensLegendaryProbability));
+		}
+		// "United in Stormwind" legendary reset button
+		else {
+			stormwindLegendaryCounter = 0;
+			tracker.setStormwindLegendaryCounter(Integer.toString(stormwindLegendaryCounter));
+			
+			// Reset the increment field to '1'
+			stormwindLegendaryIncrement.setText("1");
+			
+			// Calculate probability
+			stormwindLegendaryProbability = probabilityCalculator(stormwindLegendaryCounter, 40);
+			tracker.setStormwindLegendaryProbability(nf.format(stormwindLegendaryProbability));
 		}
 		
 		// Update the save file
@@ -3701,7 +3821,7 @@ public class HSPityTimerTracker implements ActionListener
 			tracker.setDarkmoonLegendaryProbability(nf.format(darkmoonLegendaryProbability));
 		}
 		// "Forged in the Barrens" legendary add button
-		else {
+		else if (index == 17) {
 			// Check if the increment is valid, then add. Otherwise, show pop-up error message
 			if (barrensLegendaryCounter + Integer.valueOf(barrensLegendaryIncrement.getText()) < 40) {
 				barrensLegendaryCounter = barrensLegendaryCounter + Integer.valueOf(barrensLegendaryIncrement.getText());
@@ -3718,6 +3838,25 @@ public class HSPityTimerTracker implements ActionListener
 			// Calculate probability
 			barrensLegendaryProbability = probabilityCalculator(barrensLegendaryCounter, 40);
 			tracker.setBarrensLegendaryProbability(nf.format(barrensLegendaryProbability));
+		}
+		// "United in Stormwind" legendary add button
+		else {
+			// Check if the increment is valid, then add. Otherwise, show pop-up error message
+			if (stormwindLegendaryCounter + Integer.valueOf(stormwindLegendaryIncrement.getText()) < 40) {
+				stormwindLegendaryCounter = stormwindLegendaryCounter + Integer.valueOf(stormwindLegendaryIncrement.getText());
+				
+				// Reset the increment field to '1'
+				stormwindLegendaryIncrement.setText("1");
+			}
+			else {
+				java.awt.Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(contentPane, incrementErrorMessage, incrementErrorTitle, JOptionPane.ERROR_MESSAGE);
+			}
+			tracker.setStormwindLegendaryCounter(Integer.toString(stormwindLegendaryCounter));
+			
+			// Calculate probability
+			stormwindLegendaryProbability = probabilityCalculator(stormwindLegendaryCounter, 40);
+			tracker.setStormwindLegendaryProbability(nf.format(stormwindLegendaryProbability));
 		}
 		
 		// Update the save file
@@ -3943,7 +4082,7 @@ public class HSPityTimerTracker implements ActionListener
 			darkmoonTotalIncrement.setText("1");
 		}
 		// "Forged in the Barrens" total modify button
-		else {
+		else if (index == 17) {
 			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, barrensTotalCounter);
 			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
 				barrensTotalCounter = Integer.valueOf(modifyValue);
@@ -3953,6 +4092,18 @@ public class HSPityTimerTracker implements ActionListener
 			
 			// Reset the increment field to '1'
 			barrensTotalIncrement.setText("1");
+		}
+		// "United in Stormwind" total modify button
+		else {
+			modifyValue = JOptionPane.showInputDialog(contentPane, modifyWindow, stormwindTotalCounter);
+			if (isInteger(modifyValue) && Integer.valueOf(modifyValue) >= 0) 
+				stormwindTotalCounter = Integer.valueOf(modifyValue);
+			else
+				java.awt.Toolkit.getDefaultToolkit().beep();
+			tracker.setStormwindTotalCounter(Integer.toString(stormwindTotalCounter));
+			
+			// Reset the increment field to '1'
+			stormwindTotalIncrement.setText("1");
 		}
 		
 		// Update the save file
@@ -4099,12 +4250,20 @@ public class HSPityTimerTracker implements ActionListener
 			darkmoonTotalIncrement.setText("1");
 		}
 		// "Forged in the Barrens" total add button
-		else {
+		else if (index == 17) {
 			barrensTotalCounter = barrensTotalCounter + Integer.valueOf(barrensTotalIncrement.getText());
 			tracker.setBarrensTotalCounter(Integer.toString(barrensTotalCounter));
 			
 			// Reset the increment field to '1'
 			barrensTotalIncrement.setText("1");
+		}
+		// "United in Stormwind" total add button
+		else {
+			stormwindTotalCounter = stormwindTotalCounter + Integer.valueOf(stormwindTotalIncrement.getText());
+			tracker.setStormwindTotalCounter(Integer.toString(stormwindTotalCounter));
+			
+			// Reset the increment field to '1'
+			stormwindTotalIncrement.setText("1");
 		}
 		
 		// Update the save file
@@ -4115,11 +4274,12 @@ public class HSPityTimerTracker implements ActionListener
 	private void updateSaveFile() 
 	{
 		// Update the save file data with the new values
-		saveFileData = "(WARNING! DO NOT MODIFY THIS FILE BY YOURSELF OR THE PROGRAM MIGHT NOT WORK PROPERLY)" + nextLine + 
+		saveFileData = "(WARNING! DO NOT MODIFY THIS FILE BY YOURSELF OR THE PROGRAM MIGHT NOT WORK PROPERLY AND YOU MAY LOSE YOUR TRACKER'S DATA)" + nextLine + 
 				nextLine + 
 				"~ Hearthstone Pity Timer Tracker ~" + nextLine + 
 				nextLine + 
 				"- Expansions" + nextLine + 
+				"United in Stormwind" + nextLine + 
 				"Forged in the Barrens" + nextLine + 
 				"Madness at the Darkmoon Faire" + nextLine + 
 				"Scholomance Academy" + nextLine + 
@@ -4142,6 +4302,7 @@ public class HSPityTimerTracker implements ActionListener
 				"----------" + nextLine + 
 				nextLine + 
 				"- Epic counters" + nextLine + 
+				"United in Stormwind: " + tracker.getStormwindEpicCounter() + nextLine + 
 				"Forged in the Barrens: " + tracker.getBarrensEpicCounter() + nextLine + 
 				"Madness at the Darkmoon Faire: " + tracker.getDarkmoonEpicCounter() + nextLine + 
 				"Scholomance Academy: " + tracker.getScholomanceEpicCounter() + nextLine + 
@@ -4162,6 +4323,7 @@ public class HSPityTimerTracker implements ActionListener
 				"Classic: " + tracker.getClassicEpicCounter() + nextLine + 
 				nextLine + 
 				"- Epic probabilities" + nextLine + 
+				"United in Stormwind: " + tracker.getStormwindEpicProbability() + nextLine + 
 				"Forged in the Barrens: " + tracker.getBarrensEpicProbability() + nextLine + 
 				"Madness at the Darkmoon Faire: " + tracker.getDarkmoonEpicProbability() + nextLine + 
 				"Scholomance Academy: " + tracker.getScholomanceEpicProbability() + nextLine + 
@@ -4184,6 +4346,7 @@ public class HSPityTimerTracker implements ActionListener
 				"----------" + nextLine + 
 				nextLine + 
 				"- Legendary counters" + nextLine + 
+				"United in Stormwind: " + tracker.getStormwindLegendaryCounter() + nextLine + 
 				"Forged in the Barrens: " + tracker.getBarrensLegendaryCounter() + nextLine + 
 				"Madness at the Darkmoon Faire: " + tracker.getDarkmoonLegendaryCounter() + nextLine + 
 				"Scholomance Academy: " + tracker.getScholomanceLegendaryCounter() + nextLine + 
@@ -4204,6 +4367,7 @@ public class HSPityTimerTracker implements ActionListener
 				"Classic: " + tracker.getClassicLegendaryCounter() + nextLine + 
 				nextLine + 
 				"- Legendary probabilities" + nextLine + 
+				"United in Stormwind: " + tracker.getStormwindLegendaryProbability() + nextLine + 
 				"Forged in the Barrens: " + tracker.getBarrensLegendaryProbability() + nextLine + 
 				"Madness at the Darkmoon Faire: " + tracker.getDarkmoonLegendaryProbability() + nextLine + 
 				"Scholomance Academy: " + tracker.getScholomanceLegendaryProbability() + nextLine + 
@@ -4226,6 +4390,7 @@ public class HSPityTimerTracker implements ActionListener
 				"----------" + nextLine + 
 				nextLine + 
 				"- Total counters" + nextLine + 
+				"United in Stormwind: " + tracker.getStormwindTotalCounter() + nextLine + 
 				"Forged in the Barrens: " + tracker.getBarrensTotalCounter() + nextLine + 
 				"Madness at the Darkmoon Faire: " + tracker.getDarkmoonTotalCounter() + nextLine + 
 				"Scholomance Academy: " + tracker.getScholomanceTotalCounter() + nextLine + 

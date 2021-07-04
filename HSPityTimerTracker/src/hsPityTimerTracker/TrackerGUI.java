@@ -88,6 +88,10 @@ public class TrackerGUI
 	// Hearthstone Game Modes buttons panel
 	private JPanel modeButtonsPanel;
 	
+	// Hearthstone Game Modes panels
+	private JPanel standard;
+	private JPanel wild;
+	
 	// Standard button
 	private JButton standardButton;
 	
@@ -115,7 +119,7 @@ public class TrackerGUI
 	
 	// Message displayed when hovering over the "Wild Sets" button
 	private final String wildButtonToolTipText = "Show Wild Sets";
-	
+		
 	// Hearthstone Years shortcut buttons panels
 	private JPanel standardYearsShortcutsPanel;
 	private JPanel wildYearsShortcutsPanel;
@@ -166,10 +170,6 @@ public class TrackerGUI
 	private final String mammothShortcutToolTipText = "Go to 'Year of the Mammoth'";
 	private final String krakenShortcutToolTipText = "Go to 'Year of the Kraken'";
 	private final String classicSetsShortcutToolTipText = "Go to 'Classic Sets'";
-	
-	// Hearthstone Game Modes panels
-	private JPanel standard;
-	private JPanel wild;
 	
 	// Hearthstone Years panels
 	private JPanel gryphon; // Year of the Gryphon
@@ -244,6 +244,7 @@ public class TrackerGUI
 	
 	// Hearthstone Expansions panels
 	// Year of the Gryphon
+	private JPanel stormwind; // United in Stormwind
 	private JPanel barrens; // Forged in the Barrens
 	// Year of the Phoenix
 	private JPanel darkmoon; // Madness at the Darkmoon Faire
@@ -270,6 +271,11 @@ public class TrackerGUI
 	private JPanel classic; // Classic
 	
 	// Expansions logos
+	private JButton stormwindImageButton;
+	private BufferedImage stormwindImage;
+	private URL stormwindImageURL;
+	private final String stormwindImagePath = "hs_expansions_icons/united_in_stormwind.png";
+	
 	private JButton barrensImageButton;
 	private BufferedImage barrensImage;
 	private URL barrensImageURL;
@@ -308,7 +314,7 @@ public class TrackerGUI
 	private JButton rumbleImageButton;
 	private BufferedImage rumbleImage;
 	private URL rumbleImageURL;
-	private final String rumbleImagePath = "hs_expansions_icons/rastakhans_rumble.png";
+	private final String rumbleImagePath = "hs_expansions_icons/rastakhan's_rumble.png";
 	
 	private JButton boomsdayImageButton;
 	private BufferedImage boomsdayImage;
@@ -364,6 +370,7 @@ public class TrackerGUI
 	private final String imageButtonToolTipText = "Go to the expansion's official webpage";
 	
 	// Expansions logos panels
+	private JPanel stormwindImagePanel;
 	private JPanel barrensImagePanel;
 	private JPanel darkmoonImagePanel;
 	private JPanel scholomanceImagePanel;
@@ -388,6 +395,7 @@ public class TrackerGUI
 	private JTextPane epicPanelTitleLabel;
 	
 	// Packs without epic counter panels
+	private JPanel stormwindEpicPanel;
 	private JPanel barrensEpicPanel;
 	private JPanel darkmoonEpicPanel;
 	private JPanel scholomanceEpicPanel;
@@ -410,6 +418,7 @@ public class TrackerGUI
 	// Message displayed the amount of packs opened without an epic card
 	private final String epicCounterText = "Card packs opened without an epic card:   ";
 	
+	private JTextPane stormwindEpicCounterText;
 	private JTextPane barrensEpicCounterText;
 	private JTextPane darkmoonEpicCounterText;
 	private JTextPane scholomanceEpicCounterText;
@@ -430,6 +439,7 @@ public class TrackerGUI
 	private JTextPane classicEpicCounterText;
 	
 	// Epic packs counters (Labels showing the current amount of packs opened without finding an epic card from each expansion)
+	private String stormwindEpicCounter;
 	private String barrensEpicCounter;
 	private String darkmoonEpicCounter;
 	private String scholomanceEpicCounter;
@@ -450,6 +460,7 @@ public class TrackerGUI
 	private String classicEpicCounter;
 	
 	// Epic counters modify buttons panels
+	private JPanel stormwindEpicModifyPanel;
 	private JPanel barrensEpicModifyPanel;
 	private JPanel darkmoonEpicModifyPanel;
 	private JPanel scholomanceEpicModifyPanel;
@@ -471,6 +482,7 @@ public class TrackerGUI
 	
 	// Epic counters modifiers
 	// Reset buttons
+	private ModifierButton stormwindEpicReset;
 	private ModifierButton barrensEpicReset;
 	private ModifierButton darkmoonEpicReset;
 	private ModifierButton scholomanceEpicReset;
@@ -491,6 +503,7 @@ public class TrackerGUI
 	private ModifierButton classicEpicReset;
 	
 	// Add buttons
+	private RoundButton stormwindEpicAdd;
 	private RoundButton barrensEpicAdd;
 	private RoundButton darkmoonEpicAdd;
 	private RoundButton scholomanceEpicAdd;
@@ -511,6 +524,7 @@ public class TrackerGUI
 	private RoundButton classicEpicAdd;
 	
 	// Increment fields
+	private JTextArea stormwindEpicIncrement;
 	private JTextArea barrensEpicIncrement;
 	private JTextArea darkmoonEpicIncrement;
 	private JTextArea scholomanceEpicIncrement;
@@ -533,6 +547,7 @@ public class TrackerGUI
 	// Message displayed the probability of finding an epic card
 	private final String epicProbabilityText = "Probability of finding an epic card in the next card pack:   ";
 	
+	private JTextPane stormwindEpicProbabilityText;
 	private JTextPane barrensEpicProbabilityText;
 	private JTextPane darkmoonEpicProbabilityText;
 	private JTextPane scholomanceEpicProbabilityText;
@@ -553,6 +568,7 @@ public class TrackerGUI
 	private JTextPane classicEpicProbabilityText;
 	
 	// Epic probabilities (Labels showing the probability of finding an epic card from each expansion)
+	private String stormwindEpicProbability;
 	private String barrensEpicProbability;
 	private String darkmoonEpicProbability;
 	private String scholomanceEpicProbability;
@@ -577,6 +593,7 @@ public class TrackerGUI
 	private JTextPane legendaryPanelTitleLabel;
 	
 	// Packs without legendary counter panels
+	private JPanel stormwindLegendaryPanel;
 	private JPanel barrensLegendaryPanel;
 	private JPanel darkmoonLegendaryPanel;
 	private JPanel scholomanceLegendaryPanel;
@@ -599,6 +616,7 @@ public class TrackerGUI
 	// Message displayed the amount of packs opened without a legendary card
 	private final String legendaryCounterText = "Card packs opened without a legendary card:   ";
 	
+	private JTextPane stormwindLegendaryCounterText;
 	private JTextPane barrensLegendaryCounterText;
 	private JTextPane darkmoonLegendaryCounterText;
 	private JTextPane scholomanceLegendaryCounterText;
@@ -619,6 +637,7 @@ public class TrackerGUI
 	private JTextPane classicLegendaryCounterText;
 	
 	// Legendary packs counters (Labels showing the current amount of packs opened without finding a legendary card from each expansion)
+	private String stormwindLegendaryCounter;
 	private String barrensLegendaryCounter;
 	private String darkmoonLegendaryCounter;
 	private String scholomanceLegendaryCounter;
@@ -639,6 +658,7 @@ public class TrackerGUI
 	private String classicLegendaryCounter;
 	
 	// Legendary counters modify buttons panels
+	private JPanel stormwindLegendaryModifyPanel;
 	private JPanel barrensLegendaryModifyPanel;
 	private JPanel darkmoonLegendaryModifyPanel;
 	private JPanel scholomanceLegendaryModifyPanel;
@@ -660,6 +680,7 @@ public class TrackerGUI
 	
 	// Legendary counters modifiers
 	// Reset buttons
+	private ModifierButton stormwindLegendaryReset;
 	private ModifierButton barrensLegendaryReset;
 	private ModifierButton darkmoonLegendaryReset;
 	private ModifierButton scholomanceLegendaryReset;
@@ -680,6 +701,7 @@ public class TrackerGUI
 	private ModifierButton classicLegendaryReset;
 	
 	// Add buttons
+	private RoundButton stormwindLegendaryAdd;
 	private RoundButton barrensLegendaryAdd;
 	private RoundButton darkmoonLegendaryAdd;
 	private RoundButton scholomanceLegendaryAdd;
@@ -700,6 +722,7 @@ public class TrackerGUI
 	private RoundButton classicLegendaryAdd;
 	
 	// Increment fields
+	private JTextArea stormwindLegendaryIncrement;
 	private JTextArea barrensLegendaryIncrement;
 	private JTextArea darkmoonLegendaryIncrement;
 	private JTextArea scholomanceLegendaryIncrement;
@@ -722,6 +745,7 @@ public class TrackerGUI
 	// Message displayed the probability of finding a legendary card
 	private final String legendaryProbabilityText = "Probability of finding a legendary card in the next card pack:   ";
 	
+	private JTextPane stormwindLegendaryProbabilityText;
 	private JTextPane barrensLegendaryProbabilityText;
 	private JTextPane darkmoonLegendaryProbabilityText;
 	private JTextPane scholomanceLegendaryProbabilityText;
@@ -742,6 +766,7 @@ public class TrackerGUI
 	private JTextPane classicLegendaryProbabilityText;
 	
 	// Legendary probabilities (Labels showing the probability of finding a legendary card from each expansion)
+	private String stormwindLegendaryProbability;
 	private String barrensLegendaryProbability;
 	private String darkmoonLegendaryProbability;
 	private String scholomanceLegendaryProbability;
@@ -766,6 +791,7 @@ public class TrackerGUI
 	private JTextPane totalPanelTitleLabel;
 	
 	// Total packs counter panels
+	private JPanel stormwindTotalPanel;
 	private JPanel barrensTotalPanel;
 	private JPanel darkmoonTotalPanel;
 	private JPanel scholomanceTotalPanel;
@@ -788,6 +814,7 @@ public class TrackerGUI
 	// Message displayed the total amount of packs opened from each expansion
 	private final String totalCounterText = "Total amount of card packs opened:   ";
 	
+	private JTextPane stormwindTotalCounterText;
 	private JTextPane barrensTotalCounterText;
 	private JTextPane darkmoonTotalCounterText;
 	private JTextPane scholomanceTotalCounterText;
@@ -808,6 +835,7 @@ public class TrackerGUI
 	private JTextPane classicTotalCounterText;
 	
 	// Total counters (Labels showing the total amount of packs opened from each expansion)
+	private String stormwindTotalCounter;
 	private String barrensTotalCounter;
 	private String darkmoonTotalCounter;
 	private String scholomanceTotalCounter;
@@ -828,6 +856,7 @@ public class TrackerGUI
 	private String classicTotalCounter;
 	
 	// Total counters modify buttons panels
+	private JPanel stormwindTotalModifyPanel;
 	private JPanel barrensTotalModifyPanel;
 	private JPanel darkmoonTotalModifyPanel;
 	private JPanel scholomanceTotalModifyPanel;
@@ -849,6 +878,7 @@ public class TrackerGUI
 	
 	// Total counters modifiers
 	// Modify buttons
+	private ModifierButton stormwindTotalModify;
 	private ModifierButton barrensTotalModify;
 	private ModifierButton darkmoonTotalModify;
 	private ModifierButton scholomanceTotalModify;
@@ -869,6 +899,7 @@ public class TrackerGUI
 	private ModifierButton classicTotalModify;
 	
 	// Add buttons
+	private RoundButton stormwindTotalAdd;
 	private RoundButton barrensTotalAdd;
 	private RoundButton darkmoonTotalAdd;
 	private RoundButton scholomanceTotalAdd;
@@ -889,6 +920,7 @@ public class TrackerGUI
 	private RoundButton classicTotalAdd;
 	
 	// Increment fields
+	private JTextArea stormwindTotalIncrement;
 	private JTextArea barrensTotalIncrement;
 	private JTextArea darkmoonTotalIncrement;
 	private JTextArea scholomanceTotalIncrement;
@@ -918,6 +950,7 @@ public class TrackerGUI
 	private JLabel blank;
 	
 	// Rarity buttons panels
+	private JPanel stormwindRarityButtonsPanel;
 	private JPanel barrensRarityButtonsPanel;
 	private JPanel darkmoonRarityButtonsPanel;
 	private JPanel scholomanceRarityButtonsPanel;
@@ -938,6 +971,7 @@ public class TrackerGUI
 	private JPanel classicRarityButtonsPanel;
 	
 	// Common buttons
+	private JPanel stormwindCommonButtonPanel;
 	private JPanel barrensCommonButtonPanel;
 	private JPanel darkmoonCommonButtonPanel;
 	private JPanel scholomanceCommonButtonPanel;
@@ -957,6 +991,7 @@ public class TrackerGUI
 	private JPanel goblinsCommonButtonPanel;
 	private JPanel classicCommonButtonPanel;
 	
+	private IconButton stormwindCommonButton;
 	private IconButton barrensCommonButton;
 	private IconButton darkmoonCommonButton;
 	private IconButton scholomanceCommonButton;
@@ -980,6 +1015,7 @@ public class TrackerGUI
 	private final String commonButtonToolTipText = "See the expansion's common cards";
 	
 	// Rare buttons
+	private JPanel stormwindRareButtonPanel;
 	private JPanel barrensRareButtonPanel;
 	private JPanel darkmoonRareButtonPanel;
 	private JPanel scholomanceRareButtonPanel;
@@ -999,6 +1035,7 @@ public class TrackerGUI
 	private JPanel goblinsRareButtonPanel;
 	private JPanel classicRareButtonPanel;
 	
+	private IconButton stormwindRareButton;
 	private IconButton barrensRareButton;
 	private IconButton darkmoonRareButton;
 	private IconButton scholomanceRareButton;
@@ -1022,6 +1059,7 @@ public class TrackerGUI
 	private final String rareButtonToolTipText = "See the expansion's rare cards";
 	
 	// Epic buttons
+	private JPanel stormwindEpicButtonPanel;
 	private JPanel barrensEpicButtonPanel;
 	private JPanel darkmoonEpicButtonPanel;
 	private JPanel scholomanceEpicButtonPanel;
@@ -1041,6 +1079,7 @@ public class TrackerGUI
 	private JPanel goblinsEpicButtonPanel;
 	private JPanel classicEpicButtonPanel;
 	
+	private IconButton stormwindEpicButton;
 	private IconButton barrensEpicButton;
 	private IconButton darkmoonEpicButton;
 	private IconButton scholomanceEpicButton;
@@ -1064,6 +1103,7 @@ public class TrackerGUI
 	private final String epicButtonToolTipText = "See the expansion's epic cards";
 	
 	// Legendary buttons
+	private JPanel stormwindLegendaryButtonPanel;
 	private JPanel barrensLegendaryButtonPanel;
 	private JPanel darkmoonLegendaryButtonPanel;
 	private JPanel scholomanceLegendaryButtonPanel;
@@ -1083,6 +1123,7 @@ public class TrackerGUI
 	private JPanel goblinsLegendaryButtonPanel;
 	private JPanel classicLegendaryButtonPanel;
 	
+	private IconButton stormwindLegendaryButton;
 	private IconButton barrensLegendaryButton;
 	private IconButton darkmoonLegendaryButton;
 	private IconButton scholomanceLegendaryButton;
@@ -1175,7 +1216,7 @@ public class TrackerGUI
 	private final String legendaryButtonDarkHoverIconPath = "rarities_icons/legendary_dark_hover.png";
 	
 	// Tracker colors
-	private Color titleFontColor;
+	private Color headerTitleColor;
 	private Color headerBGColor;
 	private Color setsColor;
 	private Color setsHoverColor;
@@ -1184,6 +1225,7 @@ public class TrackerGUI
 	private Color buttonsHoverColor;
 	private Color buttonsDarkHoverColor;
 	
+	private Color stormwindColor;
 	private Color barrensColor;
 	private Color darkmoonColor;
 	private Color scholomanceColor;
@@ -1231,7 +1273,7 @@ public class TrackerGUI
 	{
 		// Colors
 		headerBGColor = new Color(50, 50, 50);
-		titleFontColor = new Color(255, 255, 255);
+		headerTitleColor = new Color(255, 255, 255);
 		setsColor = new Color(240, 215, 105);
 		setsHoverColor = new Color(240, 200, 95);
 		setsSelectedColor = new Color(220, 170, 85);
@@ -1239,9 +1281,9 @@ public class TrackerGUI
 		buttonsHoverColor = new Color(75, 75, 75);
 		buttonsDarkHoverColor = new Color(225, 225, 225);
 		
-		classicColor = new Color(115, 165, 235);
-		barrensColor = new Color(170, 20, 15);
-		darkmoonColor = new Color(180, 200, 20);
+		stormwindColor = new Color(0, 0, 180);
+		barrensColor = new Color(175, 0, 0);
+		darkmoonColor = new Color(175, 200, 20);
 		scholomanceColor = new Color(175, 55, 165);
 		outlandColor = new Color(0, 60, 30);
 		dragonsColor = new Color(235, 155, 20);
@@ -1257,6 +1299,7 @@ public class TrackerGUI
 		oldGodsColor = new Color(190, 120, 190);
 		tournamentColor = new Color(95, 70, 50);
 		goblinsColor = new Color(220, 95, 10);
+		classicColor = new Color(115, 165, 235);
 		
 		// Fonts
 		titleFont = new Font("Comic Sans MS", Font.BOLD, 36);
@@ -1268,7 +1311,7 @@ public class TrackerGUI
 		tooltipTextFont = new Font("Comic Sans MS", Font.PLAIN, 14);
 		
 		// Buttons tooltip style
-		UIManager.put("ToolTip.background", titleFontColor);
+		UIManager.put("ToolTip.background", headerTitleColor);
 		UIManager.put("ToolTip.font", tooltipTextFont);
 	}
 	
@@ -1309,7 +1352,7 @@ public class TrackerGUI
 		classicSetsImage = imageURLReader(classicSetsImageURL, classicSetsImagePath);
 		
 		// Expansions images
-		classicImage = imageURLReader(classicImageURL, classicImagePath);
+		stormwindImage = imageURLReader(stormwindImageURL, stormwindImagePath);
 		barrensImage = imageURLReader(barrensImageURL, barrensImagePath);
 		darkmoonImage = imageURLReader(darkmoonImageURL, darkmoonImagePath);
 		scholomanceImage = imageURLReader(scholomanceImageURL, scholomanceImagePath);
@@ -1327,6 +1370,7 @@ public class TrackerGUI
 		oldGodsImage = imageURLReader(oldGodsImageURL, oldGodsImagePath);
 		tournamentImage = imageURLReader(tournamentImageURL, tournamentImagePath);
 		goblinsImage = imageURLReader(goblinsImageURL, goblinsImagePath);
+		classicImage = imageURLReader(classicImageURL, classicImagePath);
 		
 		// Rarity buttons icons
 		// Common
@@ -1465,7 +1509,7 @@ public class TrackerGUI
 		// Title
 		headerTitle = new JLabel(headerTitleText);
 		headerTitle.setFont(titleFont);
-		headerTitle.setForeground(titleFontColor);
+		headerTitle.setForeground(headerTitleColor);
 		headerTitle.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		// Title image #2
@@ -1697,14 +1741,220 @@ public class TrackerGUI
 		gryphonHeader.add(gryphonLabel);
 		
 		// "Year of the Gryphon" expansions
+		createUnitedInStormwindPanel();
 		createForgedInTheBarrensPanel();
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				gryphon.add(gryphonHeader);
+				gryphon.add(stormwind);
 				gryphon.add(barrens);
 			}
 		});
+	}
+	
+	// "United in Stormwind" panel creator
+	private void createUnitedInStormwindPanel() 
+	{
+		// "United in Stormwind" panel
+		stormwind = new JPanel();
+		stormwind.setBackground(stormwindColor);
+		stormwind.setLayout(new GridLayout(1, 4, 10, 0));
+		stormwind.setBorder(new EmptyBorder(10, 10, 10, 10));
+		
+		// "United in Stormwind" logo
+		stormwindImagePanel = new JPanel(new GridBagLayout());
+		stormwindImagePanel.setBackground(stormwind.getBackground());
+		
+		stormwindImageButton = new JButton(new ImageIcon(stormwindImage));
+		stormwindImageButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		stormwindImageButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		stormwindImageButton.setToolTipText(imageButtonToolTipText);
+		stormwindImageButton.setContentAreaFilled(false);
+		stormwindImageButton.setFocusPainted(false);
+		
+		stormwindImagePanel.add(stormwindImageButton);
+		
+		// Packs without epic counter panel
+		stormwindEpicPanel = new JPanel();
+		stormwindEpicPanel.setBackground(stormwind.getBackground());
+		stormwindEpicPanel.setLayout(new GridLayout(4, 1));
+		
+		// Packs without epic counter panel title
+		epicPanelTitleLabel = new JTextPane();
+		doc = epicPanelTitleLabel.getStyledDocument();
+		changePanelTitleStyle(stormwind, epicPanelTitleLabel, epicPanelTitle);
+		epicPanelTitleLabel.setForeground(headerTitleColor);
+		
+		// Packs without epic counter
+		stormwindEpicCounterText = new JTextPane();
+		doc = stormwindEpicCounterText.getStyledDocument();
+		changePanelTextStyle(stormwind, stormwindEpicCounterText, epicCounterText, stormwindEpicCounter);
+		stormwindEpicCounterText.setForeground(headerTitleColor);
+		
+		// Packs without epic counter modify buttons panel
+		stormwindEpicModifyPanel = new JPanel();
+		
+		// Reset button
+		stormwindEpicReset = new ModifierButton("Reset", headerTitleColor, buttonsDarkHoverColor);
+		stormwindEpicReset.setToolTipText(resetButtonToolTipText);
+		stormwindEpicReset.setBackground(headerTitleColor);
+		
+		// Blank space between reset and add buttons
+		blank = new JLabel();
+		blank.setBackground(stormwind.getBackground());
+		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
+		
+		// Add button
+		stormwindEpicAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		stormwindEpicAdd.setBackground(headerTitleColor);
+		
+		// Increment field
+		stormwindEpicIncrement = new JTextArea(1, 1);
+		stormwindEpicIncrement.setDocument(new IncrementLimit(1));
+		stormwindEpicIncrement.setBackground(headerTitleColor);
+		stormwindEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
+		
+		createModifyButtonsPanel(stormwind, stormwindEpicModifyPanel, stormwindEpicReset, stormwindEpicAdd, stormwindEpicIncrement);
+		
+		// Probability of finding an epic calculator
+		stormwindEpicProbabilityText = new JTextPane();
+		doc = stormwindEpicProbabilityText.getStyledDocument();
+		changePanelTextStyle(stormwind, stormwindEpicProbabilityText, epicProbabilityText, stormwindEpicProbability);
+		stormwindEpicProbabilityText.setForeground(headerTitleColor);
+		
+		stormwindEpicPanel.add(epicPanelTitleLabel);
+		stormwindEpicPanel.add(stormwindEpicCounterText);
+		stormwindEpicPanel.add(stormwindEpicModifyPanel);
+		stormwindEpicPanel.add(stormwindEpicProbabilityText);
+		
+		// Packs without legendary counter panel
+		stormwindLegendaryPanel = new JPanel();
+		stormwindLegendaryPanel.setBackground(stormwind.getBackground());
+		stormwindLegendaryPanel.setLayout(new GridLayout(4, 1));
+		
+		// Packs without legendary counter panel title
+		legendaryPanelTitleLabel = new JTextPane();
+		doc = legendaryPanelTitleLabel.getStyledDocument();
+		changePanelTitleStyle(stormwind, legendaryPanelTitleLabel, legendaryPanelTitle);
+		legendaryPanelTitleLabel.setForeground(headerTitleColor);
+		
+		// Packs without legendary counter
+		stormwindLegendaryCounterText = new JTextPane();
+		doc = stormwindLegendaryCounterText.getStyledDocument();
+		changePanelTextStyle(stormwind, stormwindLegendaryCounterText, legendaryCounterText, stormwindLegendaryCounter);
+		stormwindLegendaryCounterText.setForeground(headerTitleColor);
+		
+		// Packs without legendary counter modify buttons panel
+		stormwindLegendaryModifyPanel = new JPanel();
+		
+		// Reset button
+		stormwindLegendaryReset = new ModifierButton("Reset", headerTitleColor, buttonsDarkHoverColor);
+		stormwindLegendaryReset.setToolTipText(resetButtonToolTipText);
+		stormwindLegendaryReset.setBackground(headerTitleColor);
+		
+		// Blank space between reset and add buttons
+		blank = new JLabel();
+		blank.setBackground(stormwind.getBackground());
+		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
+		
+		// Add button
+		stormwindLegendaryAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		stormwindLegendaryAdd.setBackground(headerTitleColor);
+		
+		// Increment field
+		stormwindLegendaryIncrement = new JTextArea(1, 2);
+		stormwindLegendaryIncrement.setDocument(new IncrementLimit(2));
+		stormwindLegendaryIncrement.setBackground(headerTitleColor);
+		stormwindLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
+		
+		createModifyButtonsPanel(stormwind, stormwindLegendaryModifyPanel, stormwindLegendaryReset, stormwindLegendaryAdd, stormwindLegendaryIncrement);
+		
+		// Probability of finding a legendary calculator
+		stormwindLegendaryProbabilityText = new JTextPane();
+		doc = stormwindLegendaryProbabilityText.getStyledDocument();
+		changePanelTextStyle(stormwind, stormwindLegendaryProbabilityText, legendaryProbabilityText, stormwindLegendaryProbability);
+		stormwindLegendaryProbabilityText.setForeground(headerTitleColor);
+		
+		stormwindLegendaryPanel.add(legendaryPanelTitleLabel);
+		stormwindLegendaryPanel.add(stormwindLegendaryCounterText);
+		stormwindLegendaryPanel.add(stormwindLegendaryModifyPanel);
+		stormwindLegendaryPanel.add(stormwindLegendaryProbabilityText);
+		
+		// Total amount of packs opened counter panel
+		stormwindTotalPanel = new JPanel();
+		stormwindTotalPanel.setBackground(stormwind.getBackground());
+		stormwindTotalPanel.setLayout(new GridLayout(4, 1));
+		
+		// Total amount of packs opened counter panel title
+		totalPanelTitleLabel = new JTextPane();
+		doc = totalPanelTitleLabel.getStyledDocument();
+		changePanelTitleStyle(stormwind, totalPanelTitleLabel,totalPanelTitle);
+		totalPanelTitleLabel.setForeground(headerTitleColor);
+		
+		// Total amount of packs opened counter
+		stormwindTotalCounterText = new JTextPane();
+		doc = stormwindTotalCounterText.getStyledDocument();
+		changePanelTextStyle(stormwind, stormwindTotalCounterText, totalCounterText, stormwindTotalCounter);
+		stormwindTotalCounterText.setForeground(headerTitleColor);
+		
+		// Total amount of packs opened modify buttons panel
+		stormwindTotalModifyPanel = new JPanel();
+		
+		// Modify button
+		stormwindTotalModify = new ModifierButton("Modify", headerTitleColor, buttonsDarkHoverColor);
+		stormwindTotalModify.setToolTipText(modifyButtonToolTipText);
+		stormwindTotalModify.setBackground(headerTitleColor);
+		
+		// Blank space between modify and add buttons
+		blank = new JLabel();
+		blank.setBackground(stormwind.getBackground());
+		blank.setBorder(new EmptyBorder(0, 5, 0, 5));
+		
+		// Add button
+		stormwindTotalAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		stormwindTotalAdd.setBackground(headerTitleColor);
+		
+		// Increment field
+		stormwindTotalIncrement = new JTextArea(1, 3);
+		stormwindTotalIncrement.setDocument(new IncrementLimit(3));
+		stormwindTotalIncrement.setBackground(headerTitleColor);
+		stormwindTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
+		
+		createModifyButtonsPanel(stormwind, stormwindTotalModifyPanel, stormwindTotalModify, stormwindTotalAdd, stormwindTotalIncrement);
+		
+		// Rarity buttons panel
+		stormwindRarityButtonsPanel = new JPanel();
+		
+		// Common button
+		stormwindCommonButtonPanel = new JPanel(new GridBagLayout());
+		stormwindCommonButton = new IconButton(new ImageIcon(commonButtonDarkIcon), new ImageIcon(commonButtonDarkHoverIcon));
+		
+		// Rare button
+		stormwindRareButtonPanel = new JPanel(new GridBagLayout());
+		stormwindRareButton = new IconButton(new ImageIcon(rareButtonDarkIcon), new ImageIcon(rareButtonDarkHoverIcon));
+		
+		// Epic button
+		stormwindEpicButtonPanel = new JPanel(new GridBagLayout());
+		stormwindEpicButton = new IconButton(new ImageIcon(epicButtonDarkIcon), new ImageIcon(epicButtonDarkHoverIcon));
+		
+		// Legendary button
+		stormwindLegendaryButtonPanel = new JPanel(new GridBagLayout());
+		stormwindLegendaryButton = new IconButton(new ImageIcon(legendaryButtonDarkIcon), new ImageIcon(legendaryButtonDarkHoverIcon));
+		
+		createRarityButtonsPanel(stormwind, stormwindRarityButtonsPanel, 
+				stormwindCommonButtonPanel, stormwindCommonButton, stormwindRareButtonPanel, stormwindRareButton, 
+				stormwindEpicButtonPanel, stormwindEpicButton, stormwindLegendaryButtonPanel, stormwindLegendaryButton);
+		
+		stormwindTotalPanel.add(totalPanelTitleLabel);
+		stormwindTotalPanel.add(stormwindTotalCounterText);
+		stormwindTotalPanel.add(stormwindTotalModifyPanel);
+		stormwindTotalPanel.add(stormwindRarityButtonsPanel);
+		
+		stormwind.add(stormwindImagePanel);
+		stormwind.add(stormwindEpicPanel);
+		stormwind.add(stormwindLegendaryPanel);
+		stormwind.add(stormwindTotalPanel);
 	}
 	
 	// "Forged in the Barrens" panel creator
@@ -1738,22 +1988,21 @@ public class TrackerGUI
 		epicPanelTitleLabel = new JTextPane();
 		doc = epicPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(barrens, epicPanelTitleLabel, epicPanelTitle);
-		epicPanelTitleLabel.setForeground(titleFontColor);
+		epicPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Packs without epic counter
 		barrensEpicCounterText = new JTextPane();
 		doc = barrensEpicCounterText.getStyledDocument();
 		changePanelTextStyle(barrens, barrensEpicCounterText, epicCounterText, barrensEpicCounter);
-		barrensEpicCounterText.setForeground(titleFontColor);
+		barrensEpicCounterText.setForeground(headerTitleColor);
 		
 		// Packs without epic counter modify buttons panel
 		barrensEpicModifyPanel = new JPanel();
 		
 		// Reset button
-		barrensEpicReset = new ModifierButton("Reset", titleFontColor, buttonsDarkHoverColor);
+		barrensEpicReset = new ModifierButton("Reset", headerTitleColor, buttonsDarkHoverColor);
 		barrensEpicReset.setToolTipText(resetButtonToolTipText);
-		barrensEpicReset.setBackground(titleFontColor);
-		barrensEpicReset.setForeground(headerBGColor);
+		barrensEpicReset.setBackground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -1761,16 +2010,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		// Add button
-		barrensEpicAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		barrensEpicAdd.setBackground(titleFontColor);
-		barrensEpicAdd.setForeground(headerBGColor);
+		barrensEpicAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		barrensEpicAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		barrensEpicIncrement = new JTextArea(1, 1);
 		barrensEpicIncrement.setDocument(new IncrementLimit(1));
-		barrensEpicIncrement.setBackground(titleFontColor);
-		barrensEpicIncrement.setForeground(headerBGColor);
-		barrensEpicIncrement.setCaretColor(headerBGColor);
+		barrensEpicIncrement.setBackground(headerTitleColor);
 		barrensEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(barrens, barrensEpicModifyPanel, barrensEpicReset, barrensEpicAdd, barrensEpicIncrement);
@@ -1779,7 +2025,7 @@ public class TrackerGUI
 		barrensEpicProbabilityText = new JTextPane();
 		doc = barrensEpicProbabilityText.getStyledDocument();
 		changePanelTextStyle(barrens, barrensEpicProbabilityText, epicProbabilityText, barrensEpicProbability);
-		barrensEpicProbabilityText.setForeground(titleFontColor);
+		barrensEpicProbabilityText.setForeground(headerTitleColor);
 		
 		barrensEpicPanel.add(epicPanelTitleLabel);
 		barrensEpicPanel.add(barrensEpicCounterText);
@@ -1795,22 +2041,21 @@ public class TrackerGUI
 		legendaryPanelTitleLabel = new JTextPane();
 		doc = legendaryPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(barrens, legendaryPanelTitleLabel, legendaryPanelTitle);
-		legendaryPanelTitleLabel.setForeground(titleFontColor);
+		legendaryPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Packs without legendary counter
 		barrensLegendaryCounterText = new JTextPane();
 		doc = barrensLegendaryCounterText.getStyledDocument();
 		changePanelTextStyle(barrens, barrensLegendaryCounterText, legendaryCounterText, barrensLegendaryCounter);
-		barrensLegendaryCounterText.setForeground(titleFontColor);
+		barrensLegendaryCounterText.setForeground(headerTitleColor);
 		
 		// Packs without legendary counter modify buttons panel
 		barrensLegendaryModifyPanel = new JPanel();
 		
 		// Reset button
-		barrensLegendaryReset = new ModifierButton("Reset", titleFontColor, buttonsDarkHoverColor);
+		barrensLegendaryReset = new ModifierButton("Reset", headerTitleColor, buttonsDarkHoverColor);
 		barrensLegendaryReset.setToolTipText(resetButtonToolTipText);
-		barrensLegendaryReset.setBackground(titleFontColor);
-		barrensLegendaryReset.setForeground(headerBGColor);
+		barrensLegendaryReset.setBackground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -1818,16 +2063,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		// Add button
-		barrensLegendaryAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		barrensLegendaryAdd.setBackground(titleFontColor);
-		barrensLegendaryAdd.setForeground(headerBGColor);
+		barrensLegendaryAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		barrensLegendaryAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		barrensLegendaryIncrement = new JTextArea(1, 2);
 		barrensLegendaryIncrement.setDocument(new IncrementLimit(2));
-		barrensLegendaryIncrement.setBackground(titleFontColor);
-		barrensLegendaryIncrement.setForeground(headerBGColor);
-		barrensLegendaryIncrement.setCaretColor(headerBGColor);
+		barrensLegendaryIncrement.setBackground(headerTitleColor);
 		barrensLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(barrens, barrensLegendaryModifyPanel, barrensLegendaryReset, barrensLegendaryAdd, barrensLegendaryIncrement);
@@ -1836,7 +2078,7 @@ public class TrackerGUI
 		barrensLegendaryProbabilityText = new JTextPane();
 		doc = barrensLegendaryProbabilityText.getStyledDocument();
 		changePanelTextStyle(barrens, barrensLegendaryProbabilityText, legendaryProbabilityText, barrensLegendaryProbability);
-		barrensLegendaryProbabilityText.setForeground(titleFontColor);
+		barrensLegendaryProbabilityText.setForeground(headerTitleColor);
 		
 		barrensLegendaryPanel.add(legendaryPanelTitleLabel);
 		barrensLegendaryPanel.add(barrensLegendaryCounterText);
@@ -1852,22 +2094,21 @@ public class TrackerGUI
 		totalPanelTitleLabel = new JTextPane();
 		doc = totalPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(barrens, totalPanelTitleLabel,totalPanelTitle);
-		totalPanelTitleLabel.setForeground(titleFontColor);
+		totalPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Total amount of packs opened counter
 		barrensTotalCounterText = new JTextPane();
 		doc = barrensTotalCounterText.getStyledDocument();
 		changePanelTextStyle(barrens, barrensTotalCounterText, totalCounterText, barrensTotalCounter);
-		barrensTotalCounterText.setForeground(titleFontColor);
+		barrensTotalCounterText.setForeground(headerTitleColor);
 		
 		// Total amount of packs opened modify buttons panel
 		barrensTotalModifyPanel = new JPanel();
 		
 		// Modify button
-		barrensTotalModify = new ModifierButton("Modify", titleFontColor, buttonsDarkHoverColor);
+		barrensTotalModify = new ModifierButton("Modify", headerTitleColor, buttonsDarkHoverColor);
 		barrensTotalModify.setToolTipText(modifyButtonToolTipText);
-		barrensTotalModify.setBackground(titleFontColor);
-		barrensTotalModify.setForeground(headerBGColor);
+		barrensTotalModify.setBackground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -1875,16 +2116,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		// Add button
-		barrensTotalAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		barrensTotalAdd.setBackground(titleFontColor);
-		barrensTotalAdd.setForeground(headerBGColor);
+		barrensTotalAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		barrensTotalAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		barrensTotalIncrement = new JTextArea(1, 3);
 		barrensTotalIncrement.setDocument(new IncrementLimit(3));
-		barrensTotalIncrement.setBackground(titleFontColor);
-		barrensTotalIncrement.setForeground(headerBGColor);
-		barrensTotalIncrement.setCaretColor(headerBGColor);
+		barrensTotalIncrement.setBackground(headerTitleColor);
 		barrensTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(barrens, barrensTotalModifyPanel, barrensTotalModify, barrensTotalAdd, barrensTotalIncrement);
@@ -2003,7 +2241,7 @@ public class TrackerGUI
 		darkmoonEpicReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		darkmoonEpicReset.setToolTipText(resetButtonToolTipText);
 		darkmoonEpicReset.setBackground(headerBGColor);
-		darkmoonEpicReset.setForeground(titleFontColor);
+		darkmoonEpicReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -2013,14 +2251,14 @@ public class TrackerGUI
 		// Add button
 		darkmoonEpicAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		darkmoonEpicAdd.setBackground(headerBGColor);
-		darkmoonEpicAdd.setForeground(titleFontColor);
+		darkmoonEpicAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		darkmoonEpicIncrement = new JTextArea(1, 1);
 		darkmoonEpicIncrement.setDocument(new IncrementLimit(1));
 		darkmoonEpicIncrement.setBackground(headerBGColor);
-		darkmoonEpicIncrement.setForeground(titleFontColor);
-		darkmoonEpicIncrement.setCaretColor(titleFontColor);
+		darkmoonEpicIncrement.setForeground(headerTitleColor);
+		darkmoonEpicIncrement.setCaretColor(headerTitleColor);
 		darkmoonEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(darkmoon, darkmoonEpicModifyPanel, darkmoonEpicReset, darkmoonEpicAdd, darkmoonEpicIncrement);
@@ -2057,7 +2295,7 @@ public class TrackerGUI
 		darkmoonLegendaryReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		darkmoonLegendaryReset.setToolTipText(resetButtonToolTipText);
 		darkmoonLegendaryReset.setBackground(headerBGColor);
-		darkmoonLegendaryReset.setForeground(titleFontColor);
+		darkmoonLegendaryReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -2067,14 +2305,14 @@ public class TrackerGUI
 		// Add button
 		darkmoonLegendaryAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		darkmoonLegendaryAdd.setBackground(headerBGColor);
-		darkmoonLegendaryAdd.setForeground(titleFontColor);
+		darkmoonLegendaryAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		darkmoonLegendaryIncrement = new JTextArea(1, 2);
 		darkmoonLegendaryIncrement.setDocument(new IncrementLimit(2));
 		darkmoonLegendaryIncrement.setBackground(headerBGColor);
-		darkmoonLegendaryIncrement.setForeground(titleFontColor);
-		darkmoonLegendaryIncrement.setCaretColor(titleFontColor);
+		darkmoonLegendaryIncrement.setForeground(headerTitleColor);
+		darkmoonLegendaryIncrement.setCaretColor(headerTitleColor);
 		darkmoonLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(darkmoon, darkmoonLegendaryModifyPanel, darkmoonLegendaryReset, darkmoonLegendaryAdd, darkmoonLegendaryIncrement);
@@ -2111,7 +2349,7 @@ public class TrackerGUI
 		darkmoonTotalModify = new ModifierButton("Modify", headerBGColor, buttonsHoverColor);
 		darkmoonTotalModify.setToolTipText(modifyButtonToolTipText);
 		darkmoonTotalModify.setBackground(headerBGColor);
-		darkmoonTotalModify.setForeground(titleFontColor);
+		darkmoonTotalModify.setForeground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -2121,14 +2359,14 @@ public class TrackerGUI
 		// Add button
 		darkmoonTotalAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		darkmoonTotalAdd.setBackground(headerBGColor);
-		darkmoonTotalAdd.setForeground(titleFontColor);
+		darkmoonTotalAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		darkmoonTotalIncrement = new JTextArea(1, 3);
 		darkmoonTotalIncrement.setDocument(new IncrementLimit(3));
 		darkmoonTotalIncrement.setBackground(headerBGColor);
-		darkmoonTotalIncrement.setForeground(titleFontColor);
-		darkmoonTotalIncrement.setCaretColor(titleFontColor);
+		darkmoonTotalIncrement.setForeground(headerTitleColor);
+		darkmoonTotalIncrement.setCaretColor(headerTitleColor);
 		darkmoonTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(darkmoon, darkmoonTotalModifyPanel, darkmoonTotalModify, darkmoonTotalAdd, darkmoonTotalIncrement);
@@ -2198,22 +2436,21 @@ public class TrackerGUI
 		epicPanelTitleLabel = new JTextPane();
 		doc = epicPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(scholomance, epicPanelTitleLabel, epicPanelTitle);
-		epicPanelTitleLabel.setForeground(titleFontColor);
+		epicPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Packs without epic counter
 		scholomanceEpicCounterText = new JTextPane();
 		doc = scholomanceEpicCounterText.getStyledDocument();
 		changePanelTextStyle(scholomance, scholomanceEpicCounterText, epicCounterText, scholomanceEpicCounter);
-		scholomanceEpicCounterText.setForeground(titleFontColor);
+		scholomanceEpicCounterText.setForeground(headerTitleColor);
 		
 		// Packs without epic counter modify buttons panel
 		scholomanceEpicModifyPanel = new JPanel();
 		
 		// Reset button
-		scholomanceEpicReset = new ModifierButton("Reset", titleFontColor, buttonsDarkHoverColor);
+		scholomanceEpicReset = new ModifierButton("Reset", headerTitleColor, buttonsDarkHoverColor);
 		scholomanceEpicReset.setToolTipText(resetButtonToolTipText);
-		scholomanceEpicReset.setBackground(titleFontColor);
-		scholomanceEpicReset.setForeground(headerBGColor);
+		scholomanceEpicReset.setBackground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -2221,16 +2458,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		// Add button
-		scholomanceEpicAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		scholomanceEpicAdd.setBackground(titleFontColor);
-		scholomanceEpicAdd.setForeground(headerBGColor);
+		scholomanceEpicAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		scholomanceEpicAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		scholomanceEpicIncrement = new JTextArea(1, 1);
 		scholomanceEpicIncrement.setDocument(new IncrementLimit(1));
-		scholomanceEpicIncrement.setBackground(titleFontColor);
-		scholomanceEpicIncrement.setForeground(headerBGColor);
-		scholomanceEpicIncrement.setCaretColor(headerBGColor);
+		scholomanceEpicIncrement.setBackground(headerTitleColor);
 		scholomanceEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(scholomance, scholomanceEpicModifyPanel, scholomanceEpicReset, scholomanceEpicAdd, scholomanceEpicIncrement);
@@ -2239,7 +2473,7 @@ public class TrackerGUI
 		scholomanceEpicProbabilityText = new JTextPane();
 		doc = scholomanceEpicProbabilityText.getStyledDocument();
 		changePanelTextStyle(scholomance, scholomanceEpicProbabilityText, epicProbabilityText, scholomanceEpicProbability);
-		scholomanceEpicProbabilityText.setForeground(titleFontColor);
+		scholomanceEpicProbabilityText.setForeground(headerTitleColor);
 		
 		scholomanceEpicPanel.add(epicPanelTitleLabel);
 		scholomanceEpicPanel.add(scholomanceEpicCounterText);
@@ -2255,22 +2489,21 @@ public class TrackerGUI
 		legendaryPanelTitleLabel = new JTextPane();
 		doc = legendaryPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(scholomance, legendaryPanelTitleLabel, legendaryPanelTitle);
-		legendaryPanelTitleLabel.setForeground(titleFontColor);
+		legendaryPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Packs without legendary counter
 		scholomanceLegendaryCounterText = new JTextPane();
 		doc = scholomanceLegendaryCounterText.getStyledDocument();
 		changePanelTextStyle(scholomance, scholomanceLegendaryCounterText, legendaryCounterText, scholomanceLegendaryCounter);
-		scholomanceLegendaryCounterText.setForeground(titleFontColor);
+		scholomanceLegendaryCounterText.setForeground(headerTitleColor);
 		
 		// Packs without legendary counter modify buttons panel
 		scholomanceLegendaryModifyPanel = new JPanel();
 		
 		// Reset button
-		scholomanceLegendaryReset = new ModifierButton("Reset", titleFontColor, buttonsDarkHoverColor);
+		scholomanceLegendaryReset = new ModifierButton("Reset", headerTitleColor, buttonsDarkHoverColor);
 		scholomanceLegendaryReset.setToolTipText(resetButtonToolTipText);
-		scholomanceLegendaryReset.setBackground(titleFontColor);
-		scholomanceLegendaryReset.setForeground(headerBGColor);
+		scholomanceLegendaryReset.setBackground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -2278,16 +2511,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		// Add button
-		scholomanceLegendaryAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		scholomanceLegendaryAdd.setBackground(titleFontColor);
-		scholomanceLegendaryAdd.setForeground(headerBGColor);
+		scholomanceLegendaryAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		scholomanceLegendaryAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		scholomanceLegendaryIncrement = new JTextArea(1, 2);
 		scholomanceLegendaryIncrement.setDocument(new IncrementLimit(2));
-		scholomanceLegendaryIncrement.setBackground(titleFontColor);
-		scholomanceLegendaryIncrement.setForeground(headerBGColor);
-		scholomanceLegendaryIncrement.setCaretColor(headerBGColor);
+		scholomanceLegendaryIncrement.setBackground(headerTitleColor);
 		scholomanceLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(scholomance, scholomanceLegendaryModifyPanel, scholomanceLegendaryReset, scholomanceLegendaryAdd, scholomanceLegendaryIncrement);
@@ -2296,7 +2526,7 @@ public class TrackerGUI
 		scholomanceLegendaryProbabilityText = new JTextPane();
 		doc = scholomanceLegendaryProbabilityText.getStyledDocument();
 		changePanelTextStyle(scholomance, scholomanceLegendaryProbabilityText, legendaryProbabilityText, scholomanceLegendaryProbability);
-		scholomanceLegendaryProbabilityText.setForeground(titleFontColor);
+		scholomanceLegendaryProbabilityText.setForeground(headerTitleColor);
 		
 		scholomanceLegendaryPanel.add(legendaryPanelTitleLabel);
 		scholomanceLegendaryPanel.add(scholomanceLegendaryCounterText);
@@ -2312,22 +2542,21 @@ public class TrackerGUI
 		totalPanelTitleLabel = new JTextPane();
 		doc = totalPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(scholomance, totalPanelTitleLabel,totalPanelTitle);
-		totalPanelTitleLabel.setForeground(titleFontColor);
+		totalPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Total amount of packs opened counter
 		scholomanceTotalCounterText = new JTextPane();
 		doc = scholomanceTotalCounterText.getStyledDocument();
 		changePanelTextStyle(scholomance, scholomanceTotalCounterText, totalCounterText, scholomanceTotalCounter);
-		scholomanceTotalCounterText.setForeground(titleFontColor);
+		scholomanceTotalCounterText.setForeground(headerTitleColor);
 		
 		// Total amount of packs opened modify buttons panel
 		scholomanceTotalModifyPanel = new JPanel();
 		
 		// Modify button
-		scholomanceTotalModify = new ModifierButton("Modify", titleFontColor, buttonsDarkHoverColor);
+		scholomanceTotalModify = new ModifierButton("Modify", headerTitleColor, buttonsDarkHoverColor);
 		scholomanceTotalModify.setToolTipText(modifyButtonToolTipText);
-		scholomanceTotalModify.setBackground(titleFontColor);
-		scholomanceTotalModify.setForeground(headerBGColor);
+		scholomanceTotalModify.setBackground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -2335,16 +2564,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		// Add button
-		scholomanceTotalAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		scholomanceTotalAdd.setBackground(titleFontColor);
-		scholomanceTotalAdd.setForeground(headerBGColor);
+		scholomanceTotalAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		scholomanceTotalAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		scholomanceTotalIncrement = new JTextArea(1, 3);
 		scholomanceTotalIncrement.setDocument(new IncrementLimit(3));
-		scholomanceTotalIncrement.setBackground(titleFontColor);
-		scholomanceTotalIncrement.setForeground(headerBGColor);
-		scholomanceTotalIncrement.setCaretColor(headerBGColor);
+		scholomanceTotalIncrement.setBackground(headerTitleColor);
 		scholomanceTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(scholomance, scholomanceTotalModifyPanel, scholomanceTotalModify, scholomanceTotalAdd, scholomanceTotalIncrement);
@@ -2414,22 +2640,21 @@ public class TrackerGUI
 		epicPanelTitleLabel = new JTextPane();
 		doc = epicPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(outland, epicPanelTitleLabel, epicPanelTitle);
-		epicPanelTitleLabel.setForeground(titleFontColor);
+		epicPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Packs without epic counter
 		outlandEpicCounterText = new JTextPane();
 		doc = outlandEpicCounterText.getStyledDocument();
 		changePanelTextStyle(outland, outlandEpicCounterText, epicCounterText, outlandEpicCounter);
-		outlandEpicCounterText.setForeground(titleFontColor);
+		outlandEpicCounterText.setForeground(headerTitleColor);
 		
 		// Packs without epic counter modify buttons panel
 		outlandEpicModifyPanel = new JPanel();
 		
 		// Reset button
-		outlandEpicReset = new ModifierButton("Reset", titleFontColor, buttonsDarkHoverColor);
+		outlandEpicReset = new ModifierButton("Reset", headerTitleColor, buttonsDarkHoverColor);
 		outlandEpicReset.setToolTipText(resetButtonToolTipText);
-		outlandEpicReset.setBackground(titleFontColor);
-		outlandEpicReset.setForeground(headerBGColor);
+		outlandEpicReset.setBackground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -2437,16 +2662,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		// Add button
-		outlandEpicAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		outlandEpicAdd.setBackground(titleFontColor);
-		outlandEpicAdd.setForeground(headerBGColor);
+		outlandEpicAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		outlandEpicAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		outlandEpicIncrement = new JTextArea(1, 1);
 		outlandEpicIncrement.setDocument(new IncrementLimit(1));
-		outlandEpicIncrement.setBackground(titleFontColor);
-		outlandEpicIncrement.setForeground(headerBGColor);
-		outlandEpicIncrement.setCaretColor(headerBGColor);
+		outlandEpicIncrement.setBackground(headerTitleColor);
 		outlandEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(outland, outlandEpicModifyPanel, outlandEpicReset, outlandEpicAdd, outlandEpicIncrement);
@@ -2455,7 +2677,7 @@ public class TrackerGUI
 		outlandEpicProbabilityText = new JTextPane();
 		doc = outlandEpicProbabilityText.getStyledDocument();
 		changePanelTextStyle(outland, outlandEpicProbabilityText, epicProbabilityText, outlandEpicProbability);
-		outlandEpicProbabilityText.setForeground(titleFontColor);
+		outlandEpicProbabilityText.setForeground(headerTitleColor);
 		
 		outlandEpicPanel.add(epicPanelTitleLabel);
 		outlandEpicPanel.add(outlandEpicCounterText);
@@ -2471,22 +2693,21 @@ public class TrackerGUI
 		legendaryPanelTitleLabel = new JTextPane();
 		doc = legendaryPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(outland, legendaryPanelTitleLabel, legendaryPanelTitle);
-		legendaryPanelTitleLabel.setForeground(titleFontColor);
+		legendaryPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Packs without legendary counter
 		outlandLegendaryCounterText = new JTextPane();
 		doc = outlandLegendaryCounterText.getStyledDocument();
 		changePanelTextStyle(outland, outlandLegendaryCounterText, legendaryCounterText, outlandLegendaryCounter);
-		outlandLegendaryCounterText.setForeground(titleFontColor);
+		outlandLegendaryCounterText.setForeground(headerTitleColor);
 		
 		// Packs without legendary counter modify buttons panel
 		outlandLegendaryModifyPanel = new JPanel();
 		
 		// Reset button
-		outlandLegendaryReset = new ModifierButton("Reset", titleFontColor, buttonsDarkHoverColor);
+		outlandLegendaryReset = new ModifierButton("Reset", headerTitleColor, buttonsDarkHoverColor);
 		outlandLegendaryReset.setToolTipText(resetButtonToolTipText);
-		outlandLegendaryReset.setBackground(titleFontColor);
-		outlandLegendaryReset.setForeground(headerBGColor);
+		outlandLegendaryReset.setBackground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -2494,16 +2715,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		// Add button
-		outlandLegendaryAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		outlandLegendaryAdd.setBackground(titleFontColor);
-		outlandLegendaryAdd.setForeground(headerBGColor);
+		outlandLegendaryAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		outlandLegendaryAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		outlandLegendaryIncrement = new JTextArea(1, 2);
 		outlandLegendaryIncrement.setDocument(new IncrementLimit(2));
-		outlandLegendaryIncrement.setBackground(titleFontColor);
-		outlandLegendaryIncrement.setForeground(headerBGColor);
-		outlandLegendaryIncrement.setCaretColor(headerBGColor);
+		outlandLegendaryIncrement.setBackground(headerTitleColor);
 		outlandLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(outland, outlandLegendaryModifyPanel, outlandLegendaryReset, outlandLegendaryAdd, outlandLegendaryIncrement);
@@ -2512,7 +2730,7 @@ public class TrackerGUI
 		outlandLegendaryProbabilityText = new JTextPane();
 		doc = outlandLegendaryProbabilityText.getStyledDocument();
 		changePanelTextStyle(outland, outlandLegendaryProbabilityText, legendaryProbabilityText, outlandLegendaryProbability);
-		outlandLegendaryProbabilityText.setForeground(titleFontColor);
+		outlandLegendaryProbabilityText.setForeground(headerTitleColor);
 		
 		outlandLegendaryPanel.add(legendaryPanelTitleLabel);
 		outlandLegendaryPanel.add(outlandLegendaryCounterText);
@@ -2528,22 +2746,21 @@ public class TrackerGUI
 		totalPanelTitleLabel = new JTextPane();
 		doc = totalPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(outland, totalPanelTitleLabel,totalPanelTitle);
-		totalPanelTitleLabel.setForeground(titleFontColor);
+		totalPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Total amount of packs opened counter
 		outlandTotalCounterText = new JTextPane();
 		doc = outlandTotalCounterText.getStyledDocument();
 		changePanelTextStyle(outland, outlandTotalCounterText, totalCounterText, outlandTotalCounter);
-		outlandTotalCounterText.setForeground(titleFontColor);
+		outlandTotalCounterText.setForeground(headerTitleColor);
 		
 		// Total amount of packs opened modify buttons panel
 		outlandTotalModifyPanel = new JPanel();
 		
 		// Modify button
-		outlandTotalModify = new ModifierButton("Modify", titleFontColor, buttonsDarkHoverColor);
+		outlandTotalModify = new ModifierButton("Modify", headerTitleColor, buttonsDarkHoverColor);
 		outlandTotalModify.setToolTipText(modifyButtonToolTipText);
-		outlandTotalModify.setBackground(titleFontColor);
-		outlandTotalModify.setForeground(headerBGColor);
+		outlandTotalModify.setBackground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -2551,16 +2768,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		// Add button
-		outlandTotalAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		outlandTotalAdd.setBackground(titleFontColor);
-		outlandTotalAdd.setForeground(headerBGColor);
+		outlandTotalAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		outlandTotalAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		outlandTotalIncrement = new JTextArea(1, 3);
 		outlandTotalIncrement.setDocument(new IncrementLimit(3));
-		outlandTotalIncrement.setBackground(titleFontColor);
-		outlandTotalIncrement.setForeground(headerBGColor);
-		outlandTotalIncrement.setCaretColor(headerBGColor);
+		outlandTotalIncrement.setBackground(headerTitleColor);
 		outlandTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(outland, outlandTotalModifyPanel, outlandTotalModify, outlandTotalAdd, outlandTotalIncrement);
@@ -2679,7 +2893,7 @@ public class TrackerGUI
 		dragonsEpicReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		dragonsEpicReset.setToolTipText(resetButtonToolTipText);
 		dragonsEpicReset.setBackground(headerBGColor);
-		dragonsEpicReset.setForeground(titleFontColor);
+		dragonsEpicReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -2689,14 +2903,14 @@ public class TrackerGUI
 		// Add button
 		dragonsEpicAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		dragonsEpicAdd.setBackground(headerBGColor);
-		dragonsEpicAdd.setForeground(titleFontColor);
+		dragonsEpicAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		dragonsEpicIncrement = new JTextArea(1, 1);
 		dragonsEpicIncrement.setDocument(new IncrementLimit(1));
 		dragonsEpicIncrement.setBackground(headerBGColor);
-		dragonsEpicIncrement.setForeground(titleFontColor);
-		dragonsEpicIncrement.setCaretColor(titleFontColor);
+		dragonsEpicIncrement.setForeground(headerTitleColor);
+		dragonsEpicIncrement.setCaretColor(headerTitleColor);
 		dragonsEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(dragons, dragonsEpicModifyPanel, dragonsEpicReset, dragonsEpicAdd, dragonsEpicIncrement);
@@ -2733,7 +2947,7 @@ public class TrackerGUI
 		dragonsLegendaryReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		dragonsLegendaryReset.setToolTipText(resetButtonToolTipText);
 		dragonsLegendaryReset.setBackground(headerBGColor);
-		dragonsLegendaryReset.setForeground(titleFontColor);
+		dragonsLegendaryReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -2743,14 +2957,14 @@ public class TrackerGUI
 		// Add button
 		dragonsLegendaryAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		dragonsLegendaryAdd.setBackground(headerBGColor);
-		dragonsLegendaryAdd.setForeground(titleFontColor);
+		dragonsLegendaryAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		dragonsLegendaryIncrement = new JTextArea(1, 2);
 		dragonsLegendaryIncrement.setDocument(new IncrementLimit(2));
 		dragonsLegendaryIncrement.setBackground(headerBGColor);
-		dragonsLegendaryIncrement.setForeground(titleFontColor);
-		dragonsLegendaryIncrement.setCaretColor(titleFontColor);
+		dragonsLegendaryIncrement.setForeground(headerTitleColor);
+		dragonsLegendaryIncrement.setCaretColor(headerTitleColor);
 		dragonsLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(dragons, dragonsLegendaryModifyPanel, dragonsLegendaryReset, dragonsLegendaryAdd, dragonsLegendaryIncrement);
@@ -2787,7 +3001,7 @@ public class TrackerGUI
 		dragonsTotalModify = new ModifierButton("Modify", headerBGColor, buttonsHoverColor);
 		dragonsTotalModify.setToolTipText(modifyButtonToolTipText);
 		dragonsTotalModify.setBackground(headerBGColor);
-		dragonsTotalModify.setForeground(titleFontColor);
+		dragonsTotalModify.setForeground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -2797,14 +3011,14 @@ public class TrackerGUI
 		// Add button
 		dragonsTotalAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		dragonsTotalAdd.setBackground(headerBGColor);
-		dragonsTotalAdd.setForeground(titleFontColor);
+		dragonsTotalAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		dragonsTotalIncrement = new JTextArea(1, 3);
 		dragonsTotalIncrement.setDocument(new IncrementLimit(3));
 		dragonsTotalIncrement.setBackground(headerBGColor);
-		dragonsTotalIncrement.setForeground(titleFontColor);
-		dragonsTotalIncrement.setCaretColor(titleFontColor);
+		dragonsTotalIncrement.setForeground(headerTitleColor);
+		dragonsTotalIncrement.setCaretColor(headerTitleColor);
 		dragonsTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(dragons, dragonsTotalModifyPanel, dragonsTotalModify, dragonsTotalAdd, dragonsTotalIncrement);
@@ -2887,7 +3101,7 @@ public class TrackerGUI
 		uldumEpicReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		uldumEpicReset.setToolTipText(resetButtonToolTipText);
 		uldumEpicReset.setBackground(headerBGColor);
-		uldumEpicReset.setForeground(titleFontColor);
+		uldumEpicReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -2897,14 +3111,14 @@ public class TrackerGUI
 		// Add button
 		uldumEpicAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		uldumEpicAdd.setBackground(headerBGColor);
-		uldumEpicAdd.setForeground(titleFontColor);
+		uldumEpicAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		uldumEpicIncrement = new JTextArea(1, 1);
 		uldumEpicIncrement.setDocument(new IncrementLimit(1));
 		uldumEpicIncrement.setBackground(headerBGColor);
-		uldumEpicIncrement.setForeground(titleFontColor);
-		uldumEpicIncrement.setCaretColor(titleFontColor);
+		uldumEpicIncrement.setForeground(headerTitleColor);
+		uldumEpicIncrement.setCaretColor(headerTitleColor);
 		uldumEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(uldum, uldumEpicModifyPanel, uldumEpicReset, uldumEpicAdd, uldumEpicIncrement);
@@ -2941,7 +3155,7 @@ public class TrackerGUI
 		uldumLegendaryReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		uldumLegendaryReset.setToolTipText(resetButtonToolTipText);
 		uldumLegendaryReset.setBackground(headerBGColor);
-		uldumLegendaryReset.setForeground(titleFontColor);
+		uldumLegendaryReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -2951,14 +3165,14 @@ public class TrackerGUI
 		// Add button
 		uldumLegendaryAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		uldumLegendaryAdd.setBackground(headerBGColor);
-		uldumLegendaryAdd.setForeground(titleFontColor);
+		uldumLegendaryAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		uldumLegendaryIncrement = new JTextArea(1, 2);
 		uldumLegendaryIncrement.setDocument(new IncrementLimit(2));
 		uldumLegendaryIncrement.setBackground(headerBGColor);
-		uldumLegendaryIncrement.setForeground(titleFontColor);
-		uldumLegendaryIncrement.setCaretColor(titleFontColor);
+		uldumLegendaryIncrement.setForeground(headerTitleColor);
+		uldumLegendaryIncrement.setCaretColor(headerTitleColor);
 		uldumLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(uldum, uldumLegendaryModifyPanel, uldumLegendaryReset, uldumLegendaryAdd, uldumLegendaryIncrement);
@@ -2995,7 +3209,7 @@ public class TrackerGUI
 		uldumTotalModify = new ModifierButton("Modify", headerBGColor, buttonsHoverColor);
 		uldumTotalModify.setToolTipText(modifyButtonToolTipText);
 		uldumTotalModify.setBackground(headerBGColor);
-		uldumTotalModify.setForeground(titleFontColor);
+		uldumTotalModify.setForeground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -3005,14 +3219,14 @@ public class TrackerGUI
 		// Add button
 		uldumTotalAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		uldumTotalAdd.setBackground(headerBGColor);
-		uldumTotalAdd.setForeground(titleFontColor);
+		uldumTotalAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		uldumTotalIncrement = new JTextArea(1, 3);
 		uldumTotalIncrement.setDocument(new IncrementLimit(3));
 		uldumTotalIncrement.setBackground(headerBGColor);
-		uldumTotalIncrement.setForeground(titleFontColor);
-		uldumTotalIncrement.setCaretColor(titleFontColor);
+		uldumTotalIncrement.setForeground(headerTitleColor);
+		uldumTotalIncrement.setCaretColor(headerTitleColor);
 		uldumTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(uldum, uldumTotalModifyPanel, uldumTotalModify, uldumTotalAdd, uldumTotalIncrement);
@@ -3082,22 +3296,21 @@ public class TrackerGUI
 		epicPanelTitleLabel = new JTextPane();
 		doc = epicPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(shadows, epicPanelTitleLabel, epicPanelTitle);
-		epicPanelTitleLabel.setForeground(titleFontColor);
+		epicPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Packs without epic counter
 		shadowsEpicCounterText = new JTextPane();
 		doc = shadowsEpicCounterText.getStyledDocument();
 		changePanelTextStyle(shadows, shadowsEpicCounterText, epicCounterText, shadowsEpicCounter);
-		shadowsEpicCounterText.setForeground(titleFontColor);
+		shadowsEpicCounterText.setForeground(headerTitleColor);
 		
 		// Packs without epic counter modify buttons panel
 		shadowsEpicModifyPanel = new JPanel();
 		
 		// Reset button
-		shadowsEpicReset = new ModifierButton("Reset", titleFontColor, buttonsDarkHoverColor);
+		shadowsEpicReset = new ModifierButton("Reset", headerTitleColor, buttonsDarkHoverColor);
 		shadowsEpicReset.setToolTipText(resetButtonToolTipText);
-		shadowsEpicReset.setBackground(titleFontColor);
-		shadowsEpicReset.setForeground(headerBGColor);
+		shadowsEpicReset.setBackground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -3105,16 +3318,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		// Add button
-		shadowsEpicAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		shadowsEpicAdd.setBackground(titleFontColor);
-		shadowsEpicAdd.setForeground(headerBGColor);
+		shadowsEpicAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		shadowsEpicAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		shadowsEpicIncrement = new JTextArea(1, 1);
 		shadowsEpicIncrement.setDocument(new IncrementLimit(1));
-		shadowsEpicIncrement.setBackground(titleFontColor);
-		shadowsEpicIncrement.setForeground(headerBGColor);
-		shadowsEpicIncrement.setCaretColor(headerBGColor);
+		shadowsEpicIncrement.setBackground(headerTitleColor);
 		shadowsEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(shadows, shadowsEpicModifyPanel, shadowsEpicReset, shadowsEpicAdd, shadowsEpicIncrement);
@@ -3123,7 +3333,7 @@ public class TrackerGUI
 		shadowsEpicProbabilityText = new JTextPane();
 		doc = shadowsEpicProbabilityText.getStyledDocument();
 		changePanelTextStyle(shadows, shadowsEpicProbabilityText, epicProbabilityText, shadowsEpicProbability);
-		shadowsEpicProbabilityText.setForeground(titleFontColor);
+		shadowsEpicProbabilityText.setForeground(headerTitleColor);
 		
 		shadowsEpicPanel.add(epicPanelTitleLabel);
 		shadowsEpicPanel.add(shadowsEpicCounterText);
@@ -3139,22 +3349,21 @@ public class TrackerGUI
 		legendaryPanelTitleLabel = new JTextPane();
 		doc = legendaryPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(shadows, legendaryPanelTitleLabel, legendaryPanelTitle);
-		legendaryPanelTitleLabel.setForeground(titleFontColor);
+		legendaryPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Packs without legendary counter
 		shadowsLegendaryCounterText = new JTextPane();
 		doc = shadowsLegendaryCounterText.getStyledDocument();
 		changePanelTextStyle(shadows, shadowsLegendaryCounterText, legendaryCounterText, shadowsLegendaryCounter);
-		shadowsLegendaryCounterText.setForeground(titleFontColor);
+		shadowsLegendaryCounterText.setForeground(headerTitleColor);
 		
 		// Packs without legendary counter modify buttons panel
 		shadowsLegendaryModifyPanel = new JPanel();
 		
 		// Reset button
-		shadowsLegendaryReset = new ModifierButton("Reset", titleFontColor, buttonsDarkHoverColor);
+		shadowsLegendaryReset = new ModifierButton("Reset", headerTitleColor, buttonsDarkHoverColor);
 		shadowsLegendaryReset.setToolTipText(resetButtonToolTipText);
-		shadowsLegendaryReset.setBackground(titleFontColor);
-		shadowsLegendaryReset.setForeground(headerBGColor);
+		shadowsLegendaryReset.setBackground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -3162,16 +3371,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		// Add button
-		shadowsLegendaryAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		shadowsLegendaryAdd.setBackground(titleFontColor);
-		shadowsLegendaryAdd.setForeground(headerBGColor);
+		shadowsLegendaryAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		shadowsLegendaryAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		shadowsLegendaryIncrement = new JTextArea(1, 2);
 		shadowsLegendaryIncrement.setDocument(new IncrementLimit(2));
-		shadowsLegendaryIncrement.setBackground(titleFontColor);
-		shadowsLegendaryIncrement.setForeground(headerBGColor);
-		shadowsLegendaryIncrement.setCaretColor(headerBGColor);
+		shadowsLegendaryIncrement.setBackground(headerTitleColor);
 		shadowsLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(shadows, shadowsLegendaryModifyPanel, shadowsLegendaryReset, shadowsLegendaryAdd, shadowsLegendaryIncrement);
@@ -3180,7 +3386,7 @@ public class TrackerGUI
 		shadowsLegendaryProbabilityText = new JTextPane();
 		doc = shadowsLegendaryProbabilityText.getStyledDocument();
 		changePanelTextStyle(shadows, shadowsLegendaryProbabilityText, legendaryProbabilityText, shadowsLegendaryProbability);
-		shadowsLegendaryProbabilityText.setForeground(titleFontColor);
+		shadowsLegendaryProbabilityText.setForeground(headerTitleColor);
 		
 		shadowsLegendaryPanel.add(legendaryPanelTitleLabel);
 		shadowsLegendaryPanel.add(shadowsLegendaryCounterText);
@@ -3196,22 +3402,21 @@ public class TrackerGUI
 		totalPanelTitleLabel = new JTextPane();
 		doc = totalPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(shadows, totalPanelTitleLabel,totalPanelTitle);
-		totalPanelTitleLabel.setForeground(titleFontColor);
+		totalPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Total amount of packs opened counter
 		shadowsTotalCounterText = new JTextPane();
 		doc = shadowsTotalCounterText.getStyledDocument();
 		changePanelTextStyle(shadows, shadowsTotalCounterText, totalCounterText, shadowsTotalCounter);
-		shadowsTotalCounterText.setForeground(titleFontColor);
+		shadowsTotalCounterText.setForeground(headerTitleColor);
 		
 		// Total amount of packs opened modify buttons panel
 		shadowsTotalModifyPanel = new JPanel();
 		
 		// Modify button
-		shadowsTotalModify = new ModifierButton("Modify", titleFontColor, buttonsDarkHoverColor);
+		shadowsTotalModify = new ModifierButton("Modify", headerTitleColor, buttonsDarkHoverColor);
 		shadowsTotalModify.setToolTipText(modifyButtonToolTipText);
-		shadowsTotalModify.setBackground(titleFontColor);
-		shadowsTotalModify.setForeground(headerBGColor);
+		shadowsTotalModify.setBackground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -3219,16 +3424,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		// Add button
-		shadowsTotalAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		shadowsTotalAdd.setBackground(titleFontColor);
-		shadowsTotalAdd.setForeground(headerBGColor);
+		shadowsTotalAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		shadowsTotalAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		shadowsTotalIncrement = new JTextArea(1, 3);
 		shadowsTotalIncrement.setDocument(new IncrementLimit(3));
-		shadowsTotalIncrement.setBackground(titleFontColor);
-		shadowsTotalIncrement.setForeground(headerBGColor);
-		shadowsTotalIncrement.setCaretColor(headerBGColor);
+		shadowsTotalIncrement.setBackground(headerTitleColor);
 		shadowsTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(shadows, shadowsTotalModifyPanel, shadowsTotalModify, shadowsTotalAdd, shadowsTotalIncrement);
@@ -3347,7 +3549,7 @@ public class TrackerGUI
 		rumbleEpicReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		rumbleEpicReset.setToolTipText(resetButtonToolTipText);
 		rumbleEpicReset.setBackground(headerBGColor);
-		rumbleEpicReset.setForeground(titleFontColor);
+		rumbleEpicReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -3357,14 +3559,14 @@ public class TrackerGUI
 		// Add button
 		rumbleEpicAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		rumbleEpicAdd.setBackground(headerBGColor);
-		rumbleEpicAdd.setForeground(titleFontColor);
+		rumbleEpicAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		rumbleEpicIncrement = new JTextArea(1, 1);
 		rumbleEpicIncrement.setDocument(new IncrementLimit(1));
 		rumbleEpicIncrement.setBackground(headerBGColor);
-		rumbleEpicIncrement.setForeground(titleFontColor);
-		rumbleEpicIncrement.setCaretColor(titleFontColor);
+		rumbleEpicIncrement.setForeground(headerTitleColor);
+		rumbleEpicIncrement.setCaretColor(headerTitleColor);
 		rumbleEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(rumble, rumbleEpicModifyPanel, rumbleEpicReset, rumbleEpicAdd, rumbleEpicIncrement);
@@ -3401,7 +3603,7 @@ public class TrackerGUI
 		rumbleLegendaryReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		rumbleLegendaryReset.setToolTipText(resetButtonToolTipText);
 		rumbleLegendaryReset.setBackground(headerBGColor);
-		rumbleLegendaryReset.setForeground(titleFontColor);
+		rumbleLegendaryReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -3411,14 +3613,14 @@ public class TrackerGUI
 		// Add button
 		rumbleLegendaryAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		rumbleLegendaryAdd.setBackground(headerBGColor);
-		rumbleLegendaryAdd.setForeground(titleFontColor);
+		rumbleLegendaryAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		rumbleLegendaryIncrement = new JTextArea(1, 2);
 		rumbleLegendaryIncrement.setDocument(new IncrementLimit(2));
 		rumbleLegendaryIncrement.setBackground(headerBGColor);
-		rumbleLegendaryIncrement.setForeground(titleFontColor);
-		rumbleLegendaryIncrement.setCaretColor(titleFontColor);
+		rumbleLegendaryIncrement.setForeground(headerTitleColor);
+		rumbleLegendaryIncrement.setCaretColor(headerTitleColor);
 		rumbleLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(rumble, rumbleLegendaryModifyPanel, rumbleLegendaryReset, rumbleLegendaryAdd, rumbleLegendaryIncrement);
@@ -3455,7 +3657,7 @@ public class TrackerGUI
 		rumbleTotalModify = new ModifierButton("Modify", headerBGColor, buttonsHoverColor);
 		rumbleTotalModify.setToolTipText(modifyButtonToolTipText);
 		rumbleTotalModify.setBackground(headerBGColor);
-		rumbleTotalModify.setForeground(titleFontColor);
+		rumbleTotalModify.setForeground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -3465,14 +3667,14 @@ public class TrackerGUI
 		// Add button
 		rumbleTotalAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		rumbleTotalAdd.setBackground(headerBGColor);
-		rumbleTotalAdd.setForeground(titleFontColor);
+		rumbleTotalAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		rumbleTotalIncrement = new JTextArea(1, 3);
 		rumbleTotalIncrement.setDocument(new IncrementLimit(3));
 		rumbleTotalIncrement.setBackground(headerBGColor);
-		rumbleTotalIncrement.setForeground(titleFontColor);
-		rumbleTotalIncrement.setCaretColor(titleFontColor);
+		rumbleTotalIncrement.setForeground(headerTitleColor);
+		rumbleTotalIncrement.setCaretColor(headerTitleColor);
 		rumbleTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(rumble, rumbleTotalModifyPanel, rumbleTotalModify, rumbleTotalAdd, rumbleTotalIncrement);
@@ -3542,22 +3744,21 @@ public class TrackerGUI
 		epicPanelTitleLabel = new JTextPane();
 		doc = epicPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(boomsday, epicPanelTitleLabel, epicPanelTitle);
-		epicPanelTitleLabel.setForeground(titleFontColor);
+		epicPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Packs without epic counter
 		boomsdayEpicCounterText = new JTextPane();
 		doc = boomsdayEpicCounterText.getStyledDocument();
 		changePanelTextStyle(boomsday, boomsdayEpicCounterText, epicCounterText, boomsdayEpicCounter);
-		boomsdayEpicCounterText.setForeground(titleFontColor);
+		boomsdayEpicCounterText.setForeground(headerTitleColor);
 		
 		// Packs without epic counter modify buttons panel
 		boomsdayEpicModifyPanel = new JPanel();
 		
 		// Reset button
-		boomsdayEpicReset = new ModifierButton("Reset", titleFontColor, buttonsDarkHoverColor);
+		boomsdayEpicReset = new ModifierButton("Reset", headerTitleColor, buttonsDarkHoverColor);
 		boomsdayEpicReset.setToolTipText(resetButtonToolTipText);
-		boomsdayEpicReset.setBackground(titleFontColor);
-		boomsdayEpicReset.setForeground(headerBGColor);
+		boomsdayEpicReset.setBackground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -3565,16 +3766,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		// Add button
-		boomsdayEpicAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		boomsdayEpicAdd.setBackground(titleFontColor);
-		boomsdayEpicAdd.setForeground(headerBGColor);
+		boomsdayEpicAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		boomsdayEpicAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		boomsdayEpicIncrement = new JTextArea(1, 1);
 		boomsdayEpicIncrement.setDocument(new IncrementLimit(1));
-		boomsdayEpicIncrement.setBackground(titleFontColor);
-		boomsdayEpicIncrement.setForeground(headerBGColor);
-		boomsdayEpicIncrement.setCaretColor(headerBGColor);
+		boomsdayEpicIncrement.setBackground(headerTitleColor);
 		boomsdayEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(boomsday, boomsdayEpicModifyPanel, boomsdayEpicReset, boomsdayEpicAdd, boomsdayEpicIncrement);
@@ -3583,7 +3781,7 @@ public class TrackerGUI
 		boomsdayEpicProbabilityText = new JTextPane();
 		doc = boomsdayEpicProbabilityText.getStyledDocument();
 		changePanelTextStyle(boomsday, boomsdayEpicProbabilityText, epicProbabilityText, boomsdayEpicProbability);
-		boomsdayEpicProbabilityText.setForeground(titleFontColor);
+		boomsdayEpicProbabilityText.setForeground(headerTitleColor);
 		
 		boomsdayEpicPanel.add(epicPanelTitleLabel);
 		boomsdayEpicPanel.add(boomsdayEpicCounterText);
@@ -3599,22 +3797,21 @@ public class TrackerGUI
 		legendaryPanelTitleLabel = new JTextPane();
 		doc = legendaryPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(boomsday, legendaryPanelTitleLabel, legendaryPanelTitle);
-		legendaryPanelTitleLabel.setForeground(titleFontColor);
+		legendaryPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Packs without legendary counter
 		boomsdayLegendaryCounterText = new JTextPane();
 		doc = boomsdayLegendaryCounterText.getStyledDocument();
 		changePanelTextStyle(boomsday, boomsdayLegendaryCounterText, legendaryCounterText, boomsdayLegendaryCounter);
-		boomsdayLegendaryCounterText.setForeground(titleFontColor);
+		boomsdayLegendaryCounterText.setForeground(headerTitleColor);
 		
 		// Packs without legendary counter modify buttons panel
 		boomsdayLegendaryModifyPanel = new JPanel();
 		
 		// Reset button
-		boomsdayLegendaryReset = new ModifierButton("Reset", titleFontColor, buttonsDarkHoverColor);
+		boomsdayLegendaryReset = new ModifierButton("Reset", headerTitleColor, buttonsDarkHoverColor);
 		boomsdayLegendaryReset.setToolTipText(resetButtonToolTipText);
-		boomsdayLegendaryReset.setBackground(titleFontColor);
-		boomsdayLegendaryReset.setForeground(headerBGColor);
+		boomsdayLegendaryReset.setBackground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -3622,16 +3819,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		// Add button
-		boomsdayLegendaryAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		boomsdayLegendaryAdd.setBackground(titleFontColor);
-		boomsdayLegendaryAdd.setForeground(headerBGColor);
+		boomsdayLegendaryAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		boomsdayLegendaryAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		boomsdayLegendaryIncrement = new JTextArea(1, 2);
 		boomsdayLegendaryIncrement.setDocument(new IncrementLimit(2));
-		boomsdayLegendaryIncrement.setBackground(titleFontColor);
-		boomsdayLegendaryIncrement.setForeground(headerBGColor);
-		boomsdayLegendaryIncrement.setCaretColor(headerBGColor);
+		boomsdayLegendaryIncrement.setBackground(headerTitleColor);
 		boomsdayLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(boomsday, boomsdayLegendaryModifyPanel, boomsdayLegendaryReset, boomsdayLegendaryAdd, boomsdayLegendaryIncrement);
@@ -3640,7 +3834,7 @@ public class TrackerGUI
 		boomsdayLegendaryProbabilityText = new JTextPane();
 		doc = boomsdayLegendaryProbabilityText.getStyledDocument();
 		changePanelTextStyle(boomsday, boomsdayLegendaryProbabilityText, legendaryProbabilityText, boomsdayLegendaryProbability);
-		boomsdayLegendaryProbabilityText.setForeground(titleFontColor);
+		boomsdayLegendaryProbabilityText.setForeground(headerTitleColor);
 		
 		boomsdayLegendaryPanel.add(legendaryPanelTitleLabel);
 		boomsdayLegendaryPanel.add(boomsdayLegendaryCounterText);
@@ -3656,22 +3850,21 @@ public class TrackerGUI
 		totalPanelTitleLabel = new JTextPane();
 		doc = totalPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(boomsday, totalPanelTitleLabel,totalPanelTitle);
-		totalPanelTitleLabel.setForeground(titleFontColor);
+		totalPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Total amount of packs opened counter
 		boomsdayTotalCounterText = new JTextPane();
 		doc = boomsdayTotalCounterText.getStyledDocument();
 		changePanelTextStyle(boomsday, boomsdayTotalCounterText, totalCounterText, boomsdayTotalCounter);
-		boomsdayTotalCounterText.setForeground(titleFontColor);
+		boomsdayTotalCounterText.setForeground(headerTitleColor);
 		
 		// Total amount of packs opened modify buttons panel
 		boomsdayTotalModifyPanel = new JPanel();
 		
 		// Modify button
-		boomsdayTotalModify = new ModifierButton("Modify", titleFontColor, buttonsDarkHoverColor);
+		boomsdayTotalModify = new ModifierButton("Modify", headerTitleColor, buttonsDarkHoverColor);
 		boomsdayTotalModify.setToolTipText(modifyButtonToolTipText);
-		boomsdayTotalModify.setBackground(titleFontColor);
-		boomsdayTotalModify.setForeground(headerBGColor);
+		boomsdayTotalModify.setBackground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -3679,16 +3872,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		// Add button
-		boomsdayTotalAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		boomsdayTotalAdd.setBackground(titleFontColor);
-		boomsdayTotalAdd.setForeground(headerBGColor);
+		boomsdayTotalAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		boomsdayTotalAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		boomsdayTotalIncrement = new JTextArea(1, 3);
 		boomsdayTotalIncrement.setDocument(new IncrementLimit(3));
-		boomsdayTotalIncrement.setBackground(titleFontColor);
-		boomsdayTotalIncrement.setForeground(headerBGColor);
-		boomsdayTotalIncrement.setCaretColor(headerBGColor);
+		boomsdayTotalIncrement.setBackground(headerTitleColor);
 		boomsdayTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(boomsday, boomsdayTotalModifyPanel, boomsdayTotalModify, boomsdayTotalAdd, boomsdayTotalIncrement);
@@ -3771,7 +3961,7 @@ public class TrackerGUI
 		witchwoodEpicReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		witchwoodEpicReset.setToolTipText(resetButtonToolTipText);
 		witchwoodEpicReset.setBackground(headerBGColor);
-		witchwoodEpicReset.setForeground(titleFontColor);
+		witchwoodEpicReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -3781,14 +3971,14 @@ public class TrackerGUI
 		// Add button
 		witchwoodEpicAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		witchwoodEpicAdd.setBackground(headerBGColor);
-		witchwoodEpicAdd.setForeground(titleFontColor);
+		witchwoodEpicAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		witchwoodEpicIncrement = new JTextArea(1, 1);
 		witchwoodEpicIncrement.setDocument(new IncrementLimit(1));
 		witchwoodEpicIncrement.setBackground(headerBGColor);
-		witchwoodEpicIncrement.setForeground(titleFontColor);
-		witchwoodEpicIncrement.setCaretColor(titleFontColor);
+		witchwoodEpicIncrement.setForeground(headerTitleColor);
+		witchwoodEpicIncrement.setCaretColor(headerTitleColor);
 		witchwoodEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(witchwood, witchwoodEpicModifyPanel, witchwoodEpicReset, witchwoodEpicAdd, witchwoodEpicIncrement);
@@ -3825,7 +4015,7 @@ public class TrackerGUI
 		witchwoodLegendaryReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		witchwoodLegendaryReset.setToolTipText(resetButtonToolTipText);
 		witchwoodLegendaryReset.setBackground(headerBGColor);
-		witchwoodLegendaryReset.setForeground(titleFontColor);
+		witchwoodLegendaryReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -3835,14 +4025,14 @@ public class TrackerGUI
 		// Add button
 		witchwoodLegendaryAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		witchwoodLegendaryAdd.setBackground(headerBGColor);
-		witchwoodLegendaryAdd.setForeground(titleFontColor);
+		witchwoodLegendaryAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		witchwoodLegendaryIncrement = new JTextArea(1, 2);
 		witchwoodLegendaryIncrement.setDocument(new IncrementLimit(2));
 		witchwoodLegendaryIncrement.setBackground(headerBGColor);
-		witchwoodLegendaryIncrement.setForeground(titleFontColor);
-		witchwoodLegendaryIncrement.setCaretColor(titleFontColor);
+		witchwoodLegendaryIncrement.setForeground(headerTitleColor);
+		witchwoodLegendaryIncrement.setCaretColor(headerTitleColor);
 		witchwoodLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(witchwood, witchwoodLegendaryModifyPanel, witchwoodLegendaryReset, witchwoodLegendaryAdd, witchwoodLegendaryIncrement);
@@ -3879,7 +4069,7 @@ public class TrackerGUI
 		witchwoodTotalModify = new ModifierButton("Modify", headerBGColor, buttonsHoverColor);
 		witchwoodTotalModify.setToolTipText(modifyButtonToolTipText);
 		witchwoodTotalModify.setBackground(headerBGColor);
-		witchwoodTotalModify.setForeground(titleFontColor);
+		witchwoodTotalModify.setForeground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -3889,14 +4079,14 @@ public class TrackerGUI
 		// Add button
 		witchwoodTotalAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		witchwoodTotalAdd.setBackground(headerBGColor);
-		witchwoodTotalAdd.setForeground(titleFontColor);
+		witchwoodTotalAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		witchwoodTotalIncrement = new JTextArea(1, 3);
 		witchwoodTotalIncrement.setDocument(new IncrementLimit(3));
 		witchwoodTotalIncrement.setBackground(headerBGColor);
-		witchwoodTotalIncrement.setForeground(titleFontColor);
-		witchwoodTotalIncrement.setCaretColor(titleFontColor);
+		witchwoodTotalIncrement.setForeground(headerTitleColor);
+		witchwoodTotalIncrement.setCaretColor(headerTitleColor);
 		witchwoodTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(witchwood, witchwoodTotalModifyPanel, witchwoodTotalModify, witchwoodTotalAdd, witchwoodTotalIncrement);
@@ -4015,7 +4205,7 @@ public class TrackerGUI
 		koboldsEpicReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		koboldsEpicReset.setToolTipText(resetButtonToolTipText);
 		koboldsEpicReset.setBackground(headerBGColor);
-		koboldsEpicReset.setForeground(titleFontColor);
+		koboldsEpicReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -4025,14 +4215,14 @@ public class TrackerGUI
 		// Add button
 		koboldsEpicAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		koboldsEpicAdd.setBackground(headerBGColor);
-		koboldsEpicAdd.setForeground(titleFontColor);
+		koboldsEpicAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		koboldsEpicIncrement = new JTextArea(1, 1);
 		koboldsEpicIncrement.setDocument(new IncrementLimit(1));
 		koboldsEpicIncrement.setBackground(headerBGColor);
-		koboldsEpicIncrement.setForeground(titleFontColor);
-		koboldsEpicIncrement.setCaretColor(titleFontColor);
+		koboldsEpicIncrement.setForeground(headerTitleColor);
+		koboldsEpicIncrement.setCaretColor(headerTitleColor);
 		koboldsEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(kobolds, koboldsEpicModifyPanel, koboldsEpicReset, koboldsEpicAdd, koboldsEpicIncrement);
@@ -4069,7 +4259,7 @@ public class TrackerGUI
 		koboldsLegendaryReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		koboldsLegendaryReset.setToolTipText(resetButtonToolTipText);
 		koboldsLegendaryReset.setBackground(headerBGColor);
-		koboldsLegendaryReset.setForeground(titleFontColor);
+		koboldsLegendaryReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -4079,14 +4269,14 @@ public class TrackerGUI
 		// Add button
 		koboldsLegendaryAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		koboldsLegendaryAdd.setBackground(headerBGColor);
-		koboldsLegendaryAdd.setForeground(titleFontColor);
+		koboldsLegendaryAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		koboldsLegendaryIncrement = new JTextArea(1, 2);
 		koboldsLegendaryIncrement.setDocument(new IncrementLimit(2));
 		koboldsLegendaryIncrement.setBackground(headerBGColor);
-		koboldsLegendaryIncrement.setForeground(titleFontColor);
-		koboldsLegendaryIncrement.setCaretColor(titleFontColor);
+		koboldsLegendaryIncrement.setForeground(headerTitleColor);
+		koboldsLegendaryIncrement.setCaretColor(headerTitleColor);
 		koboldsLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(kobolds, koboldsLegendaryModifyPanel, koboldsLegendaryReset, koboldsLegendaryAdd, koboldsLegendaryIncrement);
@@ -4123,7 +4313,7 @@ public class TrackerGUI
 		koboldsTotalModify = new ModifierButton("Modify", headerBGColor, buttonsHoverColor);
 		koboldsTotalModify.setToolTipText(modifyButtonToolTipText);
 		koboldsTotalModify.setBackground(headerBGColor);
-		koboldsTotalModify.setForeground(titleFontColor);
+		koboldsTotalModify.setForeground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -4133,14 +4323,14 @@ public class TrackerGUI
 		// Add button
 		koboldsTotalAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		koboldsTotalAdd.setBackground(headerBGColor);
-		koboldsTotalAdd.setForeground(titleFontColor);
+		koboldsTotalAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		koboldsTotalIncrement = new JTextArea(1, 3);
 		koboldsTotalIncrement.setDocument(new IncrementLimit(3));
 		koboldsTotalIncrement.setBackground(headerBGColor);
-		koboldsTotalIncrement.setForeground(titleFontColor);
-		koboldsTotalIncrement.setCaretColor(titleFontColor);
+		koboldsTotalIncrement.setForeground(headerTitleColor);
+		koboldsTotalIncrement.setCaretColor(headerTitleColor);
 		koboldsTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(kobolds, koboldsTotalModifyPanel, koboldsTotalModify, koboldsTotalAdd, koboldsTotalIncrement);
@@ -4223,7 +4413,7 @@ public class TrackerGUI
 		knightsEpicReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		knightsEpicReset.setToolTipText(resetButtonToolTipText);
 		knightsEpicReset.setBackground(headerBGColor);
-		knightsEpicReset.setForeground(titleFontColor);
+		knightsEpicReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -4233,14 +4423,14 @@ public class TrackerGUI
 		// Add button
 		knightsEpicAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		knightsEpicAdd.setBackground(headerBGColor);
-		knightsEpicAdd.setForeground(titleFontColor);
+		knightsEpicAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		knightsEpicIncrement = new JTextArea(1, 1);
 		knightsEpicIncrement.setDocument(new IncrementLimit(1));
 		knightsEpicIncrement.setBackground(headerBGColor);
-		knightsEpicIncrement.setForeground(titleFontColor);
-		knightsEpicIncrement.setCaretColor(titleFontColor);
+		knightsEpicIncrement.setForeground(headerTitleColor);
+		knightsEpicIncrement.setCaretColor(headerTitleColor);
 		knightsEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(knights, knightsEpicModifyPanel, knightsEpicReset, knightsEpicAdd, knightsEpicIncrement);
@@ -4277,7 +4467,7 @@ public class TrackerGUI
 		knightsLegendaryReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		knightsLegendaryReset.setToolTipText(resetButtonToolTipText);
 		knightsLegendaryReset.setBackground(headerBGColor);
-		knightsLegendaryReset.setForeground(titleFontColor);
+		knightsLegendaryReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -4287,14 +4477,14 @@ public class TrackerGUI
 		// Add button
 		knightsLegendaryAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		knightsLegendaryAdd.setBackground(headerBGColor);
-		knightsLegendaryAdd.setForeground(titleFontColor);
+		knightsLegendaryAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		knightsLegendaryIncrement = new JTextArea(1, 2);
 		knightsLegendaryIncrement.setDocument(new IncrementLimit(2));
 		knightsLegendaryIncrement.setBackground(headerBGColor);
-		knightsLegendaryIncrement.setForeground(titleFontColor);
-		knightsLegendaryIncrement.setCaretColor(titleFontColor);
+		knightsLegendaryIncrement.setForeground(headerTitleColor);
+		knightsLegendaryIncrement.setCaretColor(headerTitleColor);
 		knightsLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(knights, knightsLegendaryModifyPanel, knightsLegendaryReset, knightsLegendaryAdd, knightsLegendaryIncrement);
@@ -4331,7 +4521,7 @@ public class TrackerGUI
 		knightsTotalModify = new ModifierButton("Modify", headerBGColor, buttonsHoverColor);
 		knightsTotalModify.setToolTipText(modifyButtonToolTipText);
 		knightsTotalModify.setBackground(headerBGColor);
-		knightsTotalModify.setForeground(titleFontColor);
+		knightsTotalModify.setForeground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -4341,14 +4531,14 @@ public class TrackerGUI
 		// Add button
 		knightsTotalAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		knightsTotalAdd.setBackground(headerBGColor);
-		knightsTotalAdd.setForeground(titleFontColor);
+		knightsTotalAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		knightsTotalIncrement = new JTextArea(1, 3);
 		knightsTotalIncrement.setDocument(new IncrementLimit(3));
 		knightsTotalIncrement.setBackground(headerBGColor);
-		knightsTotalIncrement.setForeground(titleFontColor);
-		knightsTotalIncrement.setCaretColor(titleFontColor);
+		knightsTotalIncrement.setForeground(headerTitleColor);
+		knightsTotalIncrement.setCaretColor(headerTitleColor);
 		knightsTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(knights, knightsTotalModifyPanel, knightsTotalModify, knightsTotalAdd, knightsTotalIncrement);
@@ -4431,7 +4621,7 @@ public class TrackerGUI
 		ungoroEpicReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		ungoroEpicReset.setToolTipText(resetButtonToolTipText);
 		ungoroEpicReset.setBackground(headerBGColor);
-		ungoroEpicReset.setForeground(titleFontColor);
+		ungoroEpicReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -4441,14 +4631,14 @@ public class TrackerGUI
 		// Add button
 		ungoroEpicAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		ungoroEpicAdd.setBackground(headerBGColor);
-		ungoroEpicAdd.setForeground(titleFontColor);
+		ungoroEpicAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		ungoroEpicIncrement = new JTextArea(1, 1);
 		ungoroEpicIncrement.setDocument(new IncrementLimit(1));
 		ungoroEpicIncrement.setBackground(headerBGColor);
-		ungoroEpicIncrement.setForeground(titleFontColor);
-		ungoroEpicIncrement.setCaretColor(titleFontColor);
+		ungoroEpicIncrement.setForeground(headerTitleColor);
+		ungoroEpicIncrement.setCaretColor(headerTitleColor);
 		ungoroEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(ungoro, ungoroEpicModifyPanel, ungoroEpicReset, ungoroEpicAdd, ungoroEpicIncrement);
@@ -4485,7 +4675,7 @@ public class TrackerGUI
 		ungoroLegendaryReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		ungoroLegendaryReset.setToolTipText(resetButtonToolTipText);
 		ungoroLegendaryReset.setBackground(headerBGColor);
-		ungoroLegendaryReset.setForeground(titleFontColor);
+		ungoroLegendaryReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -4495,14 +4685,14 @@ public class TrackerGUI
 		// Add button
 		ungoroLegendaryAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		ungoroLegendaryAdd.setBackground(headerBGColor);
-		ungoroLegendaryAdd.setForeground(titleFontColor);
+		ungoroLegendaryAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		ungoroLegendaryIncrement = new JTextArea(1, 2);
 		ungoroLegendaryIncrement.setDocument(new IncrementLimit(2));
 		ungoroLegendaryIncrement.setBackground(headerBGColor);
-		ungoroLegendaryIncrement.setForeground(titleFontColor);
-		ungoroLegendaryIncrement.setCaretColor(titleFontColor);
+		ungoroLegendaryIncrement.setForeground(headerTitleColor);
+		ungoroLegendaryIncrement.setCaretColor(headerTitleColor);
 		ungoroLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(ungoro, ungoroLegendaryModifyPanel, ungoroLegendaryReset, ungoroLegendaryAdd, ungoroLegendaryIncrement);
@@ -4539,7 +4729,7 @@ public class TrackerGUI
 		ungoroTotalModify = new ModifierButton("Modify", headerBGColor, buttonsHoverColor);
 		ungoroTotalModify.setToolTipText(modifyButtonToolTipText);
 		ungoroTotalModify.setBackground(headerBGColor);
-		ungoroTotalModify.setForeground(titleFontColor);
+		ungoroTotalModify.setForeground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -4549,14 +4739,14 @@ public class TrackerGUI
 		// Add button
 		ungoroTotalAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		ungoroTotalAdd.setBackground(headerBGColor);
-		ungoroTotalAdd.setForeground(titleFontColor);
+		ungoroTotalAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		ungoroTotalIncrement = new JTextArea(1, 3);
 		ungoroTotalIncrement.setDocument(new IncrementLimit(3));
 		ungoroTotalIncrement.setBackground(headerBGColor);
-		ungoroTotalIncrement.setForeground(titleFontColor);
-		ungoroTotalIncrement.setCaretColor(titleFontColor);
+		ungoroTotalIncrement.setForeground(headerTitleColor);
+		ungoroTotalIncrement.setCaretColor(headerTitleColor);
 		ungoroTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(ungoro, ungoroTotalModifyPanel, ungoroTotalModify, ungoroTotalAdd, ungoroTotalIncrement);
@@ -4673,7 +4863,7 @@ public class TrackerGUI
 		gadgetzanEpicReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		gadgetzanEpicReset.setToolTipText(resetButtonToolTipText);
 		gadgetzanEpicReset.setBackground(headerBGColor);
-		gadgetzanEpicReset.setForeground(titleFontColor);
+		gadgetzanEpicReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -4683,14 +4873,14 @@ public class TrackerGUI
 		// Add button
 		gadgetzanEpicAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		gadgetzanEpicAdd.setBackground(headerBGColor);
-		gadgetzanEpicAdd.setForeground(titleFontColor);
+		gadgetzanEpicAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		gadgetzanEpicIncrement = new JTextArea(1, 1);
 		gadgetzanEpicIncrement.setDocument(new IncrementLimit(1));
 		gadgetzanEpicIncrement.setBackground(headerBGColor);
-		gadgetzanEpicIncrement.setForeground(titleFontColor);
-		gadgetzanEpicIncrement.setCaretColor(titleFontColor);
+		gadgetzanEpicIncrement.setForeground(headerTitleColor);
+		gadgetzanEpicIncrement.setCaretColor(headerTitleColor);
 		gadgetzanEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(gadgetzan, gadgetzanEpicModifyPanel, gadgetzanEpicReset, gadgetzanEpicAdd, gadgetzanEpicIncrement);
@@ -4727,7 +4917,7 @@ public class TrackerGUI
 		gadgetzanLegendaryReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		gadgetzanLegendaryReset.setToolTipText(resetButtonToolTipText);
 		gadgetzanLegendaryReset.setBackground(headerBGColor);
-		gadgetzanLegendaryReset.setForeground(titleFontColor);
+		gadgetzanLegendaryReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -4737,14 +4927,14 @@ public class TrackerGUI
 		// Add button
 		gadgetzanLegendaryAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		gadgetzanLegendaryAdd.setBackground(headerBGColor);
-		gadgetzanLegendaryAdd.setForeground(titleFontColor);
+		gadgetzanLegendaryAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		gadgetzanLegendaryIncrement = new JTextArea(1, 2);
 		gadgetzanLegendaryIncrement.setDocument(new IncrementLimit(2));
 		gadgetzanLegendaryIncrement.setBackground(headerBGColor);
-		gadgetzanLegendaryIncrement.setForeground(titleFontColor);
-		gadgetzanLegendaryIncrement.setCaretColor(titleFontColor);
+		gadgetzanLegendaryIncrement.setForeground(headerTitleColor);
+		gadgetzanLegendaryIncrement.setCaretColor(headerTitleColor);
 		gadgetzanLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(gadgetzan, gadgetzanLegendaryModifyPanel, gadgetzanLegendaryReset, gadgetzanLegendaryAdd, gadgetzanLegendaryIncrement);
@@ -4781,7 +4971,7 @@ public class TrackerGUI
 		gadgetzanTotalModify = new ModifierButton("Modify", headerBGColor, buttonsHoverColor);
 		gadgetzanTotalModify.setToolTipText(modifyButtonToolTipText);
 		gadgetzanTotalModify.setBackground(headerBGColor);
-		gadgetzanTotalModify.setForeground(titleFontColor);
+		gadgetzanTotalModify.setForeground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -4791,14 +4981,14 @@ public class TrackerGUI
 		// Add button
 		gadgetzanTotalAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		gadgetzanTotalAdd.setBackground(headerBGColor);
-		gadgetzanTotalAdd.setForeground(titleFontColor);
+		gadgetzanTotalAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		gadgetzanTotalIncrement = new JTextArea(1, 3);
 		gadgetzanTotalIncrement.setDocument(new IncrementLimit(3));
 		gadgetzanTotalIncrement.setBackground(headerBGColor);
-		gadgetzanTotalIncrement.setForeground(titleFontColor);
-		gadgetzanTotalIncrement.setCaretColor(titleFontColor);
+		gadgetzanTotalIncrement.setForeground(headerTitleColor);
+		gadgetzanTotalIncrement.setCaretColor(headerTitleColor);
 		gadgetzanTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(gadgetzan, gadgetzanTotalModifyPanel, gadgetzanTotalModify, gadgetzanTotalAdd, gadgetzanTotalIncrement);
@@ -4881,7 +5071,7 @@ public class TrackerGUI
 		oldGodsEpicReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		oldGodsEpicReset.setToolTipText(resetButtonToolTipText);
 		oldGodsEpicReset.setBackground(headerBGColor);
-		oldGodsEpicReset.setForeground(titleFontColor);
+		oldGodsEpicReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -4891,14 +5081,14 @@ public class TrackerGUI
 		// Add button
 		oldGodsEpicAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		oldGodsEpicAdd.setBackground(headerBGColor);
-		oldGodsEpicAdd.setForeground(titleFontColor);
+		oldGodsEpicAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		oldGodsEpicIncrement = new JTextArea(1, 1);
 		oldGodsEpicIncrement.setDocument(new IncrementLimit(1));
 		oldGodsEpicIncrement.setBackground(headerBGColor);
-		oldGodsEpicIncrement.setForeground(titleFontColor);
-		oldGodsEpicIncrement.setCaretColor(titleFontColor);
+		oldGodsEpicIncrement.setForeground(headerTitleColor);
+		oldGodsEpicIncrement.setCaretColor(headerTitleColor);
 		oldGodsEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(oldGods, oldGodsEpicModifyPanel, oldGodsEpicReset, oldGodsEpicAdd, oldGodsEpicIncrement);
@@ -4935,7 +5125,7 @@ public class TrackerGUI
 		oldGodsLegendaryReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		oldGodsLegendaryReset.setToolTipText(resetButtonToolTipText);
 		oldGodsLegendaryReset.setBackground(headerBGColor);
-		oldGodsLegendaryReset.setForeground(titleFontColor);
+		oldGodsLegendaryReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -4945,14 +5135,14 @@ public class TrackerGUI
 		// Add button
 		oldGodsLegendaryAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		oldGodsLegendaryAdd.setBackground(headerBGColor);
-		oldGodsLegendaryAdd.setForeground(titleFontColor);
+		oldGodsLegendaryAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		oldGodsLegendaryIncrement = new JTextArea(1, 2);
 		oldGodsLegendaryIncrement.setDocument(new IncrementLimit(2));
 		oldGodsLegendaryIncrement.setBackground(headerBGColor);
-		oldGodsLegendaryIncrement.setForeground(titleFontColor);
-		oldGodsLegendaryIncrement.setCaretColor(titleFontColor);
+		oldGodsLegendaryIncrement.setForeground(headerTitleColor);
+		oldGodsLegendaryIncrement.setCaretColor(headerTitleColor);
 		oldGodsLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(oldGods, oldGodsLegendaryModifyPanel, oldGodsLegendaryReset, oldGodsLegendaryAdd, oldGodsLegendaryIncrement);
@@ -4989,7 +5179,7 @@ public class TrackerGUI
 		oldGodsTotalModify = new ModifierButton("Modify", headerBGColor, buttonsHoverColor);
 		oldGodsTotalModify.setToolTipText(modifyButtonToolTipText);
 		oldGodsTotalModify.setBackground(headerBGColor);
-		oldGodsTotalModify.setForeground(titleFontColor);
+		oldGodsTotalModify.setForeground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -4999,14 +5189,14 @@ public class TrackerGUI
 		// Add button
 		oldGodsTotalAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		oldGodsTotalAdd.setBackground(headerBGColor);
-		oldGodsTotalAdd.setForeground(titleFontColor);
+		oldGodsTotalAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		oldGodsTotalIncrement = new JTextArea(1, 3);
 		oldGodsTotalIncrement.setDocument(new IncrementLimit(3));
 		oldGodsTotalIncrement.setBackground(headerBGColor);
-		oldGodsTotalIncrement.setForeground(titleFontColor);
-		oldGodsTotalIncrement.setCaretColor(titleFontColor);
+		oldGodsTotalIncrement.setForeground(headerTitleColor);
+		oldGodsTotalIncrement.setCaretColor(headerTitleColor);
 		oldGodsTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(oldGods, oldGodsTotalModifyPanel, oldGodsTotalModify, oldGodsTotalAdd, oldGodsTotalIncrement);
@@ -5112,22 +5302,21 @@ public class TrackerGUI
 		epicPanelTitleLabel = new JTextPane();
 		doc = epicPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(tournament, epicPanelTitleLabel, epicPanelTitle);
-		epicPanelTitleLabel.setForeground(titleFontColor);
+		epicPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Packs without epic counter
 		tournamentEpicCounterText = new JTextPane();
 		doc = tournamentEpicCounterText.getStyledDocument();
 		changePanelTextStyle(tournament, tournamentEpicCounterText, epicCounterText, tournamentEpicCounter);
-		tournamentEpicCounterText.setForeground(titleFontColor);
+		tournamentEpicCounterText.setForeground(headerTitleColor);
 		
 		// Packs without epic counter modify buttons panel
 		tournamentEpicModifyPanel = new JPanel();
 		
 		// Reset button
-		tournamentEpicReset = new ModifierButton("Reset", titleFontColor, buttonsDarkHoverColor);
+		tournamentEpicReset = new ModifierButton("Reset", headerTitleColor, buttonsDarkHoverColor);
 		tournamentEpicReset.setToolTipText(resetButtonToolTipText);
-		tournamentEpicReset.setBackground(titleFontColor);
-		tournamentEpicReset.setForeground(headerBGColor);
+		tournamentEpicReset.setBackground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -5135,16 +5324,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		// Add button
-		tournamentEpicAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		tournamentEpicAdd.setBackground(titleFontColor);
-		tournamentEpicAdd.setForeground(headerBGColor);
+		tournamentEpicAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		tournamentEpicAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		tournamentEpicIncrement = new JTextArea(1, 1);
 		tournamentEpicIncrement.setDocument(new IncrementLimit(1));
-		tournamentEpicIncrement.setBackground(titleFontColor);
-		tournamentEpicIncrement.setForeground(headerBGColor);
-		tournamentEpicIncrement.setCaretColor(headerBGColor);
+		tournamentEpicIncrement.setBackground(headerTitleColor);
 		tournamentEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(tournament, tournamentEpicModifyPanel, tournamentEpicReset, tournamentEpicAdd, tournamentEpicIncrement);
@@ -5153,7 +5339,7 @@ public class TrackerGUI
 		tournamentEpicProbabilityText = new JTextPane();
 		doc = tournamentEpicProbabilityText.getStyledDocument();
 		changePanelTextStyle(tournament, tournamentEpicProbabilityText, epicProbabilityText, tournamentEpicProbability);
-		tournamentEpicProbabilityText.setForeground(titleFontColor);
+		tournamentEpicProbabilityText.setForeground(headerTitleColor);
 		
 		tournamentEpicPanel.add(epicPanelTitleLabel);
 		tournamentEpicPanel.add(tournamentEpicCounterText);
@@ -5169,22 +5355,21 @@ public class TrackerGUI
 		legendaryPanelTitleLabel = new JTextPane();
 		doc = legendaryPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(tournament, legendaryPanelTitleLabel, legendaryPanelTitle);
-		legendaryPanelTitleLabel.setForeground(titleFontColor);
+		legendaryPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Packs without legendary counter
 		tournamentLegendaryCounterText = new JTextPane();
 		doc = tournamentLegendaryCounterText.getStyledDocument();
 		changePanelTextStyle(tournament, tournamentLegendaryCounterText, legendaryCounterText, tournamentLegendaryCounter);
-		tournamentLegendaryCounterText.setForeground(titleFontColor);
+		tournamentLegendaryCounterText.setForeground(headerTitleColor);
 		
 		// Packs without legendary counter modify buttons panel
 		tournamentLegendaryModifyPanel = new JPanel();
 		
 		// Reset button
-		tournamentLegendaryReset = new ModifierButton("Reset", titleFontColor, buttonsDarkHoverColor);
+		tournamentLegendaryReset = new ModifierButton("Reset", headerTitleColor, buttonsDarkHoverColor);
 		tournamentLegendaryReset.setToolTipText(resetButtonToolTipText);
-		tournamentLegendaryReset.setBackground(titleFontColor);
-		tournamentLegendaryReset.setForeground(headerBGColor);
+		tournamentLegendaryReset.setBackground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -5192,16 +5377,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 20, 0, 20));
 		
 		// Add button
-		tournamentLegendaryAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		tournamentLegendaryAdd.setBackground(titleFontColor);
-		tournamentLegendaryAdd.setForeground(headerBGColor);
+		tournamentLegendaryAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		tournamentLegendaryAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		tournamentLegendaryIncrement = new JTextArea(1, 2);
 		tournamentLegendaryIncrement.setDocument(new IncrementLimit(2));
-		tournamentLegendaryIncrement.setBackground(titleFontColor);
-		tournamentLegendaryIncrement.setForeground(headerBGColor);
-		tournamentLegendaryIncrement.setCaretColor(headerBGColor);
+		tournamentLegendaryIncrement.setBackground(headerTitleColor);
 		tournamentLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(tournament, tournamentLegendaryModifyPanel, tournamentLegendaryReset, tournamentLegendaryAdd, tournamentLegendaryIncrement);
@@ -5210,7 +5392,7 @@ public class TrackerGUI
 		tournamentLegendaryProbabilityText = new JTextPane();
 		doc = tournamentLegendaryProbabilityText.getStyledDocument();
 		changePanelTextStyle(tournament, tournamentLegendaryProbabilityText, legendaryProbabilityText, tournamentLegendaryProbability);
-		tournamentLegendaryProbabilityText.setForeground(titleFontColor);
+		tournamentLegendaryProbabilityText.setForeground(headerTitleColor);
 		
 		tournamentLegendaryPanel.add(legendaryPanelTitleLabel);
 		tournamentLegendaryPanel.add(tournamentLegendaryCounterText);
@@ -5226,22 +5408,21 @@ public class TrackerGUI
 		totalPanelTitleLabel = new JTextPane();
 		doc = totalPanelTitleLabel.getStyledDocument();
 		changePanelTitleStyle(tournament, totalPanelTitleLabel,totalPanelTitle);
-		totalPanelTitleLabel.setForeground(titleFontColor);
+		totalPanelTitleLabel.setForeground(headerTitleColor);
 		
 		// Total amount of packs opened counter
 		tournamentTotalCounterText = new JTextPane();
 		doc = tournamentTotalCounterText.getStyledDocument();
 		changePanelTextStyle(tournament, tournamentTotalCounterText, totalCounterText, tournamentTotalCounter);
-		tournamentTotalCounterText.setForeground(titleFontColor);
+		tournamentTotalCounterText.setForeground(headerTitleColor);
 		
 		// Total amount of packs opened modify buttons panel
 		tournamentTotalModifyPanel = new JPanel();
 		
 		// Modify button
-		tournamentTotalModify = new ModifierButton("Modify", titleFontColor, buttonsDarkHoverColor);
+		tournamentTotalModify = new ModifierButton("Modify", headerTitleColor, buttonsDarkHoverColor);
 		tournamentTotalModify.setToolTipText(modifyButtonToolTipText);
-		tournamentTotalModify.setBackground(titleFontColor);
-		tournamentTotalModify.setForeground(headerBGColor);
+		tournamentTotalModify.setBackground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -5249,16 +5430,13 @@ public class TrackerGUI
 		blank.setBorder(new EmptyBorder(0, 5, 0, 5));
 		
 		// Add button
-		tournamentTotalAdd = new RoundButton("+", titleFontColor, buttonsDarkHoverColor);
-		tournamentTotalAdd.setBackground(titleFontColor);
-		tournamentTotalAdd.setForeground(headerBGColor);
+		tournamentTotalAdd = new RoundButton("+", headerTitleColor, buttonsDarkHoverColor);
+		tournamentTotalAdd.setBackground(headerTitleColor);
 		
 		// Increment field
 		tournamentTotalIncrement = new JTextArea(1, 3);
 		tournamentTotalIncrement.setDocument(new IncrementLimit(3));
-		tournamentTotalIncrement.setBackground(titleFontColor);
-		tournamentTotalIncrement.setForeground(headerBGColor);
-		tournamentTotalIncrement.setCaretColor(headerBGColor);
+		tournamentTotalIncrement.setBackground(headerTitleColor);
 		tournamentTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(tournament, tournamentTotalModifyPanel, tournamentTotalModify, tournamentTotalAdd, tournamentTotalIncrement);
@@ -5341,7 +5519,7 @@ public class TrackerGUI
 		goblinsEpicReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		goblinsEpicReset.setToolTipText(resetButtonToolTipText);
 		goblinsEpicReset.setBackground(headerBGColor);
-		goblinsEpicReset.setForeground(titleFontColor);
+		goblinsEpicReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -5351,14 +5529,14 @@ public class TrackerGUI
 		// Add button
 		goblinsEpicAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		goblinsEpicAdd.setBackground(headerBGColor);
-		goblinsEpicAdd.setForeground(titleFontColor);
+		goblinsEpicAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		goblinsEpicIncrement = new JTextArea(1, 1);
 		goblinsEpicIncrement.setDocument(new IncrementLimit(1));
 		goblinsEpicIncrement.setBackground(headerBGColor);
-		goblinsEpicIncrement.setForeground(titleFontColor);
-		goblinsEpicIncrement.setCaretColor(titleFontColor);
+		goblinsEpicIncrement.setForeground(headerTitleColor);
+		goblinsEpicIncrement.setCaretColor(headerTitleColor);
 		goblinsEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(goblins, goblinsEpicModifyPanel, goblinsEpicReset, goblinsEpicAdd, goblinsEpicIncrement);
@@ -5395,7 +5573,7 @@ public class TrackerGUI
 		goblinsLegendaryReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		goblinsLegendaryReset.setToolTipText(resetButtonToolTipText);
 		goblinsLegendaryReset.setBackground(headerBGColor);
-		goblinsLegendaryReset.setForeground(titleFontColor);
+		goblinsLegendaryReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -5405,14 +5583,14 @@ public class TrackerGUI
 		// Add button
 		goblinsLegendaryAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		goblinsLegendaryAdd.setBackground(headerBGColor);
-		goblinsLegendaryAdd.setForeground(titleFontColor);
+		goblinsLegendaryAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		goblinsLegendaryIncrement = new JTextArea(1, 2);
 		goblinsLegendaryIncrement.setDocument(new IncrementLimit(2));
 		goblinsLegendaryIncrement.setBackground(headerBGColor);
-		goblinsLegendaryIncrement.setForeground(titleFontColor);
-		goblinsLegendaryIncrement.setCaretColor(titleFontColor);
+		goblinsLegendaryIncrement.setForeground(headerTitleColor);
+		goblinsLegendaryIncrement.setCaretColor(headerTitleColor);
 		goblinsLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(goblins, goblinsLegendaryModifyPanel, goblinsLegendaryReset, goblinsLegendaryAdd, goblinsLegendaryIncrement);
@@ -5449,7 +5627,7 @@ public class TrackerGUI
 		goblinsTotalModify = new ModifierButton("Modify", headerBGColor, buttonsHoverColor);
 		goblinsTotalModify.setToolTipText(modifyButtonToolTipText);
 		goblinsTotalModify.setBackground(headerBGColor);
-		goblinsTotalModify.setForeground(titleFontColor);
+		goblinsTotalModify.setForeground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -5459,14 +5637,14 @@ public class TrackerGUI
 		// Add button
 		goblinsTotalAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		goblinsTotalAdd.setBackground(headerBGColor);
-		goblinsTotalAdd.setForeground(titleFontColor);
+		goblinsTotalAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		goblinsTotalIncrement = new JTextArea(1, 3);
 		goblinsTotalIncrement.setDocument(new IncrementLimit(3));
 		goblinsTotalIncrement.setBackground(headerBGColor);
-		goblinsTotalIncrement.setForeground(titleFontColor);
-		goblinsTotalIncrement.setCaretColor(titleFontColor);
+		goblinsTotalIncrement.setForeground(headerTitleColor);
+		goblinsTotalIncrement.setCaretColor(headerTitleColor);
 		goblinsTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(goblins, goblinsTotalModifyPanel, goblinsTotalModify, goblinsTotalAdd, goblinsTotalIncrement);
@@ -5544,7 +5722,7 @@ public class TrackerGUI
 		classicEpicReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		classicEpicReset.setToolTipText(resetButtonToolTipText);
 		classicEpicReset.setBackground(headerBGColor);
-		classicEpicReset.setForeground(titleFontColor);
+		classicEpicReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -5554,14 +5732,14 @@ public class TrackerGUI
 		// Add button
 		classicEpicAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		classicEpicAdd.setBackground(headerBGColor);
-		classicEpicAdd.setForeground(titleFontColor);
+		classicEpicAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		classicEpicIncrement = new JTextArea(1, 1);
 		classicEpicIncrement.setDocument(new IncrementLimit(1));
 		classicEpicIncrement.setBackground(headerBGColor);
-		classicEpicIncrement.setForeground(titleFontColor);
-		classicEpicIncrement.setCaretColor(titleFontColor);
+		classicEpicIncrement.setForeground(headerTitleColor);
+		classicEpicIncrement.setCaretColor(headerTitleColor);
 		classicEpicIncrement.setBorder(new EmptyBorder(0, 9, 0, 6));
 		
 		createModifyButtonsPanel(classic, classicEpicModifyPanel, classicEpicReset, classicEpicAdd, classicEpicIncrement);
@@ -5598,7 +5776,7 @@ public class TrackerGUI
 		classicLegendaryReset = new ModifierButton("Reset", headerBGColor, buttonsHoverColor);
 		classicLegendaryReset.setToolTipText(resetButtonToolTipText);
 		classicLegendaryReset.setBackground(headerBGColor);
-		classicLegendaryReset.setForeground(titleFontColor);
+		classicLegendaryReset.setForeground(headerTitleColor);
 		
 		// Blank space between reset and add buttons
 		blank = new JLabel();
@@ -5608,14 +5786,14 @@ public class TrackerGUI
 		// Add button
 		classicLegendaryAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		classicLegendaryAdd.setBackground(headerBGColor);
-		classicLegendaryAdd.setForeground(titleFontColor);
+		classicLegendaryAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		classicLegendaryIncrement = new JTextArea(1, 2);
 		classicLegendaryIncrement.setDocument(new IncrementLimit(2));
 		classicLegendaryIncrement.setBackground(headerBGColor);
-		classicLegendaryIncrement.setForeground(titleFontColor);
-		classicLegendaryIncrement.setCaretColor(titleFontColor);
+		classicLegendaryIncrement.setForeground(headerTitleColor);
+		classicLegendaryIncrement.setCaretColor(headerTitleColor);
 		classicLegendaryIncrement.setBorder(new EmptyBorder(0, 9, 0, 3));
 		
 		createModifyButtonsPanel(classic, classicLegendaryModifyPanel, classicLegendaryReset, classicLegendaryAdd, classicLegendaryIncrement);
@@ -5652,7 +5830,7 @@ public class TrackerGUI
 		classicTotalModify = new ModifierButton("Modify", headerBGColor, buttonsHoverColor);
 		classicTotalModify.setToolTipText(modifyButtonToolTipText);
 		classicTotalModify.setBackground(headerBGColor);
-		classicTotalModify.setForeground(titleFontColor);
+		classicTotalModify.setForeground(headerTitleColor);
 		
 		// Blank space between modify and add buttons
 		blank = new JLabel();
@@ -5662,14 +5840,14 @@ public class TrackerGUI
 		// Add button
 		classicTotalAdd = new RoundButton("+", headerBGColor, buttonsHoverColor);
 		classicTotalAdd.setBackground(headerBGColor);
-		classicTotalAdd.setForeground(titleFontColor);
+		classicTotalAdd.setForeground(headerTitleColor);
 		
 		// Increment field
 		classicTotalIncrement = new JTextArea(1, 3);
 		classicTotalIncrement.setDocument(new IncrementLimit(3));
 		classicTotalIncrement.setBackground(headerBGColor);
-		classicTotalIncrement.setForeground(titleFontColor);
-		classicTotalIncrement.setCaretColor(titleFontColor);
+		classicTotalIncrement.setForeground(headerTitleColor);
+		classicTotalIncrement.setCaretColor(headerTitleColor);
 		classicTotalIncrement.setBorder(new EmptyBorder(0, 9, 0, 0));
 		
 		createModifyButtonsPanel(classic, classicTotalModifyPanel, classicTotalModify, classicTotalAdd, classicTotalIncrement);
@@ -5882,6 +6060,18 @@ public class TrackerGUI
 		return showSaveFileFolder;
 	}
 	
+	// Returns the "Standard Sets" panel
+	public JPanel getStandard() 
+	{
+		return standard;
+	}
+	
+	// Returns the "Wild Sets" panel
+	public JPanel getWild() 
+	{
+		return wild;
+	}
+	
 	// Returns the "Standard sets" button
 	public JButton getStandardButton() 
 	{
@@ -5948,18 +6138,6 @@ public class TrackerGUI
 		return classicSetsShortcut;
 	}
 	
-	// Returns the "Standard Sets" panel
-	public JPanel getStandard() 
-	{
-		return standard;
-	}
-	
-	// Returns the "Wild Sets" panel
-	public JPanel getWild() 
-	{
-		return wild;
-	}
-	
 	// Returns the "Year of the Gryphon" panel
 	public JPanel getYearOfTheGryphon() 
 	{
@@ -6000,6 +6178,11 @@ public class TrackerGUI
 	public JPanel getClassicSets() 
 	{
 		return classicSets;
+	}
+	
+	//Returns the "United in Stormwind" image button
+	public JButton getStormwindImage() {
+		return stormwindImageButton;
 	}
 	
 	//Returns the "Forged in the Barrens" image button
@@ -6085,6 +6268,12 @@ public class TrackerGUI
 	//Returns the "Goblins vs Gnomes" image button
 	public JButton getGoblinsImage() {
 		return goblinsImageButton;
+	}
+	
+	// Returns the value of "United in Stormwind" epic counter
+	public String getStormwindEpicCounter() 
+	{
+		return stormwindEpicCounter;
 	}
 	
 	// Returns the value of "Forged in the Barrens" epic counter
@@ -6193,6 +6382,15 @@ public class TrackerGUI
 	public String getClassicEpicCounter() 
 	{
 		return classicEpicCounter;
+	}
+	
+	// Sets the value of "United in Stormwind" epic counter
+	public void setStormwindEpicCounter(String value) 
+	{
+		stormwindEpicCounter = value;
+		stormwindEpicCounterText.setText("");
+		doc = stormwindEpicCounterText.getStyledDocument();
+		changePanelTextStyle(stormwind, stormwindEpicCounterText, epicCounterText, stormwindEpicCounter);
 	}
 	
 	// Sets the value of "Forged in the Barrens" epic counter
@@ -6357,6 +6555,12 @@ public class TrackerGUI
 		changePanelTextStyle(classic, classicEpicCounterText, epicCounterText, classicEpicCounter);
 	}
 	
+	// Returns the "United in Stormwind" epic reset button
+	public ModifierButton getStormwindEpicReset() 
+	{
+		return stormwindEpicReset;
+	}
+	
 	// Returns the "Forged in the Barrens" epic reset button
 	public ModifierButton getBarrensEpicReset() 
 	{
@@ -6463,6 +6667,12 @@ public class TrackerGUI
 	public ModifierButton getClassicEpicReset() 
 	{
 		return classicEpicReset;
+	}
+	
+	// Returns the "United in Stormwind" epic add button
+	public RoundButton getStormwindEpicAdd() 
+	{
+		return stormwindEpicAdd;
 	}
 	
 	// Returns the "Forged in the Barrens" epic add button
@@ -6573,6 +6783,12 @@ public class TrackerGUI
 		return classicEpicAdd;
 	}
 	
+	// Returns the "United in Stormwind" epic increment field
+	public JTextArea getStormwindEpicIncrement() 
+	{
+		return stormwindEpicIncrement;
+	}
+	
 	// Returns the "Forged in the Barrens" epic increment field
 	public JTextArea getBarrensEpicIncrement() 
 	{
@@ -6681,6 +6897,12 @@ public class TrackerGUI
 		return classicEpicIncrement;
 	}
 	
+	// Returns the value of "United in Stormwind" epic probability
+	public String getStormwindEpicProbability() 
+	{
+		return stormwindEpicProbability.replace("%", "").replace(",", ".");
+	}
+	
 	// Returns the value of "Forged in the Barrens" epic probability
 	public String getBarrensEpicProbability() 
 	{
@@ -6787,6 +7009,15 @@ public class TrackerGUI
 	public String getClassicEpicProbability() 
 	{
 		return classicEpicProbability.replace("%", "").replace(",", ".");
+	}
+	
+	// Sets the value of "United in Stormwind" epic probability
+	public void setStormwindEpicProbability(String value) 
+	{
+		stormwindEpicProbability = value + "%";
+		stormwindEpicProbabilityText.setText("");
+		doc = stormwindEpicProbabilityText.getStyledDocument();
+		changePanelTextStyle(stormwind, stormwindEpicProbabilityText, epicProbabilityText, stormwindEpicProbability);
 	}
 	
 	// Sets the value of "Forged in the Barrens" epic probability
@@ -6951,6 +7182,12 @@ public class TrackerGUI
 		changePanelTextStyle(classic, classicEpicProbabilityText, epicProbabilityText, classicEpicProbability);
 	}
 	
+	// Returns the value of "United in Stormwind" legendary counter
+	public String getStormwindLegendaryCounter() 
+	{
+		return stormwindLegendaryCounter;
+	}
+	
 	// Returns the value of "Forged in the Barrens" legendary counter
 	public String getBarrensLegendaryCounter() 
 	{
@@ -7057,6 +7294,15 @@ public class TrackerGUI
 	public String getClassicLegendaryCounter() 
 	{
 		return classicLegendaryCounter;
+	}
+	
+	// Sets the value of "United in Stormwind" legendary counter
+	public void setStormwindLegendaryCounter(String value) 
+	{
+		stormwindLegendaryCounter = value;
+		stormwindLegendaryCounterText.setText("");
+		doc = stormwindLegendaryCounterText.getStyledDocument();
+		changePanelTextStyle(stormwind, stormwindLegendaryCounterText, legendaryCounterText, stormwindLegendaryCounter);
 	}
 	
 	// Sets the value of "Forged in the Barrens" legendary counter
@@ -7221,6 +7467,12 @@ public class TrackerGUI
 		changePanelTextStyle(classic, classicLegendaryCounterText, legendaryCounterText, classicLegendaryCounter);
 	}
 	
+	// Returns the "United in Stormwind" legendary reset button
+	public ModifierButton getStormwindLegendaryReset() 
+	{
+		return stormwindLegendaryReset;
+	}
+	
 	// Returns the "Forged in the Barrens" legendary reset button
 	public ModifierButton getBarrensLegendaryReset() 
 	{
@@ -7327,6 +7579,12 @@ public class TrackerGUI
 	public ModifierButton getClassicLegendaryReset() 
 	{
 		return classicLegendaryReset;
+	}
+	
+	// Returns the "United in Stormwind" legendary add button
+	public RoundButton getStormwindLegendaryAdd() 
+	{
+		return stormwindLegendaryAdd;
 	}
 	
 	// Returns the "Forged in the Barrens" legendary add button
@@ -7437,6 +7695,12 @@ public class TrackerGUI
 		return classicLegendaryAdd;
 	}
 	
+	// Returns the "United in Stormwind" legendary increment field
+	public JTextArea getStormwindLegendaryIncrement() 
+	{
+		return stormwindLegendaryIncrement;
+	}
+	
 	// Returns the "Forged in the Barrens" legendary increment field
 	public JTextArea getBarrensLegendaryIncrement() 
 	{
@@ -7545,6 +7809,12 @@ public class TrackerGUI
 		return classicLegendaryIncrement;
 	}
 	
+	// Returns the value of "United in Stormwind" legendary probability
+	public String getStormwindLegendaryProbability() 
+	{
+		return stormwindLegendaryProbability.replace("%", "").replace(",", ".");
+	}
+	
 	// Returns the value of "Forged in the Barrens" legendary probability
 	public String getBarrensLegendaryProbability() 
 	{
@@ -7651,6 +7921,15 @@ public class TrackerGUI
 	public String getClassicLegendaryProbability() 
 	{
 		return classicLegendaryProbability.replace("%", "").replace(",", ".");
+	}
+	
+	// Sets the value of "United in Stormwind" legendary probability
+	public void setStormwindLegendaryProbability(String value) 
+	{
+		stormwindLegendaryProbability = value + "%";
+		stormwindLegendaryProbabilityText.setText("");
+		doc = stormwindLegendaryProbabilityText.getStyledDocument();
+		changePanelTextStyle(stormwind, stormwindLegendaryProbabilityText, legendaryProbabilityText, stormwindLegendaryProbability);
 	}
 	
 	// Sets the value of "Forged in the Barrens" legendary probability
@@ -7815,6 +8094,12 @@ public class TrackerGUI
 		changePanelTextStyle(classic, classicLegendaryProbabilityText, legendaryProbabilityText, classicLegendaryProbability);
 	}
 	
+	// Returns the value of "United in Stormwind" total counter
+	public String getStormwindTotalCounter() 
+	{
+		return stormwindTotalCounter;
+	}
+	
 	// Returns the value of "Forged in the Barrens" total counter
 	public String getBarrensTotalCounter() 
 	{
@@ -7921,6 +8206,15 @@ public class TrackerGUI
 	public String getClassicTotalCounter() 
 	{
 		return classicTotalCounter;
+	}
+	
+	// Sets the value of "United in Stormwind" total counter
+	public void setStormwindTotalCounter(String value) 
+	{
+		stormwindTotalCounter = value;
+		stormwindTotalCounterText.setText("");
+		doc = stormwindTotalCounterText.getStyledDocument();
+		changePanelTextStyle(stormwind, stormwindTotalCounterText, totalCounterText, stormwindTotalCounter);
 	}
 	
 	// Sets the value of "Forged in the Barrens" total counter
@@ -8085,6 +8379,12 @@ public class TrackerGUI
 		changePanelTextStyle(classic, classicTotalCounterText, totalCounterText, classicTotalCounter);
 	}
 	
+	// Returns the "United in Stormwind" total modify button
+	public ModifierButton getStormwindTotalModify() 
+	{
+		return stormwindTotalModify;
+	}
+	
 	// Returns the "Forged in the Barrens" total modify button
 	public ModifierButton getBarrensTotalModify() 
 	{
@@ -8191,6 +8491,12 @@ public class TrackerGUI
 	public ModifierButton getClassicTotalModify() 
 	{
 		return classicTotalModify;
+	}
+	
+	// Returns the "United in Stormwind" total add button
+	public RoundButton getStormwindTotalAdd() 
+	{
+		return stormwindTotalAdd;
 	}
 	
 	// Returns the "Forged in the Barrens" total add button
@@ -8301,6 +8607,12 @@ public class TrackerGUI
 		return classicTotalAdd;
 	}
 	
+	// Returns the "United in Stormwind" total increment field
+	public JTextArea getStormwindTotalIncrement() 
+	{
+		return stormwindTotalIncrement;
+	}
+	
 	// Returns the "Forged in the Barrens" total increment field
 	public JTextArea getBarrensTotalIncrement() 
 	{
@@ -8407,6 +8719,12 @@ public class TrackerGUI
 	public JTextArea getClassicTotalIncrement() 
 	{
 		return classicTotalIncrement;
+	}
+	
+	// Returns the "United in Stormwind" common button
+	public IconButton getStormwindCommonButton() 
+	{
+		return stormwindCommonButton;
 	}
 	
 	// Returns the "Forged in the Barrens" common button
@@ -8517,6 +8835,12 @@ public class TrackerGUI
 		return classicCommonButton;
 	}
 	
+	// Returns the "United in Stormwind" rare button
+	public IconButton getStormwindRareButton() 
+	{
+		return stormwindRareButton;
+	}
+	
 	// Returns the "Forged in the Barrens" rare button
 	public IconButton getBarrensRareButton() 
 	{
@@ -8625,6 +8949,12 @@ public class TrackerGUI
 		return classicRareButton;
 	}
 	
+	// Returns the "United in Stormwind" epic button
+	public IconButton getStormwindEpicButton() 
+	{
+		return stormwindEpicButton;
+	}
+	
 	// Returns the "Forged in the Barrens" epic button
 	public IconButton getBarrensEpicButton() 
 	{
@@ -8731,6 +9061,12 @@ public class TrackerGUI
 	public IconButton getClassicEpicButton() 
 	{
 		return classicEpicButton;
+	}
+	
+	// Returns the "United in Stormwind" legendary button
+	public IconButton getStormwindLegendaryButton() 
+	{
+		return stormwindLegendaryButton;
 	}
 	
 	// Returns the "Forged in the Barrens" legendary button
