@@ -24,7 +24,7 @@ You can find more details on how this program works by pressing the program's he
 
 You must have JAVA installed in your system in order to run this program. Download JAVA here: https://www.java.com/en/download/.
 
-If you don't like the default JAVA icon, you can download the icon used in the program here: https://github.com/TilDim/hs-pity-timer-tracker/blob/main/HSPityTimerTracker/counter_icon.ico and change it by creating a shortcut of the .jar file and following the instructions below:
+If you don't like the default JAVA icon, you can download the icon used in the program here: https://github.com/TilDim/hs-pity-timer-tracker/blob/master/counter_icon.ico and change it by creating a shortcut of the .jar file and following the instructions below:
 1) Right-click the .jar file shortcut.
 2) In the pop-up menu, select Properties.
 3) On the Shortcut tab, click the Change Icon button.
