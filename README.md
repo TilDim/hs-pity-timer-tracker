@@ -7,10 +7,6 @@ When you open card packs in Hearthstone, you are guaranteed to find an epic card
 
 This program has a pity timer tracker for both epic and legendary cards of every expansion and a total card packs counter for each expansion to keep track of how many packs you have opened.
 
-How to install:
-
-No installation is required for this program to work. Just download and run the .jar file anywhere in your system.
-
 How it works:
 
 For each expansion there is a dedicated panel containing:
@@ -21,15 +17,6 @@ For each expansion there is a dedicated panel containing:
 
 This program does not operate automatically. All the timers and counters are modified manually by the user with the use of buttons.
 You can find more details on how this program works by pressing the program's help button.
-
-You must have JAVA installed in your system in order to run this program. Download JAVA here: https://www.java.com/en/download/.
-
-If you don't like the default JAVA icon, you can download the icon used in the program here: https://github.com/TilDim/hs-pity-timer-tracker/blob/master/counter_icon.ico and change it by creating a shortcut of the .jar file and following the instructions below:
-1) Right-click the .jar file shortcut.
-2) In the pop-up menu, select Properties.
-3) On the Shortcut tab, click the Change Icon button.
-4) In the Change Icon window, select the icon you want to use. If necessary, you can Browse to the location of the icon file and select it.
-5) After selecting the icon, click OK.
 
 Created by:
 
