@@ -4,13 +4,40 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>tildim.hstools.hspitytimertracker</groupId>
-    <artifactId>HSPityTimerTracker</artifactId>
+    <groupId>tildim.hstools</groupId>
+    <artifactId>hs-pity-timer-tracker</artifactId>
     <version>5.0.0</version>
+    <name>Hearthstone Pity Timer Tracker</name>
+    <description>Keeps track of your pity timers in Hearthstone</description>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+
+        <org.apache.commons.version>4.4</org.apache.commons.version>
+        <org.projectlombok.version>1.18.22</org.projectlombok.version>
+        <org.junit.jupiter.version>5.8.2</org.junit.jupiter.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${org.apache.commons.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${org.projectlombok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${org.junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>

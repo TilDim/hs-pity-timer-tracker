@@ -1,0 +1,147 @@
+(WARNING! DO NOT MODIFY THIS FILE BY YOURSELF OR THE PROGRAM MIGHT NOT WORK PROPERLY AND YOU MAY LOSE YOUR TRACKER'S DATA)
+
+~ Hearthstone Pity Timer Tracker ~
+
+- Expansions
+Voyage to the Sunken City
+Fractured in Alterac Valley
+United in Stormwind
+Forged in the Barrens
+Madness at the Darkmoon Faire
+Scholomance Academy
+Ashes of Outland
+Descent of Dragons
+Saviors of Uldum
+Rise of Shadows
+Rastakhan's Rumble
+The Boomsday Project
+The Witchwood
+Kobolds & Catacombs
+Knights of the Frozen Throne
+Journey to Un'Goro
+Mean Streets of Gadgetzan
+Whispers of the Old Gods
+The Grand Tournament
+Goblins vs Gnomes
+Classic
+
+----------
+
+- Epic counters
+Voyage to the Sunken City: 0
+Fractured in Alterac Valley: 0
+United in Stormwind: 0
+Forged in the Barrens: 0
+Madness at the Darkmoon Faire: 0
+Scholomance Academy: 0
+Ashes of Outland: 0
+Descent of Dragons: 0
+Saviors of Uldum: 0
+Rise of Shadows: 0
+Rastakhan's Rumble: 0
+The Boomsday Project: 0
+The Witchwood: 0
+Kobolds & Catacombs: 0
+Knights of the Frozen Throne: 0
+Journey to Un'Goro: 0
+Mean Streets of Gadgetzan: 0
+Whispers of the Old Gods: 0
+The Grand Tournament: 0
+Goblins vs Gnomes: 0
+Classic: 0
+
+- Epic probabilities
+Voyage to the Sunken City: 0
+Fractured in Alterac Valley: 0
+United in Stormwind: 0
+Forged in the Barrens: 0
+Madness at the Darkmoon Faire: 0
+Scholomance Academy: 0
+Ashes of Outland: 0
+Descent of Dragons: 0
+Saviors of Uldum: 0
+Rise of Shadows: 0
+Rastakhan's Rumble: 0
+The Boomsday Project: 0
+The Witchwood: 0
+Kobolds & Catacombs: 0
+Knights of the Frozen Throne: 0
+Journey to Un'Goro: 0
+Mean Streets of Gadgetzan: 0
+Whispers of the Old Gods: 0
+The Grand Tournament: 0
+Goblins vs Gnomes: 0
+Classic: 0
+
+----------
+
+- Legendary counters
+Voyage to the Sunken City: 0
+Fractured in Alterac Valley: 0
+United in Stormwind: 0
+Forged in the Barrens: 0
+Madness at the Darkmoon Faire: 0
+Scholomance Academy: 0
+Ashes of Outland: 0
+Descent of Dragons: 0
+Saviors of Uldum: 0
+Rise of Shadows: 0
+Rastakhan's Rumble: 0
+The Boomsday Project: 0
+The Witchwood: 0
+Kobolds & Catacombs: 0
+Knights of the Frozen Throne: 0
+Journey to Un'Goro: 0
+Mean Streets of Gadgetzan: 0
+Whispers of the Old Gods: 0
+The Grand Tournament: 0
+Goblins vs Gnomes: 0
+Classic: 0
+
+- Legendary probabilities
+Voyage to the Sunken City: 0
+Fractured in Alterac Valley: 0
+United in Stormwind: 0
+Forged in the Barrens: 0
+Madness at the Darkmoon Faire: 0
+Scholomance Academy: 0
+Ashes of Outland: 0
+Descent of Dragons: 0
+Saviors of Uldum: 0
+Rise of Shadows: 0
+Rastakhan's Rumble: 0
+The Boomsday Project: 0
+The Witchwood: 0
+Kobolds & Catacombs: 0
+Knights of the Frozen Throne: 0
+Journey to Un'Goro: 0
+Mean Streets of Gadgetzan: 0
+Whispers of the Old Gods: 0
+The Grand Tournament: 0
+Goblins vs Gnomes: 0
+Classic: 0
+
+----------
+
+- Total counters
+Voyage to the Sunken City: 0
+Fractured in Alterac Valley: 0
+United in Stormwind: 0
+Forged in the Barrens: 0
+Madness at the Darkmoon Faire: 0
+Scholomance Academy: 0
+Ashes of Outland: 0
+Descent of Dragons: 0
+Saviors of Uldum: 0
+Rise of Shadows: 0
+Rastakhan's Rumble: 0
+The Boomsday Project: 0
+The Witchwood: 0
+Kobolds & Catacombs: 0
+Knights of the Frozen Throne: 0
+Journey to Un'Goro: 0
+Mean Streets of Gadgetzan: 0
+Whispers of the Old Gods: 0
+The Grand Tournament: 0
+Goblins vs Gnomes: 0
+Classic: 0

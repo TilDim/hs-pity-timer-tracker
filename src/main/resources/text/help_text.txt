@@ -1,0 +1,39 @@
+What is a pity timer?
+When you open card packs in Hearthstone, you are guaranteed to find an epic card within 10 packs and a legendary one within 40.
+This is called a pity timer and there is one for each expansion.
+
+This program has a pity timer tracker for both epic and legendary cards of every expansion and a total card packs counter for each expansion to keep track of how many packs you have opened.
+
+How it works:
+
+For each expansion there is a dedicated panel containing:
+1) The icon of the expansion, which is a link to the expansion's official webpage (except 'Classic')
+2) A pity timer tracker for epic cards with buttons to modify the tracker and a label displaying the probability of finding an epic card in the next pack
+3) A pity timer tracker for legendary cards with buttons to modify the tracker and a label displaying the probability of finding a legendary card in the next pack
+4) A total card packs counter with buttons and fields to modify the counter and four buttons, each one being a link to the expansion's 'Common', 'Rare', 'Epic' and 'Legendary' cards webpage respectively
+
+'Wild' sets are hidden by default. You can switch between 'Standard' and 'Wild' sets by pressing the 'Standard Sets' and 'Wild Sets' buttons respectively.
+Whenever either of these buttons is pressed, some buttons corresponding to the Hearthstone years will be displayed.
+These buttons work as shortcuts and when you press them, you are instantly shown the respective year's expansions.
+(This is especially helpful in 'Wild', where there are many more sets, and it takes a bit longer to navigate through the panels.)
+
+Every number on the tracker (pity timers, probabilities, pack totals) is stored in a file located in the 'Documents' folder, and you can locate it easily in your system by pressing the folder icon on the top right.
+If you want to back up the data of your tracker or move it to another system, just copy this file.
+It is also very important to keep a back-up of this file in another folder on your system in case the file is overwritten improperly when a newer version of the program is executed for the first time.
+(Warning! Do not modify this file by yourself or the program might not work properly, and you may lose your tracker's data. For this reason, the file is in read-only mode.)
+(Attention! This program cannot be executed if you have changed the default 'Documents' folder in your system.)
+
+More details on the modify buttons and fields:
+Reset:   Sets the tracker value to '0'
+        +:   Sets the tracker value according to the value of the field on its right ('Number Field')
+Number field:   The number of packs to be added to the tracker when pressing '+' (default is 1)
+Modify:   Opens a pop-up window in which you can enter the number of packs you have opened manually
+                (it does not add to the counter, it sets the counter value to the input number)
+
+Note:
+The probability of finding an epic or a legendary card in the next pack is not calculated based on statistical data from Hearthstone or other users, so it might not be so accurate.
+It is just the result of this probability formula: 1 / (pity - counter) * 100,
+where pity is the pity timer and counter is the number of packs currently opened.
+For example, if you have opened 6 packs and have not found a legendary card, the probability of finding one in the next pack is 1 / (40 - 6) * 100 = 2.94%.
+
+Created by: Tilemachos D                                                                                                        October 2020
