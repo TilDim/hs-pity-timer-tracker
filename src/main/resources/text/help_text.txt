@@ -10,10 +10,10 @@ For each expansion there is a dedicated panel containing:
 1) The icon of the expansion, which is a link to the expansion's official webpage (except 'Classic')
 2) A pity timer tracker for epic cards with buttons to modify the tracker and a label displaying the probability of finding an epic card in the next pack
 3) A pity timer tracker for legendary cards with buttons to modify the tracker and a label displaying the probability of finding a legendary card in the next pack
-4) A total card packs counter with buttons and fields to modify the counter and four buttons, each one being a link to the expansion's 'Common', 'Rare', 'Epic' and 'Legendary' cards webpage respectively
+4) A total card packs counter with buttons and fields to modify the counter and a card pack button, which is a link to the Battle.net Shop for purchasing card packs of this expansion
 
 'Wild' sets are hidden by default. You can switch between 'Standard' and 'Wild' sets by pressing the 'Standard Sets' and 'Wild Sets' buttons respectively.
-Whenever either of these buttons is pressed, some buttons corresponding to the Hearthstone years will be displayed.
+Whenever either of these buttons is pressed, buttons corresponding to the Hearthstone years will be displayed.
 These buttons work as shortcuts and when you press them, you are instantly shown the respective year's expansions.
 (This is especially helpful in 'Wild', where there are many more sets, and it takes a bit longer to navigate through the panels.)
 
@@ -25,10 +25,9 @@ It is also very important to keep a back-up of this file in another folder on yo
 
 More details on the modify buttons and fields:
 Reset:   Sets the tracker value to '0'
-        +:   Sets the tracker value according to the value of the field on its right ('Number Field')
++:   Sets the tracker value according to the value of the field on its right ('Number Field')
 Number field:   The number of packs to be added to the tracker when pressing '+' (default is 1)
-Modify:   Opens a pop-up window in which you can enter the number of packs you have opened manually
-                (it does not add to the counter, it sets the counter value to the input number)
+Modify:   Opens a pop-up window in which you can enter the number of packs you have opened manually (It does not add to the counter, it sets the counter value to the input number)
 
 Note:
 The probability of finding an epic or a legendary card in the next pack is not calculated based on statistical data from Hearthstone or other users, so it might not be so accurate.
@@ -36,4 +35,4 @@ It is just the result of this probability formula: 1 / (pity - counter) * 100,
 where pity is the pity timer and counter is the number of packs currently opened.
 For example, if you have opened 6 packs and have not found a legendary card, the probability of finding one in the next pack is 1 / (40 - 6) * 100 = 2.94%.
 
-Created by: Tilemachos D                                                                                                        October 2020
+Created by: Tilemachos D                                                        October 2020

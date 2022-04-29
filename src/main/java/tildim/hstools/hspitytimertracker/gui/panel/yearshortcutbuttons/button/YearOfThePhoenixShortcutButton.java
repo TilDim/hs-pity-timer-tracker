@@ -8,7 +8,7 @@ import java.io.Serial;
 /**
  *
  */
-public class YearOfThePhoenixShortcutButton extends AbstractYearShortcutButton{
+public class YearOfThePhoenixShortcutButton extends AbstractYearShortcutButton {
 
     @Serial
     private static final long serialVersionUID = -4263026835747312567L;

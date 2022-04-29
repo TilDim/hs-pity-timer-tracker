@@ -165,10 +165,30 @@ public class ScrollablePanel extends JPanel
      */
     public void setScrollableBlockIncrement(int orientation, IncrementInfo info) {
         switch (orientation) {
-            case SwingConstants.HORIZONTAL -> horizontalBlock = info;
-            case SwingConstants.VERTICAL -> verticalBlock = info;
+            case SwingConstants.HORIZONTAL -> setHorizontalBlock(info);
+            case SwingConstants.VERTICAL -> setVerticalBlock(info);
             default -> throw new IllegalArgumentException(ORIENTATION_ERROR + orientation);
         }
+    }
+
+    /**
+     * Set the block IncrementInfo for the horizontal orientation
+     *
+     * @param info An IncrementInfo object containing information of how to
+     *             calculate the scrollable amount.
+     */
+    private void setHorizontalBlock(IncrementInfo info) {
+        horizontalBlock = info;
+    }
+
+    /**
+     * Set the block IncrementInfo for the vertical orientation
+     *
+     * @param info An IncrementInfo object containing information of how to
+     *             calculate the scrollable amount.
+     */
+    private void setVerticalBlock(IncrementInfo info) {
+        verticalBlock = info;
     }
 
     /**
@@ -207,10 +227,30 @@ public class ScrollablePanel extends JPanel
      */
     public void setScrollableUnitIncrement(int orientation, IncrementInfo info) {
         switch (orientation) {
-            case SwingConstants.HORIZONTAL -> horizontalUnit = info;
-            case SwingConstants.VERTICAL -> verticalUnit = info;
+            case SwingConstants.HORIZONTAL -> setHorizontalUnit(info);
+            case SwingConstants.VERTICAL -> setVerticalUnit(info);
             default -> throw new IllegalArgumentException(ORIENTATION_ERROR + orientation);
         }
+    }
+
+    /**
+     * Set the unit IncrementInfo for the horizontal orientation
+     *
+     * @param info An IncrementInfo object containing information of how to
+     *             calculate the scrollable amount.
+     */
+    private void setHorizontalUnit(IncrementInfo info) {
+        horizontalUnit = info;
+    }
+
+    /**
+     * Set the unit IncrementInfo for the vertical orientation
+     *
+     * @param info An IncrementInfo object containing information of how to
+     *             calculate the scrollable amount.
+     */
+    private void setVerticalUnit(IncrementInfo info) {
+        verticalUnit = info;
     }
 
     @Override

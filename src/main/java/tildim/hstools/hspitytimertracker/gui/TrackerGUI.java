@@ -60,9 +60,10 @@ public class TrackerGUI extends JFrame {
         setTitle(Text.TRACKER_TITLE);
         setIconImage(trackerIcon);
         setMinimumSize(new Dimension(1150, 540));
+        setPreferredSize(new Dimension(1250, 650));
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(true);
-        setSize(1250, 650);
+        pack();
         setLocationRelativeTo(null);
         setVisible(true);
     }

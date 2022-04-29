@@ -15,7 +15,7 @@
         <maven.compiler.target>17</maven.compiler.target>
 
         <org.apache.commons.version>4.4</org.apache.commons.version>
-        <org.projectlombok.version>1.18.22</org.projectlombok.version>
+        <org.projectlombok.version>1.18.24</org.projectlombok.version>
         <org.junit.jupiter.version>5.8.2</org.junit.jupiter.version>
     </properties>
 

@@ -44,7 +44,5 @@ public class WildModePanel extends AbstractModePanel {
         add(yearOfTheKrakenPanel);
         add(years1And2Panel);
         add(classicPanel);
-
-        setVisible(false);
     }
 }

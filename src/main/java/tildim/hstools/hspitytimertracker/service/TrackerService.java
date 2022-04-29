@@ -7,8 +7,6 @@ import tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.button.Add
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.button.ResModButton;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.textfield.IncrementField;
 import tildim.hstools.hspitytimertracker.gui.panel.header.button.HeaderButton;
-import tildim.hstools.hspitytimertracker.gui.panel.mode.StandardModePanel;
-import tildim.hstools.hspitytimertracker.gui.panel.mode.WildModePanel;
 import tildim.hstools.hspitytimertracker.gui.panel.modebuttons.button.StandardModeButton;
 import tildim.hstools.hspitytimertracker.gui.panel.modebuttons.button.WildModeButton;
 import tildim.hstools.hspitytimertracker.gui.panel.popup.HelpPopupWindowPanel;
@@ -16,13 +14,12 @@ import tildim.hstools.hspitytimertracker.gui.panel.popup.InputErrorPopupWindowPa
 import tildim.hstools.hspitytimertracker.gui.panel.popup.ModifyPopupWindowPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.tracker.TrackerPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.year.AbstractYearPanel;
-import tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.StandardYearShortcutButtonsPanel;
-import tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.WildYearShortcutButtonsPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.button.AbstractYearShortcutButton;
 import tildim.hstools.hspitytimertracker.util.*;
 import tildim.hstools.hspitytimertracker.util.uri.URIHelper;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.text.DecimalFormat;
@@ -53,16 +50,22 @@ public class TrackerService {
     private StandardModeButton standardModeButton;
     private WildModeButton wildModeButton;
 
-    // Mode panels
-    private StandardModePanel standardModePanel;
-    private WildModePanel wildModePanel;
-
-    // Year shortcut buttons panels
-    private StandardYearShortcutButtonsPanel standardYearShortcutButtonsPanel;
-    private WildYearShortcutButtonsPanel wildYearShortcutButtonsPanel;
+    // Year shortcut buttons panel
+    private JPanel yearShortcutButtonsPanel;
+    private CardLayout yearShortcutButtonsPanelLayout;
 
     // Year shortcut buttons
     private List<AbstractYearShortcutButton> yearShortcutButtons;
+
+    // Main panel
+    private JPanel mainPanel;
+    private CardLayout mainPanelLayout;
+
+    // 'Standard' mode panel container
+    private JScrollPane standardModePanelContainer;
+
+    // 'Wild' mode panel container
+    private JScrollPane wildModePanelContainer;
 
     // Year panels
     private List<AbstractYearPanel> yearPanels;
@@ -180,20 +183,22 @@ public class TrackerService {
         wildModeButton = trackerPanel.getModeButtonsPanel()
                                      .getWildModeButton();
 
-        // 'Standard' year shortcut buttons panel
-        standardYearShortcutButtonsPanel = trackerPanel.getStandardYearShortcutButtonsPanel();
-
-        // 'Wild' year shortcut buttons panel
-        wildYearShortcutButtonsPanel = trackerPanel.getWildYearShortcutButtonsPanel();
+        // Year shortcut buttons panel
+        yearShortcutButtonsPanel = trackerPanel.getYearShortcutButtonsPanel();
+        yearShortcutButtonsPanelLayout = trackerPanel.getYearShortcutButtonsPanelLayout();
 
         // Year shortcut buttons
         yearShortcutButtons = TrackerComponentsHelper.getYearShortcutButtons(trackerPanel);
 
+        // Main panel
+        mainPanel = trackerPanel.getMainPanel();
+        mainPanelLayout = trackerPanel.getMainPanelLayout();
+
         // 'Standard' mode panel
-        standardModePanel = trackerPanel.getStandardModePanel();
+        standardModePanelContainer = trackerPanel.getStandardModePanelContainer();
 
         // 'Wild' mode panel
-        wildModePanel = trackerPanel.getWildModePanel();
+        wildModePanelContainer = trackerPanel.getWildModePanelContainer();
 
         // Year panels
         yearPanels = TrackerComponentsHelper.getYearPanels(trackerPanel);
@@ -279,10 +284,7 @@ public class TrackerService {
         for (int i = 0; i < yearShortcutButtons.size(); i++) {
             int index = i;
             yearShortcutButtons.get(i)
-                               .addActionListener(e -> trackerPanel.getMainPanelContainer()
-                                                                   .getVerticalScrollBar()
-                                                                   .setValue(yearPanels.get(index)
-                                                                                       .getY()));
+                               .addActionListener(e -> yearShortcutButtonAction(index));
         }
 
         // Expansion buttons
@@ -348,11 +350,8 @@ public class TrackerService {
      * Action performed when the 'Standard' mode button is pressed
      */
     private void standardModeButtonAction() {
-        // Show Standard sets
-        standardModePanel.setVisible(true);
-
-        // Hide Wild sets
-        wildModePanel.setVisible(false);
+        // Show 'Standard' sets
+        mainPanelLayout.show(mainPanel, "Standard");
 
         // Selected Mode button customization
         standardModeButton.setBackground(Colors.MODE_SELECTED_COLOR);
@@ -362,27 +361,20 @@ public class TrackerService {
         wildModeButton.setBackground(Colors.MODE_UNSELECTED_COLOR);
         wildModeButton.addMouseListener(wildModeButton.getUnselectedModeButtonAdapter());
 
-        // Show Standard Years shortcut buttons panel
-        standardYearShortcutButtonsPanel.setVisible(true);
-
-        // Hide Wild Years shortcut buttons panel
-        wildYearShortcutButtonsPanel.setVisible(false);
+        // Show 'Standard' year shortcut buttons panel
+        yearShortcutButtonsPanelLayout.show(yearShortcutButtonsPanel, "Standard");
 
         // Move the scrollbar to the top
-        trackerPanel.getMainPanelContainer()
-                    .getVerticalScrollBar()
-                    .setValue(0);
+        standardModePanelContainer.getVerticalScrollBar()
+                                  .setValue(0);
     }
 
     /**
      * Action performed when the 'Wild' mode button is pressed
      */
     private void wildModeButtonAction() {
-        // Hide Standard sets
-        standardModePanel.setVisible(false);
-
-        // Show Wild sets
-        wildModePanel.setVisible(true);
+        // Show 'Wild' sets
+        mainPanelLayout.show(mainPanel, "Wild");
 
         // Unselected Mode button customization
         standardModeButton.setBackground(Colors.MODE_UNSELECTED_COLOR);
@@ -392,16 +384,27 @@ public class TrackerService {
         wildModeButton.setBackground(Colors.MODE_SELECTED_COLOR);
         wildModeButton.addMouseListener(wildModeButton.getSelectedModeButtonAdapter());
 
-        // Hide Standard Years shortcut buttons panel
-        standardYearShortcutButtonsPanel.setVisible(false);
-
-        // Show Wild Years shortcut buttons panel
-        wildYearShortcutButtonsPanel.setVisible(true);
+        // Show 'Wild' year shortcut buttons panel
+        yearShortcutButtonsPanelLayout.show(yearShortcutButtonsPanel, "Wild");
 
         // Move the scrollbar to the top
-        trackerPanel.getMainPanelContainer()
-                    .getVerticalScrollBar()
-                    .setValue(0);
+        wildModePanelContainer.getVerticalScrollBar()
+                              .setValue(0);
+    }
+
+    /**
+     * Action performed when a year shortcut button is pressed
+     */
+    private void yearShortcutButtonAction(int index) {
+        if (index < yearShortcutButtons.size() - 2) {
+            wildModePanelContainer.getVerticalScrollBar()
+                                  .setValue(yearPanels.get(index)
+                                                      .getY());
+        } else {
+            standardModePanelContainer.getVerticalScrollBar()
+                                      .setValue(yearPanels.get(index)
+                                                          .getY());
+        }
     }
 
     /**

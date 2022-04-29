@@ -4,9 +4,8 @@ import org.apache.commons.collections4.ListUtils;
 import tildim.hstools.hspitytimertracker.exception.TextFileException;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,20 +33,15 @@ public class FileHelper {
      */
     public static void createSaveFile() {
         // Read the base file
-        List<String> baseFileData;
-        try {
-            baseFileData = readSaveFile(Path.of(Objects.requireNonNull(FileHelper.class.getClassLoader()
-                                                                                       .getResource("text/base_text.txt"))
-                                                       .toURI()));
-        } catch (URISyntaxException e) {
-            throw new TextFileException("Error while reading the tracker's base text file", e.getCause());
-        }
+        List<String> baseFileData = readResourceFile("text/base_text.txt");
 
         // Create the save file for the first time
         try {
             saveFile = Files.createFile(SAVE_FILE_PATH);
             writeSaveFile(String.join(Text.NEXT_LINE, baseFileData));
             setReadOnly();
+
+            saveFileData = readSaveFile(saveFile);
         }
         // or update the save file with new expansions if it already exists
         catch (FileAlreadyExistsException e) {
@@ -103,6 +97,24 @@ public class FileHelper {
     }
 
     /**
+     * Reads a resource file
+     *
+     * @param filePath is the resource file's path from the source root
+     * @return a list with all the lines of the resource file
+     */
+    private static List<String> readResourceFile(String filePath) {
+        try (InputStream inputStream = FileHelper.class.getClassLoader()
+                                                       .getResourceAsStream(filePath)) {
+            return new BufferedReader(
+                    new InputStreamReader(Objects.requireNonNull(inputStream),
+                            StandardCharsets.UTF_8)).lines()
+                                                    .toList();
+        } catch (IOException e) {
+            throw new TextFileException("Error while reading a resource file", e.getCause());
+        }
+    }
+
+    /**
      * Finds the expansions in a file and returns them from oldest to newest
      *
      * @param data a list with all the lines of the save file
@@ -144,21 +156,21 @@ public class FileHelper {
     }
 
     /**
-     * Reads the save file and extracts the tracker values
+     * Reads the save file
      *
-     * @param filePath is the save file's path from the source root
+     * @param filePath is the save file's path from the system root
      * @return a list with all the lines of the save file
      */
     private static List<String> readSaveFile(Path filePath) {
         try {
             return Files.readAllLines(filePath);
         } catch (IOException e) {
-            throw new TextFileException("Error while reading the file", e.getCause());
+            throw new TextFileException("Error while reading the save file", e.getCause());
         }
     }
 
     /**
-     * Writes the save file with the tracker values
+     * Writes the save file
      *
      * @param data is the data to be written in the file
      */
@@ -166,7 +178,7 @@ public class FileHelper {
         try {
             Files.writeString(saveFile, data);
         } catch (IOException e) {
-            throw new TextFileException("Error while writing the file", e.getCause());
+            throw new TextFileException("Error while writing the save file", e.getCause());
         }
     }
 
@@ -192,17 +204,7 @@ public class FileHelper {
      * @return the help message
      */
     public static String setHelpMessageText() {
-        String message;
-
-        try {
-            message = String.join(Text.NEXT_LINE, FileHelper.readSaveFile(Path.of(Objects.requireNonNull(FileHelper.class.getClassLoader()
-                                                                                                                         .getResource("text/help_text.txt"))
-                                                                                         .toURI())));
-        } catch (URISyntaxException e) {
-            throw new TextFileException("Error while reading the tracker's help text file", e.getCause());
-        }
-
-        return message;
+        return String.join(Text.NEXT_LINE, readResourceFile("text/help_text.txt"));
     }
 
     /**

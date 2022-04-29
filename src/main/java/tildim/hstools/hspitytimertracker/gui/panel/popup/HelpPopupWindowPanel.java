@@ -22,7 +22,7 @@ public class HelpPopupWindowPanel extends AbstractPopupWindowPanel {
 
         // "Help" message container
         JScrollPane helpMessagePanel = new JScrollPane(super.getContent(), ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        helpMessagePanel.setPreferredSize(new Dimension(900, 450));
+        helpMessagePanel.setPreferredSize(new Dimension(640, 360));
         helpMessagePanel.setBorder(BorderFactory.createEmptyBorder());
         helpMessagePanel.getVerticalScrollBar()
                         .setUnitIncrement(15);
