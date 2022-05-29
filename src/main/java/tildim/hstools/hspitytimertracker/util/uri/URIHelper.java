@@ -1,6 +1,6 @@
 package tildim.hstools.hspitytimertracker.util.uri;
 
-import tildim.hstools.hspitytimertracker.exception.URIBrowsingException;
+import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;
 import java.io.IOException;
@@ -9,12 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * {@code URIHelper} is a utility class that contains all the necessary methods to process the URIs used by the program.
  *
+ * @author Tilemachos Dimos
+ * @see URI
+ * @see URIs
  */
+@Slf4j
 public class URIHelper {
 
     /**
-     * @return
+     * Creates the expansion URIs and adds them to a list.
+     *
+     * @return a list of all the expansion URIs
      */
     public static List<URI> getExpansionURIs() {
         List<URI> expansionURIs = new ArrayList<>();
@@ -45,7 +52,9 @@ public class URIHelper {
     }
 
     /**
-     * @return
+     * Creates the card pack URIs and adds them to a list.
+     *
+     * @return a list of all the card pack URIs
      */
     public static List<URI> getCardPackURIs() {
         List<URI> cardPackURIs = new ArrayList<>();
@@ -76,24 +85,25 @@ public class URIHelper {
     }
 
     /**
-     * Opens the URI of a webpage
+     * Launches the user-default browser to show a specific URI.
      *
-     * @param uri is the URI of the webpage to be opened by a browser
+     * @param uri the URI to be shown
      */
-    public static void openURI(URI uri) {
+    public static void showURI(URI uri) {
         Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
 
         if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
             try {
                 desktop.browse(uri);
             } catch (IOException e) {
-                throw new URIBrowsingException("Can't open this webpage", e.getCause());
+                log.error("Can't show URI");
+                e.printStackTrace();
             }
         }
     }
 
     /**
-     * Private constructor to hide the default public one
+     * Private constructor to hide the default public one.
      */
     private URIHelper() {
     }

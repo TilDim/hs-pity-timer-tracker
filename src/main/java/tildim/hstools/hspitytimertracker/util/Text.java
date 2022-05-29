@@ -1,7 +1,10 @@
 package tildim.hstools.hspitytimertracker.util;
 
 /**
+ * {@code Text} is a utility class that contains all the text used in the program, such as titles, explanatory text and
+ * button labels.
  *
+ * @author Tilemachos Dimos
  */
 public final class Text {
 
@@ -44,17 +47,18 @@ public final class Text {
     // POP-UP
     public static final String HELP_MESSAGE_TITLE = "Help";
 
-    public static final String INPUT_ERROR_MESSAGE_TITLE = "Input error";
-    public static final String INPUT_ERROR_MESSAGE_TEXT = "The counter exceeded the pity timer while trying to add the number you entered" +
-            NEXT_LINE + NEXT_LINE +
-            "Try the following:" + NEXT_LINE +
-            "1) Check if the number you entered is correct" + NEXT_LINE +
-            "2) Reset the counter, if this is the number you want to enter";
+    public static final String INPUT_ERROR_MESSAGE_TITLE = "Input Error";
+    public static final String INPUT_ERROR_MESSAGE_TEXT =
+            "The counter exceeded the pity timer while trying to add the number you entered" +
+                    NEXT_LINE + NEXT_LINE +
+                    "Try the following:" + NEXT_LINE +
+                    "1) Check if the number you entered is correct" + NEXT_LINE +
+                    "2) Reset the counter, if this is the number you want to enter";
 
     public static final String MODIFY_MESSAGE_TEXT = "Total amount of card packs opened:";
 
     /**
-     * Private constructor to hide the default public one
+     * Private constructor to hide the default public one.
      */
     private Text() {
     }

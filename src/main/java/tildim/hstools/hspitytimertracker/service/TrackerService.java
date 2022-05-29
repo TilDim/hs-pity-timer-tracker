@@ -1,5 +1,6 @@
 package tildim.hstools.hspitytimertracker.service;
 
+import lombok.extern.slf4j.Slf4j;
 import tildim.hstools.hspitytimertracker.gui.TrackerGUI;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.button.IconButton;
@@ -7,6 +8,7 @@ import tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.button.Add
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.button.ResModButton;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.textfield.IncrementField;
 import tildim.hstools.hspitytimertracker.gui.panel.header.button.HeaderButton;
+import tildim.hstools.hspitytimertracker.gui.panel.mode.AllModesPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.modebuttons.button.StandardModeButton;
 import tildim.hstools.hspitytimertracker.gui.panel.modebuttons.button.WildModeButton;
 import tildim.hstools.hspitytimertracker.gui.panel.popup.HelpPopupWindowPanel;
@@ -14,6 +16,7 @@ import tildim.hstools.hspitytimertracker.gui.panel.popup.InputErrorPopupWindowPa
 import tildim.hstools.hspitytimertracker.gui.panel.popup.ModifyPopupWindowPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.tracker.TrackerPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.year.AbstractYearPanel;
+import tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.AllYearShortcutButtonsPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.button.AbstractYearShortcutButton;
 import tildim.hstools.hspitytimertracker.util.*;
 import tildim.hstools.hspitytimertracker.util.uri.URIHelper;
@@ -27,8 +30,12 @@ import java.text.NumberFormat;
 import java.util.List;
 
 /**
+ * {@code TrackerService} is a service class that gives functionality to the components of the {@code TrackerGUI}.
  *
+ * @author Tilemachos Dimos
+ * @see TrackerGUI
  */
+@Slf4j
 public class TrackerService {
 
     // Tracker panel
@@ -50,22 +57,22 @@ public class TrackerService {
     private StandardModeButton standardModeButton;
     private WildModeButton wildModeButton;
 
-    // Year shortcut buttons panel
-    private JPanel yearShortcutButtonsPanel;
-    private CardLayout yearShortcutButtonsPanelLayout;
+    // All year shortcut buttons panel
+    private AllYearShortcutButtonsPanel allYearShortcutButtonsPanel;
+    private CardLayout allYearShortcutButtonsPanelLayout;
 
     // Year shortcut buttons
     private List<AbstractYearShortcutButton> yearShortcutButtons;
 
-    // Main panel
-    private JPanel mainPanel;
-    private CardLayout mainPanelLayout;
+    // All modes panel
+    private AllModesPanel allModesPanel;
+    private CardLayout allModesPanelLayout;
 
     // 'Standard' mode panel container
-    private JScrollPane standardModePanelContainer;
+    private JScrollPane standardModePanelScrollPane;
 
     // 'Wild' mode panel container
-    private JScrollPane wildModePanelContainer;
+    private JScrollPane wildModePanelScrollPane;
 
     // Year panels
     private List<AbstractYearPanel> yearPanels;
@@ -73,8 +80,8 @@ public class TrackerService {
     // Expansion panels
     private List<AbstractExpansionPanel> expansionPanels;
 
-    // Expansion icon buttons
-    private List<IconButton> expansionButtons;
+    // Logo buttons
+    private List<IconButton> logoButtons;
 
     // Epic counters
     private List<Integer> epicCounters;
@@ -118,29 +125,30 @@ public class TrackerService {
     // Total increment fields
     private List<IncrementField> totalIncrementFields;
 
-    // Card pack icon buttons
+    // Card pack buttons
     private List<IconButton> cardPackButtons;
 
     // Help message
     String helpMessage;
 
-    // Format in which the probabilities' values are displayed
-    private final NumberFormat nf = new DecimalFormat("##.##");
+    // Format in which the probability values are displayed and saved
+    private final NumberFormat decimalFormat = new DecimalFormat("##.##");
 
     /**
-     * Constructor with an instance of TrackerGUI as an argument
+     * Creates and sets all the necessary components for the {@code TrackerService} to work.
      *
-     * @param trackerGUI is the instance of TrackerGUI to be given functionality
+     * @param trackerGUI is the instance of {@code TrackerGUI} to be given functionality
+     * @see TextFileHelper#createSaveFile
      */
     public TrackerService(TrackerGUI trackerGUI) {
         // Tracker GUI
         trackerPanel = trackerGUI.getTrackerPanel();
 
         // Create the save file
-        FileHelper.createSaveFile();
+        TextFileHelper.createSaveFile();
 
         // Tracker URIs
-        createTrackerURIs();
+        setTrackerURIs();
 
         // Tracker components
         setTrackerComponents();
@@ -150,9 +158,11 @@ public class TrackerService {
     }
 
     /**
-     * Creates the tracker URIs
+     * Sets the tracker URIs.
+     *
+     * @see URIHelper
      */
-    private void createTrackerURIs() {
+    private void setTrackerURIs() {
         // Expansion URIs
         expansionURIs = URIHelper.getExpansionURIs();
 
@@ -161,11 +171,15 @@ public class TrackerService {
     }
 
     /**
-     * Sets the tracker components
+     * Sets the tracker components.
+     *
+     * @see TextFileHelper#setHelpMessageText
+     * @see TextFileHelper#setTrackerValues
+     * @see TrackerComponentsHelper
      */
     private void setTrackerComponents() {
         // "Help" message
-        helpMessage = FileHelper.setHelpMessageText();
+        helpMessage = TextFileHelper.setHelpMessageText();
 
         // "Help" button
         helpButton = trackerPanel.getHeaderPanel()
@@ -184,21 +198,25 @@ public class TrackerService {
                                      .getWildModeButton();
 
         // Year shortcut buttons panel
-        yearShortcutButtonsPanel = trackerPanel.getYearShortcutButtonsPanel();
-        yearShortcutButtonsPanelLayout = trackerPanel.getYearShortcutButtonsPanelLayout();
+        allYearShortcutButtonsPanel = trackerPanel.getAllYearShortcutButtonsPanel();
+        allYearShortcutButtonsPanelLayout = trackerPanel.getAllYearShortcutButtonsPanel()
+                                                        .getLayout();
 
         // Year shortcut buttons
         yearShortcutButtons = TrackerComponentsHelper.getYearShortcutButtons(trackerPanel);
 
         // Main panel
-        mainPanel = trackerPanel.getMainPanel();
-        mainPanelLayout = trackerPanel.getMainPanelLayout();
+        allModesPanel = trackerPanel.getAllModesPanel();
+        allModesPanelLayout = trackerPanel.getAllModesPanel()
+                                          .getLayout();
 
         // 'Standard' mode panel
-        standardModePanelContainer = trackerPanel.getStandardModePanelContainer();
+        standardModePanelScrollPane = trackerPanel.getAllModesPanel()
+                                                  .getStandardModePanelScrollPane();
 
         // 'Wild' mode panel
-        wildModePanelContainer = trackerPanel.getWildModePanelContainer();
+        wildModePanelScrollPane = trackerPanel.getAllModesPanel()
+                                              .getWildModePanelScrollPane();
 
         // Year panels
         yearPanels = TrackerComponentsHelper.getYearPanels(trackerPanel);
@@ -207,10 +225,10 @@ public class TrackerService {
         expansionPanels = TrackerComponentsHelper.getExpansionPanels(trackerPanel);
 
         // Tracker values
-        FileHelper.setTrackerValues(expansionPanels);
+        TextFileHelper.setTrackerValues(expansionPanels);
 
-        // Expansion buttons
-        expansionButtons = TrackerComponentsHelper.getExpansionButtons(expansionPanels);
+        // Logo buttons
+        logoButtons = TrackerComponentsHelper.getLogoButtons(expansionPanels);
 
         // Epic counters
         epicCounters = TrackerComponentsHelper.getEpicCounters(expansionPanels);
@@ -259,19 +277,21 @@ public class TrackerService {
     }
 
     /**
-     * Adds action listeners to the tracker buttons
+     * Adds action listeners to the tracker buttons.
      */
     private void setTrackerActionListeners() {
         // "Help" button
         helpButton.addActionListener(e ->
-                JOptionPane.showMessageDialog(trackerPanel, new HelpPopupWindowPanel(helpMessage), Text.HELP_MESSAGE_TITLE, JOptionPane.INFORMATION_MESSAGE));
+                JOptionPane.showMessageDialog(trackerPanel, new HelpPopupWindowPanel(helpMessage),
+                        Text.HELP_MESSAGE_TITLE, JOptionPane.INFORMATION_MESSAGE));
 
         // "Save folder" button
         saveFolderButton.addActionListener(e -> {
             try {
                 Runtime.getRuntime()
-                       .exec("explorer.exe /select," + FileHelper.SAVE_FILE_PATH);
+                       .exec("explorer.exe /select," + TextFileHelper.SAVE_FILE_PATH);
             } catch (IOException ex) {
+                log.error("Error while opening the file explorer");
                 ex.printStackTrace();
             }
         });
@@ -287,12 +307,12 @@ public class TrackerService {
                                .addActionListener(e -> yearShortcutButtonAction(index));
         }
 
-        // Expansion buttons
-        for (int i = 0; i < expansionButtons.size(); i++) {
+        // Logo buttons
+        for (int i = 0; i < logoButtons.size(); i++) {
             int index = i;
             if (index != 0) {
-                expansionButtons.get(i)
-                                .addActionListener(e -> URIHelper.openURI(expansionURIs.get(index)));
+                logoButtons.get(i)
+                           .addActionListener(e -> URIHelper.showURI(expansionURIs.get(index)));
             }
         }
 
@@ -342,16 +362,16 @@ public class TrackerService {
         for (int i = 0; i < cardPackButtons.size(); i++) {
             int index = i;
             cardPackButtons.get(i)
-                           .addActionListener(e -> URIHelper.openURI(cardPackURIs.get(index)));
+                           .addActionListener(e -> URIHelper.showURI(cardPackURIs.get(index)));
         }
     }
 
     /**
-     * Action performed when the 'Standard' mode button is pressed
+     * Action performed when the 'Standard' mode button is pressed.
      */
     private void standardModeButtonAction() {
         // Show 'Standard' sets
-        mainPanelLayout.show(mainPanel, "Standard");
+        allModesPanelLayout.show(allModesPanel, "Standard");
 
         // Selected Mode button customization
         standardModeButton.setBackground(Colors.MODE_SELECTED_COLOR);
@@ -362,19 +382,19 @@ public class TrackerService {
         wildModeButton.addMouseListener(wildModeButton.getUnselectedModeButtonAdapter());
 
         // Show 'Standard' year shortcut buttons panel
-        yearShortcutButtonsPanelLayout.show(yearShortcutButtonsPanel, "Standard");
+        allYearShortcutButtonsPanelLayout.show(allYearShortcutButtonsPanel, "Standard");
 
         // Move the scrollbar to the top
-        standardModePanelContainer.getVerticalScrollBar()
-                                  .setValue(0);
+        standardModePanelScrollPane.getVerticalScrollBar()
+                                   .setValue(0);
     }
 
     /**
-     * Action performed when the 'Wild' mode button is pressed
+     * Action performed when the 'Wild' mode button is pressed.
      */
     private void wildModeButtonAction() {
         // Show 'Wild' sets
-        mainPanelLayout.show(mainPanel, "Wild");
+        allModesPanelLayout.show(allModesPanel, "Wild");
 
         // Unselected Mode button customization
         standardModeButton.setBackground(Colors.MODE_UNSELECTED_COLOR);
@@ -385,32 +405,34 @@ public class TrackerService {
         wildModeButton.addMouseListener(wildModeButton.getSelectedModeButtonAdapter());
 
         // Show 'Wild' year shortcut buttons panel
-        yearShortcutButtonsPanelLayout.show(yearShortcutButtonsPanel, "Wild");
+        allYearShortcutButtonsPanelLayout.show(allYearShortcutButtonsPanel, "Wild");
 
         // Move the scrollbar to the top
-        wildModePanelContainer.getVerticalScrollBar()
-                              .setValue(0);
+        wildModePanelScrollPane.getVerticalScrollBar()
+                               .setValue(0);
     }
 
     /**
-     * Action performed when a year shortcut button is pressed
+     * Action performed when a year shortcut button is pressed.
      */
     private void yearShortcutButtonAction(int index) {
         if (index < yearShortcutButtons.size() - 2) {
-            wildModePanelContainer.getVerticalScrollBar()
-                                  .setValue(yearPanels.get(index)
-                                                      .getY());
+            wildModePanelScrollPane.getVerticalScrollBar()
+                                   .setValue(yearPanels.get(index)
+                                                       .getY());
         } else {
-            standardModePanelContainer.getVerticalScrollBar()
-                                      .setValue(yearPanels.get(index)
-                                                          .getY());
+            standardModePanelScrollPane.getVerticalScrollBar()
+                                       .setValue(yearPanels.get(index)
+                                                           .getY());
         }
     }
 
     /**
-     * Action performed when an epic reset button is pressed
+     * Action performed when an epic reset button is pressed.
      *
      * @param index is the position of an expansion in the corresponding list
+     * @see ProbabilityHelper#probabilityCalculator
+     * @see TextFileHelper#updateEpicValues
      */
     private void epicResetAction(int index) {
         // Set the counter's value to '0'
@@ -421,18 +443,21 @@ public class TrackerService {
                            .setText("1");
 
         // Calculate the probability
-        epicProbabilities.set(index, ProbabilityHelper.probabilityCalculator(epicCounters.get(index), PityTimers.EPIC_PITY_TIMER));
+        epicProbabilities.set(index, ProbabilityHelper.probabilityCalculator(epicCounters.get(index),
+                PityTimers.EPIC_PITY_TIMER));
 
         // Update the displayed values and the save file
         String counter = Integer.toString(epicCounters.get(index));
-        String probability = nf.format(epicProbabilities.get(index));
-        FileHelper.updateEpicValues(expansionPanels, index, counter, probability);
+        String probability = decimalFormat.format(epicProbabilities.get(index));
+        TextFileHelper.updateEpicValues(expansionPanels, index, counter, probability);
     }
 
     /**
-     * Action performed when an epic add button is pressed
+     * Action performed when an epic add button is pressed.
      *
      * @param index is the position of an expansion in the corresponding list
+     * @see ProbabilityHelper#probabilityCalculator
+     * @see TextFileHelper#updateEpicValues
      */
     private void epicAddAction(int index) {
         // Value of the counter after the increment field's value is added to the current counter's value
@@ -449,23 +474,27 @@ public class TrackerService {
                                .setText("1");
 
             // Calculate the probability
-            epicProbabilities.set(index, ProbabilityHelper.probabilityCalculator(epicCounters.get(index), PityTimers.EPIC_PITY_TIMER));
+            epicProbabilities.set(index, ProbabilityHelper.probabilityCalculator(epicCounters.get(index),
+                    PityTimers.EPIC_PITY_TIMER));
 
             // Update the displayed values and the save file
             String counter = Integer.toString(epicCounters.get(index));
-            String probability = nf.format(epicProbabilities.get(index));
-            FileHelper.updateEpicValues(expansionPanels, index, counter, probability);
+            String probability = decimalFormat.format(epicProbabilities.get(index));
+            TextFileHelper.updateEpicValues(expansionPanels, index, counter, probability);
         } else {
-            java.awt.Toolkit.getDefaultToolkit()
-                            .beep();
-            JOptionPane.showMessageDialog(trackerPanel, new InputErrorPopupWindowPanel(), Text.INPUT_ERROR_MESSAGE_TITLE, JOptionPane.ERROR_MESSAGE);
+            Toolkit.getDefaultToolkit()
+                   .beep();
+            JOptionPane.showMessageDialog(trackerPanel, new InputErrorPopupWindowPanel(),
+                    Text.INPUT_ERROR_MESSAGE_TITLE, JOptionPane.ERROR_MESSAGE);
         }
     }
 
     /**
-     * Action performed when a legendary reset button is pressed
+     * Action performed when a legendary reset button is pressed.
      *
      * @param index is the position of an expansion in the corresponding list
+     * @see ProbabilityHelper#probabilityCalculator
+     * @see TextFileHelper#updateLegendaryValues
      */
     private void legendaryResetAction(int index) {
         // Set the counter's value to '0'
@@ -476,18 +505,21 @@ public class TrackerService {
                                 .setText("1");
 
         // Calculate the probability
-        legendaryProbabilities.set(index, ProbabilityHelper.probabilityCalculator(legendaryCounters.get(index), PityTimers.LEGENDARY_PITY_TIMER));
+        legendaryProbabilities.set(index, ProbabilityHelper.probabilityCalculator(legendaryCounters.get(index),
+                PityTimers.LEGENDARY_PITY_TIMER));
 
         // Update the displayed values and the save file
         String counter = Integer.toString(legendaryCounters.get(index));
-        String probability = nf.format(legendaryProbabilities.get(index));
-        FileHelper.updateLegendaryValues(expansionPanels, index, counter, probability);
+        String probability = decimalFormat.format(legendaryProbabilities.get(index));
+        TextFileHelper.updateLegendaryValues(expansionPanels, index, counter, probability);
     }
 
     /**
-     * Action performed when a legendary add button is pressed
+     * Action performed when a legendary add button is pressed.
      *
      * @param index is the position of an expansion in the corresponding list
+     * @see ProbabilityHelper#probabilityCalculator
+     * @see TextFileHelper#updateLegendaryValues
      */
     private void legendaryAddAction(int index) {
         // Value of the counter after the increment field's value is added to the current counter's value
@@ -504,42 +536,46 @@ public class TrackerService {
                                     .setText("1");
 
             // Calculate the probability
-            legendaryProbabilities.set(index, ProbabilityHelper.probabilityCalculator(legendaryCounters.get(index), PityTimers.LEGENDARY_PITY_TIMER));
+            legendaryProbabilities.set(index, ProbabilityHelper.probabilityCalculator(legendaryCounters.get(index),
+                    PityTimers.LEGENDARY_PITY_TIMER));
 
             // Update the displayed values and the save file
             String counter = Integer.toString(legendaryCounters.get(index));
-            String probability = nf.format(legendaryProbabilities.get(index));
-            FileHelper.updateLegendaryValues(expansionPanels, index, counter, probability);
+            String probability = decimalFormat.format(legendaryProbabilities.get(index));
+            TextFileHelper.updateLegendaryValues(expansionPanels, index, counter, probability);
         } else {
-            java.awt.Toolkit.getDefaultToolkit()
-                            .beep();
-            JOptionPane.showMessageDialog(trackerPanel, new InputErrorPopupWindowPanel(), Text.INPUT_ERROR_MESSAGE_TITLE, JOptionPane.ERROR_MESSAGE);
+            Toolkit.getDefaultToolkit()
+                   .beep();
+            JOptionPane.showMessageDialog(trackerPanel, new InputErrorPopupWindowPanel(),
+                    Text.INPUT_ERROR_MESSAGE_TITLE, JOptionPane.ERROR_MESSAGE);
         }
     }
 
     /**
-     * Action performed when a total modify button is pressed
+     * Action performed when a total modify button is pressed.
      *
      * @param index is the position of an expansion in the corresponding list
+     * @see TextFileHelper#updateTotalValues
      */
     private void totalModifyAction(int index) {
         int modifyValue = -1;
         // Open modify pop-up window to modify the counter's value
         try {
-            modifyValue = Integer.parseInt(JOptionPane.showInputDialog(trackerPanel, new ModifyPopupWindowPanel(), totalCounters.get(index)));
+            modifyValue = Integer.parseInt(JOptionPane.showInputDialog(trackerPanel, new ModifyPopupWindowPanel(),
+                    totalCounters.get(index)));
         }
         // "Beep" if the value is not a number
         catch (NumberFormatException e) {
-            java.awt.Toolkit.getDefaultToolkit()
-                            .beep();
+            Toolkit.getDefaultToolkit()
+                   .beep();
         }
 
         // Check if the input is valid and then add, otherwise "beep"
         if (modifyValue >= 0) {
             totalCounters.set(index, modifyValue);
         } else {
-            java.awt.Toolkit.getDefaultToolkit()
-                            .beep();
+            Toolkit.getDefaultToolkit()
+                   .beep();
         }
 
         // Reset the increment field's value to '1'
@@ -548,13 +584,14 @@ public class TrackerService {
 
         // Update the displayed values and the save file
         String counter = Integer.toString(totalCounters.get(index));
-        FileHelper.updateTotalValues(expansionPanels, index, counter);
+        TextFileHelper.updateTotalValues(expansionPanels, index, counter);
     }
 
     /**
-     * Action performed when a total add button is pressed
+     * Action performed when a total add button is pressed.
      *
      * @param index is the position of an expansion in the corresponding list
+     * @see TextFileHelper#updateTotalValues
      */
     private void totalAddAction(int index) {
         // Value of the counter after the increment field's value is added to the current counter' value
@@ -570,6 +607,6 @@ public class TrackerService {
 
         // Update the displayed values and the save file
         String counter = Integer.toString(totalCounters.get(index));
-        FileHelper.updateTotalValues(expansionPanels, index, counter);
+        TextFileHelper.updateTotalValues(expansionPanels, index, counter);
     }
 }

@@ -7,7 +7,11 @@ import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
 import java.io.Serial;
 
 /**
+ * {@code RiseOfShadowsPanel} is a {@code JPanel} dedicated to the <i>Rise of Shadows</i>
+ * expansion.
  *
+ * @author Tilemachos Dimos
+ * @see AbstractExpansionPanel
  */
 public class RiseOfShadowsPanel extends AbstractExpansionPanel {
 
@@ -15,9 +19,11 @@ public class RiseOfShadowsPanel extends AbstractExpansionPanel {
     private static final long serialVersionUID = 6494724314890068439L;
 
     /**
-     *
+     * Constructs a {@link #AbstractExpansionPanel} with all the <i>Rise of Shadows</i>
+     * expansion specific properties.
      */
     public RiseOfShadowsPanel() {
-        super(IconPaths.SHADOWS_EXPANSION_ICON_PATH, IconPaths.SHADOWS_CARD_PACK_ICON_PATH, Colors.SHADOWS_COLOR, Colors.TEXT_DARK_COLOR, Colors.MODIFIERS_DARK_COLORS);
+        super(IconPaths.SHADOWS_LOGO_ICON_PATH, IconPaths.SHADOWS_CARD_PACK_ICON_PATH,
+                Colors.SHADOWS_COLOR, Colors.TEXT_DARK_COLOR, Colors.MODIFIERS_DARK_COLORS);
     }
 }

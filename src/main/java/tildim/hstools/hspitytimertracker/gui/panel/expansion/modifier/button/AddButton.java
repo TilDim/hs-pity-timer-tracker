@@ -1,5 +1,7 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.button;
 
+import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
+import tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.textfield.IncrementField;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.Fonts;
 import tildim.hstools.hspitytimertracker.util.Text;
@@ -13,7 +15,12 @@ import java.awt.geom.Ellipse2D;
 import java.io.Serial;
 
 /**
+ * {@code AddButton} is a {@link #JButton} that increases a counter in a {@code AbstractExpansionPanel}
+ * by a number defined in the {@code IncrementField}.
  *
+ * @author Tilemachos Dimos
+ * @see AbstractExpansionPanel
+ * @see IncrementField
  */
 public class AddButton extends JButton {
 
@@ -23,10 +30,12 @@ public class AddButton extends JButton {
     transient Shape shape;
 
     /**
-     * @param hover
-     * @param release
+     * Constructs a round {@link #JButton} and sets some of its properties.
+     *
+     * @param enterColor the color when the mouse enters the {@code AddButton}
+     * @param exitColor  the color when the mouse exits the {@code AddButton}
      */
-    public AddButton(Color hover, Color release) {
+    public AddButton(Color enterColor, Color exitColor) {
         super(Text.ADD);
 
         setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -45,12 +54,12 @@ public class AddButton extends JButton {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent evt) {
-                setBackground(hover);
+                setBackground(enterColor);
             }
 
             @Override
             public void mouseExited(MouseEvent evt) {
-                setBackground(release);
+                setBackground(exitColor);
             }
         });
     }

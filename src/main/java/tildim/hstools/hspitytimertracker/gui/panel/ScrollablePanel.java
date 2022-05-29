@@ -5,7 +5,7 @@ import java.awt.*;
 import java.io.Serial;
 
 /**
- * A panel that implements the Scrollable interface. This class allows you
+ * A {@link #JPanel} that implements the {@code Scrollable} interface. This class allows you
  * to customize the scrollable features by using newly provided setter methods,
  * so you don't have to extend this class every time.
  * <p>
@@ -13,7 +13,7 @@ import java.io.Serial;
  * as an actual pixel value. The amount can be changed for both unit and block
  * scrolling for both horizontal and vertical scrollbars.
  * <p>
- * The Scrollable interface only provides a boolean value for determining whether
+ * The {@code Scrollable} interface only provides a boolean value for determining whether
  * the viewport size (width or height) should be used by the JScrollPane
  * when determining if scrollbars should be made visible. This class supports the
  * concept of dynamically changing this value based on the size of the viewport.
@@ -21,6 +21,9 @@ import java.io.Serial;
  * panels size. This has the effect of ensuring the viewport is always full as
  * components added to the panel will be size to fill the area available,
  * based on the rules of the applicable layout manager of course.
+ *
+ * @see Scrollable
+ * @see SwingConstants
  */
 public class ScrollablePanel extends JPanel
         implements Scrollable, SwingConstants {
@@ -85,13 +88,15 @@ public class ScrollablePanel extends JPanel
     /**
      * Set the ScrollableSizeHint enum for the height. The enum is used to
      * determine the boolean value that is returned by the
-     * getScrollableTracksViewportHeight() method. The valid values are:
+     * {@code getScrollableTracksViewportHeight()} method. The valid values are:
      * <p>
-     * ScrollableSizeHint.NONE - return "false", which causes the height
+     * {@code ScrollableSizeHint.NONE} - return "false", which causes the height
      * of the panel to be used when laying out the children
-     * ScrollableSizeHint.FIT - return "true", which causes the height of
+     * <p>
+     * {@code ScrollableSizeHint.FIT} - return "true", which causes the height of
      * the viewport to be used when laying out the children
-     * ScrollableSizeHint.STRETCH - return "true" when the viewport height
+     * <p>
+     * {@code ScrollableSizeHint.STRETCH} - return "true" when the viewport height
      * is greater than the height of the panel, "false" otherwise.
      *
      * @param scrollableHeight as represented by the ScrollableSizeHint enum.
@@ -115,11 +120,13 @@ public class ScrollablePanel extends JPanel
      * determine the boolean value that is returned by the
      * getScrollableTracksViewportWidth() method. The valid values are:
      * <p>
-     * ScrollableSizeHint.NONE - return "false", which causes the width
-     * of the panel to be used when laying out the children
-     * ScrollableSizeHint.FIT - return "true", which causes the width of
-     * the viewport to be used when laying out the children
-     * ScrollableSizeHint.STRETCH - return "true" when the viewport width
+     * {@code ScrollableSizeHint.NONE} - return "false", which causes the width
+     * of the panel to be used when laying out the children.
+     * <p>
+     * {@code ScrollableSizeHint.FIT} - return "true", which causes the width of
+     * the viewport to be used when laying out the children.
+     * <p>
+     * {@code ScrollableSizeHint.STRETCH} - return "true" when the viewport width
      * is greater than the width of the panel, "false" otherwise.
      *
      * @param scrollableWidth as represented by the ScrollableSizeHint enum.
@@ -142,11 +149,11 @@ public class ScrollablePanel extends JPanel
      * Specify the information needed to do block scrolling.
      *
      * @param orientation specify the scrolling orientation. Must be either:
-     *                    SwingConstants.HORIZONTAL or SwingConstants.VERTICAL.
+     *                    {@code SwingConstants.HORIZONTAL} or {@code SwingConstants.VERTICAL}.
      * @param type        specify how the amount parameter in the calculation of
      *                    the scrollable amount. Valid values are:
-     *                    IncrementType.PERCENT - treat the amount as a % of the viewport size
-     *                    IncrementType.PIXEL - treat the amount as the scrollable amount
+     *                    {@code IncrementType.PERCENT} - treat the amount as a % of the viewport size
+     *                    {@code IncrementType.PIXEL} - treat the amount as the scrollable amount
      * @param amount      a value used with the IncrementType to determine the
      *                    scrollable amount
      */
@@ -159,7 +166,7 @@ public class ScrollablePanel extends JPanel
      * Specify the information needed to do block scrolling.
      *
      * @param orientation specify the scrolling orientation. Must be either:
-     *                    SwingConstants.HORIZONTAL or SwingConstants.VERTICAL.
+     *                    {@code SwingConstants.HORIZONTAL} or {@code SwingConstants.VERTICAL}.
      * @param info        An IncrementInfo object containing information of how to
      *                    calculate the scrollable amount.
      */
@@ -204,11 +211,11 @@ public class ScrollablePanel extends JPanel
      * Specify the information needed to do unit scrolling.
      *
      * @param orientation specify the scrolling orientation. Must be either:
-     *                    SwingConstants.HORIZONTAL or SwingConstants.VERTICAL.
+     *                    {@code SwingConstants.HORIZONTAL} or {@code SwingConstants.VERTICAL}.
      * @param type        specify how the amount parameter in the calculation of
      *                    the scrollable amount. Valid values are:
-     *                    IncrementType.PERCENT - treat the amount as a % of the viewport size
-     *                    IncrementType.PIXEL - treat the amount as the scrollable amount
+     *                    {@code IncrementType.PERCENT} - treat the amount as a % of the viewport size
+     *                    {@code IncrementType.PIXEL} - treat the amount as the scrollable amount
      * @param amount      a value used with the IncrementType to determine the
      *                    scrollable amount
      */
@@ -221,7 +228,7 @@ public class ScrollablePanel extends JPanel
      * Specify the information needed to do unit scrolling.
      *
      * @param orientation specify the scrolling orientation. Must be either:
-     *                    SwingConstants.HORIZONTAL or SwingConstants.VERTICAL.
+     *                    {@code SwingConstants.HORIZONTAL} or {@code SwingConstants.VERTICAL}.
      * @param info        An IncrementInfo object containing information of how to
      *                    calculate the scrollable amount.
      */

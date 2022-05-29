@@ -4,7 +4,10 @@ import java.awt.*;
 import java.util.List;
 
 /**
+ * {@code Colors} is a utility class that contains all the colors used in the program as {@code Color} objects.
  *
+ * @author Tilemachos Dimos
+ * @see Color
  */
 public final class Colors {
 
@@ -95,7 +98,7 @@ public final class Colors {
     // ----------   POP-UP WINDOW   ----------
 
     /**
-     * Private constructor to hide the default public one
+     * Private constructor to hide the default public one.
      */
     private Colors() {
     }

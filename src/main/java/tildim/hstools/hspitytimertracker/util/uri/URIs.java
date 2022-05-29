@@ -1,7 +1,10 @@
 package tildim.hstools.hspitytimertracker.util.uri;
 
 /**
+ * {@code URIs} is a utility class that contains all the URIs used by the program as {@code String} values.
  *
+ * @author Tilemachos Dimos
+ * @see URIHelper
  */
 public final class URIs {
 
@@ -85,7 +88,7 @@ public final class URIs {
     // ----------   CARD PACK   ----------
 
     /**
-     * Private constructor to hide the default public one
+     * Private constructor to hide the default public one.
      */
     private URIs() {
     }

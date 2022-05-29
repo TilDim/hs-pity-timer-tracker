@@ -1,12 +1,15 @@
 package tildim.hstools.hspitytimertracker.util;
 
 /**
+ * {@code ProbabilityHelper} is a utility class that contains all the necessary methods to process the probability
+ * values used by the program.
  *
+ * @author Tilemachos Dimos
  */
 public class ProbabilityHelper {
 
     /**
-     * Converts a probability value to String
+     * Converts a probability value to {@code String} format.
      *
      * @param probability is the probability value in decimal format
      * @return the probability in String format with a '%' at the end of it
@@ -17,18 +20,19 @@ public class ProbabilityHelper {
     }
 
     /**
-     * Calculates the probability of finding an epic or a legendary card in the next pack
+     * Calculates the probability of finding a card of a specific rarity in the next pack.
      *
      * @param counter is the value of an expansion's counter
-     * @param pity    is the value of a pity timer ('10' for 'Epic' | '40' for 'Legendary')
+     * @param pity    is the value of a pity timer
      * @return the probability value
+     * @see PityTimers
      */
     public static double probabilityCalculator(int counter, int pity) {
         return 1.0 / (pity - counter) * 100;
     }
 
     /**
-     * Private constructor to hide the default public one
+     * Private constructor to hide the default public one.
      */
     private ProbabilityHelper() {
     }

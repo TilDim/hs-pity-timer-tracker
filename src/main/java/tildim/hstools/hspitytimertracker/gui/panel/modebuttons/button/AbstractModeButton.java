@@ -1,7 +1,8 @@
 package tildim.hstools.hspitytimertracker.gui.panel.modebuttons.button;
 
 import lombok.Getter;
-import tildim.hstools.hspitytimertracker.exception.IconCreationException;
+import lombok.extern.slf4j.Slf4j;
+import tildim.hstools.hspitytimertracker.gui.panel.modebuttons.ModeButtonsPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.Fonts;
 import tildim.hstools.hspitytimertracker.util.icon.IconHelper;
@@ -15,8 +16,13 @@ import java.io.IOException;
 import java.io.Serial;
 
 /**
+ * {@code AbstractModeButton} is a {@link #JButton} located in the {@code ModeButtonsPanel} that shows
+ * all the instances of {@code AbstractYearPanel} which belong in a specific mode, when pressed.
  *
+ * @author Tilemachos Dimos
+ * @see ModeButtonsPanel
  */
+@Slf4j
 public abstract class AbstractModeButton extends JButton {
 
     @Serial
@@ -31,10 +37,13 @@ public abstract class AbstractModeButton extends JButton {
     protected final transient MouseAdapter unselectedModeButtonAdapter;
 
     /**
-     * @param label
-     * @param iconPath
-     * @param background
-     * @param tooltip
+     * Constructs a {@link #JButton}, sets some of its properties and initializes two {@code MouseAdapter}s
+     * (one for the selected mode and one for the unselected one).
+     *
+     * @param label      the label of the {@code AbstractModeButton}
+     * @param iconPath   the icon's path from the source root
+     * @param background the button's color
+     * @param tooltip    the tooltip text displayed when hovering over the {@code AbstractModeButton}
      */
     protected AbstractModeButton(String label, String iconPath, Color background, String tooltip) {
         super(" " + label);
@@ -91,16 +100,16 @@ public abstract class AbstractModeButton extends JButton {
     }
 
     /**
-     * Creates the mode icon
+     * Creates the mode icon.
      *
-     * @param iconPath is the icon's path from the source root
-     * @throws IconCreationException is thrown when the IconUtil.createIcon method fails to create the url of a path to an image
+     * @param iconPath the icon's path from the source root
      */
-    private void createModeIcon(String iconPath) throws IconCreationException {
+    private void createModeIcon(String iconPath) {
         try {
             modeIcon = IconHelper.createIcon(iconPath);
         } catch (IOException e) {
-            throw new IconCreationException("Error while creating mode icon", e.getCause());
+            log.error("Error while creating mode icon");
+            e.printStackTrace();
         }
     }
 }

@@ -1,6 +1,9 @@
 package tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.button;
 
-import tildim.hstools.hspitytimertracker.exception.IconCreationException;
+import lombok.extern.slf4j.Slf4j;
+import tildim.hstools.hspitytimertracker.gui.panel.mode.AbstractModePanel;
+import tildim.hstools.hspitytimertracker.gui.panel.year.AbstractYearPanel;
+import tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.AbstractYearShortcutButtonsPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.icon.IconHelper;
 
@@ -13,8 +16,16 @@ import java.io.IOException;
 import java.io.Serial;
 
 /**
+ * {@code AbstractYearShortcutButton} is a {@link #JButton} located in a {@code AbstractYearShortcutButtonsPanel}
+ * that moves the scrollbar of a {@code AbstractModePanel} to the position of the corresponding
+ * {@code AbstractYearPanel}, when pressed.
  *
+ * @author Tilemachos Dimos
+ * @see AbstractYearShortcutButtonsPanel
+ * @see AbstractModePanel
+ * @see AbstractYearPanel
  */
+@Slf4j
 public class AbstractYearShortcutButton extends JButton {
 
     @Serial
@@ -23,8 +34,10 @@ public class AbstractYearShortcutButton extends JButton {
     private transient BufferedImage yearShortcutIcon;
 
     /**
-     * @param iconPath
-     * @param tooltip
+     * Constructs a {@link #JButton} and sets some of its properties.
+     *
+     * @param iconPath the icon's path from the source root
+     * @param tooltip  the tooltip text displayed when hovering over the {@code AbstractYearShortcutButton}
      */
     protected AbstractYearShortcutButton(String iconPath, String tooltip) {
         super();
@@ -68,16 +81,16 @@ public class AbstractYearShortcutButton extends JButton {
     }
 
     /**
-     * Creates the year shortcut icon
+     * Creates the year shortcut icon.
      *
-     * @param iconPath is the icon's path from the source root
-     * @throws IconCreationException is thrown when the IconUtil.createIcon method fails to create the url of a path to an image
+     * @param iconPath the icon's path from the source root
      */
-    private void createYearShortcutIcon(String iconPath) throws IconCreationException {
+    private void createYearShortcutIcon(String iconPath) {
         try {
             yearShortcutIcon = IconHelper.createIcon(iconPath);
         } catch (IOException e) {
-            throw new IconCreationException("Error while creating year shortcut icon", e.getCause());
+            log.error("Error while creating year shortcut icon");
+            e.printStackTrace();
         }
     }
 }

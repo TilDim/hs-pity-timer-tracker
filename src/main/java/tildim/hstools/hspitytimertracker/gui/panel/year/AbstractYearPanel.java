@@ -1,6 +1,7 @@
 package tildim.hstools.hspitytimertracker.gui.panel.year;
 
-import tildim.hstools.hspitytimertracker.exception.IconCreationException;
+import lombok.extern.slf4j.Slf4j;
+import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.Fonts;
 import tildim.hstools.hspitytimertracker.util.icon.IconHelper;
@@ -12,8 +13,13 @@ import java.io.IOException;
 import java.io.Serial;
 
 /**
+ * {@code AbstractYearPanel} is a {@link #JPanel} that contains all the instances of {@code AbstractExpansionPanel}
+ * which belong in a specific year.
  *
+ * @author Tilemachos Dimos
+ * @see AbstractExpansionPanel
  */
+@Slf4j
 public abstract class AbstractYearPanel extends JPanel {
 
     @Serial
@@ -22,8 +28,18 @@ public abstract class AbstractYearPanel extends JPanel {
     private transient BufferedImage yearIcon;
 
     /**
-     * @param iconPath
-     * @param title
+     * Constructs a {@link #JPanel}, sets its layout and places in it a header, which consists of:
+     * <ul>
+     *     <li>
+     *         the {@code AbstractYearPanel}'s icon;
+     *     </li>
+     *     <li>
+     *         the {@code AbstractYearPanel}'s title.
+     *     </li>
+     * </ul>
+     *
+     * @param iconPath the icon's path from the source root
+     * @param title    the title of the {@code AbstractYearPanel}
      */
     protected AbstractYearPanel(String iconPath, String title) {
         super();
@@ -36,7 +52,8 @@ public abstract class AbstractYearPanel extends JPanel {
         JPanel header = new JPanel(new FlowLayout(FlowLayout.CENTER));
         header.setBackground(Colors.YEAR_COLOR);
 
-        JLabel iconLabel = new JLabel(new ImageIcon(yearIcon));
+        JLabel iconLabel = new JLabel();
+        iconLabel.setIcon(new ImageIcon(yearIcon));
         iconLabel.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
 
         JLabel titleLabel = new JLabel(title);
@@ -50,16 +67,16 @@ public abstract class AbstractYearPanel extends JPanel {
     }
 
     /**
-     * Creates the year icon
+     * Creates the year icon.
      *
-     * @param iconPath is the icon's path from the source root
-     * @throws IconCreationException is thrown when the IconUtil.createIcon method fails to create the url of a path to an image
+     * @param iconPath the icon's path from the source root
      */
-    private void createYearIcon(String iconPath) throws IconCreationException {
+    private void createYearIcon(String iconPath) {
         try {
             yearIcon = IconHelper.createIcon(iconPath);
         } catch (IOException e) {
-            throw new IconCreationException("Error while creating year icon", e.getCause());
+            log.error("Error while creating year icon");
+            e.printStackTrace();
         }
     }
 }

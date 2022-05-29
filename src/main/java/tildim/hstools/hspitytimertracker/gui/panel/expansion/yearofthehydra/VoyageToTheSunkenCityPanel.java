@@ -7,7 +7,11 @@ import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
 import java.io.Serial;
 
 /**
+ * {@code VoyageToTheSunkenCityPanel} is a {@code JPanel} dedicated to the <i>Voyage to the Sunken City</i>
+ * expansion.
  *
+ * @author Tilemachos Dimos
+ * @see AbstractExpansionPanel
  */
 public class VoyageToTheSunkenCityPanel extends AbstractExpansionPanel {
 
@@ -15,9 +19,11 @@ public class VoyageToTheSunkenCityPanel extends AbstractExpansionPanel {
     private static final long serialVersionUID = -6171044758608964307L;
 
     /**
-     *
+     * Constructs a {@link #AbstractExpansionPanel} with all the <i>Voyage to the Sunken City</i>
+     * expansion specific properties.
      */
     public VoyageToTheSunkenCityPanel() {
-        super(IconPaths.SUNKEN_EXPANSION_ICON_PATH, IconPaths.SUNKEN_CARD_PACK_ICON_PATH, Colors.SUNKEN_COLOR, Colors.TEXT_COLOR, Colors.MODIFIERS_COLORS);
+        super(IconPaths.SUNKEN_LOGO_ICON_PATH, IconPaths.SUNKEN_CARD_PACK_ICON_PATH,
+                Colors.SUNKEN_COLOR, Colors.TEXT_COLOR, Colors.MODIFIERS_COLORS);
     }
 }

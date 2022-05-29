@@ -1,8 +1,9 @@
 package tildim.hstools.hspitytimertracker.gui.panel.header;
 
 import lombok.Getter;
-import tildim.hstools.hspitytimertracker.exception.IconCreationException;
+import lombok.extern.slf4j.Slf4j;
 import tildim.hstools.hspitytimertracker.gui.panel.header.button.HeaderButton;
+import tildim.hstools.hspitytimertracker.gui.panel.popup.HelpPopupWindowPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.Fonts;
 import tildim.hstools.hspitytimertracker.util.Text;
@@ -18,15 +19,19 @@ import java.io.IOException;
 import java.io.Serial;
 
 /**
+ * {@code HeaderPanel} is a {@link #JPanel} that contains the program's title along with {@code HeaderButton}s.
  *
+ * @author Tilemachos Dimos
+ * @see HeaderButton
  */
 @Getter
+@Slf4j
 public class HeaderPanel extends JPanel {
 
     @Serial
     private static final long serialVersionUID = 7480548580616769390L;
 
-    private transient BufferedImage headerIcon;
+    private transient BufferedImage titleIcon;
 
     private transient BufferedImage helpIcon;
     private transient BufferedImage helpHoverIcon;
@@ -37,7 +42,20 @@ public class HeaderPanel extends JPanel {
     private final HeaderButton saveFolder;
 
     /**
+     * Constructs a {@link #JPanel}, sets its layout and places in it:
+     * <ul>
+     *     <li>
+     *         a <i>Help</i> {@code HeaderButton} that opens a new window displaying a {@code HelpPopupWindowPanel};
+     *     </li>
+     *     <li>
+     *         the program's title surrounded by the <i>Hearthstone</i> swirl icon;
+     *     </li>
+     *     <li>
+     *         a <i>Save folder</i> {@code HeaderButton} that opens the file explorer to show the save file.
+     *     </li>
+     * </ul>
      *
+     * @see HelpPopupWindowPanel
      */
     public HeaderPanel() {
         super();
@@ -61,9 +79,10 @@ public class HeaderPanel extends JPanel {
         JPanel headerTitlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         headerTitlePanel.setBackground(Colors.HEADER_BACKGROUND_COLOR);
 
-        // Title image
-        JLabel headerImageLabel = new JLabel(new ImageIcon(headerIcon));
-        headerImageLabel.setBorder(new EmptyBorder(0, 5, 0, 5));
+        // Title left icon
+        JLabel titleIconLeftLabel = new JLabel();
+        titleIconLeftLabel.setIcon(new ImageIcon(titleIcon));
+        titleIconLeftLabel.setBorder(new EmptyBorder(0, 5, 0, 5));
 
         // Title
         JLabel headerTitle = new JLabel(Text.TRACKER_TITLE);
@@ -71,13 +90,14 @@ public class HeaderPanel extends JPanel {
         headerTitle.setForeground(Colors.HEADER_TITLE_COLOR);
         headerTitle.setBorder(new EmptyBorder(0, 5, 0, 5));
 
-        // Title image #2
-        JLabel headerImageTwoLabel = new JLabel(new ImageIcon(headerIcon));
-        headerImageTwoLabel.setBorder(new EmptyBorder(0, 5, 0, 5));
+        // Title right icon
+        JLabel titleIconRightLabel = new JLabel();
+        titleIconRightLabel.setIcon(new ImageIcon(titleIcon));
+        titleIconRightLabel.setBorder(new EmptyBorder(0, 5, 0, 5));
 
-        headerTitlePanel.add(headerImageLabel);
+        headerTitlePanel.add(titleIconLeftLabel);
         headerTitlePanel.add(headerTitle);
-        headerTitlePanel.add(headerImageTwoLabel);
+        headerTitlePanel.add(titleIconRightLabel);
 
         // "Save folder" button panel
         JPanel saveFolderPanel = new JPanel();
@@ -95,13 +115,11 @@ public class HeaderPanel extends JPanel {
     }
 
     /**
-     * Creates the header icons
-     *
-     * @throws IconCreationException is thrown when the IconUtil.createIcon method fails to create the url of a path to an image
+     * Creates the header icons.
      */
-    private void createHeaderIcons() throws IconCreationException {
+    private void createHeaderIcons() {
         try {
-            headerIcon = IconHelper.createIcon(IconPaths.HEADER_ICON_PATH);
+            titleIcon = IconHelper.createIcon(IconPaths.TITLE_ICON_PATH);
 
             helpIcon = IconHelper.createIcon(IconPaths.HELP_ICON_PATH);
             helpHoverIcon = IconHelper.createIcon(IconPaths.HELP_HOVER_ICON_PATH);
@@ -109,7 +127,8 @@ public class HeaderPanel extends JPanel {
             saveFolderIcon = IconHelper.createIcon(IconPaths.SAVE_FOLDER_ICON_PATH);
             saveFolderHoverIcon = IconHelper.createIcon(IconPaths.SAVE_FOLDER_HOVER_ICON_PATH);
         } catch (IOException e) {
-            throw new IconCreationException("Error while creating header icon", e.getCause());
+            log.error("Error while creating header icon");
+            e.printStackTrace();
         }
     }
 }

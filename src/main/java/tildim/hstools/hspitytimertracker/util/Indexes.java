@@ -1,7 +1,12 @@
 package tildim.hstools.hspitytimertracker.util;
 
 /**
+ * {@code Indexes} is a utility class that contains the indexes of all the expansions in the corresponding list as well
+ * as the row and column indexes of the counters and probabilities of each expansion.
  *
+ * @author Tilemachos Dimos
+ * @see TextFileHelper
+ * @see TrackerComponentsHelper
  */
 public final class Indexes {
 
@@ -30,6 +35,8 @@ public final class Indexes {
     // ----------   EXPANSION   ----------
 
     // ++++++++++   SAVE FILE (ROW)   ++++++++++
+    public static final int FIRST_EXPANSION_IN_FILE_ROW_INDEX = 5;
+
     // Epic counter
     public static final int SUNKEN_EPIC_COUNTER_ROW_INDEX = 30;
     public static final int ALTERAC_EPIC_COUNTER_ROW_INDEX = 31;
@@ -171,7 +178,7 @@ public final class Indexes {
     // ----------   SAVE FILE (COLUMN)   ----------
 
     /**
-     * Private constructor to hide the default public one
+     * Private constructor to hide the default public one.
      */
     private Indexes() {
     }

@@ -7,7 +7,11 @@ import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
 import java.io.Serial;
 
 /**
+ * {@code TheGrandTournamentPanel} is a {@code JPanel} dedicated to the <i>The Grand Tournament</i>
+ * expansion.
  *
+ * @author Tilemachos Dimos
+ * @see AbstractExpansionPanel
  */
 public class TheGrandTournamentPanel extends AbstractExpansionPanel {
 
@@ -15,9 +19,11 @@ public class TheGrandTournamentPanel extends AbstractExpansionPanel {
     private static final long serialVersionUID = 2659337457099576097L;
 
     /**
-     *
+     * Constructs a {@link #AbstractExpansionPanel} with all the <i>The Grand Tournament</i>
+     * expansion specific properties.
      */
     public TheGrandTournamentPanel() {
-        super(IconPaths.TOURNAMENT_EXPANSION_ICON_PATH, IconPaths.TOURNAMENT_CARD_PACK_ICON_PATH, Colors.TOURNAMENT_COLOR, Colors.TEXT_DARK_COLOR, Colors.MODIFIERS_DARK_COLORS);
+        super(IconPaths.TOURNAMENT_LOGO_ICON_PATH, IconPaths.TOURNAMENT_CARD_PACK_ICON_PATH,
+                Colors.TOURNAMENT_COLOR, Colors.TEXT_DARK_COLOR, Colors.MODIFIERS_DARK_COLORS);
     }
 }

@@ -1,5 +1,6 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.button;
 
+import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.Fonts;
 
@@ -10,7 +11,11 @@ import java.awt.event.MouseEvent;
 import java.io.Serial;
 
 /**
+ * {@code ResModButton} is a {@link #JButton} that either resets or modifies a counter in a
+ * {@code AbstractExpansionPanel}.
  *
+ * @author Tilemachos Dimos
+ * @see AbstractExpansionPanel
  */
 public class ResModButton extends JButton {
 
@@ -18,12 +23,14 @@ public class ResModButton extends JButton {
     private static final long serialVersionUID = -354653197514627820L;
 
     /**
-     * @param label
-     * @param tooltip
-     * @param hover
-     * @param release
+     * Constructs a {@link #JButton} and sets some of its properties.
+     *
+     * @param label      the label of the {@code ResModButton}
+     * @param tooltip    the tooltip text displayed when hovering over the {@code ResModButton}
+     * @param enterColor the color when the mouse enters the {@code ResModButton}
+     * @param exitColor  the color when the mouse exits the {@code ResModButton}
      */
-    public ResModButton(String label, String tooltip, Color hover, Color release) {
+    public ResModButton(String label, String tooltip, Color enterColor, Color exitColor) {
         super(label);
 
         setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
@@ -38,12 +45,12 @@ public class ResModButton extends JButton {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent evt) {
-                setBackground(hover);
+                setBackground(enterColor);
             }
 
             @Override
             public void mouseExited(MouseEvent evt) {
-                setBackground(release);
+                setBackground(exitColor);
             }
         });
     }

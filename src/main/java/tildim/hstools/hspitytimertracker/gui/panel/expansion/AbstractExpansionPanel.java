@@ -2,8 +2,7 @@ package tildim.hstools.hspitytimertracker.gui.panel.expansion;
 
 import lombok.Getter;
 import lombok.Setter;
-import tildim.hstools.hspitytimertracker.exception.IconCreationException;
-import tildim.hstools.hspitytimertracker.exception.TextPaneException;
+import lombok.extern.slf4j.Slf4j;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.button.IconButton;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.button.AddButton;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.button.ResModButton;
@@ -26,10 +25,17 @@ import java.io.Serial;
 import java.util.List;
 
 /**
+ * {@code AbstractExpansionPanel} is a {@link #JPanel} that contains the expansion related sub-panels.
  *
+ * @author Tilemachos Dimos
+ * @see #createLogoPanel
+ * @see #createEpicPanel
+ * @see #createLegendaryPanel
+ * @see #createTotalPanel
  */
 @Getter
 @Setter
+@Slf4j
 public abstract class AbstractExpansionPanel extends JPanel {
 
     @Serial
@@ -42,9 +48,9 @@ public abstract class AbstractExpansionPanel extends JPanel {
     private Color expansionBackground;
     private Color expansionForeground;
 
-    // Icon panel
-    private transient BufferedImage expansionIcon;
-    private IconButton expansionButton;
+    // Logo panel
+    private transient BufferedImage logoIcon;
+    private IconButton logoButton;
 
     // Epic panel
     private JTextPane epicPanelCounterText;
@@ -80,20 +86,35 @@ public abstract class AbstractExpansionPanel extends JPanel {
     private IconButton cardPackButton;
 
     /**
-     * Constructor that calls the parent constructor and adds a panel with the expansion's icon, an epic pity timer panel, a legendary pity timer panel
-     * and a panel with a total counter and buttons that show the expansion's cards based on their rarity
+     * Constructs a {@link #JPanel}, sets some of its properties and places in it:
+     * <ul>
+     *     <li>
+     *         an expansion logo {@code JPanel};
+     *     </li>
+     *     <li>
+     *         an <i>Epic</i> pity timer {@code JPanel};
+     *     </li>
+     *     <li>
+     *         a <i>Legendary</i> pity timer {@code JPanel};
+     *     </li>
+     *     <li>
+     *         a <i>Total</i> card packs {@code JPanel}.
+     *     </li>
+     * </ul>
      *
-     * @param expansionIconPath is the expansion icon's path from the source root
-     * @param cardPackIconPath  is the card pack icon's path from the source root
-     * @param background        is the panel's color
-     * @param foreground        is the panel's text color
-     * @param modifierColors    is a List with 3 colors for the modifiers: 1) background color, 2) foreground color and 3) hover color
+     * @param logoIconPath     the logo icon's path from the source root
+     * @param cardPackIconPath the card pack icon's path from the source root
+     * @param background       the panel's background color
+     * @param foreground       the panel's text color
+     * @param modifierColors   a list with 3 colors for the modifiers: 1) the background color, 2) the foreground color
+     *                         and 3) the hover color
      */
-    protected AbstractExpansionPanel(String expansionIconPath, String cardPackIconPath, Color background, Color foreground, List<Color> modifierColors) {
+    protected AbstractExpansionPanel(String logoIconPath, String cardPackIconPath,
+                                     Color background, Color foreground, List<Color> modifierColors) {
         super();
 
         // Icon creation
-        createExpansionIcon(expansionIconPath);
+        createLogoIcon(logoIconPath);
         createCardPackIcon(cardPackIconPath);
 
         // Expansion panel colors
@@ -105,64 +126,69 @@ public abstract class AbstractExpansionPanel extends JPanel {
         setBackground(expansionBackground);
         setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 
-        add(createExpansionIconPanel());
+        add(createLogoPanel());
         add(createEpicPanel(modifierColors));
         add(createLegendaryPanel(modifierColors));
         add(createTotalPanel(modifierColors));
     }
 
     /**
-     * Creates the expansion icons
+     * Creates the logo icon.
      *
-     * @param iconPath is the icon's path from the source root
-     * @throws IconCreationException is thrown when the IconUtil.createIcon method fails to create the url of a path to an image
+     * @param iconPath the icon's path from the source root
+     * @see #createLogoPanel
      */
-    private void createExpansionIcon(String iconPath) throws IconCreationException {
+    private void createLogoIcon(String iconPath) {
         try {
-            expansionIcon = IconHelper.createIcon(iconPath);
+            logoIcon = IconHelper.createIcon(iconPath);
         } catch (IOException e) {
-            throw new IconCreationException("Error while creating expansion icon", e.getCause());
+            log.error("Error while creating logo icon");
+            e.printStackTrace();
         }
     }
 
     /**
-     * Creates the card pack icon
+     * Creates the card pack icon.
      *
-     * @param iconPath is the icon's path from the source root
-     * @throws IconCreationException is thrown when the IconUtil.createIcon method fails to create the url of a path to an image
+     * @param iconPath the icon's path from the source root
+     * @see #createCardPackPanel
      */
-    private void createCardPackIcon(String iconPath) throws IconCreationException {
+    private void createCardPackIcon(String iconPath) {
         try {
             cardPackIcon = IconHelper.createIcon(iconPath);
         } catch (IOException e) {
-            throw new IconCreationException("Error while creating card pack icon", e.getCause());
+            log.error("Error while creating card pack icon");
+            e.printStackTrace();
         }
     }
 
     /**
-     * Creates the expansion icon panel
+     * Creates the logo panel.
      *
-     * @return the expansion icon panel
+     * @return the logo panel
+     * @see #createLogoIcon
      */
-    private JPanel createExpansionIconPanel() {
-        // Expansion icon button panel
-        JPanel expansionIconPanel = new JPanel();
-        expansionIconPanel.setLayout(new GridBagLayout());
-        expansionIconPanel.setBackground(expansionBackground);
+    private JPanel createLogoPanel() {
+        // Logo panel
+        JPanel logoPanel = new JPanel();
+        logoPanel.setLayout(new GridBagLayout());
+        logoPanel.setBackground(expansionBackground);
 
-        // Expansion icon button
-        expansionButton = new IconButton(expansionIcon, Tooltips.EXPANSION_ICON_BUTTON_TOOLTIP);
+        // Logo button
+        logoButton = new IconButton(logoIcon, Tooltips.LOGO_BUTTON_TOOLTIP);
 
-        expansionIconPanel.add(expansionButton);
+        logoPanel.add(logoButton);
 
-        return expansionIconPanel;
+        return logoPanel;
     }
 
     /**
-     * Creates the expansion's epic panel
+     * Creates the epic panel.
      *
-     * @param modifierColors is a List with 3 colors for the modifiers: 1) background color, 2) foreground color and 3) hover color
+     * @param modifierColors a list with 3 colors for the modifiers: 1) the background color, 2) the foreground color
+     *                       and 3) the hover color
      * @return the epic panel
+     * @see ProbabilityHelper#probabilityToString
      */
     private JPanel createEpicPanel(List<Color> modifierColors) {
         // Packs without epic panel
@@ -186,7 +212,8 @@ public abstract class AbstractExpansionPanel extends JPanel {
         changePanelTextStyle(epicPanelCounterText, Text.EPIC_COUNTER_TEXT, String.valueOf(epicCounter));
 
         // Reset button
-        epicResetButton = new ResModButton(Text.RESET, Tooltips.RESET_BUTTON_TOOLTIP, modifierColors.get(2), modifierColors.get(0));
+        epicResetButton = new ResModButton(Text.RESET, Tooltips.RESET_BUTTON_TOOLTIP,
+                modifierColors.get(2), modifierColors.get(0));
 
         // Blank space between reset and add buttons
         JLabel epicBlank = new JLabel();
@@ -200,12 +227,14 @@ public abstract class AbstractExpansionPanel extends JPanel {
         epicIncrementField = new IncrementField(1, 1, 6);
 
         // Modifiers panel
-        JPanel epicModifiersPanel = createModifierPanel(modifierColors, epicBlank, epicResetButton, epicAddButton, epicIncrementField);
+        JPanel epicModifiersPanel = createModifierPanel(modifierColors, epicBlank,
+                epicResetButton, epicAddButton, epicIncrementField);
 
         // Packs without epic probability panel
         epicPanelProbabilityText = new JTextPane();
         doc = epicPanelProbabilityText.getStyledDocument();
-        changePanelTextStyle(epicPanelProbabilityText, Text.EPIC_PROBABILITY_TEXT, ProbabilityHelper.probabilityToString(epicProbability));
+        changePanelTextStyle(epicPanelProbabilityText, Text.EPIC_PROBABILITY_TEXT,
+                ProbabilityHelper.probabilityToString(epicProbability));
 
         gbc.gridy = 0;
         epicPanel.add(epicPanelTitle, gbc);
@@ -223,10 +252,12 @@ public abstract class AbstractExpansionPanel extends JPanel {
     }
 
     /**
-     * Creates the expansion's legendary panel
+     * Creates the legendary panel.
      *
-     * @param modifierColors is a List with 3 colors for the modifiers: 1) background color, 2) foreground color and 3) hover color
+     * @param modifierColors a list with 3 colors for the modifiers: 1) the background color, 2) the foreground color
+     *                       and 3) the hover color
      * @return the legendary panel
+     * @see ProbabilityHelper#probabilityToString
      */
     private JPanel createLegendaryPanel(List<Color> modifierColors) {
         // Packs without legendary panel
@@ -250,7 +281,8 @@ public abstract class AbstractExpansionPanel extends JPanel {
         changePanelTextStyle(legendaryPanelCounterText, Text.LEGENDARY_COUNTER_TEXT, String.valueOf(legendaryCounter));
 
         // Reset button
-        legendaryResetButton = new ResModButton(Text.RESET, Tooltips.RESET_BUTTON_TOOLTIP, modifierColors.get(2), modifierColors.get(0));
+        legendaryResetButton = new ResModButton(Text.RESET, Tooltips.RESET_BUTTON_TOOLTIP,
+                modifierColors.get(2), modifierColors.get(0));
 
         // Blank space between reset and add buttons
         JLabel legendaryBlank = new JLabel();
@@ -264,12 +296,14 @@ public abstract class AbstractExpansionPanel extends JPanel {
         legendaryIncrementField = new IncrementField(1, 2, 3);
 
         // Modifiers panel
-        JPanel legendaryModifiersPanel = createModifierPanel(modifierColors, legendaryBlank, legendaryResetButton, legendaryAddButton, legendaryIncrementField);
+        JPanel legendaryModifiersPanel = createModifierPanel(modifierColors, legendaryBlank,
+                legendaryResetButton, legendaryAddButton, legendaryIncrementField);
 
         // Packs without legendary probability panel
         legendaryPanelProbabilityText = new JTextPane();
         doc = legendaryPanelProbabilityText.getStyledDocument();
-        changePanelTextStyle(legendaryPanelProbabilityText, Text.LEGENDARY_PROBABILITY_TEXT, ProbabilityHelper.probabilityToString(legendaryProbability));
+        changePanelTextStyle(legendaryPanelProbabilityText, Text.LEGENDARY_PROBABILITY_TEXT,
+                ProbabilityHelper.probabilityToString(legendaryProbability));
 
         gbc.gridy = 0;
         legendaryPanel.add(legendaryPanelTitle, gbc);
@@ -287,9 +321,10 @@ public abstract class AbstractExpansionPanel extends JPanel {
     }
 
     /**
-     * Creates the expansion's total panel
+     * Creates the total panel.
      *
-     * @param modifierColors is a List with 3 colors for the modifiers: 1) background color, 2) foreground color and 3) hover color
+     * @param modifierColors a list with 3 colors for the modifiers: 1) the background color, 2) the foreground color
+     *                       and 3) the hover color
      * @return the total panel
      */
     private JPanel createTotalPanel(List<Color> modifierColors) {
@@ -314,7 +349,8 @@ public abstract class AbstractExpansionPanel extends JPanel {
         changePanelTextStyle(totalPanelCounterText, Text.TOTAL_COUNTER_TEXT, String.valueOf(totalCounter));
 
         // Modify button
-        totalModifyButton = new ResModButton(Text.MODIFY, Tooltips.MODIFY_BUTTON_TOOLTIP, modifierColors.get(2), modifierColors.get(0));
+        totalModifyButton = new ResModButton(Text.MODIFY, Tooltips.MODIFY_BUTTON_TOOLTIP,
+                modifierColors.get(2), modifierColors.get(0));
 
         // Blank space between modify and add buttons
         JLabel totalBlank = new JLabel();
@@ -328,10 +364,11 @@ public abstract class AbstractExpansionPanel extends JPanel {
         totalIncrementField = new IncrementField(1, 3, 0);
 
         // Modifiers panel
-        JPanel totalModifiersPanel = createModifierPanel(modifierColors, totalBlank, totalModifyButton, totalAddButton, totalIncrementField);
+        JPanel totalModifiersPanel = createModifierPanel(modifierColors, totalBlank,
+                totalModifyButton, totalAddButton, totalIncrementField);
 
-        // Card pack icon button panel
-        JPanel cardPackIconButtonPanel = createCardPackIconPanel();
+        // Card pack panel
+        JPanel cardPackPanel = createCardPackPanel();
 
         gbc.gridy = 0;
         totalPanel.add(totalPanelTitle, gbc);
@@ -343,35 +380,36 @@ public abstract class AbstractExpansionPanel extends JPanel {
         totalPanel.add(totalModifiersPanel, gbc);
 
         gbc.gridy = 3;
-        totalPanel.add(cardPackIconButtonPanel, gbc);
+        totalPanel.add(cardPackPanel, gbc);
 
         return totalPanel;
     }
 
     /**
-     * Creates the card pack icon panel
+     * Creates the card pack panel.
      *
-     * @return the card pack icon panel
+     * @return the card pack panel
+     * @see #createCardPackIcon
      */
-    private JPanel createCardPackIconPanel() {
-        // Card pack icon button panel
-        JPanel cardPackIconPanel = new JPanel();
-        cardPackIconPanel.setLayout(new GridBagLayout());
-        cardPackIconPanel.setBackground(expansionBackground);
+    private JPanel createCardPackPanel() {
+        // Card pack panel
+        JPanel cardPackPanel = new JPanel();
+        cardPackPanel.setLayout(new GridBagLayout());
+        cardPackPanel.setBackground(expansionBackground);
 
-        // Card pack icon button
-        cardPackButton = new IconButton(cardPackIcon, Tooltips.CARD_PACK_ICON_BUTTON_TOOLTIP);
+        // Card pack button
+        cardPackButton = new IconButton(cardPackIcon, Tooltips.CARD_PACK_BUTTON_TOOLTIP);
 
-        cardPackIconPanel.add(cardPackButton);
+        cardPackPanel.add(cardPackButton);
 
-        return cardPackIconPanel;
+        return cardPackPanel;
     }
 
     /**
-     * Changes the style of the title in a panel
+     * Changes the style of the title in a panel.
      *
-     * @param textPane is the current text pane
-     * @param text     is the text of the panel's title
+     * @param textPane the current text pane
+     * @param text     the text of the panel's title
      */
     private void changePanelTitleStyle(JTextPane textPane, String text) {
         textPane.setBackground(expansionBackground);
@@ -379,14 +417,15 @@ public abstract class AbstractExpansionPanel extends JPanel {
 
         SimpleAttributeSet set = new SimpleAttributeSet();
         StyleConstants.setFontSize(set, Fonts.PANEL_TITLE_FONT_SIZE);
-        StyleConstants.setFontFamily(set, Fonts.FONT_NAME);
+        StyleConstants.setFontFamily(set, Fonts.MAIN_FONT_NAME);
         StyleConstants.setBold(set, true);
         StyleConstants.setAlignment(set, StyleConstants.ALIGN_CENTER);
         textPane.setCharacterAttributes(set, true);
         try {
             doc.insertString(doc.getLength(), text, set);
         } catch (BadLocationException e) {
-            throw new TextPaneException("Error while setting this panel's title", e.getCause());
+            log.error("Error while setting this panel's title");
+            e.printStackTrace();
         }
         doc.setParagraphAttributes(0, doc.getLength(), set, false);
 
@@ -395,11 +434,11 @@ public abstract class AbstractExpansionPanel extends JPanel {
     }
 
     /**
-     * Changes the style of the text in a panel
+     * Changes the style of the text in a panel.
      *
-     * @param textPane is the current text pane
-     * @param text     is the text of the panel
-     * @param number   is a value in a panel (counter or probability)
+     * @param textPane the current text pane
+     * @param text     the text of the panel
+     * @param number   a value in a panel (counter or probability)
      */
     private void changePanelTextStyle(JTextPane textPane, String text, String number) {
         textPane.setBackground(expansionBackground);
@@ -411,7 +450,8 @@ public abstract class AbstractExpansionPanel extends JPanel {
         try {
             doc.insertString(doc.getLength(), text, set);
         } catch (BadLocationException e) {
-            throw new TextPaneException("Error while setting this panel's text", e.getCause());
+            log.error("Error while setting this panel's text");
+            e.printStackTrace();
         }
 
         set = new SimpleAttributeSet();
@@ -421,11 +461,12 @@ public abstract class AbstractExpansionPanel extends JPanel {
         try {
             doc.insertString(doc.getLength(), number, set);
         } catch (BadLocationException e) {
-            throw new TextPaneException("Error while setting this panel's number", e.getCause());
+            log.error("Error while setting this panel's number");
+            e.printStackTrace();
         }
 
         set = new SimpleAttributeSet();
-        StyleConstants.setFontFamily(set, Fonts.FONT_NAME);
+        StyleConstants.setFontFamily(set, Fonts.MAIN_FONT_NAME);
         StyleConstants.setAlignment(set, StyleConstants.ALIGN_CENTER);
         doc.setParagraphAttributes(0, doc.getLength(), set, false);
 
@@ -434,16 +475,18 @@ public abstract class AbstractExpansionPanel extends JPanel {
     }
 
     /**
-     * Creates the modifiers of a panel
+     * Creates the modifiers of a panel.
      *
-     * @param modifierColors is a List with 3 colors for the modifiers: 1) background color, 2) foreground color and 3) hover color
-     * @param blank          is a blank panel to create some space between the reset/modify and add buttons
-     * @param resMod         is the reset/modify button
-     * @param add            is the add button
-     * @param increment      is the increment field
+     * @param modifierColors a list with 3 colors for the modifiers: 1) the background color, 2) the foreground color
+     *                       and 3) the hover color
+     * @param blank          a blank panel to create some space between the reset/modify and add buttons
+     * @param resMod         the reset/modify button
+     * @param add            the add button
+     * @param increment      the increment field
      * @return a panel with the modifiers
      */
-    private JPanel createModifierPanel(List<Color> modifierColors, JLabel blank, ResModButton resMod, AddButton add, JTextArea increment) {
+    private JPanel createModifierPanel(List<Color> modifierColors, JLabel blank,
+                                       ResModButton resMod, AddButton add, JTextArea increment) {
         // Modifiers panel
         JPanel modifiersPanel = new JPanel();
         modifiersPanel.setBackground(expansionBackground);
@@ -471,9 +514,9 @@ public abstract class AbstractExpansionPanel extends JPanel {
     }
 
     /**
-     * Sets the value of the epic counter
+     * Sets the value of the epic counter.
      *
-     * @param value is the String value of the counter
+     * @param value the String value of the counter
      */
     public void setEpicCounter(String value) {
         epicCounter = Integer.parseInt(value);
@@ -483,21 +526,23 @@ public abstract class AbstractExpansionPanel extends JPanel {
     }
 
     /**
-     * Sets the value of the epic probability
+     * Sets the value of the epic probability.
      *
-     * @param value is the String value of the probability
+     * @param value the String value of the probability
+     * @see ProbabilityHelper#probabilityToString
      */
     public void setEpicProbability(String value) {
         epicProbability = Double.parseDouble(value.replace(',', '.'));
         epicPanelProbabilityText.setText("");
         doc = epicPanelProbabilityText.getStyledDocument();
-        changePanelTextStyle(epicPanelProbabilityText, Text.EPIC_PROBABILITY_TEXT, ProbabilityHelper.probabilityToString(epicProbability));
+        changePanelTextStyle(epicPanelProbabilityText, Text.EPIC_PROBABILITY_TEXT,
+                ProbabilityHelper.probabilityToString(epicProbability));
     }
 
     /**
-     * Sets the value of the legendary counter
+     * Sets the value of the legendary counter.
      *
-     * @param value is the String value of the counter
+     * @param value the String value of the counter
      */
     public void setLegendaryCounter(String value) {
         legendaryCounter = Integer.parseInt(value);
@@ -507,21 +552,23 @@ public abstract class AbstractExpansionPanel extends JPanel {
     }
 
     /**
-     * Sets the value of the legendary probability
+     * Sets the value of the legendary probability.
      *
-     * @param value is the String value of the probability
+     * @param value the String value of the probability
+     * @see ProbabilityHelper#probabilityToString
      */
     public void setLegendaryProbability(String value) {
         legendaryProbability = Double.parseDouble(value.replace(',', '.'));
         legendaryPanelProbabilityText.setText("");
         doc = legendaryPanelProbabilityText.getStyledDocument();
-        changePanelTextStyle(legendaryPanelProbabilityText, Text.LEGENDARY_PROBABILITY_TEXT, ProbabilityHelper.probabilityToString(legendaryProbability));
+        changePanelTextStyle(legendaryPanelProbabilityText, Text.LEGENDARY_PROBABILITY_TEXT,
+                ProbabilityHelper.probabilityToString(legendaryProbability));
     }
 
     /**
-     * Sets the value of the total counter
+     * Sets the value of the total counter.
      *
-     * @param value is the String value of the counter
+     * @param value the String value of the counter
      */
     public void setTotalCounter(String value) {
         totalCounter = Integer.parseInt(value);

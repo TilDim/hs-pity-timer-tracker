@@ -7,7 +7,11 @@ import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
 import java.io.Serial;
 
 /**
+ * {@code SaviorsOfUldumPanel} is a {@code JPanel} dedicated to the <i>Saviors of Uldum</i>
+ * expansion.
  *
+ * @author Tilemachos Dimos
+ * @see AbstractExpansionPanel
  */
 public class SaviorsOfUldumPanel extends AbstractExpansionPanel {
 
@@ -15,9 +19,11 @@ public class SaviorsOfUldumPanel extends AbstractExpansionPanel {
     private static final long serialVersionUID = -7489407411047314557L;
 
     /**
-     *
+     * Constructs a {@link #AbstractExpansionPanel} with all the <i>Saviors of Uldum</i>
+     * expansion specific properties.
      */
     public SaviorsOfUldumPanel() {
-        super(IconPaths.ULDUM_EXPANSION_ICON_PATH, IconPaths.ULDUM_CARD_PACK_ICON_PATH, Colors.ULDUM_COLOR, Colors.TEXT_COLOR, Colors.MODIFIERS_COLORS);
+        super(IconPaths.ULDUM_LOGO_ICON_PATH, IconPaths.ULDUM_CARD_PACK_ICON_PATH,
+                Colors.ULDUM_COLOR, Colors.TEXT_COLOR, Colors.MODIFIERS_COLORS);
     }
 }

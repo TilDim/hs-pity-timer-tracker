@@ -7,7 +7,11 @@ import tildim.hstools.hspitytimertracker.gui.panel.year.YearOfTheHydraPanel;
 import java.io.Serial;
 
 /**
+ * {@code StandardModePanel} is a {@link #JPanel} that contains all the instances of {@code AbstractYearPanel}
+ * which belong in the <i>Standard</i> mode.
  *
+ * @author Tilemachos Dimos
+ * @see AbstractModePanel
  */
 @Getter
 public class StandardModePanel extends AbstractModePanel {
@@ -19,7 +23,8 @@ public class StandardModePanel extends AbstractModePanel {
     private final YearOfTheGryphonPanel yearOfTheGryphonPanel;
 
     /**
-     * Constructor with no arguments that calls the parent constructor and adds the standard year panels
+     * Constructs a {@link #AbstractModePanel} and places in it the instances of {@code AbstractYearPanel}
+     * which belong in the <i>Standard</i> mode.
      */
     public StandardModePanel() {
         super();

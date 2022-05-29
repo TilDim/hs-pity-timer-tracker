@@ -1,8 +1,7 @@
 package tildim.hstools.hspitytimertracker.gui;
 
 import lombok.Getter;
-import tildim.hstools.hspitytimertracker.exception.IconCreationException;
-import tildim.hstools.hspitytimertracker.exception.LookAndFeelException;
+import lombok.extern.slf4j.Slf4j;
 import tildim.hstools.hspitytimertracker.gui.panel.tracker.TrackerPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.Fonts;
@@ -17,48 +16,54 @@ import java.io.IOException;
 import java.io.Serial;
 
 /**
+ * {@code TrackerGUI} is a {@link #JFrame} that contains a {@code TrackerPanel} and comprises the GUI of the program.
  *
+ * @author Tilemachos Dimos
+ * @see TrackerPanel
  */
 @Getter
+@Slf4j
 public class TrackerGUI extends JFrame {
 
     @Serial
     private static final long serialVersionUID = -2973290448426684767L;
 
     private final TrackerPanel trackerPanel;
-    private transient BufferedImage trackerIcon;
+    private transient BufferedImage trackerWindowIcon;
 
     /**
-     *
+     * Constructs a {@link #JFrame}, sets some UI properties, places in the {@code JFrame} a {@code TrackerPanel} and
+     * sets some of the {@code JFrame}'s properties.
      */
     public TrackerGUI() {
         super();
 
-        // Icon creation
-        createTrackerIcon();
+        // Window icon creation
+        createTrackerWindowIcon();
 
         // Tracker look and feel
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
                  UnsupportedLookAndFeelException e) {
-            throw new LookAndFeelException("Error while setting the tracker's look and feel", e.getCause());
+            log.error("Error while setting the tracker's look and feel");
+            e.printStackTrace();
         }
 
         // Buttons tooltip style
         UIManager.put("ToolTip.background", Colors.TOOLTIP_BACKGROUND_COLOR);
-        UIManager.put("ToolTip.font", new Font(Fonts.FONT_NAME, Font.PLAIN, Fonts.PANEL_TOOLTIP_FONT_SIZE));
+        UIManager.put("ToolTip.font", Fonts.TOOLTIP_FONT);
 
         // Pop-up window text field font
-        UIManager.put("TextField.font", new Font(Fonts.FONT_NAME, Font.PLAIN, Fonts.PANEL_TEXT_FONT_SIZE));
+        UIManager.put("TextField.font", Fonts.POPUP_TEXTFIELD_FONT);
 
-        // Tracker components
+        // Tracker panel
         trackerPanel = new TrackerPanel();
         add(trackerPanel);
 
         // Tracker frame
         setTitle(Text.TRACKER_TITLE);
-        setIconImage(trackerIcon);
+        setIconImage(trackerWindowIcon);
         setMinimumSize(new Dimension(1150, 540));
         setPreferredSize(new Dimension(1250, 650));
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -69,15 +74,14 @@ public class TrackerGUI extends JFrame {
     }
 
     /**
-     * Creates the tracker icon
-     *
-     * @throws IconCreationException is thrown when the IconUtil.createIcon method fails to create the url of a path to an image
+     * Creates the tracker window icon.
      */
-    private void createTrackerIcon() throws IconCreationException {
+    private void createTrackerWindowIcon() {
         try {
-            trackerIcon = IconHelper.createIcon(IconPaths.TRACKER_ICON_PATH);
+            trackerWindowIcon = IconHelper.createIcon(IconPaths.TRACKER_ICON_PATH);
         } catch (IOException e) {
-            throw new IconCreationException("Error while creating the tracker's icon", e.getCause());
+            log.error("Error while creating the tracker window icon");
+            e.printStackTrace();
         }
     }
 }

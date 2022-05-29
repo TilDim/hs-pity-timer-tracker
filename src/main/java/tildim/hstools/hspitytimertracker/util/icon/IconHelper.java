@@ -6,16 +6,21 @@ import java.io.IOException;
 import java.net.URL;
 
 /**
+ * {@code IconHelper} is a utility class that contains all the necessary methods to process the icons used by the
+ * program.
  *
+ * @author Tilemachos Dimos
+ * @see IconPaths
  */
 public class IconHelper {
 
     /**
-     * Creates an icon
+     * Creates an icon.
      *
-     * @param iconPath is the icon's path from the source root
-     * @return a BufferedImage of the provided icon
+     * @param iconPath the icon's path from the source root
+     * @return a {@code BufferedImage} of the provided icon
      * @throws IOException if the file cannot be opened
+     * @see BufferedImage
      */
     public static BufferedImage createIcon(String iconPath) throws IOException {
         URL iconURL = IconHelper.class.getClassLoader()
@@ -29,7 +34,7 @@ public class IconHelper {
     }
 
     /**
-     * Private constructor to hide the default public one
+     * Private constructor to hide the default public one.
      */
     private IconHelper() {
     }

@@ -1,5 +1,6 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.textfield;
 
+import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
 import tildim.hstools.hspitytimertracker.util.Fonts;
 import tildim.hstools.hspitytimertracker.util.Tooltips;
 
@@ -7,7 +8,15 @@ import javax.swing.*;
 import java.io.Serial;
 
 /**
+ * {@code IncrementField} is a {@link #JTextArea} that specifies the number by which a counter in a
+ * {@code AbstractExpansionPanel} will be incremented.
  *
+ * <p> The number and its digits are limited by an instance of {@code LimitedIncrement} depending on the counter
+ * it increments.
+ *
+ * @author Tilemachos Dimos
+ * @see AbstractExpansionPanel
+ * @see LimitedIncrement
  */
 public class IncrementField extends JTextArea {
 
@@ -15,9 +24,11 @@ public class IncrementField extends JTextArea {
     private static final long serialVersionUID = -8948518805156701041L;
 
     /**
-     * @param rows
-     * @param columns
-     * @param right
+     * Constructs a {@link #JTextArea} and sets some of its properties.
+     *
+     * @param rows    the displayed number of rows of the {@code IncrementField}
+     * @param columns the displayed number of columns of the {@code IncrementField}
+     * @param right   the number of pixels to be used as the right border of the {@code IncrementField}
      */
     public IncrementField(int rows, int columns, int right) {
         super(rows, columns);
@@ -29,6 +40,6 @@ public class IncrementField extends JTextArea {
         getDocument().putProperty("filterNewlines", Boolean.TRUE);
 
         setText("1");
-        setToolTipText(Tooltips.INCREMENT_BUTTON_TOOLTIP);
+        setToolTipText(Tooltips.INCREMENT_FIELD_TOOLTIP);
     }
 }

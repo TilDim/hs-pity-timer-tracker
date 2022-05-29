@@ -7,7 +7,11 @@ import tildim.hstools.hspitytimertracker.gui.panel.year.*;
 import java.io.Serial;
 
 /**
+ * {@code WildModePanel} is a {@link #JPanel} that contains all the instances of {@code AbstractYearPanel}
+ * which belong in the <i>Wild</i> mode and a <i>Classic</i> {@code AbstractExpansionPanel}.
  *
+ * @author Tilemachos Dimos
+ * @see AbstractModePanel
  */
 @Getter
 public class WildModePanel extends AbstractModePanel {
@@ -24,7 +28,8 @@ public class WildModePanel extends AbstractModePanel {
     private final ClassicPanel classicPanel;
 
     /**
-     * Constructor with no arguments that calls the parent constructor and adds the wild year panels
+     * Constructs a {@link #AbstractModePanel} and places in it the instances of {@code AbstractYearPanel}
+     * which belong in the <i>Wild</i> mode.
      */
     public WildModePanel() {
         super();

@@ -13,136 +13,177 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * {@code TrackerComponentsHelper} is a utility class that contains all the necessary methods to process the tracker
+ * components used by the program, such as {@code JPanel}s, {@code JButton}s and {@code IncrementField}s.
  *
+ * @author Tilemachos Dimos
  */
 public class TrackerComponentsHelper {
 
     /**
-     * Year shortcut buttons
+     * Adds the instances of {@code AbstractYearShortcutButton} to a list.
      *
-     * @param trackerPanel is the panel containing the year shortcut buttons
-     * @return a list of all the year shortcut buttons in the panel
+     * @param trackerPanel the {@code JPanel} containing the instances of {@code AbstractYearShortcutButton}
+     * @return a list of all the instances of {@code AbstractYearShortcutButton}
      */
     public static List<AbstractYearShortcutButton> getYearShortcutButtons(TrackerPanel trackerPanel) {
         List<AbstractYearShortcutButton> yearShortcutButtons = new ArrayList<>();
 
-        yearShortcutButtons.add(trackerPanel.getWildYearShortcutButtonsPanel()
+        yearShortcutButtons.add(trackerPanel.getAllYearShortcutButtonsPanel()
+                                            .getWildYearShortcutButtonsPanel()
                                             .getYears1And2ShortcutButton());
-        yearShortcutButtons.add(trackerPanel.getWildYearShortcutButtonsPanel()
+        yearShortcutButtons.add(trackerPanel.getAllYearShortcutButtonsPanel()
+                                            .getWildYearShortcutButtonsPanel()
                                             .getYearOfTheKrakenShortcutButton());
-        yearShortcutButtons.add(trackerPanel.getWildYearShortcutButtonsPanel()
+        yearShortcutButtons.add(trackerPanel.getAllYearShortcutButtonsPanel()
+                                            .getWildYearShortcutButtonsPanel()
                                             .getYearOfTheMammothShortcutButton());
-        yearShortcutButtons.add(trackerPanel.getWildYearShortcutButtonsPanel()
+        yearShortcutButtons.add(trackerPanel.getAllYearShortcutButtonsPanel()
+                                            .getWildYearShortcutButtonsPanel()
                                             .getYearOfTheRavenShortcutButton());
-        yearShortcutButtons.add(trackerPanel.getWildYearShortcutButtonsPanel()
+        yearShortcutButtons.add(trackerPanel.getAllYearShortcutButtonsPanel()
+                                            .getWildYearShortcutButtonsPanel()
                                             .getYearOfTheDragonShortcutButton());
-        yearShortcutButtons.add(trackerPanel.getWildYearShortcutButtonsPanel()
+        yearShortcutButtons.add(trackerPanel.getAllYearShortcutButtonsPanel()
+                                            .getWildYearShortcutButtonsPanel()
                                             .getYearOfThePhoenixShortcutButton());
-        yearShortcutButtons.add(trackerPanel.getStandardYearShortcutButtonsPanel()
+        yearShortcutButtons.add(trackerPanel.getAllYearShortcutButtonsPanel()
+                                            .getStandardYearShortcutButtonsPanel()
                                             .getYearOfTheGryphonShortcutButton());
-        yearShortcutButtons.add(trackerPanel.getStandardYearShortcutButtonsPanel()
+        yearShortcutButtons.add(trackerPanel.getAllYearShortcutButtonsPanel()
+                                            .getStandardYearShortcutButtonsPanel()
                                             .getYearOfTheHydraShortcutButton());
 
         return yearShortcutButtons;
     }
 
     /**
-     * Year panels
+     * Adds the instances of {@code AbstractYearPanel} to a list.
      *
-     * @param trackerPanel is the panel containing the year panels
-     * @return a list of all the year panels in the panel
+     * @param trackerPanel the {@code JPanel} containing the instances of {@code AbstractYearPanel}
+     * @return a list of all the instances of {@code AbstractYearPanel}
      */
     public static List<AbstractYearPanel> getYearPanels(TrackerPanel trackerPanel) {
         List<AbstractYearPanel> yearPanels = new ArrayList<>();
 
-        yearPanels.add(trackerPanel.getWildModePanel()
+        yearPanels.add(trackerPanel.getAllModesPanel()
+                                   .getWildModePanel()
                                    .getYears1And2Panel());
-        yearPanels.add(trackerPanel.getWildModePanel()
+        yearPanels.add(trackerPanel.getAllModesPanel()
+                                   .getWildModePanel()
                                    .getYearOfTheKrakenPanel());
-        yearPanels.add(trackerPanel.getWildModePanel()
+        yearPanels.add(trackerPanel.getAllModesPanel()
+                                   .getWildModePanel()
                                    .getYearOfTheMammothPanel());
-        yearPanels.add(trackerPanel.getWildModePanel()
+        yearPanels.add(trackerPanel.getAllModesPanel()
+                                   .getWildModePanel()
                                    .getYearOfTheRavenPanel());
-        yearPanels.add(trackerPanel.getWildModePanel()
+        yearPanels.add(trackerPanel.getAllModesPanel()
+                                   .getWildModePanel()
                                    .getYearOfTheDragonPanel());
-        yearPanels.add(trackerPanel.getWildModePanel()
+        yearPanels.add(trackerPanel.getAllModesPanel()
+                                   .getWildModePanel()
                                    .getYearOfThePhoenixPanel());
-        yearPanels.add(trackerPanel.getStandardModePanel()
+        yearPanels.add(trackerPanel.getAllModesPanel()
+                                   .getStandardModePanel()
                                    .getYearOfTheGryphonPanel());
-        yearPanels.add(trackerPanel.getStandardModePanel()
+        yearPanels.add(trackerPanel.getAllModesPanel()
+                                   .getStandardModePanel()
                                    .getYearOfTheHydraPanel());
 
         return yearPanels;
     }
 
     /**
-     * Expansion panels
+     * Adds the instances of {@code AbstractExpansionPanel} to a list.
      *
-     * @param trackerPanel is the panel containing the expansion panels
+     * @param trackerPanel the {@code JPanel} containing the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the instances of {@code AbstractExpansionPanel}
      */
     public static List<AbstractExpansionPanel> getExpansionPanels(TrackerPanel trackerPanel) {
         List<AbstractExpansionPanel> expansionPanels = new ArrayList<>();
 
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getClassicPanel());
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getYears1And2Panel()
                                         .getGoblinsVsGnomesPanel());
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getYears1And2Panel()
                                         .getTheGrandTournamentPanel());
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getYearOfTheKrakenPanel()
                                         .getWhispersOfTheOldGodsPanel());
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getYearOfTheKrakenPanel()
                                         .getMeanStreetsOfGadgetzanPanel());
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getYearOfTheMammothPanel()
                                         .getJourneyToUnGoroPanel());
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getYearOfTheMammothPanel()
                                         .getKnightsOfTheFrozenThronePanel());
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getYearOfTheMammothPanel()
                                         .getKoboldsAndCatacombsPanel());
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getYearOfTheRavenPanel()
                                         .getTheWitchwoodPanel());
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getYearOfTheRavenPanel()
                                         .getTheBoomsdayProjectPanel());
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getYearOfTheRavenPanel()
                                         .getRastakhansRumblePanel());
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getYearOfTheDragonPanel()
                                         .getRiseOfShadowsPanel());
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getYearOfTheDragonPanel()
                                         .getSaviorsOfUldumPanel());
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getYearOfTheDragonPanel()
                                         .getDescentOfDragonsPanel());
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getYearOfThePhoenixPanel()
                                         .getAshesOfOutlandPanel());
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getYearOfThePhoenixPanel()
                                         .getScholomanceAcademyPanel());
-        expansionPanels.add(trackerPanel.getWildModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getWildModePanel()
                                         .getYearOfThePhoenixPanel()
                                         .getMadnessAtTheDarkmoonFairePanel());
-        expansionPanels.add(trackerPanel.getStandardModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getStandardModePanel()
                                         .getYearOfTheGryphonPanel()
                                         .getForgedInTheBarrensPanel());
-        expansionPanels.add(trackerPanel.getStandardModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getStandardModePanel()
                                         .getYearOfTheGryphonPanel()
                                         .getUnitedInStormwindPanel());
-        expansionPanels.add(trackerPanel.getStandardModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getStandardModePanel()
                                         .getYearOfTheGryphonPanel()
                                         .getFracturedInAlteracValleyPanel());
-        expansionPanels.add(trackerPanel.getStandardModePanel()
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getStandardModePanel()
                                         .getYearOfTheHydraPanel()
                                         .getVoyageToTheSunkenCityPanel());
 
@@ -150,65 +191,65 @@ public class TrackerComponentsHelper {
     }
 
     /**
-     * Expansion buttons
+     * Adds the logo buttons to a list.
      *
-     * @param expansionPanels is a list containing all the expansion panels
-     * @return a list of all the expansion buttons in the panel
+     * @param expansionPanels a list of all the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the logo buttons
      */
-    public static List<IconButton> getExpansionButtons(List<AbstractExpansionPanel> expansionPanels) {
-        List<IconButton> expansionButtons = new ArrayList<>();
+    public static List<IconButton> getLogoButtons(List<AbstractExpansionPanel> expansionPanels) {
+        List<IconButton> logoButtons = new ArrayList<>();
 
-        expansionButtons.add(expansionPanels.get(Indexes.CLASSIC_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.GOBLINS_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.TOURNAMENT_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.OLDGODS_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.GADGETZAN_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.UNGORO_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.KNIGHTS_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.KOBOLDS_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.WITCHWOOD_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.BOOMSDAY_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.RUMBLE_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.SHADOWS_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.ULDUM_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.DRAGONS_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.OUTLAND_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.SCHOLOMANCE_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.DARKMOON_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.BARRENS_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.STORMWIND_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.ALTERAC_INDEX)
-                                            .getExpansionButton());
-        expansionButtons.add(expansionPanels.get(Indexes.SUNKEN_INDEX)
-                                            .getExpansionButton());
+        logoButtons.add(expansionPanels.get(Indexes.CLASSIC_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.GOBLINS_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.TOURNAMENT_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.OLDGODS_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.GADGETZAN_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.UNGORO_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.KNIGHTS_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.KOBOLDS_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.WITCHWOOD_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.BOOMSDAY_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.RUMBLE_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.SHADOWS_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.ULDUM_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.DRAGONS_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.OUTLAND_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.SCHOLOMANCE_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.DARKMOON_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.BARRENS_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.STORMWIND_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.ALTERAC_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.SUNKEN_INDEX)
+                                       .getLogoButton());
 
-        return expansionButtons;
+        return logoButtons;
     }
 
     /**
-     * Epic counters
+     * Adds the epic counters to a list.
      *
-     * @param expansionPanels is a list containing all the expansion panels
-     * @return a list of all the epic counters in the panel
+     * @param expansionPanels a list of all the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the epic counters
      */
     public static List<Integer> getEpicCounters(List<AbstractExpansionPanel> expansionPanels) {
         List<Integer> epicCounters = new ArrayList<>();
@@ -260,10 +301,10 @@ public class TrackerComponentsHelper {
     }
 
     /**
-     * Epic reset buttons
+     * Adds the epic reset buttons to a list.
      *
-     * @param expansionPanels is a list containing all the expansion panels
-     * @return a list of all the epic reset buttons in the panel
+     * @param expansionPanels a list of all the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the epic reset buttons
      */
     public static List<ResModButton> getEpicResetButtons(List<AbstractExpansionPanel> expansionPanels) {
         List<ResModButton> epicResetButtons = new ArrayList<>();
@@ -315,10 +356,10 @@ public class TrackerComponentsHelper {
     }
 
     /**
-     * Epic add buttons
+     * Adds the epic add buttons to a list.
      *
-     * @param expansionPanels is a list containing all the expansion panels
-     * @return a list of all the epic add buttons in the panel
+     * @param expansionPanels a list of all the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the epic add buttons
      */
     public static List<AddButton> getEpicAddButtons(List<AbstractExpansionPanel> expansionPanels) {
         List<AddButton> epicAddButtons = new ArrayList<>();
@@ -370,10 +411,10 @@ public class TrackerComponentsHelper {
     }
 
     /**
-     * Epic increment fields
+     * Adds the epic increment fields to a list.
      *
-     * @param expansionPanels is a list containing all the expansion panels
-     * @return a list of all the epic increment fields in the panel
+     * @param expansionPanels a list of all the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the epic increment fields
      */
     public static List<IncrementField> getEpicIncrementFields(List<AbstractExpansionPanel> expansionPanels) {
         List<IncrementField> epicIncrementFields = new ArrayList<>();
@@ -425,10 +466,10 @@ public class TrackerComponentsHelper {
     }
 
     /**
-     * Epic probabilities
+     * Adds the epic probabilities to a list.
      *
-     * @param expansionPanels is a list containing all the expansion panels
-     * @return a list of all the epic probabilities in the panel
+     * @param expansionPanels a list of all the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the epic probabilities
      */
     public static List<Double> getEpicProbabilities(List<AbstractExpansionPanel> expansionPanels) {
         List<Double> epicProbabilities = new ArrayList<>();
@@ -480,10 +521,10 @@ public class TrackerComponentsHelper {
     }
 
     /**
-     * Legendary counters
+     * Adds the legendary counters to a list.
      *
-     * @param expansionPanels is a list containing all the expansion panels
-     * @return a list of all the legendary counters in the panel
+     * @param expansionPanels a list of all the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the legendary counters
      */
     public static List<Integer> getLegendaryCounters(List<AbstractExpansionPanel> expansionPanels) {
         List<Integer> legendaryCounters = new ArrayList<>();
@@ -535,10 +576,10 @@ public class TrackerComponentsHelper {
     }
 
     /**
-     * Legendary reset buttons
+     * Adds the legendary reset buttons to a list.
      *
-     * @param expansionPanels is a list containing all the expansion panels
-     * @return a list of all the legendary reset buttons in the panel
+     * @param expansionPanels a list of all the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the legendary reset buttons
      */
     public static List<ResModButton> getLegendaryResetButtons(List<AbstractExpansionPanel> expansionPanels) {
         List<ResModButton> legendaryResetButtons = new ArrayList<>();
@@ -590,10 +631,10 @@ public class TrackerComponentsHelper {
     }
 
     /**
-     * Legendary add buttons
+     * Adds the legendary add buttons to a list.
      *
-     * @param expansionPanels is a list containing all the expansion panels
-     * @return a list of all the legendary add buttons in the panel
+     * @param expansionPanels a list of all the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the legendary add buttons
      */
     public static List<AddButton> getLegendaryAddButtons(List<AbstractExpansionPanel> expansionPanels) {
         List<AddButton> legendaryAddButtons = new ArrayList<>();
@@ -645,10 +686,10 @@ public class TrackerComponentsHelper {
     }
 
     /**
-     * Legendary increment fields
+     * Adds the legendary increment fields to a list.
      *
-     * @param expansionPanels is a list containing all the expansion panels
-     * @return a list of all the legendary increment fields in the panel
+     * @param expansionPanels a list of all the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the legendary increment fields
      */
     public static List<IncrementField> getLegendaryIncrementFields(List<AbstractExpansionPanel> expansionPanels) {
         List<IncrementField> legendaryIncrementFields = new ArrayList<>();
@@ -700,10 +741,10 @@ public class TrackerComponentsHelper {
     }
 
     /**
-     * Legendary probabilities
+     * Adds the legendary probabilities to a list.
      *
-     * @param expansionPanels is a list containing all the expansion panels
-     * @return a list of all the legendary probabilities in the panel
+     * @param expansionPanels a list of all the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the legendary probabilities
      */
     public static List<Double> getLegendaryProbabilities(List<AbstractExpansionPanel> expansionPanels) {
         List<Double> legendaryProbabilities = new ArrayList<>();
@@ -755,10 +796,10 @@ public class TrackerComponentsHelper {
     }
 
     /**
-     * Total counters
+     * Adds the total counters to a list.
      *
-     * @param expansionPanels is a list containing all the expansion panels
-     * @return a list of all the total counters in the panel
+     * @param expansionPanels a list of all the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the total counters
      */
     public static List<Integer> getTotalCounters(List<AbstractExpansionPanel> expansionPanels) {
         List<Integer> totalCounters = new ArrayList<>();
@@ -810,10 +851,10 @@ public class TrackerComponentsHelper {
     }
 
     /**
-     * Total modify buttons
+     * Adds the total modify buttons to a list.
      *
-     * @param expansionPanels is a list containing all the expansion panels
-     * @return a list of all the total modify buttons in the panel
+     * @param expansionPanels a list of all the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the total modify buttons
      */
     public static List<ResModButton> getTotalModifyButtons(List<AbstractExpansionPanel> expansionPanels) {
         List<ResModButton> totalModifyButtons = new ArrayList<>();
@@ -865,10 +906,10 @@ public class TrackerComponentsHelper {
     }
 
     /**
-     * Total add buttons
+     * Adds the total add buttons to a list.
      *
-     * @param expansionPanels is a list containing all the expansion panels
-     * @return a list of all the total add buttons in the panel
+     * @param expansionPanels a list of all the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the total add buttons
      */
     public static List<AddButton> getTotalAddButtons(List<AbstractExpansionPanel> expansionPanels) {
         List<AddButton> totalAddButtons = new ArrayList<>();
@@ -920,10 +961,10 @@ public class TrackerComponentsHelper {
     }
 
     /**
-     * Total increment fields
+     * Adds the total increment fields to a list.
      *
-     * @param expansionPanels is a list containing all the expansion panels
-     * @return a list of all the total increment fields in the panel
+     * @param expansionPanels a list of all the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the total increment fields
      */
     public static List<IncrementField> getTotalIncrementFields(List<AbstractExpansionPanel> expansionPanels) {
         List<IncrementField> totalIncrementFields = new ArrayList<>();
@@ -975,10 +1016,10 @@ public class TrackerComponentsHelper {
     }
 
     /**
-     * Card pack buttons
+     * Adds the card pack buttons to a list.
      *
-     * @param expansionPanels is a list containing all the expansion panels
-     * @return a list of all the card pack buttons in the panel
+     * @param expansionPanels a list of all the instances of {@code AbstractExpansionPanel}
+     * @return a list of all the card pack buttons
      */
     public static List<IconButton> getCardPackButtons(List<AbstractExpansionPanel> expansionPanels) {
         List<IconButton> cardPackButtons = new ArrayList<>();
@@ -1030,7 +1071,7 @@ public class TrackerComponentsHelper {
     }
 
     /**
-     * Private constructor to hide the default public one
+     * Private constructor to hide the default public one.
      */
     private TrackerComponentsHelper() {
     }

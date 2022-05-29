@@ -9,7 +9,25 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * {@code LimitedIncrement} is {@link #PlainDocument} that is used as a limit to an instance of {@code IncrementField}.
  *
+ * <p> The limit depends on the counter the {@code IncrementField} corresponds to.
+ * <p> More specifically:
+ * <ul>
+ *     <li>
+ *         the {@code IncrementField} of the <i>Epic</i> counter is limited to one digit and must be between
+ *         '1' and '9';
+ *     </li>
+ *     <li>
+ *         the {@code IncrementField} of the <i>Legendary</i> counter is limited to two digits and must be between
+ *         '1' and '39';
+ *     </li>
+ *     <li>
+ *         the {@code IncrementField} of the <i>Total</i> counter is limited to three digits.
+ *     </li>
+ * </ul>
+ *
+ * @see IncrementField
  */
 public class LimitedIncrement extends PlainDocument {
 
@@ -19,7 +37,9 @@ public class LimitedIncrement extends PlainDocument {
     private final int limit;
 
     /**
-     * @param limit
+     * Constructs a {@link #PlainDocument} and sets its character limit.
+     *
+     * @param limit the allowed length of the {@code IncrementField} in characters
      */
     public LimitedIncrement(int limit) {
         super();

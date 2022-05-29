@@ -10,7 +10,14 @@ import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
 import java.io.Serial;
 
 /**
+ * {@code YearOfTheGryphonPanel} is a {@link #JPanel} that contains all the instances of {@code AbstractExpansionPanel}
+ * which belong in the <i>Year of the Gryphon</i>.
  *
+ * @author Tilemachos Dimos
+ * @see AbstractYearPanel
+ * @see FracturedInAlteracValleyPanel
+ * @see UnitedInStormwindPanel
+ * @see ForgedInTheBarrensPanel
  */
 @Getter
 public class YearOfTheGryphonPanel extends AbstractYearPanel {
@@ -23,7 +30,19 @@ public class YearOfTheGryphonPanel extends AbstractYearPanel {
     private final ForgedInTheBarrensPanel forgedInTheBarrensPanel;
 
     /**
-     *
+     * Constructs a {@link #AbstractYearPanel} with all the <i>Year of the Gryphon</i> specific properties
+     * and places in it:
+     * <ul>
+     *     <li>
+     *         a {@code FracturedInAlteracValleyPanel};
+     *     </li>
+     *     <li>
+     *         a {@code UnitedInStormwindPanel};
+     *     </li>
+     *     <li>
+     *         a {@code ForgedInTheBarrensPanel}.
+     *     </li>
+     * </ul>
      */
     public YearOfTheGryphonPanel() {
         super(IconPaths.GRYPHON_ICON_PATH, Text.GRYPHON_TITLE);

@@ -7,7 +7,11 @@ import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
 import java.io.Serial;
 
 /**
+ * {@code FracturedInAlteracValleyPanel} is a {@code JPanel} dedicated to the <i>Fractured in Alterac Valley</i>
+ * expansion.
  *
+ * @author Tilemachos Dimos
+ * @see AbstractExpansionPanel
  */
 public class FracturedInAlteracValleyPanel extends AbstractExpansionPanel {
 
@@ -15,9 +19,11 @@ public class FracturedInAlteracValleyPanel extends AbstractExpansionPanel {
     private static final long serialVersionUID = 5225690784576420659L;
 
     /**
-     *
+     * Constructs a {@link #AbstractExpansionPanel} with all the <i>Fractured in Alterac Valley</i>
+     * expansion specific properties.
      */
     public FracturedInAlteracValleyPanel() {
-        super(IconPaths.ALTERAC_EXPANSION_ICON_PATH, IconPaths.ALTERAC_CARD_PACK_ICON_PATH, Colors.ALTERAC_COLOR, Colors.TEXT_COLOR, Colors.MODIFIERS_COLORS);
+        super(IconPaths.ALTERAC_LOGO_ICON_PATH, IconPaths.ALTERAC_CARD_PACK_ICON_PATH,
+                Colors.ALTERAC_COLOR, Colors.TEXT_COLOR, Colors.MODIFIERS_COLORS);
     }
 }

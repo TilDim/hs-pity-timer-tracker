@@ -10,7 +10,14 @@ import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
 import java.io.Serial;
 
 /**
+ * {@code YearOfTheRavenPanel} is a {@link #JPanel} that contains all the instances of {@code AbstractExpansionPanel}
+ * which belong in the <i>Year of the Raven</i>.
  *
+ * @author Tilemachos Dimos
+ * @see AbstractYearPanel
+ * @see RastakhansRumblePanel
+ * @see TheBoomsdayProjectPanel
+ * @see TheWitchwoodPanel
  */
 @Getter
 public class YearOfTheRavenPanel extends AbstractYearPanel {
@@ -23,7 +30,19 @@ public class YearOfTheRavenPanel extends AbstractYearPanel {
     private final TheWitchwoodPanel theWitchwoodPanel;
 
     /**
-     *
+     * Constructs a {@link #AbstractYearPanel} with all the <i>Year of the Raven</i> specific properties
+     * and places in it:
+     * <ul>
+     *     <li>
+     *         a {@code RastakhansRumblePanel};
+     *     </li>
+     *     <li>
+     *         a {@code TheBoomsdayProjectPanel};
+     *     </li>
+     *     <li>
+     *         a {@code TheWitchwoodPanel}.
+     *     </li>
+     * </ul>
      */
     public YearOfTheRavenPanel() {
         super(IconPaths.RAVEN_ICON_PATH, Text.RAVEN_TITLE);

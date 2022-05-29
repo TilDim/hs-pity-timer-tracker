@@ -6,7 +6,10 @@ import java.awt.image.BufferedImage;
 import java.io.Serial;
 
 /**
+ * {@code IconButton} is a {@link #JButton} with an icon and no text that is used in a {@code AbstractExpansionPanel}
+ * to give an image some functionality (e.g. act as a link to a webpage).
  *
+ * @author Tilemachos Dimos
  */
 public class IconButton extends JButton {
 
@@ -14,8 +17,10 @@ public class IconButton extends JButton {
     private static final long serialVersionUID = 4234518202156599061L;
 
     /**
-     * @param icon
-     * @param tooltip
+     * Constructs a {@link #JButton} and sets some of its properties.
+     *
+     * @param icon    a {@code BufferedImage} used as the {@code IconButton}'s icon
+     * @param tooltip the tooltip text displayed when hovering over the {@code IconButton}
      */
     public IconButton(BufferedImage icon, String tooltip) {
         super();
