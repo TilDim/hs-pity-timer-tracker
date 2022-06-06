@@ -27,56 +27,78 @@ public abstract class AbstractPopupWindowPanel extends JPanel {
     private static final long serialVersionUID = 4176676159383242908L;
 
     private JTextPane header;
-    private final JTextPane body;
+    private JTextPane body;
 
     /**
-     * Constructs a {@link #JPanel} and sets its background color and the properties of its components, which are
-     * a header (optional) and a body.
+     * Constructs a {@link #JPanel}, sets its background color and creates its components, which are:
+     * <ul>
+     *     <li>
+     *         a header {@code JTextPane} (optional);
+     *     </li>
+     *     <li>
+     *         a body {@code JTextPane}.
+     *     </li>
+     * </ul>
      *
      * @param title the title of the {@code AbstractPopupWindowPanel}
      * @param text  the text of the {@code AbstractPopupWindowPanel}
+     * @see JTextPane
      */
     protected AbstractPopupWindowPanel(String title, String text) {
         super();
 
         setBackground(Colors.POPUP_BACKGROUND_COLOR);
 
-        StyledDocument doc;
-        SimpleAttributeSet set;
-
         if (title != null) {
             setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-            header = new JTextPane();
-
-            doc = header.getStyledDocument();
-            set = new SimpleAttributeSet();
-
-            StyleConstants.setBold(set, true);
-            StyleConstants.setFontSize(set, Fonts.POPUP_TITLE_FONT_SIZE);
-            StyleConstants.setFontFamily(set, Fonts.MAIN_FONT_NAME);
-            StyleConstants.setAlignment(set, StyleConstants.ALIGN_CENTER);
-            header.setCharacterAttributes(set, true);
-
-            try {
-                doc.insertString(doc.getLength(), title.concat(Text.NEXT_LINE), set);
-            } catch (BadLocationException e) {
-                log.error("Error while setting the title of pop-up window");
-                e.printStackTrace();
-            }
-            doc.setParagraphAttributes(0, doc.getLength(), set, false);
-
-            header.setBackground(Colors.POPUP_BACKGROUND_COLOR);
-            header.setEditable(false);
-            header.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-
+            createPopupWindowPanelHeader(title);
             add(header);
         }
 
+        createPopupWindowPanelBody(text);
+    }
+
+    /**
+     * Creates the {@code AbstractPopupWindowPanel}'s' header.
+     *
+     * @param title the title of the {@code AbstractPopupWindowPanel}
+     */
+    private void createPopupWindowPanelHeader(String title) {
+        header = new JTextPane();
+
+        StyledDocument doc = header.getStyledDocument();
+        SimpleAttributeSet set = new SimpleAttributeSet();
+
+        StyleConstants.setBold(set, true);
+        StyleConstants.setFontSize(set, Fonts.POPUP_TITLE_FONT_SIZE);
+        StyleConstants.setFontFamily(set, Fonts.MAIN_FONT_NAME);
+        StyleConstants.setAlignment(set, StyleConstants.ALIGN_CENTER);
+        header.setCharacterAttributes(set, true);
+
+        try {
+            doc.insertString(doc.getLength(), title.concat(Text.NEXT_LINE), set);
+        } catch (BadLocationException e) {
+            log.error("Error while setting the title of pop-up window");
+            e.printStackTrace();
+        }
+        doc.setParagraphAttributes(0, doc.getLength(), set, false);
+
+        header.setBackground(Colors.POPUP_BACKGROUND_COLOR);
+        header.setEditable(false);
+        header.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+    }
+
+    /**
+     * Creates the {@code AbstractPopupWindowPanel}'s body.
+     *
+     * @param text the text of the {@code AbstractPopupWindowPanel}
+     */
+    private void createPopupWindowPanelBody(String text) {
         body = new JTextPane();
 
-        doc = body.getStyledDocument();
-        set = new SimpleAttributeSet();
+        StyledDocument doc = body.getStyledDocument();
+        SimpleAttributeSet set = new SimpleAttributeSet();
 
         StyleConstants.setFontSize(set, Fonts.POPUP_TEXT_FONT_SIZE);
         StyleConstants.setFontFamily(set, Fonts.MAIN_FONT_NAME);

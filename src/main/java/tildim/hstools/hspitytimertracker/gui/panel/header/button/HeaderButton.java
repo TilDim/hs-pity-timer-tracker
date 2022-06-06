@@ -23,14 +23,14 @@ public class HeaderButton extends JButton {
     /**
      * Constructs a {@link #JButton} and sets some of its properties.
      *
-     * @param icon      a {@code BufferedImage} used as the {@code HeaderButton}'s icon
-     * @param hoverIcon a {@code BufferedImage} used as the {@code HeaderButton}'s icon when hovering over it
-     * @param tooltip   the tooltip text displayed when hovering over the {@code HeaderButton}
+     * @param iconPair an array containing the {@code BufferedImage}s used as the {@code HeaderButton}'s icons
+     *                 when the mouse enters and exits it
+     * @param tooltip  the tooltip text displayed when hovering over the {@code HeaderButton}
      */
-    public HeaderButton(BufferedImage icon, BufferedImage hoverIcon, String tooltip) {
+    public HeaderButton(BufferedImage[] iconPair, String tooltip) {
         super();
 
-        setIcon(new ImageIcon(icon));
+        setIcon(new ImageIcon(iconPair[0]));
         setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
         setToolTipText(tooltip);
@@ -42,12 +42,12 @@ public class HeaderButton extends JButton {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent evt) {
-                setIcon(new ImageIcon(hoverIcon));
+                setIcon(new ImageIcon(iconPair[1]));
             }
 
             @Override
             public void mouseExited(MouseEvent evt) {
-                setIcon(new ImageIcon(icon));
+                setIcon(new ImageIcon(iconPair[0]));
             }
         });
     }

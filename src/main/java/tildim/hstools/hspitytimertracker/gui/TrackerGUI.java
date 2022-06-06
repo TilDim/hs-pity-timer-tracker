@@ -29,7 +29,6 @@ public class TrackerGUI extends JFrame {
     private static final long serialVersionUID = -2973290448426684767L;
 
     private final TrackerPanel trackerPanel;
-    private transient BufferedImage trackerWindowIcon;
 
     /**
      * Constructs a {@link #JFrame}, sets some UI properties, places in the {@code JFrame} a {@code TrackerPanel} and
@@ -37,9 +36,6 @@ public class TrackerGUI extends JFrame {
      */
     public TrackerGUI() {
         super();
-
-        // Window icon creation
-        createTrackerWindowIcon();
 
         // Tracker look and feel
         try {
@@ -63,7 +59,7 @@ public class TrackerGUI extends JFrame {
 
         // Tracker frame
         setTitle(Text.TRACKER_TITLE);
-        setIconImage(trackerWindowIcon);
+        setIconImage(createTrackerWindowIcon());
         setMinimumSize(new Dimension(1150, 540));
         setPreferredSize(new Dimension(1250, 650));
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -75,13 +71,19 @@ public class TrackerGUI extends JFrame {
 
     /**
      * Creates the tracker window icon.
+     *
+     * @return the tracker window icon
      */
-    private void createTrackerWindowIcon() {
+    private BufferedImage createTrackerWindowIcon() {
+        BufferedImage icon = null;
+
         try {
-            trackerWindowIcon = IconHelper.createIcon(IconPaths.TRACKER_ICON_PATH);
+            icon = IconHelper.createIcon(IconPaths.TRACKER_ICON_PATH);
         } catch (IOException e) {
             log.error("Error while creating the tracker window icon");
             e.printStackTrace();
         }
+
+        return icon;
     }
 }

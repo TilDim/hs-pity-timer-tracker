@@ -54,16 +54,9 @@ public class TrackerPanel extends JPanel {
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        // Header panel
         headerPanel = new HeaderPanel();
-
-        // Mode buttons panel
         modeButtonsPanel = new ModeButtonsPanel();
-
-        // All year shortcut buttons panel
         allYearShortcutButtonsPanel = new AllYearShortcutButtonsPanel();
-
-        // All modes panel
         allModesPanel = new AllModesPanel();
 
         add(headerPanel);

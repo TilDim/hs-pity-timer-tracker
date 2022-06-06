@@ -68,10 +68,10 @@ public class TrackerService {
     private AllModesPanel allModesPanel;
     private CardLayout allModesPanelLayout;
 
-    // 'Standard' mode panel container
+    // 'Standard' mode panel scroll pane
     private JScrollPane standardModePanelScrollPane;
 
-    // 'Wild' mode panel container
+    // 'Wild' mode panel scroll pane
     private JScrollPane wildModePanelScrollPane;
 
     // Year panels
@@ -129,7 +129,7 @@ public class TrackerService {
     private List<IconButton> cardPackButtons;
 
     // Help message
-    String helpMessage;
+    private String helpMessage;
 
     // Format in which the probability values are displayed and saved
     private final NumberFormat decimalFormat = new DecimalFormat("##.##");
@@ -438,10 +438,6 @@ public class TrackerService {
         // Set the counter's value to '0'
         epicCounters.set(index, 0);
 
-        // Reset the increment field's value to '1'
-        epicIncrementFields.get(index)
-                           .setText("1");
-
         // Calculate the probability
         epicProbabilities.set(index, ProbabilityHelper.probabilityCalculator(epicCounters.get(index),
                 PityTimers.EPIC_PITY_TIMER));
@@ -450,6 +446,10 @@ public class TrackerService {
         String counter = Integer.toString(epicCounters.get(index));
         String probability = decimalFormat.format(epicProbabilities.get(index));
         TextFileHelper.updateEpicValues(expansionPanels, index, counter, probability);
+
+        // Reset the increment field's value to '1'
+        epicIncrementFields.get(index)
+                           .setText("1");
     }
 
     /**
@@ -469,10 +469,6 @@ public class TrackerService {
             // Set the counter's value to the new value
             epicCounters.set(index, newCounterValue);
 
-            // Reset the increment field's value to '1'
-            epicIncrementFields.get(index)
-                               .setText("1");
-
             // Calculate the probability
             epicProbabilities.set(index, ProbabilityHelper.probabilityCalculator(epicCounters.get(index),
                     PityTimers.EPIC_PITY_TIMER));
@@ -487,6 +483,10 @@ public class TrackerService {
             JOptionPane.showMessageDialog(trackerPanel, new InputErrorPopupWindowPanel(),
                     Text.INPUT_ERROR_MESSAGE_TITLE, JOptionPane.ERROR_MESSAGE);
         }
+
+        // Reset the increment field's value to '1'
+        epicIncrementFields.get(index)
+                           .setText("1");
     }
 
     /**
@@ -500,10 +500,6 @@ public class TrackerService {
         // Set the counter's value to '0'
         legendaryCounters.set(index, 0);
 
-        // Reset the increment field's value to '1'
-        legendaryIncrementFields.get(index)
-                                .setText("1");
-
         // Calculate the probability
         legendaryProbabilities.set(index, ProbabilityHelper.probabilityCalculator(legendaryCounters.get(index),
                 PityTimers.LEGENDARY_PITY_TIMER));
@@ -512,6 +508,10 @@ public class TrackerService {
         String counter = Integer.toString(legendaryCounters.get(index));
         String probability = decimalFormat.format(legendaryProbabilities.get(index));
         TextFileHelper.updateLegendaryValues(expansionPanels, index, counter, probability);
+
+        // Reset the increment field's value to '1'
+        legendaryIncrementFields.get(index)
+                                .setText("1");
     }
 
     /**
@@ -531,10 +531,6 @@ public class TrackerService {
             // Set the counter's value to the new value
             legendaryCounters.set(index, newCounterValue);
 
-            // Reset the increment field's value to '1'
-            legendaryIncrementFields.get(index)
-                                    .setText("1");
-
             // Calculate the probability
             legendaryProbabilities.set(index, ProbabilityHelper.probabilityCalculator(legendaryCounters.get(index),
                     PityTimers.LEGENDARY_PITY_TIMER));
@@ -549,6 +545,10 @@ public class TrackerService {
             JOptionPane.showMessageDialog(trackerPanel, new InputErrorPopupWindowPanel(),
                     Text.INPUT_ERROR_MESSAGE_TITLE, JOptionPane.ERROR_MESSAGE);
         }
+
+        // Reset the increment field's value to '1'
+        legendaryIncrementFields.get(index)
+                                .setText("1");
     }
 
     /**
@@ -578,13 +578,13 @@ public class TrackerService {
                    .beep();
         }
 
-        // Reset the increment field's value to '1'
-        totalIncrementFields.get(index)
-                            .setText("1");
-
         // Update the displayed values and the save file
         String counter = Integer.toString(totalCounters.get(index));
         TextFileHelper.updateTotalValues(expansionPanels, index, counter);
+
+        // Reset the increment field's value to '1'
+        totalIncrementFields.get(index)
+                            .setText("1");
     }
 
     /**
@@ -601,12 +601,12 @@ public class TrackerService {
         // Set the counter's value to the new value
         totalCounters.set(index, newCounterValue);
 
-        // Reset the increment field's value to '1'
-        totalIncrementFields.get(index)
-                            .setText("1");
-
         // Update the displayed values and the save file
         String counter = Integer.toString(totalCounters.get(index));
         TextFileHelper.updateTotalValues(expansionPanels, index, counter);
+
+        // Reset the increment field's value to '1'
+        totalIncrementFields.get(index)
+                            .setText("1");
     }
 }

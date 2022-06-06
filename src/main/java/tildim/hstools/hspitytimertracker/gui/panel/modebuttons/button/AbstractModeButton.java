@@ -28,16 +28,14 @@ public abstract class AbstractModeButton extends JButton {
     @Serial
     private static final long serialVersionUID = 6044135139600565685L;
 
-    private transient BufferedImage modeIcon;
+    @Getter
+    protected transient MouseAdapter selectedModeButtonAdapter;
 
     @Getter
-    protected final transient MouseAdapter selectedModeButtonAdapter;
-
-    @Getter
-    protected final transient MouseAdapter unselectedModeButtonAdapter;
+    protected transient MouseAdapter unselectedModeButtonAdapter;
 
     /**
-     * Constructs a {@link #JButton}, sets some of its properties and initializes two {@code MouseAdapter}s
+     * Constructs a {@link #JButton}, sets some of its properties and creates two {@code MouseAdapter}s
      * (one for the selected mode and one for the unselected one).
      *
      * @param label      the label of the {@code AbstractModeButton}
@@ -48,10 +46,7 @@ public abstract class AbstractModeButton extends JButton {
     protected AbstractModeButton(String label, String iconPath, Color background, String tooltip) {
         super(" " + label);
 
-        // Icon creation
-        createModeIcon(iconPath);
-
-        setIcon(new ImageIcon(modeIcon));
+        setIcon(new ImageIcon(createModeIcon(iconPath)));
         setBackground(background);
         setFont(Fonts.MODE_FONT);
         setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
@@ -61,29 +56,11 @@ public abstract class AbstractModeButton extends JButton {
         setFocusPainted(false);
         setContentAreaFilled(false);
 
-        selectedModeButtonAdapter = new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent evt) {
-                setBackground(Colors.MODE_SELECTED_COLOR);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent evt) {
-                setBackground(Colors.MODE_SELECTED_COLOR);
-            }
-        };
-
-        unselectedModeButtonAdapter = new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent evt) {
-                setBackground(Colors.MODE_MOUSE_HOVER_COLOR);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent evt) {
-                setBackground(Colors.MODE_UNSELECTED_COLOR);
-            }
-        };
+        // Mouse adapters creation
+        selectedModeButtonAdapter =
+                createModeButtonMouseAdapter(Colors.MODE_SELECTED_COLOR, Colors.MODE_SELECTED_COLOR);
+        unselectedModeButtonAdapter =
+                createModeButtonMouseAdapter(Colors.MODE_MOUSE_HOVER_COLOR, Colors.MODE_UNSELECTED_COLOR);
     }
 
     @Override
@@ -100,16 +77,42 @@ public abstract class AbstractModeButton extends JButton {
     }
 
     /**
-     * Creates the mode icon.
+     * Creates a mode icon.
      *
      * @param iconPath the icon's path from the source root
+     * @return the mode icon
      */
-    private void createModeIcon(String iconPath) {
+    private BufferedImage createModeIcon(String iconPath) {
+        BufferedImage icon = null;
+
         try {
-            modeIcon = IconHelper.createIcon(iconPath);
+            icon = IconHelper.createIcon(iconPath);
         } catch (IOException e) {
             log.error("Error while creating mode icon");
             e.printStackTrace();
         }
+
+        return icon;
+    }
+
+    /**
+     * Creates a {@code AbstractModeButton} mouse adapter.
+     *
+     * @param enterColor the color when the mouse enters the {@code AbstractModeButton}
+     * @param exitColor  the color when the mouse exits the {@code AbstractModeButton}
+     * @return the {@code AbstractModeButton} mouse adapter
+     */
+    private MouseAdapter createModeButtonMouseAdapter(Color enterColor, Color exitColor) {
+        return new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent evt) {
+                setBackground(enterColor);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent evt) {
+                setBackground(exitColor);
+            }
+        };
     }
 }

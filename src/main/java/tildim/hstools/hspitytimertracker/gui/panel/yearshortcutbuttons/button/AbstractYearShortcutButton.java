@@ -31,8 +31,6 @@ public class AbstractYearShortcutButton extends JButton {
     @Serial
     private static final long serialVersionUID = 4179431845956576843L;
 
-    private transient BufferedImage yearShortcutIcon;
-
     /**
      * Constructs a {@link #JButton} and sets some of its properties.
      *
@@ -42,10 +40,7 @@ public class AbstractYearShortcutButton extends JButton {
     protected AbstractYearShortcutButton(String iconPath, String tooltip) {
         super();
 
-        // Icon creation
-        createYearShortcutIcon(iconPath);
-
-        setIcon(new ImageIcon(yearShortcutIcon));
+        setIcon(new ImageIcon(createYearShortcutIcon(iconPath)));
         setBackground(Colors.MODE_SELECTED_COLOR);
         setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 
@@ -81,16 +76,21 @@ public class AbstractYearShortcutButton extends JButton {
     }
 
     /**
-     * Creates the year shortcut icon.
+     * Creates a year shortcut icon.
      *
      * @param iconPath the icon's path from the source root
+     * @return the year shortcut icon
      */
-    private void createYearShortcutIcon(String iconPath) {
+    private BufferedImage createYearShortcutIcon(String iconPath) {
+        BufferedImage icon = null;
+
         try {
-            yearShortcutIcon = IconHelper.createIcon(iconPath);
+            icon = IconHelper.createIcon(iconPath);
         } catch (IOException e) {
             log.error("Error while creating year shortcut icon");
             e.printStackTrace();
         }
+
+        return icon;
     }
 }

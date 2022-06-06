@@ -25,5 +25,6 @@ public abstract class AbstractModePanel extends ScrollablePanel {
         super();
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setScrollableWidth(ScrollablePanel.ScrollableSizeHint.FIT);
     }
 }

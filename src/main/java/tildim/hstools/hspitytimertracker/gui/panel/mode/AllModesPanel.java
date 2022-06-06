@@ -1,7 +1,6 @@
 package tildim.hstools.hspitytimertracker.gui.panel.mode;
 
 import lombok.Getter;
-import tildim.hstools.hspitytimertracker.gui.panel.ScrollablePanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,10 +30,10 @@ public class AllModesPanel extends JPanel {
      * Constructs a {@link #JPanel}, sets its layout and places in it:
      * <ul>
      *     <li>
-     *         a {@code StandardModePanel};
+     *         a {@code JScrollPane} containing a {@code StandardModePanel};
      *     </li>
      *     <li>
-     *         a {@code WildModePanel}.
+     *         a {@code JScrollPane} containing a {@code WildModePanel}.
      *     </li>
      * </ul>
      *
@@ -48,29 +47,33 @@ public class AllModesPanel extends JPanel {
 
         // 'Standard' mode panel
         standardModePanel = new StandardModePanel();
-        standardModePanel.setScrollableWidth(ScrollablePanel.ScrollableSizeHint.FIT);
-
-        standardModePanelScrollPane = new JScrollPane(standardModePanel,
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        standardModePanelScrollPane.setBorder(BorderFactory.createEmptyBorder());
-        standardModePanelScrollPane.getVerticalScrollBar()
-                                   .setUnitIncrement(25);
-        standardModePanelScrollPane.getVerticalScrollBar()
-                                   .setValue(0);
+        standardModePanelScrollPane = createModePanelScrollPane(standardModePanel);
 
         // 'Wild' mode panel
         wildModePanel = new WildModePanel();
-        wildModePanel.setScrollableWidth(ScrollablePanel.ScrollableSizeHint.FIT);
-
-        wildModePanelScrollPane = new JScrollPane(wildModePanel,
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        wildModePanelScrollPane.setBorder(BorderFactory.createEmptyBorder());
-        wildModePanelScrollPane.getVerticalScrollBar()
-                               .setUnitIncrement(25);
-        wildModePanelScrollPane.getVerticalScrollBar()
-                               .setValue(0);
+        wildModePanelScrollPane = createModePanelScrollPane(wildModePanel);
 
         add(standardModePanelScrollPane, "Standard");
         add(wildModePanelScrollPane, "Wild");
+    }
+
+    /**
+     * Creates a mode panel {@code JScrollPane}.
+     *
+     * @param modePanel the instance of {@code AbstractModePanel} to be placed in the {@code JScrollPane}
+     * @return the mode panel {@code JScrollPane}
+     * @see JScrollPane
+     */
+    private JScrollPane createModePanelScrollPane(AbstractModePanel modePanel) {
+        JScrollPane modePanelScrollPane = new JScrollPane(modePanel,
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        modePanelScrollPane.setBorder(BorderFactory.createEmptyBorder());
+        modePanelScrollPane.getVerticalScrollBar()
+                           .setUnitIncrement(25);
+        modePanelScrollPane.getVerticalScrollBar()
+                           .setValue(0);
+
+        return modePanelScrollPane;
     }
 }

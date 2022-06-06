@@ -29,16 +29,25 @@ public class HelpPopupWindowPanel extends AbstractPopupWindowPanel {
     public HelpPopupWindowPanel(String text) {
         super(Text.TRACKER_TITLE, text);
 
-        // "Help" text container
-        JScrollPane helpMessagePanel = new JScrollPane(super.getBody(),
-                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        helpMessagePanel.setPreferredSize(new Dimension(640, 360));
-        helpMessagePanel.setBorder(BorderFactory.createEmptyBorder());
-        helpMessagePanel.getVerticalScrollBar()
-                        .setUnitIncrement(15);
-        helpMessagePanel.getVerticalScrollBar()
-                        .setValue(0);
+        add(createHelpMessageScrollPane());
+    }
 
-        add(helpMessagePanel);
+    /**
+     * Creates the help message scroll pane.
+     *
+     * @return the help message scroll pane
+     */
+    private JScrollPane createHelpMessageScrollPane() {
+        JScrollPane helpMessageScrollPane = new JScrollPane(super.getBody(),
+                ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        helpMessageScrollPane.setPreferredSize(new Dimension(640, 360));
+        helpMessageScrollPane.setBorder(BorderFactory.createEmptyBorder());
+        helpMessageScrollPane.getVerticalScrollBar()
+                             .setUnitIncrement(15);
+        helpMessageScrollPane.getVerticalScrollBar()
+                             .setValue(0);
+
+        return helpMessageScrollPane;
     }
 }

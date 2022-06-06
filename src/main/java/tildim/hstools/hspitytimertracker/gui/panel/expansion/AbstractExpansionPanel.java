@@ -41,15 +41,11 @@ public abstract class AbstractExpansionPanel extends JPanel {
     @Serial
     private static final long serialVersionUID = 4250021228385909895L;
 
-    // Variable for changing text style
-    private transient StyledDocument doc;
-
     // Expansion panel colors
     private Color expansionBackground;
     private Color expansionForeground;
 
     // Logo panel
-    private transient BufferedImage logoIcon;
     private IconButton logoButton;
 
     // Epic panel
@@ -82,8 +78,10 @@ public abstract class AbstractExpansionPanel extends JPanel {
     private AddButton totalAddButton;
     private IncrementField totalIncrementField;
 
-    private transient BufferedImage cardPackIcon;
     private IconButton cardPackButton;
+
+    // Variable for changing text style
+    private transient StyledDocument doc;
 
     /**
      * Constructs a {@link #JPanel}, sets some of its properties and places in it:
@@ -114,8 +112,8 @@ public abstract class AbstractExpansionPanel extends JPanel {
         super();
 
         // Icon creation
-        createLogoIcon(logoIconPath);
-        createCardPackIcon(cardPackIconPath);
+        BufferedImage logoIcon = createExpansionIcon(logoIconPath);
+        BufferedImage cardPackIcon = createExpansionIcon(cardPackIconPath);
 
         // Expansion panel colors
         expansionBackground = background;
@@ -126,56 +124,48 @@ public abstract class AbstractExpansionPanel extends JPanel {
         setBackground(expansionBackground);
         setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 
-        add(createLogoPanel());
+        add(createLogoPanel(logoIcon));
         add(createEpicPanel(modifierColors));
         add(createLegendaryPanel(modifierColors));
-        add(createTotalPanel(modifierColors));
+        add(createTotalPanel(modifierColors, cardPackIcon));
     }
 
     /**
-     * Creates the logo icon.
+     * Creates an expansion icon.
      *
      * @param iconPath the icon's path from the source root
+     * @return the expansion icon
      * @see #createLogoPanel
-     */
-    private void createLogoIcon(String iconPath) {
-        try {
-            logoIcon = IconHelper.createIcon(iconPath);
-        } catch (IOException e) {
-            log.error("Error while creating logo icon");
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Creates the card pack icon.
-     *
-     * @param iconPath the icon's path from the source root
      * @see #createCardPackPanel
      */
-    private void createCardPackIcon(String iconPath) {
+    private BufferedImage createExpansionIcon(String iconPath) {
+        BufferedImage icon = null;
+
         try {
-            cardPackIcon = IconHelper.createIcon(iconPath);
+            icon = IconHelper.createIcon(iconPath);
         } catch (IOException e) {
-            log.error("Error while creating card pack icon");
+            log.error("Error while creating expansion icon");
             e.printStackTrace();
         }
+
+        return icon;
     }
 
     /**
      * Creates the logo panel.
      *
+     * @param icon the logo icon
      * @return the logo panel
-     * @see #createLogoIcon
+     * @see #createExpansionIcon
      */
-    private JPanel createLogoPanel() {
+    private JPanel createLogoPanel(BufferedImage icon) {
         // Logo panel
         JPanel logoPanel = new JPanel();
         logoPanel.setLayout(new GridBagLayout());
         logoPanel.setBackground(expansionBackground);
 
         // Logo button
-        logoButton = new IconButton(logoIcon, Tooltips.LOGO_BUTTON_TOOLTIP);
+        logoButton = new IconButton(icon, Tooltips.LOGO_BUTTON_TOOLTIP);
 
         logoPanel.add(logoButton);
 
@@ -325,9 +315,10 @@ public abstract class AbstractExpansionPanel extends JPanel {
      *
      * @param modifierColors a list with 3 colors for the modifiers: 1) the background color, 2) the foreground color
      *                       and 3) the hover color
+     * @param icon           the card pack icon
      * @return the total panel
      */
-    private JPanel createTotalPanel(List<Color> modifierColors) {
+    private JPanel createTotalPanel(List<Color> modifierColors, BufferedImage icon) {
         // Total amount of packs opened panel
         JPanel totalPanel = new JPanel();
         totalPanel.setBackground(expansionBackground);
@@ -368,7 +359,7 @@ public abstract class AbstractExpansionPanel extends JPanel {
                 totalModifyButton, totalAddButton, totalIncrementField);
 
         // Card pack panel
-        JPanel cardPackPanel = createCardPackPanel();
+        JPanel cardPackPanel = createCardPackPanel(icon);
 
         gbc.gridy = 0;
         totalPanel.add(totalPanelTitle, gbc);
@@ -388,17 +379,18 @@ public abstract class AbstractExpansionPanel extends JPanel {
     /**
      * Creates the card pack panel.
      *
+     * @param icon the card pack icon
      * @return the card pack panel
-     * @see #createCardPackIcon
+     * @see #createExpansionIcon
      */
-    private JPanel createCardPackPanel() {
+    private JPanel createCardPackPanel(BufferedImage icon) {
         // Card pack panel
         JPanel cardPackPanel = new JPanel();
         cardPackPanel.setLayout(new GridBagLayout());
         cardPackPanel.setBackground(expansionBackground);
 
         // Card pack button
-        cardPackButton = new IconButton(cardPackIcon, Tooltips.CARD_PACK_BUTTON_TOOLTIP);
+        cardPackButton = new IconButton(icon, Tooltips.CARD_PACK_BUTTON_TOOLTIP);
 
         cardPackPanel.add(cardPackButton);
 
