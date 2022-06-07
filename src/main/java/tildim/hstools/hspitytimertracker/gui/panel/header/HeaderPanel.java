@@ -37,7 +37,7 @@ public class HeaderPanel extends JPanel {
     private HeaderButton saveFolder;
 
     /**
-     * Constructs a {@link #JPanel}, sets its layout and places in it:
+     * Constructs a {@link #JPanel}, sets some of its properties and places in it:
      * <ul>
      *     <li>
      *         the left header {@code JPanel};

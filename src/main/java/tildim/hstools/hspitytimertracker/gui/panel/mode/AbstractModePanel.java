@@ -19,7 +19,7 @@ public abstract class AbstractModePanel extends ScrollablePanel {
     private static final long serialVersionUID = 6416071498040467732L;
 
     /**
-     * Constructs a {@link #ScrollablePanel} and sets its layout.
+     * Constructs a {@link #ScrollablePanel} and sets some of its properties.
      */
     protected AbstractModePanel() {
         super();

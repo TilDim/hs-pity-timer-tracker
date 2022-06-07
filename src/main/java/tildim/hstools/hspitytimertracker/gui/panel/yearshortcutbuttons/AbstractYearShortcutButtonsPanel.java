@@ -20,7 +20,7 @@ public class AbstractYearShortcutButtonsPanel extends JPanel {
     private static final long serialVersionUID = -8412661119548543604L;
 
     /**
-     * Constructs a {@link #JPanel} and sets its layout and background color.
+     * Constructs a {@link #JPanel} and sets some of its properties.
      */
     protected AbstractYearShortcutButtonsPanel() {
         super();
