@@ -7,10 +7,10 @@ This program has a pity timer tracker for both epic and legendary cards of every
 How it works:
 
 For each expansion there is a dedicated panel containing:
-1) The icon of the expansion, which is a link to the expansion's official webpage (except 'Classic')
-2) A pity timer tracker for epic cards with buttons to modify the tracker and a label displaying the probability of finding an epic card in the next pack
-3) A pity timer tracker for legendary cards with buttons to modify the tracker and a label displaying the probability of finding a legendary card in the next pack
-4) A total card packs counter with buttons and fields to modify the counter and a card pack button, which is a link to the Battle.net Shop for purchasing card packs of this expansion
+1) The expansion's logo, which is a link to the expansion's official webpage (except 'Classic')
+2) A pity timer tracker for epic cards with buttons to modify the tracker's counter and a label displaying the probability of finding an epic card in the next pack
+3) A pity timer tracker for legendary cards with buttons to modify the tracker's counter and a label displaying the probability of finding a legendary card in the next pack
+4) A total card packs counter with buttons to modify the counter and the expansion's card pack, which is a link to the Battle.net Shop for purchasing card packs of this expansion
 
 'Wild' sets are hidden by default. You can switch between 'Standard' and 'Wild' sets by pressing the 'Standard Sets' and 'Wild Sets' buttons respectively.
 Whenever either of these buttons is pressed, buttons corresponding to the Hearthstone years will be displayed.

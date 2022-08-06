@@ -1,6 +1,7 @@
 package tildim.hstools.hspitytimertracker.gui.panel.year;
 
 import lombok.Getter;
+import tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthehydra.MurderAtCastleNathriaPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthehydra.VoyageToTheSunkenCityPanel;
 import tildim.hstools.hspitytimertracker.util.Text;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
@@ -13,6 +14,7 @@ import java.io.Serial;
  *
  * @author Tilemachos Dimos
  * @see AbstractYearPanel
+ * @see MurderAtCastleNathriaPanel
  * @see VoyageToTheSunkenCityPanel
  */
 @Getter
@@ -21,12 +23,16 @@ public class YearOfTheHydraPanel extends AbstractYearPanel {
     @Serial
     private static final long serialVersionUID = -7939839033044679702L;
 
+    private final MurderAtCastleNathriaPanel murderAtCastleNathriaPanel;
     private final VoyageToTheSunkenCityPanel voyageToTheSunkenCityPanel;
 
     /**
      * Constructs a {@link #AbstractYearPanel} with all the <i>Year of the Hydra</i> specific properties
      * and places in it:
      * <ul>
+     *     <li>
+     *         a {@code MurderAtCastleNathriaPanel}.
+     *     </li>
      *     <li>
      *         a {@code VoyageToTheSunkenCityPanel}.
      *     </li>
@@ -35,8 +41,10 @@ public class YearOfTheHydraPanel extends AbstractYearPanel {
     public YearOfTheHydraPanel() {
         super(IconPaths.HYDRA_ICON_PATH, Text.HYDRA_TITLE);
 
+        murderAtCastleNathriaPanel = new MurderAtCastleNathriaPanel();
         voyageToTheSunkenCityPanel = new VoyageToTheSunkenCityPanel();
 
+        add(murderAtCastleNathriaPanel);
         add(voyageToTheSunkenCityPanel);
     }
 }

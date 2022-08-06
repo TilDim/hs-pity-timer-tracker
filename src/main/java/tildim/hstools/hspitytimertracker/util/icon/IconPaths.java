@@ -61,6 +61,7 @@ public final class IconPaths {
 
     // ++++++++++   LOGO   ++++++++++
     // Year of the Hydra
+    public static final String NATHRIA_LOGO_ICON_PATH = "images/hs_expansion_icons/murder_at_castle_nathria.png";
     public static final String SUNKEN_LOGO_ICON_PATH = "images/hs_expansion_icons/voyage_to_the_sunken_city.png";
 
     // Year of the Gryphon
@@ -102,6 +103,7 @@ public final class IconPaths {
 
     // ++++++++++   CARD PACK   ++++++++++
     // Year of the Hydra
+    public static final String NATHRIA_CARD_PACK_ICON_PATH = "images/hs_card_pack_icons/murder_at_castle_nathria_card_pack.png";
     public static final String SUNKEN_CARD_PACK_ICON_PATH = "images/hs_card_pack_icons/voyage_to_the_sunken_city_card_pack.png";
 
     // Year of the Gryphon

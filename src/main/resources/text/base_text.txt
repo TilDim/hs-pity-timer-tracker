@@ -3,6 +3,7 @@
 ~ Hearthstone Pity Timer Tracker ~
 
 - Expansions
+Murder at Castle Nathria
 Voyage to the Sunken City
 Fractured in Alterac Valley
 United in Stormwind
@@ -28,6 +29,7 @@ Classic
 ----------
 
 - Epic counters
+Murder at Castle Nathria: 0
 Voyage to the Sunken City: 0
 Fractured in Alterac Valley: 0
 United in Stormwind: 0
@@ -51,6 +53,7 @@ Goblins vs Gnomes: 0
 Classic: 0
 
 - Epic probabilities
+Murder at Castle Nathria: 0
 Voyage to the Sunken City: 0
 Fractured in Alterac Valley: 0
 United in Stormwind: 0
@@ -76,6 +79,7 @@ Classic: 0
 ----------
 
 - Legendary counters
+Murder at Castle Nathria: 0
 Voyage to the Sunken City: 0
 Fractured in Alterac Valley: 0
 United in Stormwind: 0
@@ -99,6 +103,7 @@ Goblins vs Gnomes: 0
 Classic: 0
 
 - Legendary probabilities
+Murder at Castle Nathria: 0
 Voyage to the Sunken City: 0
 Fractured in Alterac Valley: 0
 United in Stormwind: 0
@@ -124,6 +129,7 @@ Classic: 0
 ----------
 
 - Total counters
+Murder at Castle Nathria: 0
 Voyage to the Sunken City: 0
 Fractured in Alterac Valley: 0
 United in Stormwind: 0

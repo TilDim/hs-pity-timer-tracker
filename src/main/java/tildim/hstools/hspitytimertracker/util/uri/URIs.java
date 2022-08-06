@@ -10,6 +10,7 @@ public final class URIs {
 
     // ++++++++++   EXPANSION   ++++++++++
     // Year of the Hydra
+    public static final String NATHRIA_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/murder-at-castle-nathria";
     public static final String SUNKEN_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/voyage-to-the-sunken-city";
 
     // Year of the Gryphon
@@ -48,6 +49,7 @@ public final class URIs {
 
     // ++++++++++   CARD PACK   ++++++++++
     // Year of the Hydra
+    public static final String NATHRIA_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-murder-at-castle-nathria";
     public static final String SUNKEN_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-voyage-to-the-sunken-city";
 
     // Year of the Gryphon

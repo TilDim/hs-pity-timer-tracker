@@ -47,6 +47,7 @@ public class URIHelper {
         expansionURIs.add(URI.create(URIs.STORMWIND_EXPANSION_URI));
         expansionURIs.add(URI.create(URIs.ALTERAC_EXPANSION_URI));
         expansionURIs.add(URI.create(URIs.SUNKEN_EXPANSION_URI));
+        expansionURIs.add(URI.create(URIs.NATHRIA_EXPANSION_URI));
 
         return expansionURIs;
     }
@@ -80,6 +81,7 @@ public class URIHelper {
         cardPackURIs.add(URI.create(URIs.STORMWIND_CARD_PACK_URI));
         cardPackURIs.add(URI.create(URIs.ALTERAC_CARD_PACK_URI));
         cardPackURIs.add(URI.create(URIs.SUNKEN_CARD_PACK_URI));
+        cardPackURIs.add(URI.create(URIs.NATHRIA_CARD_PACK_URI));
 
         return cardPackURIs;
     }

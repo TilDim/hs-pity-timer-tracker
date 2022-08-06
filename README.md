@@ -13,10 +13,10 @@ This program has a pity timer tracker for both epic and legendary cards of every
 * How it works:
 
 For each expansion there is a dedicated panel containing:
-1) The icon of the expansion, which is a link to the expansion's official webpage (except 'Classic')
-2) A pity timer tracker for epic cards with buttons to modify the tracker and a label displaying the probability of finding an epic card in the next pack
-3) A pity timer tracker for legendary cards with buttons to modify the tracker and a label displaying the probability of finding a legendary card in the next pack
-4) A total card packs counter with buttons and fields to modify the counter and four buttons, each one being a link to the expansion's 'Common', 'Rare', 'Epic' and 'Legendary' cards webpage respectively
+1) The expansion's logo, which is a link to the expansion's official webpage (except 'Classic')
+2) A pity timer tracker for epic cards with buttons to modify the tracker's counter and a label displaying the probability of finding an epic card in the next pack
+3) A pity timer tracker for legendary cards with buttons to modify the tracker's counter and a label displaying the probability of finding a legendary card in the next pack
+4) A total card packs counter with buttons to modify the counter and the expansion's card pack, which is a link to the Battle.net Shop for purchasing card packs of this expansion
 
 This program does not operate automatically. All the timers and counters are modified manually by the user with the use of buttons.
 You can find more details on how this program works by pressing the program's help button.

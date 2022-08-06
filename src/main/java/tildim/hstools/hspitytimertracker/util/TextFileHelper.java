@@ -55,10 +55,11 @@ public class TextFileHelper {
             saveFile = SAVE_FILE_PATH;
             saveFileData = readSaveFile(saveFile);
 
-            // Check if the save file's text is different compared to the base text
-            // If it's not, insert the new expansions in the save file
-            // (Expansions are stored in descending chronological order)
-            // (The names of the currently stored expansions are located after the '- Expansions' label)
+            /* Check if the save file's text is different compared to the base text
+             * If it's not, insert the new expansions in the save file
+             * (Expansions are stored in descending chronological order)
+             * (The names of the currently stored expansions are located after the '- Expansions' label)
+             */
             if (!saveFileData.get(Indexes.FIRST_EXPANSION_IN_FILE_ROW_INDEX)
                              .equals(baseFileData.get(Indexes.FIRST_EXPANSION_IN_FILE_ROW_INDEX))) {
                 // List with the expansions in the base file
@@ -234,6 +235,9 @@ public class TextFileHelper {
         saveFileData = readSaveFile(saveFile);
 
         // Epic counters
+        expansionPanels.get(Indexes.NATHRIA_INDEX)
+                       .setEpicCounter(saveFileData.get(Indexes.NATHRIA_EPIC_COUNTER_ROW_INDEX)
+                                                   .substring(Indexes.NATHRIA_COLUMN_INDEX));
         expansionPanels.get(Indexes.SUNKEN_INDEX)
                        .setEpicCounter(saveFileData.get(Indexes.SUNKEN_EPIC_COUNTER_ROW_INDEX)
                                                    .substring(Indexes.SUNKEN_COLUMN_INDEX));
@@ -299,6 +303,9 @@ public class TextFileHelper {
                                                    .substring(Indexes.CLASSIC_COLUMN_INDEX));
 
         // Epic probabilities
+        expansionPanels.get(Indexes.NATHRIA_INDEX)
+                       .setEpicProbability(saveFileData.get(Indexes.NATHRIA_EPIC_PROBABILITY_ROW_INDEX)
+                                                       .substring(Indexes.NATHRIA_COLUMN_INDEX));
         expansionPanels.get(Indexes.SUNKEN_INDEX)
                        .setEpicProbability(saveFileData.get(Indexes.SUNKEN_EPIC_PROBABILITY_ROW_INDEX)
                                                        .substring(Indexes.SUNKEN_COLUMN_INDEX));
@@ -364,6 +371,9 @@ public class TextFileHelper {
                                                        .substring(Indexes.CLASSIC_COLUMN_INDEX));
 
         // Legendary counters
+        expansionPanels.get(Indexes.NATHRIA_INDEX)
+                       .setLegendaryCounter(saveFileData.get(Indexes.NATHRIA_LEGENDARY_COUNTER_ROW_INDEX)
+                                                        .substring(Indexes.NATHRIA_COLUMN_INDEX));
         expansionPanels.get(Indexes.SUNKEN_INDEX)
                        .setLegendaryCounter(saveFileData.get(Indexes.SUNKEN_LEGENDARY_COUNTER_ROW_INDEX)
                                                         .substring(Indexes.SUNKEN_COLUMN_INDEX));
@@ -429,6 +439,9 @@ public class TextFileHelper {
                                                         .substring(Indexes.CLASSIC_COLUMN_INDEX));
 
         // Legendary probabilities
+        expansionPanels.get(Indexes.NATHRIA_INDEX)
+                       .setLegendaryProbability(saveFileData.get(Indexes.NATHRIA_LEGENDARY_PROBABILITY_ROW_INDEX)
+                                                            .substring(Indexes.NATHRIA_COLUMN_INDEX));
         expansionPanels.get(Indexes.SUNKEN_INDEX)
                        .setLegendaryProbability(saveFileData.get(Indexes.SUNKEN_LEGENDARY_PROBABILITY_ROW_INDEX)
                                                             .substring(Indexes.SUNKEN_COLUMN_INDEX));
@@ -494,6 +507,9 @@ public class TextFileHelper {
                                                             .substring(Indexes.CLASSIC_COLUMN_INDEX));
 
         // Total counters
+        expansionPanels.get(Indexes.NATHRIA_INDEX)
+                       .setTotalCounter(saveFileData.get(Indexes.NATHRIA_TOTAL_COUNTER_ROW_INDEX)
+                                                    .substring(Indexes.NATHRIA_COLUMN_INDEX));
         expansionPanels.get(Indexes.SUNKEN_INDEX)
                        .setTotalCounter(saveFileData.get(Indexes.SUNKEN_TOTAL_COUNTER_ROW_INDEX)
                                                     .substring(Indexes.SUNKEN_COLUMN_INDEX));
@@ -569,239 +585,109 @@ public class TextFileHelper {
      */
     public static void updateEpicValues(List<AbstractExpansionPanel> expansionPanels,
                                         int index, String counter, String probability) {
+        int[] rowIndexes = new int[2];
+
+        // Select the expansion to be updated in the save file according to its index and set the save file row indexes
         switch (index) {
             case 0 -> {
-                expansionPanels.get(Indexes.CLASSIC_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.CLASSIC_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.CLASSIC_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.CLASSIC_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.CLASSIC_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.CLASSIC_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 1 -> {
-                expansionPanels.get(Indexes.GOBLINS_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.GOBLINS_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.GOBLINS_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.GOBLINS_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.GOBLINS_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.GOBLINS_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 2 -> {
-                expansionPanels.get(Indexes.TOURNAMENT_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.TOURNAMENT_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.TOURNAMENT_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.TOURNAMENT_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.TOURNAMENT_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.TOURNAMENT_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 3 -> {
-                expansionPanels.get(Indexes.OLDGODS_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.OLDGODS_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.OLDGODS_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.OLDGODS_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.OLDGODS_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.OLDGODS_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 4 -> {
-                expansionPanels.get(Indexes.GADGETZAN_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.GADGETZAN_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.GADGETZAN_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.GADGETZAN_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.GADGETZAN_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.GADGETZAN_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 5 -> {
-                expansionPanels.get(Indexes.UNGORO_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.UNGORO_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.UNGORO_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.UNGORO_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.UNGORO_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.UNGORO_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 6 -> {
-                expansionPanels.get(Indexes.KNIGHTS_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.KNIGHTS_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.KNIGHTS_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.KNIGHTS_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.KNIGHTS_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.KNIGHTS_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 7 -> {
-                expansionPanels.get(Indexes.KOBOLDS_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.KOBOLDS_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.KOBOLDS_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.KOBOLDS_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.KOBOLDS_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.KOBOLDS_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 8 -> {
-                expansionPanels.get(Indexes.WITCHWOOD_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.WITCHWOOD_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.WITCHWOOD_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.WITCHWOOD_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.WITCHWOOD_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.WITCHWOOD_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 9 -> {
-                expansionPanels.get(Indexes.BOOMSDAY_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.BOOMSDAY_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.BOOMSDAY_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.BOOMSDAY_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.BOOMSDAY_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.BOOMSDAY_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 10 -> {
-                expansionPanels.get(Indexes.RUMBLE_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.RUMBLE_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.RUMBLE_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.RUMBLE_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.RUMBLE_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.RUMBLE_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 11 -> {
-                expansionPanels.get(Indexes.SHADOWS_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.SHADOWS_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.SHADOWS_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.SHADOWS_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.SHADOWS_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.SHADOWS_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 12 -> {
-                expansionPanels.get(Indexes.ULDUM_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.ULDUM_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.ULDUM_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.ULDUM_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.ULDUM_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.ULDUM_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 13 -> {
-                expansionPanels.get(Indexes.DRAGONS_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.DRAGONS_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.DRAGONS_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.DRAGONS_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.DRAGONS_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.DRAGONS_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 14 -> {
-                expansionPanels.get(Indexes.OUTLAND_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.OUTLAND_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.OUTLAND_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.OUTLAND_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.OUTLAND_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.OUTLAND_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 15 -> {
-                expansionPanels.get(Indexes.SCHOLOMANCE_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.SCHOLOMANCE_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.SCHOLOMANCE_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.SCHOLOMANCE_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.SCHOLOMANCE_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.SCHOLOMANCE_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 16 -> {
-                expansionPanels.get(Indexes.DARKMOON_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.DARKMOON_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.DARKMOON_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.DARKMOON_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.DARKMOON_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.DARKMOON_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 17 -> {
-                expansionPanels.get(Indexes.BARRENS_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.BARRENS_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.BARRENS_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.BARRENS_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.BARRENS_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.BARRENS_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 18 -> {
-                expansionPanels.get(Indexes.STORMWIND_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.STORMWIND_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.STORMWIND_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.STORMWIND_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.STORMWIND_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.STORMWIND_EPIC_PROBABILITY_ROW_INDEX;
             }
             case 19 -> {
-                expansionPanels.get(Indexes.ALTERAC_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.ALTERAC_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.ALTERAC_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.ALTERAC_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.ALTERAC_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.ALTERAC_EPIC_PROBABILITY_ROW_INDEX;
+            }
+            case 20 -> {
+                rowIndexes[0] = Indexes.SUNKEN_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.SUNKEN_EPIC_PROBABILITY_ROW_INDEX;
             }
             default -> {
-                expansionPanels.get(Indexes.SUNKEN_INDEX)
-                               .setEpicCounter(counter);
-                saveFileData.set(Indexes.SUNKEN_EPIC_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.SUNKEN_INDEX)
-                               .setEpicProbability(probability);
-                saveFileData.set(Indexes.SUNKEN_EPIC_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.NATHRIA_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.NATHRIA_EPIC_PROBABILITY_ROW_INDEX;
             }
         }
+
+        // Update the counters
+        expansionPanels.get(index)
+                       .setEpicCounter(counter);
+        saveFileData.set(rowIndexes[0], saveFileExpansions.get(index) + ": " + counter);
+
+        // Update the probabilities
+        expansionPanels.get(index)
+                       .setEpicProbability(probability);
+        saveFileData.set(rowIndexes[1], saveFileExpansions.get(index) + ": " + probability);
 
         // Write the updated data in the save file
         setWritable();
@@ -819,239 +705,109 @@ public class TextFileHelper {
      */
     public static void updateLegendaryValues(List<AbstractExpansionPanel> expansionPanels, int index,
                                              String counter, String probability) {
+        int[] rowIndexes = new int[2];
+
+        // Select the expansion to be updated in the save file according to its index and set the save file row indexes
         switch (index) {
             case 0 -> {
-                expansionPanels.get(Indexes.CLASSIC_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.CLASSIC_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.CLASSIC_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.CLASSIC_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.CLASSIC_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.CLASSIC_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 1 -> {
-                expansionPanels.get(Indexes.GOBLINS_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.GOBLINS_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.GOBLINS_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.GOBLINS_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.GOBLINS_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.GOBLINS_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 2 -> {
-                expansionPanels.get(Indexes.TOURNAMENT_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.TOURNAMENT_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.TOURNAMENT_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.TOURNAMENT_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.TOURNAMENT_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.TOURNAMENT_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 3 -> {
-                expansionPanels.get(Indexes.OLDGODS_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.OLDGODS_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.OLDGODS_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.OLDGODS_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.OLDGODS_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.OLDGODS_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 4 -> {
-                expansionPanels.get(Indexes.GADGETZAN_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.GADGETZAN_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.GADGETZAN_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.GADGETZAN_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.GADGETZAN_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.GADGETZAN_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 5 -> {
-                expansionPanels.get(Indexes.UNGORO_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.UNGORO_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.UNGORO_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.UNGORO_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.UNGORO_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.UNGORO_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 6 -> {
-                expansionPanels.get(Indexes.KNIGHTS_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.KNIGHTS_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.KNIGHTS_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.KNIGHTS_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.KNIGHTS_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.KNIGHTS_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 7 -> {
-                expansionPanels.get(Indexes.KOBOLDS_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.KOBOLDS_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.KOBOLDS_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.KOBOLDS_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.KOBOLDS_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.KOBOLDS_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 8 -> {
-                expansionPanels.get(Indexes.WITCHWOOD_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.WITCHWOOD_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.WITCHWOOD_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.WITCHWOOD_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.WITCHWOOD_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.WITCHWOOD_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 9 -> {
-                expansionPanels.get(Indexes.BOOMSDAY_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.BOOMSDAY_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.BOOMSDAY_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.BOOMSDAY_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.BOOMSDAY_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.BOOMSDAY_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 10 -> {
-                expansionPanels.get(Indexes.RUMBLE_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.RUMBLE_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.RUMBLE_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.RUMBLE_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.RUMBLE_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.RUMBLE_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 11 -> {
-                expansionPanels.get(Indexes.SHADOWS_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.SHADOWS_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.SHADOWS_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.SHADOWS_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.SHADOWS_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.SHADOWS_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 12 -> {
-                expansionPanels.get(Indexes.ULDUM_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.ULDUM_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.ULDUM_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.ULDUM_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.ULDUM_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.ULDUM_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 13 -> {
-                expansionPanels.get(Indexes.DRAGONS_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.DRAGONS_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.DRAGONS_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.DRAGONS_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.DRAGONS_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.DRAGONS_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 14 -> {
-                expansionPanels.get(Indexes.OUTLAND_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.OUTLAND_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.OUTLAND_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.OUTLAND_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.OUTLAND_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.OUTLAND_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 15 -> {
-                expansionPanels.get(Indexes.SCHOLOMANCE_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.SCHOLOMANCE_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.SCHOLOMANCE_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.SCHOLOMANCE_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.SCHOLOMANCE_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.SCHOLOMANCE_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 16 -> {
-                expansionPanels.get(Indexes.DARKMOON_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.DARKMOON_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.DARKMOON_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.DARKMOON_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.DARKMOON_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.DARKMOON_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 17 -> {
-                expansionPanels.get(Indexes.BARRENS_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.BARRENS_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.BARRENS_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.BARRENS_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.BARRENS_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.BARRENS_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 18 -> {
-                expansionPanels.get(Indexes.STORMWIND_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.STORMWIND_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.STORMWIND_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.STORMWIND_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.STORMWIND_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.STORMWIND_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             case 19 -> {
-                expansionPanels.get(Indexes.ALTERAC_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.ALTERAC_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.ALTERAC_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.ALTERAC_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.ALTERAC_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.ALTERAC_LEGENDARY_PROBABILITY_ROW_INDEX;
+            }
+            case 20 -> {
+                rowIndexes[0] = Indexes.SUNKEN_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.SUNKEN_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
             default -> {
-                expansionPanels.get(Indexes.SUNKEN_INDEX)
-                               .setLegendaryCounter(counter);
-                saveFileData.set(Indexes.SUNKEN_LEGENDARY_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-
-                expansionPanels.get(Indexes.SUNKEN_INDEX)
-                               .setLegendaryProbability(probability);
-                saveFileData.set(Indexes.SUNKEN_LEGENDARY_PROBABILITY_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + probability);
+                rowIndexes[0] = Indexes.NATHRIA_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.NATHRIA_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
         }
+
+        // Update the counters
+        expansionPanels.get(index)
+                       .setLegendaryCounter(counter);
+        saveFileData.set(rowIndexes[0], saveFileExpansions.get(index) + ": " + counter);
+
+        // Update the probabilities
+        expansionPanels.get(index)
+                       .setLegendaryProbability(probability);
+        saveFileData.set(rowIndexes[1], saveFileExpansions.get(index) + ": " + probability);
 
         // Write the updated data in the save file
         setWritable();
@@ -1067,134 +823,36 @@ public class TextFileHelper {
      * @param counter         is the value of the counter to be updated
      */
     public static void updateTotalValues(List<AbstractExpansionPanel> expansionPanels, int index, String counter) {
-        switch (index) {
-            case 0 -> {
-                expansionPanels.get(Indexes.CLASSIC_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.CLASSIC_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 1 -> {
-                expansionPanels.get(Indexes.GOBLINS_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.GOBLINS_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 2 -> {
-                expansionPanels.get(Indexes.TOURNAMENT_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.TOURNAMENT_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 3 -> {
-                expansionPanels.get(Indexes.OLDGODS_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.OLDGODS_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 4 -> {
-                expansionPanels.get(Indexes.GADGETZAN_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.GADGETZAN_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 5 -> {
-                expansionPanels.get(Indexes.UNGORO_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.UNGORO_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 6 -> {
-                expansionPanels.get(Indexes.KNIGHTS_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.KNIGHTS_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 7 -> {
-                expansionPanels.get(Indexes.KOBOLDS_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.KOBOLDS_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 8 -> {
-                expansionPanels.get(Indexes.WITCHWOOD_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.WITCHWOOD_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 9 -> {
-                expansionPanels.get(Indexes.BOOMSDAY_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.BOOMSDAY_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 10 -> {
-                expansionPanels.get(Indexes.RUMBLE_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.RUMBLE_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 11 -> {
-                expansionPanels.get(Indexes.SHADOWS_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.SHADOWS_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 12 -> {
-                expansionPanels.get(Indexes.ULDUM_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.ULDUM_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 13 -> {
-                expansionPanels.get(Indexes.DRAGONS_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.DRAGONS_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 14 -> {
-                expansionPanels.get(Indexes.OUTLAND_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.OUTLAND_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 15 -> {
-                expansionPanels.get(Indexes.SCHOLOMANCE_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.SCHOLOMANCE_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 16 -> {
-                expansionPanels.get(Indexes.DARKMOON_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.DARKMOON_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 17 -> {
-                expansionPanels.get(Indexes.BARRENS_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.BARRENS_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 18 -> {
-                expansionPanels.get(Indexes.STORMWIND_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.STORMWIND_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            case 19 -> {
-                expansionPanels.get(Indexes.ALTERAC_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.ALTERAC_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-            default -> {
-                expansionPanels.get(Indexes.SUNKEN_INDEX)
-                               .setTotalCounter(counter);
-                saveFileData.set(Indexes.SUNKEN_TOTAL_COUNTER_ROW_INDEX,
-                        saveFileExpansions.get(index) + ": " + counter);
-            }
-        }
+        // Select the expansion to be updated in the save file according to its index and set the save file row indexes
+        int rowIndex = switch (index) {
+            case 0 -> Indexes.CLASSIC_TOTAL_COUNTER_ROW_INDEX;
+            case 1 -> Indexes.GOBLINS_TOTAL_COUNTER_ROW_INDEX;
+            case 2 -> Indexes.TOURNAMENT_TOTAL_COUNTER_ROW_INDEX;
+            case 3 -> Indexes.OLDGODS_TOTAL_COUNTER_ROW_INDEX;
+            case 4 -> Indexes.GADGETZAN_TOTAL_COUNTER_ROW_INDEX;
+            case 5 -> Indexes.UNGORO_TOTAL_COUNTER_ROW_INDEX;
+            case 6 -> Indexes.KNIGHTS_TOTAL_COUNTER_ROW_INDEX;
+            case 7 -> Indexes.KOBOLDS_TOTAL_COUNTER_ROW_INDEX;
+            case 8 -> Indexes.WITCHWOOD_TOTAL_COUNTER_ROW_INDEX;
+            case 9 -> Indexes.BOOMSDAY_TOTAL_COUNTER_ROW_INDEX;
+            case 10 -> Indexes.RUMBLE_TOTAL_COUNTER_ROW_INDEX;
+            case 11 -> Indexes.SHADOWS_TOTAL_COUNTER_ROW_INDEX;
+            case 12 -> Indexes.ULDUM_TOTAL_COUNTER_ROW_INDEX;
+            case 13 -> Indexes.DRAGONS_TOTAL_COUNTER_ROW_INDEX;
+            case 14 -> Indexes.OUTLAND_TOTAL_COUNTER_ROW_INDEX;
+            case 15 -> Indexes.SCHOLOMANCE_TOTAL_COUNTER_ROW_INDEX;
+            case 16 -> Indexes.DARKMOON_TOTAL_COUNTER_ROW_INDEX;
+            case 17 -> Indexes.BARRENS_TOTAL_COUNTER_ROW_INDEX;
+            case 18 -> Indexes.STORMWIND_TOTAL_COUNTER_ROW_INDEX;
+            case 19 -> Indexes.ALTERAC_TOTAL_COUNTER_ROW_INDEX;
+            case 20 -> Indexes.SUNKEN_TOTAL_COUNTER_ROW_INDEX;
+            default -> Indexes.NATHRIA_TOTAL_COUNTER_ROW_INDEX;
+        };
+
+        // Update the counters
+        expansionPanels.get(index)
+                       .setTotalCounter(counter);
+        saveFileData.set(rowIndex, saveFileExpansions.get(index) + ": " + counter);
 
         // Write the updated data in the save file
         setWritable();
