@@ -3,6 +3,7 @@
 ~ Hearthstone Pity Timer Tracker ~
 
 - Expansions
+March of the Lich King
 Murder at Castle Nathria
 Voyage to the Sunken City
 Fractured in Alterac Valley
@@ -29,6 +30,7 @@ Classic
 ----------
 
 - Epic counters
+March of the Lich King: 0
 Murder at Castle Nathria: 0
 Voyage to the Sunken City: 0
 Fractured in Alterac Valley: 0
@@ -53,6 +55,7 @@ Goblins vs Gnomes: 0
 Classic: 0
 
 - Epic probabilities
+March of the Lich King: 0
 Murder at Castle Nathria: 0
 Voyage to the Sunken City: 0
 Fractured in Alterac Valley: 0
@@ -79,6 +82,7 @@ Classic: 0
 ----------
 
 - Legendary counters
+March of the Lich King: 0
 Murder at Castle Nathria: 0
 Voyage to the Sunken City: 0
 Fractured in Alterac Valley: 0
@@ -103,6 +107,7 @@ Goblins vs Gnomes: 0
 Classic: 0
 
 - Legendary probabilities
+March of the Lich King: 0
 Murder at Castle Nathria: 0
 Voyage to the Sunken City: 0
 Fractured in Alterac Valley: 0
@@ -129,6 +134,7 @@ Classic: 0
 ----------
 
 - Total counters
+March of the Lich King: 0
 Murder at Castle Nathria: 0
 Voyage to the Sunken City: 0
 Fractured in Alterac Valley: 0

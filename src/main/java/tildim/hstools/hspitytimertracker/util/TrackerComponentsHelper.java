@@ -190,6 +190,10 @@ public class TrackerComponentsHelper {
                                         .getStandardModePanel()
                                         .getYearOfTheHydraPanel()
                                         .getMurderAtCastleNathriaPanel());
+        expansionPanels.add(trackerPanel.getAllModesPanel()
+                                        .getStandardModePanel()
+                                        .getYearOfTheHydraPanel()
+                                        .getMarchOfTheLichKingPanel());
 
         return expansionPanels;
     }
@@ -246,6 +250,8 @@ public class TrackerComponentsHelper {
         logoButtons.add(expansionPanels.get(Indexes.SUNKEN_INDEX)
                                        .getLogoButton());
         logoButtons.add(expansionPanels.get(Indexes.NATHRIA_INDEX)
+                                       .getLogoButton());
+        logoButtons.add(expansionPanels.get(Indexes.LICHKING_INDEX)
                                        .getLogoButton());
 
         return logoButtons;
@@ -304,6 +310,8 @@ public class TrackerComponentsHelper {
                                         .getEpicCounter());
         epicCounters.add(expansionPanels.get(Indexes.NATHRIA_INDEX)
                                         .getEpicCounter());
+        epicCounters.add(expansionPanels.get(Indexes.LICHKING_INDEX)
+                                        .getEpicCounter());
 
         return epicCounters;
     }
@@ -360,6 +368,8 @@ public class TrackerComponentsHelper {
         epicResetButtons.add(expansionPanels.get(Indexes.SUNKEN_INDEX)
                                             .getEpicResetButton());
         epicResetButtons.add(expansionPanels.get(Indexes.NATHRIA_INDEX)
+                                            .getEpicResetButton());
+        epicResetButtons.add(expansionPanels.get(Indexes.LICHKING_INDEX)
                                             .getEpicResetButton());
 
         return epicResetButtons;
@@ -418,6 +428,8 @@ public class TrackerComponentsHelper {
                                           .getEpicAddButton());
         epicAddButtons.add(expansionPanels.get(Indexes.NATHRIA_INDEX)
                                           .getEpicAddButton());
+        epicAddButtons.add(expansionPanels.get(Indexes.LICHKING_INDEX)
+                                          .getEpicAddButton());
 
         return epicAddButtons;
     }
@@ -474,6 +486,8 @@ public class TrackerComponentsHelper {
         epicIncrementFields.add(expansionPanels.get(Indexes.SUNKEN_INDEX)
                                                .getEpicIncrementField());
         epicIncrementFields.add(expansionPanels.get(Indexes.NATHRIA_INDEX)
+                                               .getEpicIncrementField());
+        epicIncrementFields.add(expansionPanels.get(Indexes.LICHKING_INDEX)
                                                .getEpicIncrementField());
 
         return epicIncrementFields;
@@ -532,6 +546,8 @@ public class TrackerComponentsHelper {
                                              .getEpicProbability());
         epicProbabilities.add(expansionPanels.get(Indexes.NATHRIA_INDEX)
                                              .getEpicProbability());
+        epicProbabilities.add(expansionPanels.get(Indexes.LICHKING_INDEX)
+                                             .getEpicProbability());
 
         return epicProbabilities;
     }
@@ -588,6 +604,8 @@ public class TrackerComponentsHelper {
         legendaryCounters.add(expansionPanels.get(Indexes.SUNKEN_INDEX)
                                              .getLegendaryCounter());
         legendaryCounters.add(expansionPanels.get(Indexes.NATHRIA_INDEX)
+                                             .getLegendaryCounter());
+        legendaryCounters.add(expansionPanels.get(Indexes.LICHKING_INDEX)
                                              .getLegendaryCounter());
 
         return legendaryCounters;
@@ -646,6 +664,8 @@ public class TrackerComponentsHelper {
                                                  .getLegendaryResetButton());
         legendaryResetButtons.add(expansionPanels.get(Indexes.NATHRIA_INDEX)
                                                  .getLegendaryResetButton());
+        legendaryResetButtons.add(expansionPanels.get(Indexes.LICHKING_INDEX)
+                                                 .getLegendaryResetButton());
 
         return legendaryResetButtons;
     }
@@ -702,6 +722,8 @@ public class TrackerComponentsHelper {
         legendaryAddButtons.add(expansionPanels.get(Indexes.SUNKEN_INDEX)
                                                .getLegendaryAddButton());
         legendaryAddButtons.add(expansionPanels.get(Indexes.NATHRIA_INDEX)
+                                               .getLegendaryAddButton());
+        legendaryAddButtons.add(expansionPanels.get(Indexes.LICHKING_INDEX)
                                                .getLegendaryAddButton());
 
         return legendaryAddButtons;
@@ -760,6 +782,8 @@ public class TrackerComponentsHelper {
                                                     .getLegendaryIncrementField());
         legendaryIncrementFields.add(expansionPanels.get(Indexes.NATHRIA_INDEX)
                                                     .getLegendaryIncrementField());
+        legendaryIncrementFields.add(expansionPanels.get(Indexes.LICHKING_INDEX)
+                                                    .getLegendaryIncrementField());
 
         return legendaryIncrementFields;
     }
@@ -816,6 +840,8 @@ public class TrackerComponentsHelper {
         legendaryProbabilities.add(expansionPanels.get(Indexes.SUNKEN_INDEX)
                                                   .getLegendaryProbability());
         legendaryProbabilities.add(expansionPanels.get(Indexes.NATHRIA_INDEX)
+                                                  .getLegendaryProbability());
+        legendaryProbabilities.add(expansionPanels.get(Indexes.LICHKING_INDEX)
                                                   .getLegendaryProbability());
 
         return legendaryProbabilities;
@@ -874,6 +900,8 @@ public class TrackerComponentsHelper {
                                          .getTotalCounter());
         totalCounters.add(expansionPanels.get(Indexes.NATHRIA_INDEX)
                                          .getTotalCounter());
+        totalCounters.add(expansionPanels.get(Indexes.LICHKING_INDEX)
+                                         .getTotalCounter());
 
         return totalCounters;
     }
@@ -930,6 +958,8 @@ public class TrackerComponentsHelper {
         totalModifyButtons.add(expansionPanels.get(Indexes.SUNKEN_INDEX)
                                               .getTotalModifyButton());
         totalModifyButtons.add(expansionPanels.get(Indexes.NATHRIA_INDEX)
+                                              .getTotalModifyButton());
+        totalModifyButtons.add(expansionPanels.get(Indexes.LICHKING_INDEX)
                                               .getTotalModifyButton());
 
         return totalModifyButtons;
@@ -988,6 +1018,8 @@ public class TrackerComponentsHelper {
                                            .getTotalAddButton());
         totalAddButtons.add(expansionPanels.get(Indexes.NATHRIA_INDEX)
                                            .getTotalAddButton());
+        totalAddButtons.add(expansionPanels.get(Indexes.LICHKING_INDEX)
+                                           .getTotalAddButton());
 
         return totalAddButtons;
     }
@@ -1045,6 +1077,8 @@ public class TrackerComponentsHelper {
                                                 .getTotalIncrementField());
         totalIncrementFields.add(expansionPanels.get(Indexes.NATHRIA_INDEX)
                                                 .getTotalIncrementField());
+        totalIncrementFields.add(expansionPanels.get(Indexes.LICHKING_INDEX)
+                                                .getTotalIncrementField());
 
         return totalIncrementFields;
     }
@@ -1101,6 +1135,8 @@ public class TrackerComponentsHelper {
         cardPackButtons.add(expansionPanels.get(Indexes.SUNKEN_INDEX)
                                            .getCardPackButton());
         cardPackButtons.add(expansionPanels.get(Indexes.NATHRIA_INDEX)
+                                           .getCardPackButton());
+        cardPackButtons.add(expansionPanels.get(Indexes.LICHKING_INDEX)
                                            .getCardPackButton());
 
         return cardPackButtons;

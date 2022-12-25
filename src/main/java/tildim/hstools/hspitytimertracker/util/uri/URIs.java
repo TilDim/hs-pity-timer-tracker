@@ -10,45 +10,47 @@ public final class URIs {
 
     // ++++++++++   EXPANSION   ++++++++++
     // Year of the Hydra
-    public static final String NATHRIA_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/murder-at-castle-nathria";
-    public static final String SUNKEN_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/voyage-to-the-sunken-city";
+    public static final String LICHKING_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/march-of-the-lich-king";
+    public static final String NATHRIA_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/murder-at-castle-nathria";
+    public static final String SUNKEN_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/voyage-to-the-sunken-city";
 
     // Year of the Gryphon
-    public static final String ALTERAC_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/fractured-in-alterac-valley";
-    public static final String STORMWIND_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/united-in-stormwind";
-    public static final String BARRENS_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/forged-in-the-barrens";
+    public static final String ALTERAC_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/fractured-in-alterac-valley";
+    public static final String STORMWIND_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/united-in-stormwind";
+    public static final String BARRENS_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/forged-in-the-barrens";
 
     // Year of the Phoenix
-    public static final String DARKMOON_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/madness-at-the-darkmoon-faire";
-    public static final String SCHOLOMANCE_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/scholomance-academy";
-    public static final String OUTLAND_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/ashes-of-outland";
+    public static final String DARKMOON_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/madness-at-the-darkmoon-faire";
+    public static final String SCHOLOMANCE_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/scholomance-academy";
+    public static final String OUTLAND_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/ashes-of-outland";
 
     // Year of the Dragon
-    public static final String DRAGONS_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/descent-of-dragons";
-    public static final String ULDUM_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/saviors-of-uldum";
-    public static final String SHADOWS_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/rise-of-shadows";
+    public static final String DRAGONS_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/descent-of-dragons";
+    public static final String ULDUM_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/saviors-of-uldum";
+    public static final String SHADOWS_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/rise-of-shadows";
 
     // Year of the Raven
-    public static final String RUMBLE_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/rastakhans-rumble";
-    public static final String BOOMSDAY_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/the-boomsday-project";
-    public static final String WITCHWOOD_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/the-witchwood";
+    public static final String RUMBLE_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/rastakhans-rumble";
+    public static final String BOOMSDAY_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/the-boomsday-project";
+    public static final String WITCHWOOD_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/the-witchwood";
 
     // Year of the Mammoth
-    public static final String KOBOLDS_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/kobolds-and-catacombs";
-    public static final String KNIGHTS_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/knights-of-the-frozen-throne";
-    public static final String UNGORO_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/journey-to-ungoro";
+    public static final String KOBOLDS_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/kobolds-and-catacombs";
+    public static final String KNIGHTS_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/knights-of-the-frozen-throne";
+    public static final String UNGORO_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/journey-to-ungoro";
 
     // Year of the Kraken
-    public static final String GADGETZAN_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/mean-streets-of-gadgetzan";
-    public static final String OLDGODS_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/whispers-of-the-old-gods";
+    public static final String GADGETZAN_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/mean-streets-of-gadgetzan";
+    public static final String OLDGODS_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/whispers-of-the-old-gods";
 
     // Years 1 & 2
-    public static final String TOURNAMENT_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/the-grand-tournament";
-    public static final String GOBLINS_EXPANSION_URI = "https://playhearthstone.com/en-us/expansions-adventures/goblins-vs-gnomes";
+    public static final String TOURNAMENT_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/the-grand-tournament";
+    public static final String GOBLINS_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/goblins-vs-gnomes";
     // ----------   EXPANSION   ----------
 
     // ++++++++++   CARD PACK   ++++++++++
     // Year of the Hydra
+    public static final String LICHKING_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-march-of-the-lich-king-packs";
     public static final String NATHRIA_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-murder-at-castle-nathria";
     public static final String SUNKEN_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-voyage-to-the-sunken-city";
 

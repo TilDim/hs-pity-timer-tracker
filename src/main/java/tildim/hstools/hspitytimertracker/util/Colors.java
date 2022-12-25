@@ -28,6 +28,7 @@ public final class Colors {
 
     // ++++++++++   EXPANSION   ++++++++++
     // Year of the Hydra
+    public static final Color LICHKING_COLOR = new Color(25, 50, 60);
     public static final Color NATHRIA_COLOR = new Color(85, 25, 30);
     public static final Color SUNKEN_COLOR = new Color(20, 185, 155);
 

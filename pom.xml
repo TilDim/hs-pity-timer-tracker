@@ -6,7 +6,7 @@
 
     <groupId>tildim.hstools</groupId>
     <artifactId>hs-pity-timer-tracker</artifactId>
-    <version>7.0.0</version>
+    <version>8.0.0</version>
     <name>Hearthstone Pity Timer Tracker</name>
     <description>Keeps track of your pity timers in Hearthstone</description>
 
@@ -16,7 +16,7 @@
 
         <org.apache.commons.version>4.4</org.apache.commons.version>
         <org.projectlombok.version>1.18.24</org.projectlombok.version>
-        <ch.qos.logback.version>1.2.11</ch.qos.logback.version>
+        <ch.qos.logback.version>1.4.5</ch.qos.logback.version>
         <org.junit.jupiter.version>5.9.0</org.junit.jupiter.version>
     </properties>
 

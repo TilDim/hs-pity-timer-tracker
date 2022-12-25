@@ -235,6 +235,9 @@ public class TextFileHelper {
         saveFileData = readSaveFile(saveFile);
 
         // Epic counters
+        expansionPanels.get(Indexes.LICHKING_INDEX)
+                       .setEpicCounter(saveFileData.get(Indexes.LICHKING_EPIC_COUNTER_ROW_INDEX)
+                                                   .substring(Indexes.LICHKING_COLUMN_INDEX));
         expansionPanels.get(Indexes.NATHRIA_INDEX)
                        .setEpicCounter(saveFileData.get(Indexes.NATHRIA_EPIC_COUNTER_ROW_INDEX)
                                                    .substring(Indexes.NATHRIA_COLUMN_INDEX));
@@ -303,6 +306,9 @@ public class TextFileHelper {
                                                    .substring(Indexes.CLASSIC_COLUMN_INDEX));
 
         // Epic probabilities
+        expansionPanels.get(Indexes.LICHKING_INDEX)
+                       .setEpicProbability(saveFileData.get(Indexes.LICHKING_EPIC_PROBABILITY_ROW_INDEX)
+                                                       .substring(Indexes.LICHKING_COLUMN_INDEX));
         expansionPanels.get(Indexes.NATHRIA_INDEX)
                        .setEpicProbability(saveFileData.get(Indexes.NATHRIA_EPIC_PROBABILITY_ROW_INDEX)
                                                        .substring(Indexes.NATHRIA_COLUMN_INDEX));
@@ -371,6 +377,9 @@ public class TextFileHelper {
                                                        .substring(Indexes.CLASSIC_COLUMN_INDEX));
 
         // Legendary counters
+        expansionPanels.get(Indexes.LICHKING_INDEX)
+                       .setLegendaryCounter(saveFileData.get(Indexes.LICHKING_LEGENDARY_COUNTER_ROW_INDEX)
+                                                        .substring(Indexes.LICHKING_COLUMN_INDEX));
         expansionPanels.get(Indexes.NATHRIA_INDEX)
                        .setLegendaryCounter(saveFileData.get(Indexes.NATHRIA_LEGENDARY_COUNTER_ROW_INDEX)
                                                         .substring(Indexes.NATHRIA_COLUMN_INDEX));
@@ -439,6 +448,9 @@ public class TextFileHelper {
                                                         .substring(Indexes.CLASSIC_COLUMN_INDEX));
 
         // Legendary probabilities
+        expansionPanels.get(Indexes.LICHKING_INDEX)
+                       .setLegendaryProbability(saveFileData.get(Indexes.LICHKING_LEGENDARY_PROBABILITY_ROW_INDEX)
+                                                            .substring(Indexes.LICHKING_COLUMN_INDEX));
         expansionPanels.get(Indexes.NATHRIA_INDEX)
                        .setLegendaryProbability(saveFileData.get(Indexes.NATHRIA_LEGENDARY_PROBABILITY_ROW_INDEX)
                                                             .substring(Indexes.NATHRIA_COLUMN_INDEX));
@@ -507,6 +519,9 @@ public class TextFileHelper {
                                                             .substring(Indexes.CLASSIC_COLUMN_INDEX));
 
         // Total counters
+        expansionPanels.get(Indexes.LICHKING_INDEX)
+                       .setTotalCounter(saveFileData.get(Indexes.LICHKING_TOTAL_COUNTER_ROW_INDEX)
+                                                    .substring(Indexes.LICHKING_COLUMN_INDEX));
         expansionPanels.get(Indexes.NATHRIA_INDEX)
                        .setTotalCounter(saveFileData.get(Indexes.NATHRIA_TOTAL_COUNTER_ROW_INDEX)
                                                     .substring(Indexes.NATHRIA_COLUMN_INDEX));
@@ -673,9 +688,13 @@ public class TextFileHelper {
                 rowIndexes[0] = Indexes.SUNKEN_EPIC_COUNTER_ROW_INDEX;
                 rowIndexes[1] = Indexes.SUNKEN_EPIC_PROBABILITY_ROW_INDEX;
             }
-            default -> {
+            case 21 -> {
                 rowIndexes[0] = Indexes.NATHRIA_EPIC_COUNTER_ROW_INDEX;
                 rowIndexes[1] = Indexes.NATHRIA_EPIC_PROBABILITY_ROW_INDEX;
+            }
+            default -> {
+                rowIndexes[0] = Indexes.LICHKING_EPIC_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.LICHKING_EPIC_PROBABILITY_ROW_INDEX;
             }
         }
 
@@ -793,9 +812,13 @@ public class TextFileHelper {
                 rowIndexes[0] = Indexes.SUNKEN_LEGENDARY_COUNTER_ROW_INDEX;
                 rowIndexes[1] = Indexes.SUNKEN_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
-            default -> {
+            case 21 -> {
                 rowIndexes[0] = Indexes.NATHRIA_LEGENDARY_COUNTER_ROW_INDEX;
                 rowIndexes[1] = Indexes.NATHRIA_LEGENDARY_PROBABILITY_ROW_INDEX;
+            }
+            default -> {
+                rowIndexes[0] = Indexes.LICHKING_LEGENDARY_COUNTER_ROW_INDEX;
+                rowIndexes[1] = Indexes.LICHKING_LEGENDARY_PROBABILITY_ROW_INDEX;
             }
         }
 
@@ -846,7 +869,8 @@ public class TextFileHelper {
             case 18 -> Indexes.STORMWIND_TOTAL_COUNTER_ROW_INDEX;
             case 19 -> Indexes.ALTERAC_TOTAL_COUNTER_ROW_INDEX;
             case 20 -> Indexes.SUNKEN_TOTAL_COUNTER_ROW_INDEX;
-            default -> Indexes.NATHRIA_TOTAL_COUNTER_ROW_INDEX;
+            case 21 -> Indexes.NATHRIA_TOTAL_COUNTER_ROW_INDEX;
+            default -> Indexes.LICHKING_TOTAL_COUNTER_ROW_INDEX;
         };
 
         // Update the counters
