@@ -1,13 +1,13 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthemammoth;
 
+import java.io.Serial;
+import javax.swing.JPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
 
-import java.io.Serial;
-
 /**
- * {@code KoboldsAndCatacombsPanel} is a {@code JPanel} dedicated to the <i>Kobolds & Catacombs</i>
+ * {@code KoboldsAndCatacombsPanel} is a {@link JPanel} dedicated to the <i>Kobolds & Catacombs</i>
  * expansion.
  *
  * @author Tilemachos Dimos
@@ -26,4 +26,5 @@ public class KoboldsAndCatacombsPanel extends AbstractExpansionPanel {
         super(IconPaths.KOBOLDS_LOGO_ICON_PATH, IconPaths.KOBOLDS_CARD_PACK_ICON_PATH,
                 Colors.KOBOLDS_COLOR, Colors.TEXT_COLOR, Colors.MODIFIERS_COLORS);
     }
+
 }

@@ -1,12 +1,12 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion;
 
+import java.io.Serial;
+import javax.swing.JPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
 
-import java.io.Serial;
-
 /**
- * {@code ClassicPanel} is a {@code JPanel} dedicated to the <i>Classic</i>
+ * {@code ClassicPanel} is a {@link JPanel} dedicated to the <i>Classic</i>
  * set.
  *
  * @author Tilemachos Dimos
@@ -25,4 +25,5 @@ public class ClassicPanel extends AbstractExpansionPanel {
         super(IconPaths.CLASSIC_LOGO_ICON_PATH, IconPaths.CLASSIC_CARD_PACK_ICON_PATH,
                 Colors.CLASSIC_COLOR, Colors.TEXT_COLOR, Colors.MODIFIERS_COLORS);
     }
+
 }

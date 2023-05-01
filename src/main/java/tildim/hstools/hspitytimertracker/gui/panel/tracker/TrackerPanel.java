@@ -1,13 +1,13 @@
 package tildim.hstools.hspitytimertracker.gui.panel.tracker;
 
+import java.io.Serial;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
 import lombok.Getter;
 import tildim.hstools.hspitytimertracker.gui.panel.header.HeaderPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.mode.AllModesPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.modebuttons.ModeButtonsPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.AllYearShortcutButtonsPanel;
-
-import javax.swing.*;
-import java.io.Serial;
 
 /**
  * {@code TrackerPanel} is a {@link #JPanel} that contains the program's main sub-panels.
@@ -64,4 +64,5 @@ public class TrackerPanel extends JPanel {
         add(allYearShortcutButtonsPanel);
         add(allModesPanel);
     }
+
 }

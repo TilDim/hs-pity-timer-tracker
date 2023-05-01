@@ -1,13 +1,11 @@
 package tildim.hstools.hspitytimertracker.gui.panel.year;
 
-import lombok.Getter;
+import java.io.Serial;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthemammoth.JourneyToUnGoroPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthemammoth.KnightsOfTheFrozenThronePanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthemammoth.KoboldsAndCatacombsPanel;
 import tildim.hstools.hspitytimertracker.util.Text;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
-
-import java.io.Serial;
 
 /**
  * {@code YearOfTheMammothPanel} is a {@link #JPanel} that contains all the instances of {@code AbstractExpansionPanel}
@@ -19,15 +17,10 @@ import java.io.Serial;
  * @see KnightsOfTheFrozenThronePanel
  * @see JourneyToUnGoroPanel
  */
-@Getter
 public class YearOfTheMammothPanel extends AbstractYearPanel {
 
     @Serial
     private static final long serialVersionUID = 3972022712238641127L;
-
-    private final KoboldsAndCatacombsPanel koboldsAndCatacombsPanel;
-    private final KnightsOfTheFrozenThronePanel knightsOfTheFrozenThronePanel;
-    private final JourneyToUnGoroPanel journeyToUnGoroPanel;
 
     /**
      * Constructs a {@link #AbstractYearPanel} with all the <i>Year of the Mammoth</i> specific properties
@@ -47,12 +40,20 @@ public class YearOfTheMammothPanel extends AbstractYearPanel {
     public YearOfTheMammothPanel() {
         super(IconPaths.MAMMOTH_ICON_PATH, Text.MAMMOTH_TITLE);
 
-        koboldsAndCatacombsPanel = new KoboldsAndCatacombsPanel();
-        knightsOfTheFrozenThronePanel = new KnightsOfTheFrozenThronePanel();
-        journeyToUnGoroPanel = new JourneyToUnGoroPanel();
+        // Instantiate the year panel's components
+        KoboldsAndCatacombsPanel koboldsAndCatacombsPanel = new KoboldsAndCatacombsPanel();
+        KnightsOfTheFrozenThronePanel knightsOfTheFrozenThronePanel = new KnightsOfTheFrozenThronePanel();
+        JourneyToUnGoroPanel journeyToUnGoroPanel = new JourneyToUnGoroPanel();
 
+        // Add the expansion panels to a list
+        yearExpansionPanels.add(koboldsAndCatacombsPanel);
+        yearExpansionPanels.add(knightsOfTheFrozenThronePanel);
+        yearExpansionPanels.add(journeyToUnGoroPanel);
+
+        // Add the components to the year panel
         add(koboldsAndCatacombsPanel);
         add(knightsOfTheFrozenThronePanel);
         add(journeyToUnGoroPanel);
     }
+
 }

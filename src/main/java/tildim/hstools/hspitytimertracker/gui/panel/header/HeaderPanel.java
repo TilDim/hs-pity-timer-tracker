@@ -1,5 +1,14 @@
 package tildim.hstools.hspitytimertracker.gui.panel.header;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.Serial;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import tildim.hstools.hspitytimertracker.gui.panel.header.button.HeaderButton;
@@ -10,13 +19,6 @@ import tildim.hstools.hspitytimertracker.util.Text;
 import tildim.hstools.hspitytimertracker.util.Tooltips;
 import tildim.hstools.hspitytimertracker.util.icon.IconHelper;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.Serial;
 
 /**
  * {@code HeaderPanel} is a {@link #JPanel} that contains the program's header sub-panels.
@@ -179,4 +181,5 @@ public class HeaderPanel extends JPanel {
 
         return rightHeaderPanel;
     }
+
 }

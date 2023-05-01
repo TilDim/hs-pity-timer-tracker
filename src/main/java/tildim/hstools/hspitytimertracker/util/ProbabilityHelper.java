@@ -1,11 +1,15 @@
 package tildim.hstools.hspitytimertracker.util;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 /**
  * {@code ProbabilityHelper} is a utility class that contains all the necessary methods to process the probability
  * values used by the program.
  *
  * @author Tilemachos Dimos
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProbabilityHelper {
 
     /**
@@ -31,9 +35,4 @@ public class ProbabilityHelper {
         return 1.0 / (pity - counter) * 100;
     }
 
-    /**
-     * Private constructor to hide the default public one.
-     */
-    private ProbabilityHelper() {
-    }
 }

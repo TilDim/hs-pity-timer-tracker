@@ -1,5 +1,14 @@
 package tildim.hstools.hspitytimertracker.service;
 
+import java.awt.CardLayout;
+import java.awt.Toolkit;
+import java.io.IOException;
+import java.net.URI;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import lombok.extern.slf4j.Slf4j;
 import tildim.hstools.hspitytimertracker.gui.TrackerGUI;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
@@ -20,14 +29,6 @@ import tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.AllYearSh
 import tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.button.AbstractYearShortcutButton;
 import tildim.hstools.hspitytimertracker.util.*;
 import tildim.hstools.hspitytimertracker.util.uri.URIHelper;
-
-import javax.swing.*;
-import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.List;
 
 /**
  * {@code TrackerService} is a service class that gives functionality to the components of the {@code TrackerGUI}.
@@ -199,30 +200,26 @@ public class TrackerService {
 
         // Year shortcut buttons panel
         allYearShortcutButtonsPanel = trackerPanel.getAllYearShortcutButtonsPanel();
-        allYearShortcutButtonsPanelLayout = trackerPanel.getAllYearShortcutButtonsPanel()
-                                                        .getLayout();
+        allYearShortcutButtonsPanelLayout = allYearShortcutButtonsPanel.getLayout();
 
         // Year shortcut buttons
-        yearShortcutButtons = TrackerComponentsHelper.getYearShortcutButtons(trackerPanel);
+        yearShortcutButtons = TrackerComponentsHelper.getYearShortcutButtons(allYearShortcutButtonsPanel);
 
         // Main panel
         allModesPanel = trackerPanel.getAllModesPanel();
-        allModesPanelLayout = trackerPanel.getAllModesPanel()
-                                          .getLayout();
+        allModesPanelLayout = allModesPanel.getLayout();
 
         // 'Standard' mode panel
-        standardModePanelScrollPane = trackerPanel.getAllModesPanel()
-                                                  .getStandardModePanelScrollPane();
+        standardModePanelScrollPane = allModesPanel.getStandardModePanelScrollPane();
 
         // 'Wild' mode panel
-        wildModePanelScrollPane = trackerPanel.getAllModesPanel()
-                                              .getWildModePanelScrollPane();
+        wildModePanelScrollPane = allModesPanel.getWildModePanelScrollPane();
 
         // Year panels
-        yearPanels = TrackerComponentsHelper.getYearPanels(trackerPanel);
+        yearPanels = TrackerComponentsHelper.getYearPanels(allModesPanel);
 
         // Expansion panels
-        expansionPanels = TrackerComponentsHelper.getExpansionPanels(trackerPanel);
+        expansionPanels = TrackerComponentsHelper.getExpansionPanels(allModesPanel);
 
         // Tracker values
         TextFileHelper.setTrackerValues(expansionPanels);
@@ -307,13 +304,11 @@ public class TrackerService {
                                .addActionListener(e -> yearShortcutButtonAction(index));
         }
 
-        // Logo buttons
-        for (int i = 0; i < logoButtons.size(); i++) {
+        // Logo buttons (excluding 'Classic' logo button)
+        for (int i = 0; i < logoButtons.size() - 1; i++) {
             int index = i;
-            if (index != 0) {
-                logoButtons.get(i)
-                           .addActionListener(e -> URIHelper.showURI(expansionURIs.get(index)));
-            }
+            logoButtons.get(i)
+                       .addActionListener(e -> URIHelper.showURI(expansionURIs.get(index)));
         }
 
         // Epic "Reset" buttons
@@ -371,7 +366,7 @@ public class TrackerService {
      */
     private void standardModeButtonAction() {
         // Show 'Standard' sets
-        allModesPanelLayout.show(allModesPanel, "Standard");
+        allModesPanelLayout.show(allModesPanel, Text.STANDARD_TEXT);
 
         // Selected Mode button customization
         standardModeButton.setBackground(Colors.MODE_SELECTED_COLOR);
@@ -382,7 +377,7 @@ public class TrackerService {
         wildModeButton.addMouseListener(wildModeButton.getUnselectedModeButtonAdapter());
 
         // Show 'Standard' year shortcut buttons panel
-        allYearShortcutButtonsPanelLayout.show(allYearShortcutButtonsPanel, "Standard");
+        allYearShortcutButtonsPanelLayout.show(allYearShortcutButtonsPanel, Text.STANDARD_TEXT);
 
         // Move the scrollbar to the top
         standardModePanelScrollPane.getVerticalScrollBar()
@@ -394,7 +389,7 @@ public class TrackerService {
      */
     private void wildModeButtonAction() {
         // Show 'Wild' sets
-        allModesPanelLayout.show(allModesPanel, "Wild");
+        allModesPanelLayout.show(allModesPanel, Text.WILD_TEXT);
 
         // Unselected Mode button customization
         standardModeButton.setBackground(Colors.MODE_UNSELECTED_COLOR);
@@ -405,7 +400,7 @@ public class TrackerService {
         wildModeButton.addMouseListener(wildModeButton.getSelectedModeButtonAdapter());
 
         // Show 'Wild' year shortcut buttons panel
-        allYearShortcutButtonsPanelLayout.show(allYearShortcutButtonsPanel, "Wild");
+        allYearShortcutButtonsPanelLayout.show(allYearShortcutButtonsPanel, Text.WILD_TEXT);
 
         // Move the scrollbar to the top
         wildModePanelScrollPane.getVerticalScrollBar()
@@ -416,14 +411,14 @@ public class TrackerService {
      * Action performed when a year shortcut button is pressed.
      */
     private void yearShortcutButtonAction(int index) {
-        if (index < yearShortcutButtons.size() - 2) {
-            wildModePanelScrollPane.getVerticalScrollBar()
-                                   .setValue(yearPanels.get(index)
-                                                       .getY());
-        } else {
+        if (index < 2) { // Number of Standard years
             standardModePanelScrollPane.getVerticalScrollBar()
                                        .setValue(yearPanels.get(index)
                                                            .getY());
+        } else {
+            wildModePanelScrollPane.getVerticalScrollBar()
+                                   .setValue(yearPanels.get(index)
+                                                       .getY());
         }
     }
 
@@ -594,7 +589,7 @@ public class TrackerService {
      * @see TextFileHelper#updateTotalValues
      */
     private void totalAddAction(int index) {
-        // Value of the counter after the increment field's value is added to the current counter' value
+        // Value of the counter after the increment field's value is added to the current counter's value
         int newCounterValue = totalCounters.get(index) + Integer.parseInt(totalIncrementFields.get(index)
                                                                                               .getText());
 
@@ -609,4 +604,5 @@ public class TrackerService {
         totalIncrementFields.get(index)
                             .setText("1");
     }
+
 }

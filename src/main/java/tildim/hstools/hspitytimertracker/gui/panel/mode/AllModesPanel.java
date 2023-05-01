@@ -1,10 +1,13 @@
 package tildim.hstools.hspitytimertracker.gui.panel.mode;
 
-import lombok.Getter;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.CardLayout;
 import java.io.Serial;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import lombok.Getter;
+import tildim.hstools.hspitytimertracker.util.Text;
 
 /**
  * {@code AllModesPanel} is a {@link #JPanel} that contains all the instances of {@code AbstractModePanel}.
@@ -53,8 +56,8 @@ public class AllModesPanel extends JPanel {
         wildModePanel = new WildModePanel();
         wildModePanelScrollPane = createModePanelScrollPane(wildModePanel);
 
-        add(standardModePanelScrollPane, "Standard");
-        add(wildModePanelScrollPane, "Wild");
+        add(standardModePanelScrollPane, Text.STANDARD_TEXT);
+        add(wildModePanelScrollPane, Text.WILD_TEXT);
     }
 
     /**
@@ -76,4 +79,5 @@ public class AllModesPanel extends JPanel {
 
         return modePanelScrollPane;
     }
+
 }

@@ -1,12 +1,11 @@
 package tildim.hstools.hspitytimertracker.gui.panel.modebuttons.button;
 
+import java.io.Serial;
 import tildim.hstools.hspitytimertracker.gui.panel.modebuttons.ModeButtonsPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.Text;
 import tildim.hstools.hspitytimertracker.util.Tooltips;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
-
-import java.io.Serial;
 
 /**
  * {@code StandardModeButton} is a {@link #JButton} that shows all the instances of {@code AbstractYearPanel}
@@ -29,4 +28,5 @@ public class StandardModeButton extends AbstractModeButton {
 
         addMouseListener(selectedModeButtonAdapter);
     }
+
 }

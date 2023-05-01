@@ -1,13 +1,11 @@
 package tildim.hstools.hspitytimertracker.gui.panel.year;
 
-import lombok.Getter;
+import java.io.Serial;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthephoenix.AshesOfOutlandPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthephoenix.MadnessAtTheDarkmoonFairePanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthephoenix.ScholomanceAcademyPanel;
 import tildim.hstools.hspitytimertracker.util.Text;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
-
-import java.io.Serial;
 
 /**
  * {@code YearOfThePhoenixPanel} is a {@link #JPanel} that contains all the instances of {@code AbstractExpansionPanel}
@@ -19,15 +17,10 @@ import java.io.Serial;
  * @see ScholomanceAcademyPanel
  * @see AshesOfOutlandPanel
  */
-@Getter
 public class YearOfThePhoenixPanel extends AbstractYearPanel {
 
     @Serial
     private static final long serialVersionUID = -4456634923070688574L;
-
-    private final MadnessAtTheDarkmoonFairePanel madnessAtTheDarkmoonFairePanel;
-    private final ScholomanceAcademyPanel scholomanceAcademyPanel;
-    private final AshesOfOutlandPanel ashesOfOutlandPanel;
 
     /**
      * Constructs a {@link #AbstractYearPanel} with all the <i>Year of the Phoenix</i> specific properties
@@ -47,12 +40,20 @@ public class YearOfThePhoenixPanel extends AbstractYearPanel {
     public YearOfThePhoenixPanel() {
         super(IconPaths.PHOENIX_ICON_PATH, Text.PHOENIX_TITLE);
 
-        madnessAtTheDarkmoonFairePanel = new MadnessAtTheDarkmoonFairePanel();
-        scholomanceAcademyPanel = new ScholomanceAcademyPanel();
-        ashesOfOutlandPanel = new AshesOfOutlandPanel();
+        // Instantiate the year panel's components
+        MadnessAtTheDarkmoonFairePanel madnessAtTheDarkmoonFairePanel = new MadnessAtTheDarkmoonFairePanel();
+        ScholomanceAcademyPanel scholomanceAcademyPanel = new ScholomanceAcademyPanel();
+        AshesOfOutlandPanel ashesOfOutlandPanel = new AshesOfOutlandPanel();
 
+        // Add the expansion panels to a list
+        yearExpansionPanels.add(madnessAtTheDarkmoonFairePanel);
+        yearExpansionPanels.add(scholomanceAcademyPanel);
+        yearExpansionPanels.add(ashesOfOutlandPanel);
+
+        // Add the components to the year panel
         add(madnessAtTheDarkmoonFairePanel);
         add(scholomanceAcademyPanel);
         add(ashesOfOutlandPanel);
     }
+
 }

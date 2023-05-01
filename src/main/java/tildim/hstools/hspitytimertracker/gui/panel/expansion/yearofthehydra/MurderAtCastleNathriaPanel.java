@@ -1,13 +1,13 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthehydra;
 
+import java.io.Serial;
+import javax.swing.JPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
 
-import java.io.Serial;
-
 /**
- * {@code MurderAtCastleNathriaPanel} is a {@code JPanel} dedicated to the <i>Murder at Castle Nathria</i>
+ * {@code MurderAtCastleNathriaPanel} is a {@link JPanel} dedicated to the <i>Murder at Castle Nathria</i>
  * expansion.
  *
  * @author Tilemachos Dimos
@@ -26,4 +26,5 @@ public class MurderAtCastleNathriaPanel extends AbstractExpansionPanel {
         super(IconPaths.NATHRIA_LOGO_ICON_PATH, IconPaths.NATHRIA_CARD_PACK_ICON_PATH,
                 Colors.NATHRIA_COLOR, Colors.TEXT_DARK_COLOR, Colors.MODIFIERS_DARK_COLORS);
     }
+
 }

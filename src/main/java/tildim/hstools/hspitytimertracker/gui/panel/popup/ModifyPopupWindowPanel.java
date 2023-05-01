@@ -1,9 +1,8 @@
 package tildim.hstools.hspitytimertracker.gui.panel.popup;
 
+import java.io.Serial;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.button.ResModButton;
 import tildim.hstools.hspitytimertracker.util.Text;
-
-import java.io.Serial;
 
 /**
  * {@code ModifyPopupWindowPanel} is a {@link #JPanel} that is used for displaying the content of the pop-up window
@@ -26,4 +25,5 @@ public class ModifyPopupWindowPanel extends AbstractPopupWindowPanel {
 
         add(super.getBody());
     }
+
 }

@@ -1,19 +1,22 @@
 package tildim.hstools.hspitytimertracker.gui.panel.modebuttons.button;
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.Serial;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import tildim.hstools.hspitytimertracker.gui.panel.modebuttons.ModeButtonsPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.Fonts;
 import tildim.hstools.hspitytimertracker.util.icon.IconHelper;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.Serial;
 
 /**
  * {@code AbstractModeButton} is a {@link #JButton} located in the {@code ModeButtonsPanel} that shows
@@ -22,17 +25,16 @@ import java.io.Serial;
  * @author Tilemachos Dimos
  * @see ModeButtonsPanel
  */
+@Getter
 @Slf4j
 public abstract class AbstractModeButton extends JButton {
 
     @Serial
     private static final long serialVersionUID = 6044135139600565685L;
 
-    @Getter
-    protected transient MouseAdapter selectedModeButtonAdapter;
+    protected MouseAdapter selectedModeButtonAdapter;
 
-    @Getter
-    protected transient MouseAdapter unselectedModeButtonAdapter;
+    protected MouseAdapter unselectedModeButtonAdapter;
 
     /**
      * Constructs a {@link #JButton}, sets some of its properties and creates two {@code MouseAdapter}s
@@ -115,4 +117,5 @@ public abstract class AbstractModeButton extends JButton {
             }
         };
     }
+
 }

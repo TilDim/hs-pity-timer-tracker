@@ -1,12 +1,11 @@
 package tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.button;
 
+import java.io.Serial;
 import tildim.hstools.hspitytimertracker.gui.panel.mode.WildModePanel;
 import tildim.hstools.hspitytimertracker.gui.panel.year.Years1And2Panel;
 import tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.WildYearShortcutButtonsPanel;
 import tildim.hstools.hspitytimertracker.util.Tooltips;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
-
-import java.io.Serial;
 
 /**
  * {@code Years1And2ShortcutButton} is a {@link #JButton} located in the {@code WildYearShortcutButtonsPanel}
@@ -30,4 +29,5 @@ public class Years1And2ShortcutButton extends AbstractYearShortcutButton {
     public Years1And2ShortcutButton() {
         super(IconPaths.YEARS1AND2_SHORTCUT_ICON_PATH, Tooltips.YEARS1AND2_SHORTCUT_TOOLTIP);
     }
+
 }

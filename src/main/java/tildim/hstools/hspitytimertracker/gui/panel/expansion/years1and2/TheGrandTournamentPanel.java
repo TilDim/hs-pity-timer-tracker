@@ -1,13 +1,13 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion.years1and2;
 
+import java.io.Serial;
+import javax.swing.JPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
 
-import java.io.Serial;
-
 /**
- * {@code TheGrandTournamentPanel} is a {@code JPanel} dedicated to the <i>The Grand Tournament</i>
+ * {@code TheGrandTournamentPanel} is a {@link JPanel} dedicated to the <i>The Grand Tournament</i>
  * expansion.
  *
  * @author Tilemachos Dimos
@@ -26,4 +26,5 @@ public class TheGrandTournamentPanel extends AbstractExpansionPanel {
         super(IconPaths.TOURNAMENT_LOGO_ICON_PATH, IconPaths.TOURNAMENT_CARD_PACK_ICON_PATH,
                 Colors.TOURNAMENT_COLOR, Colors.TEXT_DARK_COLOR, Colors.MODIFIERS_DARK_COLORS);
     }
+
 }

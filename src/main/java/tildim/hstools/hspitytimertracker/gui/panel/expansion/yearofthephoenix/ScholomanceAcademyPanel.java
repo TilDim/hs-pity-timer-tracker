@@ -1,13 +1,13 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthephoenix;
 
+import java.io.Serial;
+import javax.swing.JPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
 
-import java.io.Serial;
-
 /**
- * {@code ScholomanceAcademyPanel} is a {@code JPanel} dedicated to the <i>Scholomance Academy</i>
+ * {@code ScholomanceAcademyPanel} is a {@link JPanel} dedicated to the <i>Scholomance Academy</i>
  * expansion.
  *
  * @author Tilemachos Dimos
@@ -26,4 +26,5 @@ public class ScholomanceAcademyPanel extends AbstractExpansionPanel {
         super(IconPaths.SCHOLOMANCE_LOGO_ICON_PATH, IconPaths.SCHOLOMANCE_CARD_PACK_ICON_PATH,
                 Colors.SCHOLOMANCE_COLOR, Colors.TEXT_DARK_COLOR, Colors.MODIFIERS_DARK_COLORS);
     }
+
 }

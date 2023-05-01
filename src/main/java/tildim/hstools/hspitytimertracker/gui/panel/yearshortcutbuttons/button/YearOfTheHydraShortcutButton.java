@@ -1,12 +1,11 @@
 package tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.button;
 
+import java.io.Serial;
 import tildim.hstools.hspitytimertracker.gui.panel.mode.StandardModePanel;
 import tildim.hstools.hspitytimertracker.gui.panel.year.YearOfTheHydraPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.StandardYearShortcutButtonsPanel;
 import tildim.hstools.hspitytimertracker.util.Tooltips;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
-
-import java.io.Serial;
 
 /**
  * {@code YearOfTheHydraShortcutButton} is a {@link #JButton} located in the {@code StandardYearShortcutButtonsPanel}
@@ -30,4 +29,5 @@ public class YearOfTheHydraShortcutButton extends AbstractYearShortcutButton {
     public YearOfTheHydraShortcutButton() {
         super(IconPaths.HYDRA_SHORTCUT_ICON_PATH, Tooltips.HYDRA_SHORTCUT_TOOLTIP);
     }
+
 }

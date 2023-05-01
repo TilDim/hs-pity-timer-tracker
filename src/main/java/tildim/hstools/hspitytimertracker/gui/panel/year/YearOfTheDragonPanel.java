@@ -1,13 +1,11 @@
 package tildim.hstools.hspitytimertracker.gui.panel.year;
 
-import lombok.Getter;
+import java.io.Serial;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthedragon.DescentOfDragonsPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthedragon.RiseOfShadowsPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthedragon.SaviorsOfUldumPanel;
 import tildim.hstools.hspitytimertracker.util.Text;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
-
-import java.io.Serial;
 
 /**
  * {@code YearOfTheDragonPanel} is a {@link #JPanel} that contains all the instances of {@code AbstractExpansionPanel}
@@ -19,15 +17,10 @@ import java.io.Serial;
  * @see SaviorsOfUldumPanel
  * @see RiseOfShadowsPanel
  */
-@Getter
 public class YearOfTheDragonPanel extends AbstractYearPanel {
 
     @Serial
     private static final long serialVersionUID = 4976357851847132871L;
-
-    private final DescentOfDragonsPanel descentOfDragonsPanel;
-    private final SaviorsOfUldumPanel saviorsOfUldumPanel;
-    private final RiseOfShadowsPanel riseOfShadowsPanel;
 
     /**
      * Constructs a {@link #AbstractYearPanel} with all the <i>Year of the Dragon</i> specific properties
@@ -47,12 +40,20 @@ public class YearOfTheDragonPanel extends AbstractYearPanel {
     public YearOfTheDragonPanel() {
         super(IconPaths.DRAGON_ICON_PATH, Text.DRAGON_TITLE);
 
-        descentOfDragonsPanel = new DescentOfDragonsPanel();
-        saviorsOfUldumPanel = new SaviorsOfUldumPanel();
-        riseOfShadowsPanel = new RiseOfShadowsPanel();
+        // Instantiate the year panel's components
+        DescentOfDragonsPanel descentOfDragonsPanel = new DescentOfDragonsPanel();
+        SaviorsOfUldumPanel saviorsOfUldumPanel = new SaviorsOfUldumPanel();
+        RiseOfShadowsPanel riseOfShadowsPanel = new RiseOfShadowsPanel();
 
+        // Add the expansion panels to a list
+        yearExpansionPanels.add(descentOfDragonsPanel);
+        yearExpansionPanels.add(saviorsOfUldumPanel);
+        yearExpansionPanels.add(riseOfShadowsPanel);
+
+        // Add the components to the year panel
         add(descentOfDragonsPanel);
         add(saviorsOfUldumPanel);
         add(riseOfShadowsPanel);
     }
+
 }

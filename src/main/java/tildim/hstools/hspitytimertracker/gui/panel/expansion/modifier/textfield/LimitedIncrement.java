@@ -1,12 +1,12 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.textfield;
 
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.PlainDocument;
-import java.awt.*;
+import java.awt.Toolkit;
 import java.io.Serial;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 /**
  * {@code LimitedIncrement} is {@link #PlainDocument} that is used as a limit to an instance of {@code IncrementField}.
@@ -116,4 +116,5 @@ public class LimitedIncrement extends PlainDocument {
                    .beep();
         }
     }
+
 }

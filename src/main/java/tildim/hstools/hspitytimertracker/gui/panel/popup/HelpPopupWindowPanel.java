@@ -1,11 +1,12 @@
 package tildim.hstools.hspitytimertracker.gui.panel.popup;
 
+import java.awt.Dimension;
+import java.io.Serial;
+import javax.swing.BorderFactory;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import tildim.hstools.hspitytimertracker.gui.panel.header.button.HeaderButton;
 import tildim.hstools.hspitytimertracker.util.Text;
-
-import javax.swing.*;
-import java.awt.*;
-import java.io.Serial;
 
 /**
  * {@code HelpPopupWindowPanel} is a {@link #JPanel} that is used for displaying the content of the pop-up window
@@ -50,4 +51,5 @@ public class HelpPopupWindowPanel extends AbstractPopupWindowPanel {
 
         return helpMessageScrollPane;
     }
+
 }

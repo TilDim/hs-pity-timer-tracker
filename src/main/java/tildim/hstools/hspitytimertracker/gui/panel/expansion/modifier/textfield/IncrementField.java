@@ -1,11 +1,11 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.textfield;
 
+import java.io.Serial;
+import javax.swing.BorderFactory;
+import javax.swing.JTextArea;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
 import tildim.hstools.hspitytimertracker.util.Fonts;
 import tildim.hstools.hspitytimertracker.util.Tooltips;
-
-import javax.swing.*;
-import java.io.Serial;
 
 /**
  * {@code IncrementField} is a {@link #JTextArea} that specifies the number by which a counter in a
@@ -42,4 +42,5 @@ public class IncrementField extends JTextArea {
         setText("1");
         setToolTipText(Tooltips.INCREMENT_FIELD_TOOLTIP);
     }
+
 }

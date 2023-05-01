@@ -1,9 +1,11 @@
 package tildim.hstools.hspitytimertracker.util.icon;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import javax.imageio.ImageIO;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 /**
  * {@code IconHelper} is a utility class that contains all the necessary methods to process the icons used by the
@@ -12,6 +14,7 @@ import java.net.URL;
  * @author Tilemachos Dimos
  * @see IconPaths
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class IconHelper {
 
     /**
@@ -33,9 +36,4 @@ public class IconHelper {
         return null;
     }
 
-    /**
-     * Private constructor to hide the default public one.
-     */
-    private IconHelper() {
-    }
 }

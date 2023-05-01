@@ -1,16 +1,18 @@
 package tildim.hstools.hspitytimertracker.gui.panel.year;
 
+import java.awt.FlowLayout;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.Serial;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.*;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.Fonts;
 import tildim.hstools.hspitytimertracker.util.icon.IconHelper;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.Serial;
 
 /**
  * {@code AbstractYearPanel} is a {@link #JPanel} that contains all the instances of {@code AbstractExpansionPanel}
@@ -19,11 +21,14 @@ import java.io.Serial;
  * @author Tilemachos Dimos
  * @see AbstractExpansionPanel
  */
+@Getter
 @Slf4j
 public abstract class AbstractYearPanel extends JPanel {
 
     @Serial
     private static final long serialVersionUID = 3204943416650714957L;
+
+    protected final List<AbstractExpansionPanel> yearExpansionPanels;
 
     /**
      * Constructs a {@link #JPanel}, sets its layout and places in it the {@code AbstractYearPanel}'s header.
@@ -36,6 +41,8 @@ public abstract class AbstractYearPanel extends JPanel {
         super();
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        yearExpansionPanels = new ArrayList<>();
 
         // Icon creation
         BufferedImage icon = createYearIcon(iconPath);
@@ -97,4 +104,5 @@ public abstract class AbstractYearPanel extends JPanel {
 
         return yearPanelHeader;
     }
+
 }

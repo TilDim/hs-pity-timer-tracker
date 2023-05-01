@@ -1,5 +1,8 @@
 package tildim.hstools.hspitytimertracker.util.icon;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 /**
  * {@code IconPaths} is a utility class that contains the paths of all the icons used by the program as {@code String}
  * values.
@@ -7,6 +10,7 @@ package tildim.hstools.hspitytimertracker.util.icon;
  * @author Tilemachos Dimos
  * @see IconHelper
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class IconPaths {
 
     // ++++++++++   TRACKER   ++++++++++
@@ -33,10 +37,11 @@ public final class IconPaths {
 
     // Year shortcuts
     // Standard
+    public static final String WOLF_SHORTCUT_ICON_PATH = "images/hs_year_icons/shortcuts/year_of_the_wolf_s.png";
     public static final String HYDRA_SHORTCUT_ICON_PATH = "images/hs_year_icons/shortcuts/year_of_the_hydra_s.png";
-    public static final String GRYPHON_SHORTCUT_ICON_PATH = "images/hs_year_icons/shortcuts/year_of_the_gryphon_s.png";
 
     // Wild
+    public static final String GRYPHON_SHORTCUT_ICON_PATH = "images/hs_year_icons/shortcuts/year_of_the_gryphon_s.png";
     public static final String PHOENIX_SHORTCUT_ICON_PATH = "images/hs_year_icons/shortcuts/year_of_the_phoenix_s.png";
     public static final String DRAGON_SHORTCUT_ICON_PATH = "images/hs_year_icons/shortcuts/year_of_the_dragon_s.png";
     public static final String RAVEN_SHORTCUT_ICON_PATH = "images/hs_year_icons/shortcuts/year_of_the_raven_s.png";
@@ -47,10 +52,11 @@ public final class IconPaths {
 
     // ++++++++++   YEAR   ++++++++++
     // Standard
+    public static final String WOLF_ICON_PATH = "images/hs_year_icons/year_of_the_wolf.png";
     public static final String HYDRA_ICON_PATH = "images/hs_year_icons/year_of_the_hydra.png";
-    public static final String GRYPHON_ICON_PATH = "images/hs_year_icons/year_of_the_gryphon.png";
 
     // Wild
+    public static final String GRYPHON_ICON_PATH = "images/hs_year_icons/year_of_the_gryphon.png";
     public static final String PHOENIX_ICON_PATH = "images/hs_year_icons/year_of_the_phoenix.png";
     public static final String DRAGON_ICON_PATH = "images/hs_year_icons/year_of_the_dragon.png";
     public static final String RAVEN_ICON_PATH = "images/hs_year_icons/year_of_the_raven.png";
@@ -60,6 +66,9 @@ public final class IconPaths {
     // ----------   YEAR   ----------
 
     // ++++++++++   LOGO   ++++++++++
+    // Year of the Wolf
+    public static final String FESTIVAL_LOGO_ICON_PATH = "images/hs_expansion_icons/festival_of_legends.png";
+
     // Year of the Hydra
     public static final String LICHKING_LOGO_ICON_PATH = "images/hs_expansion_icons/march_of_the_lich_king.png";
     public static final String NATHRIA_LOGO_ICON_PATH = "images/hs_expansion_icons/murder_at_castle_nathria.png";
@@ -103,6 +112,9 @@ public final class IconPaths {
     // ----------   LOGO   ----------
 
     // ++++++++++   CARD PACK   ++++++++++
+    // Year of the Wolf
+    public static final String FESTIVAL_CARD_PACK_ICON_PATH = "images/hs_card_pack_icons/festival_of_legends_card_pack.png";
+
     // Year of the Hydra
     public static final String LICHKING_CARD_PACK_ICON_PATH = "images/hs_card_pack_icons/march_of_the_lich_king_card_pack.png";
     public static final String NATHRIA_CARD_PACK_ICON_PATH = "images/hs_card_pack_icons/murder_at_castle_nathria_card_pack.png";
@@ -145,9 +157,4 @@ public final class IconPaths {
     public static final String CLASSIC_CARD_PACK_ICON_PATH = "images/hs_card_pack_icons/classic_card_pack.png";
     // ----------   CARD PACK   ----------
 
-    /**
-     * Private constructor to hide the default public one.
-     */
-    private IconPaths() {
-    }
 }

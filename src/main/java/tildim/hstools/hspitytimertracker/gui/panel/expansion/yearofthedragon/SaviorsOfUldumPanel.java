@@ -1,13 +1,13 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthedragon;
 
+import java.io.Serial;
+import javax.swing.JPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
 
-import java.io.Serial;
-
 /**
- * {@code SaviorsOfUldumPanel} is a {@code JPanel} dedicated to the <i>Saviors of Uldum</i>
+ * {@code SaviorsOfUldumPanel} is a {@link JPanel} dedicated to the <i>Saviors of Uldum</i>
  * expansion.
  *
  * @author Tilemachos Dimos
@@ -26,4 +26,5 @@ public class SaviorsOfUldumPanel extends AbstractExpansionPanel {
         super(IconPaths.ULDUM_LOGO_ICON_PATH, IconPaths.ULDUM_CARD_PACK_ICON_PATH,
                 Colors.ULDUM_COLOR, Colors.TEXT_COLOR, Colors.MODIFIERS_COLORS);
     }
+
 }

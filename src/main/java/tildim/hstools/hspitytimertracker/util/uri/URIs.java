@@ -1,14 +1,21 @@
 package tildim.hstools.hspitytimertracker.util.uri;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 /**
  * {@code URIs} is a utility class that contains all the URIs used by the program as {@code String} values.
  *
  * @author Tilemachos Dimos
  * @see URIHelper
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class URIs {
 
     // ++++++++++   EXPANSION   ++++++++++
+    // Year of the Wolf
+    public static final String FESTIVAL_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/festival-of-legends";
+
     // Year of the Hydra
     public static final String LICHKING_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/march-of-the-lich-king";
     public static final String NATHRIA_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/murder-at-castle-nathria";
@@ -49,6 +56,9 @@ public final class URIs {
     // ----------   EXPANSION   ----------
 
     // ++++++++++   CARD PACK   ++++++++++
+    // Year of the Wolf
+    public static final String FESTIVAL_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-festival-of-legends-packs";
+
     // Year of the Hydra
     public static final String LICHKING_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-march-of-the-lich-king-packs";
     public static final String NATHRIA_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-murder-at-castle-nathria";
@@ -91,9 +101,4 @@ public final class URIs {
     public static final String CLASSIC_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-classicpacks";
     // ----------   CARD PACK   ----------
 
-    /**
-     * Private constructor to hide the default public one.
-     */
-    private URIs() {
-    }
 }

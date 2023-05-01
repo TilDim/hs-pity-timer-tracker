@@ -1,6 +1,8 @@
 package tildim.hstools.hspitytimertracker.util;
 
-import java.awt.*;
+import java.awt.Font;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 /**
  * {@code Fonts} is a utility class that contains all the fonts used in the program as {@code Font} objects as well as
@@ -9,6 +11,7 @@ import java.awt.*;
  * @author Tilemachos Dimos
  * @see Font
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Fonts {
 
     public static final String MAIN_FONT_NAME = "Comic Sans MS";
@@ -28,9 +31,4 @@ public final class Fonts {
     public static final Font TOOLTIP_FONT = new Font(Fonts.MAIN_FONT_NAME, Font.PLAIN, 14);
     public static final Font POPUP_TEXTFIELD_FONT = new Font(Fonts.MAIN_FONT_NAME, Font.PLAIN, 20);
 
-    /**
-     * Private constructor to hide the default public one.
-     */
-    private Fonts() {
-    }
 }

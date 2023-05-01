@@ -1,14 +1,16 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.button;
 
-import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
-import tildim.hstools.hspitytimertracker.util.Colors;
-import tildim.hstools.hspitytimertracker.util.Fonts;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.Serial;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
+import tildim.hstools.hspitytimertracker.util.Colors;
+import tildim.hstools.hspitytimertracker.util.Fonts;
 
 /**
  * {@code ResModButton} is a {@link #JButton} that either resets or modifies a counter in a
@@ -67,4 +69,5 @@ public class ResModButton extends JButton {
 
         super.paintComponent(g);
     }
+
 }

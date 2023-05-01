@@ -1,18 +1,19 @@
 package tildim.hstools.hspitytimertracker.gui.panel.popup;
 
+import java.awt.Cursor;
+import java.io.Serial;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.Fonts;
 import tildim.hstools.hspitytimertracker.util.Text;
-
-import javax.swing.*;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
-import java.awt.*;
-import java.io.Serial;
 
 /**
  * {@code AbstractPopupWindowPanel} is a {@link #JPanel} that is used for displaying the content of a pop-up window.
@@ -117,4 +118,5 @@ public abstract class AbstractPopupWindowPanel extends JPanel {
         body.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
         body.setCaretPosition(0);
     }
+
 }

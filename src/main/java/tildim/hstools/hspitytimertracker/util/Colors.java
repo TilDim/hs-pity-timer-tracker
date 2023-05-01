@@ -1,7 +1,9 @@
 package tildim.hstools.hspitytimertracker.util;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 /**
  * {@code Colors} is a utility class that contains all the colors used in the program as {@code Color} objects.
@@ -9,6 +11,7 @@ import java.util.List;
  * @author Tilemachos Dimos
  * @see Color
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Colors {
 
     // ++++++++++   HEADER   ++++++++++
@@ -27,6 +30,9 @@ public final class Colors {
     // ----------   YEAR   ----------
 
     // ++++++++++   EXPANSION   ++++++++++
+    // Year of the Wolf
+    public static final Color FESTIVAL_COLOR = new Color(245, 200, 40);
+
     // Year of the Hydra
     public static final Color LICHKING_COLOR = new Color(25, 50, 60);
     public static final Color NATHRIA_COLOR = new Color(85, 25, 30);
@@ -99,9 +105,4 @@ public final class Colors {
     public static final Color POPUP_BACKGROUND_COLOR = new Color(240, 240, 240);
     // ----------   POP-UP WINDOW   ----------
 
-    /**
-     * Private constructor to hide the default public one.
-     */
-    private Colors() {
-    }
 }

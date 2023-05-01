@@ -1,13 +1,13 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion.yearoftheraven;
 
+import java.io.Serial;
+import javax.swing.JPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
 
-import java.io.Serial;
-
 /**
- * {@code RastakhansRumblePanel} is a {@code JPanel} dedicated to the <i>Rastakhan's Rumble</i>
+ * {@code RastakhansRumblePanel} is a {@link JPanel} dedicated to the <i>Rastakhan's Rumble</i>
  * expansion.
  *
  * @author Tilemachos Dimos
@@ -26,4 +26,5 @@ public class RastakhansRumblePanel extends AbstractExpansionPanel {
         super(IconPaths.RUMBLE_LOGO_ICON_PATH, IconPaths.RUMBLE_CARD_PACK_ICON_PATH,
                 Colors.RUMBLE_COLOR, Colors.TEXT_COLOR, Colors.MODIFIERS_COLORS);
     }
+
 }

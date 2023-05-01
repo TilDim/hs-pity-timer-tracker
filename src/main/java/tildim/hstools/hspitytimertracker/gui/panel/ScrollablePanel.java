@@ -1,8 +1,14 @@
 package tildim.hstools.hspitytimertracker.gui.panel;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.LayoutManager;
+import java.awt.Rectangle;
 import java.io.Serial;
+import javax.swing.JPanel;
+import javax.swing.JViewport;
+import javax.swing.Scrollable;
+import javax.swing.SwingConstants;
 
 /**
  * A {@link #JPanel} that implements the {@code Scrollable} interface. This class allows you
@@ -45,10 +51,10 @@ public class ScrollablePanel extends JPanel
     private ScrollableSizeHint scrollableHeight = ScrollableSizeHint.NONE;
     private ScrollableSizeHint scrollableWidth = ScrollableSizeHint.NONE;
 
-    private transient IncrementInfo horizontalBlock;
-    private transient IncrementInfo horizontalUnit;
-    private transient IncrementInfo verticalBlock;
-    private transient IncrementInfo verticalUnit;
+    private IncrementInfo horizontalBlock;
+    private IncrementInfo horizontalUnit;
+    private IncrementInfo verticalBlock;
+    private IncrementInfo verticalUnit;
 
     private static final String ORIENTATION_ERROR = "Invalid orientation: ";
 
@@ -352,4 +358,5 @@ public class ScrollablePanel extends JPanel
                     amount + "]";
         }
     }
+
 }

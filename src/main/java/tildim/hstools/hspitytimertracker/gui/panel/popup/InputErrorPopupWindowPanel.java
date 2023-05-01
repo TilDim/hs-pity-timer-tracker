@@ -1,8 +1,7 @@
 package tildim.hstools.hspitytimertracker.gui.panel.popup;
 
-import tildim.hstools.hspitytimertracker.util.Text;
-
 import java.io.Serial;
+import tildim.hstools.hspitytimertracker.util.Text;
 
 /**
  * {@code InputErrorPopupWindowPanel} is a {@link #JPanel} that is used for displaying the content of the pop-up window
@@ -24,4 +23,5 @@ public class InputErrorPopupWindowPanel extends AbstractPopupWindowPanel {
 
         add(super.getBody());
     }
+
 }

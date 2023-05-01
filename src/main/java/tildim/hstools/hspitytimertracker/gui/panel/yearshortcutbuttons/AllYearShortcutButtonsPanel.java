@@ -1,10 +1,10 @@
 package tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons;
 
-import lombok.Getter;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.CardLayout;
 import java.io.Serial;
+import javax.swing.JPanel;
+import lombok.Getter;
+import tildim.hstools.hspitytimertracker.util.Text;
 
 /**
  * {@code AllYearShortcutButtonsPanel} is a {@link #JPanel} that contains all the instances of
@@ -47,7 +47,8 @@ public class AllYearShortcutButtonsPanel extends JPanel {
         // 'Wild' year shortcut buttons panel
         wildYearShortcutButtonsPanel = new WildYearShortcutButtonsPanel();
 
-        add(standardYearShortcutButtonsPanel, "Standard");
-        add(wildYearShortcutButtonsPanel, "Wild");
+        add(standardYearShortcutButtonsPanel, Text.STANDARD_TEXT);
+        add(wildYearShortcutButtonsPanel, Text.WILD_TEXT);
     }
+
 }

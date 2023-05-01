@@ -1,10 +1,14 @@
 package tildim.hstools.hspitytimertracker.util;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 /**
  * {@code Tooltips} is a utility class that contains all the tooltips used in the program.
  *
  * @author Tilemachos Dimos
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Tooltips {
 
     // HEADER
@@ -16,6 +20,7 @@ public final class Tooltips {
     public static final String WILD_TOOLTIP = "Show 'Wild' sets";
 
     // YEAR SHORTCUT
+    public static final String WOLF_SHORTCUT_TOOLTIP = "Go to 'Year of the Wolf'";
     public static final String HYDRA_SHORTCUT_TOOLTIP = "Go to 'Year of the Hydra'";
     public static final String GRYPHON_SHORTCUT_TOOLTIP = "Go to 'Year of the Gryphon'";
     public static final String PHOENIX_SHORTCUT_TOOLTIP = "Go to 'Year of the Phoenix'";
@@ -35,9 +40,4 @@ public final class Tooltips {
 
     public static final String CARD_PACK_BUTTON_TOOLTIP = "Buy card packs from this expansion";
 
-    /**
-     * Private constructor to hide the default public one.
-     */
-    private Tooltips() {
-    }
 }

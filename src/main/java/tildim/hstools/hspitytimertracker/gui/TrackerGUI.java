@@ -1,5 +1,13 @@
 package tildim.hstools.hspitytimertracker.gui;
 
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.Serial;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.WindowConstants;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import tildim.hstools.hspitytimertracker.gui.panel.tracker.TrackerPanel;
@@ -8,12 +16,6 @@ import tildim.hstools.hspitytimertracker.util.Fonts;
 import tildim.hstools.hspitytimertracker.util.Text;
 import tildim.hstools.hspitytimertracker.util.icon.IconHelper;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.Serial;
 
 /**
  * {@code TrackerGUI} is a {@link #JFrame} that contains a {@code TrackerPanel} and comprises the GUI of the program.
@@ -86,4 +88,5 @@ public class TrackerGUI extends JFrame {
 
         return icon;
     }
+
 }

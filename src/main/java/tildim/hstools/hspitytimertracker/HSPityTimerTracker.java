@@ -15,11 +15,12 @@ import tildim.hstools.hspitytimertracker.service.TrackerService;
 public class HSPityTimerTracker {
 
     /**
-     * Initializes the {@code TrackerService} with an instance of {@code TrackerGUI} as its argument.
+     * Initializes the {@code TrackerService} with an instance of {@code TrackerGUI} as its parameter.
      *
      * @param args (this program takes no command-line arguments)
      */
     public static void main(String[] args) {
         new TrackerService(new TrackerGUI());
     }
+
 }

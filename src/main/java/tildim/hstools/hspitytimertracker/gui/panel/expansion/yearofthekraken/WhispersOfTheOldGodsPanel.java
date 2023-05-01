@@ -1,13 +1,13 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthekraken;
 
+import java.io.Serial;
+import javax.swing.JPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
 
-import java.io.Serial;
-
 /**
- * {@code WhispersOfTheOldGodsPanel} is a {@code JPanel} dedicated to the <i>Whispers of the Old Gods</i>
+ * {@code WhispersOfTheOldGodsPanel} is a {@link JPanel} dedicated to the <i>Whispers of the Old Gods</i>
  * expansion.
  *
  * @author Tilemachos Dimos
@@ -26,4 +26,5 @@ public class WhispersOfTheOldGodsPanel extends AbstractExpansionPanel {
         super(IconPaths.OLDGODS_LOGO_ICON_PATH, IconPaths.OLDGODS_CARD_PACK_ICON_PATH,
                 Colors.OLDGODS_COLOR, Colors.TEXT_COLOR, Colors.MODIFIERS_COLORS);
     }
+
 }

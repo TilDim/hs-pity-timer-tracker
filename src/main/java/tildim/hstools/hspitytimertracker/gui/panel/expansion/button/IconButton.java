@@ -1,9 +1,11 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion.button;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Cursor;
 import java.awt.image.BufferedImage;
 import java.io.Serial;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  * {@code IconButton} is a {@link #JButton} with an icon and no text that is used in a {@code AbstractExpansionPanel}
@@ -34,4 +36,5 @@ public class IconButton extends JButton {
         setContentAreaFilled(false);
         setFocusPainted(false);
     }
+
 }

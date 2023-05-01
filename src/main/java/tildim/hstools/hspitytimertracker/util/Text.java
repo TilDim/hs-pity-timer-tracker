@@ -1,11 +1,15 @@
 package tildim.hstools.hspitytimertracker.util;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 /**
  * {@code Text} is a utility class that contains all the text used in the program, such as titles, explanatory text and
  * button labels.
  *
  * @author Tilemachos Dimos
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Text {
 
     // System new line escape character
@@ -18,7 +22,11 @@ public final class Text {
     public static final String STANDARD_TITLE = "Standard Sets";
     public static final String WILD_TITLE = "Wild Sets";
 
+    public static final String STANDARD_TEXT = "Standard";
+    public static final String WILD_TEXT = "Wild";
+
     // YEAR
+    public static final String WOLF_TITLE = "Year of the Wolf (2023)";
     public static final String HYDRA_TITLE = "Year of the Hydra (2022)";
     public static final String GRYPHON_TITLE = "Year of the Gryphon (2021)";
     public static final String PHOENIX_TITLE = "Year of the Phoenix (2020)";
@@ -57,9 +65,4 @@ public final class Text {
 
     public static final String MODIFY_MESSAGE_TEXT = "Total amount of card packs opened:";
 
-    /**
-     * Private constructor to hide the default public one.
-     */
-    private Text() {
-    }
 }

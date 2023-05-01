@@ -1,13 +1,13 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthemammoth;
 
+import java.io.Serial;
+import javax.swing.JPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
 
-import java.io.Serial;
-
 /**
- * {@code JourneyToUnGoroPanel} is a {@code JPanel} dedicated to the <i>Journey to Un'Goro</i>
+ * {@code JourneyToUnGoroPanel} is a {@link JPanel} dedicated to the <i>Journey to Un'Goro</i>
  * expansion.
  *
  * @author Tilemachos Dimos
@@ -26,4 +26,5 @@ public class JourneyToUnGoroPanel extends AbstractExpansionPanel {
         super(IconPaths.UNGORO_LOGO_ICON_PATH, IconPaths.UNGORO_CARD_PACK_ICON_PATH,
                 Colors.UNGORO_COLOR, Colors.TEXT_COLOR, Colors.MODIFIERS_COLORS);
     }
+
 }

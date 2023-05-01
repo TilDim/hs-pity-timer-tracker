@@ -1,18 +1,18 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.button;
 
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.geom.Ellipse2D;
+import java.io.Serial;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.AbstractExpansionPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.modifier.textfield.IncrementField;
 import tildim.hstools.hspitytimertracker.util.Colors;
 import tildim.hstools.hspitytimertracker.util.Fonts;
 import tildim.hstools.hspitytimertracker.util.Text;
 import tildim.hstools.hspitytimertracker.util.Tooltips;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.geom.Ellipse2D;
-import java.io.Serial;
 
 /**
  * {@code AddButton} is a {@link #JButton} that increases a counter in a {@code AbstractExpansionPanel}
@@ -27,7 +27,7 @@ public class AddButton extends JButton {
     @Serial
     private static final long serialVersionUID = -4925218753162885452L;
 
-    transient Shape shape;
+    private Shape shape;
 
     /**
      * Constructs a round {@link #JButton} and sets some of its properties.
@@ -86,4 +86,5 @@ public class AddButton extends JButton {
 
         return shape.contains(x, y);
     }
+
 }

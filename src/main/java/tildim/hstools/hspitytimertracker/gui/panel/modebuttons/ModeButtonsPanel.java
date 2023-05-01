@@ -1,13 +1,12 @@
 package tildim.hstools.hspitytimertracker.gui.panel.modebuttons;
 
+import java.awt.GridLayout;
+import java.io.Serial;
+import javax.swing.JPanel;
 import lombok.Getter;
 import tildim.hstools.hspitytimertracker.gui.panel.modebuttons.button.AbstractModeButton;
 import tildim.hstools.hspitytimertracker.gui.panel.modebuttons.button.StandardModeButton;
 import tildim.hstools.hspitytimertracker.gui.panel.modebuttons.button.WildModeButton;
-
-import javax.swing.*;
-import java.awt.*;
-import java.io.Serial;
 
 /**
  * {@code ModeButtonsPanel} is a {@link #JPanel} that contains all the instances of {@code AbstractModeButton}.
@@ -49,4 +48,5 @@ public class ModeButtonsPanel extends JPanel {
         add(standardModeButton);
         add(wildModeButton);
     }
+
 }

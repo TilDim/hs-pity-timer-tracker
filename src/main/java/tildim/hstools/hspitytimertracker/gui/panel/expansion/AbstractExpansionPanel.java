@@ -1,5 +1,15 @@
 package tildim.hstools.hspitytimertracker.gui.panel.expansion;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.Serial;
+import java.util.List;
+import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -12,17 +22,6 @@ import tildim.hstools.hspitytimertracker.util.ProbabilityHelper;
 import tildim.hstools.hspitytimertracker.util.Text;
 import tildim.hstools.hspitytimertracker.util.Tooltips;
 import tildim.hstools.hspitytimertracker.util.icon.IconHelper;
-
-import javax.swing.*;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.Serial;
-import java.util.List;
 
 /**
  * {@code AbstractExpansionPanel} is a {@link #JPanel} that contains the expansion related sub-panels.
@@ -568,4 +567,5 @@ public abstract class AbstractExpansionPanel extends JPanel {
         doc = totalPanelCounterText.getStyledDocument();
         changePanelTextStyle(totalPanelCounterText, Text.TOTAL_COUNTER_TEXT, value);
     }
+
 }

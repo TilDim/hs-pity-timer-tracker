@@ -1,13 +1,14 @@
 package tildim.hstools.hspitytimertracker.gui.panel.header.button;
 
-import tildim.hstools.hspitytimertracker.gui.panel.header.HeaderPanel;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.Serial;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import tildim.hstools.hspitytimertracker.gui.panel.header.HeaderPanel;
 
 /**
  * {@code HeaderButton} is a {@link #JButton} located in the {@code HeaderPanel} that provides assisting functionality.
@@ -51,4 +52,5 @@ public class HeaderButton extends JButton {
             }
         });
     }
+
 }

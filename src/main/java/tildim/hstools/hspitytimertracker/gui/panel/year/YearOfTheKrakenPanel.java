@@ -1,12 +1,10 @@
 package tildim.hstools.hspitytimertracker.gui.panel.year;
 
-import lombok.Getter;
+import java.io.Serial;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthekraken.MeanStreetsOfGadgetzanPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthekraken.WhispersOfTheOldGodsPanel;
 import tildim.hstools.hspitytimertracker.util.Text;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
-
-import java.io.Serial;
 
 /**
  * {@code YearOfTheKrakenPanel} is a {@link #JPanel} that contains all the instances of {@code AbstractExpansionPanel}
@@ -17,14 +15,10 @@ import java.io.Serial;
  * @see MeanStreetsOfGadgetzanPanel
  * @see WhispersOfTheOldGodsPanel
  */
-@Getter
 public class YearOfTheKrakenPanel extends AbstractYearPanel {
 
     @Serial
     private static final long serialVersionUID = -5252430689754613365L;
-
-    private final MeanStreetsOfGadgetzanPanel meanStreetsOfGadgetzanPanel;
-    private final WhispersOfTheOldGodsPanel whispersOfTheOldGodsPanel;
 
     /**
      * Constructs a {@link #AbstractYearPanel} with all the <i>Year of the Kraken</i> specific properties
@@ -41,10 +35,17 @@ public class YearOfTheKrakenPanel extends AbstractYearPanel {
     public YearOfTheKrakenPanel() {
         super(IconPaths.KRAKEN_ICON_PATH, Text.KRAKEN_TITLE);
 
-        meanStreetsOfGadgetzanPanel = new MeanStreetsOfGadgetzanPanel();
-        whispersOfTheOldGodsPanel = new WhispersOfTheOldGodsPanel();
+        // Instantiate the year panel's components
+        MeanStreetsOfGadgetzanPanel meanStreetsOfGadgetzanPanel = new MeanStreetsOfGadgetzanPanel();
+        WhispersOfTheOldGodsPanel whispersOfTheOldGodsPanel = new WhispersOfTheOldGodsPanel();
 
+        // Add the expansion panels to a list
+        yearExpansionPanels.add(meanStreetsOfGadgetzanPanel);
+        yearExpansionPanels.add(whispersOfTheOldGodsPanel);
+
+        // Add the components to the year panel
         add(meanStreetsOfGadgetzanPanel);
         add(whispersOfTheOldGodsPanel);
     }
+
 }
