@@ -3,6 +3,7 @@
 ~ Hearthstone Pity Timer Tracker ~
 
 - Expansions
+Titans
 Festival of Legends
 March of the Lich King
 Murder at Castle Nathria
@@ -31,6 +32,7 @@ Classic
 ----------
 
 - Epic counters
+Titans: 0
 Festival of Legends: 0
 March of the Lich King: 0
 Murder at Castle Nathria: 0
@@ -57,6 +59,7 @@ Goblins vs Gnomes: 0
 Classic: 0
 
 - Epic probabilities
+Titans: 0
 Festival of Legends: 0
 March of the Lich King: 0
 Murder at Castle Nathria: 0
@@ -85,6 +88,7 @@ Classic: 0
 ----------
 
 - Legendary counters
+Titans: 0
 Festival of Legends: 0
 March of the Lich King: 0
 Murder at Castle Nathria: 0
@@ -111,6 +115,7 @@ Goblins vs Gnomes: 0
 Classic: 0
 
 - Legendary probabilities
+Titans: 0
 Festival of Legends: 0
 March of the Lich King: 0
 Murder at Castle Nathria: 0
@@ -139,6 +144,7 @@ Classic: 0
 ----------
 
 - Total counters
+Titans: 0
 Festival of Legends: 0
 March of the Lich King: 0
 Murder at Castle Nathria: 0

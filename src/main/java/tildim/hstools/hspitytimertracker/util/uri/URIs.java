@@ -14,6 +14,7 @@ public final class URIs {
 
     // ++++++++++   EXPANSION   ++++++++++
     // Year of the Wolf
+    public static final String TITANS_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/titans/";
     public static final String FESTIVAL_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/festival-of-legends";
 
     // Year of the Hydra
@@ -57,6 +58,7 @@ public final class URIs {
 
     // ++++++++++   CARD PACK   ++++++++++
     // Year of the Wolf
+    public static final String TITANS_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-titans-packs";
     public static final String FESTIVAL_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-festival-of-legends-packs";
 
     // Year of the Hydra

@@ -67,6 +67,7 @@ public final class IconPaths {
 
     // ++++++++++   LOGO   ++++++++++
     // Year of the Wolf
+    public static final String TITANS_LOGO_ICON_PATH = "images/hs_expansion_icons/titans.png";
     public static final String FESTIVAL_LOGO_ICON_PATH = "images/hs_expansion_icons/festival_of_legends.png";
 
     // Year of the Hydra
@@ -113,6 +114,7 @@ public final class IconPaths {
 
     // ++++++++++   CARD PACK   ++++++++++
     // Year of the Wolf
+    public static final String TITANS_CARD_PACK_ICON_PATH = "images/hs_card_pack_icons/titans_card_pack.png";
     public static final String FESTIVAL_CARD_PACK_ICON_PATH = "images/hs_card_pack_icons/festival_of_legends_card_pack.png";
 
     // Year of the Hydra

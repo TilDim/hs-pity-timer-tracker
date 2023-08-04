@@ -31,6 +31,7 @@ public final class Colors {
 
     // ++++++++++   EXPANSION   ++++++++++
     // Year of the Wolf
+    public static final Color TITANS_COLOR = new Color(210, 210, 215);
     public static final Color FESTIVAL_COLOR = new Color(245, 200, 40);
 
     // Year of the Hydra
