@@ -88,8 +88,7 @@ public class HeaderPanel extends JPanel {
         try {
             icon = IconHelper.createIcon(iconPath);
         } catch (IOException e) {
-            log.error("Error while creating header icon");
-            e.printStackTrace();
+            log.error("Error while creating header icon", e);
         }
 
         return icon;

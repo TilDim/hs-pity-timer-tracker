@@ -2,8 +2,7 @@
 .idea/
 out/
 target/
-icon_frames/
-rarity_icons/
+misc_images/
 counter_icon.ico
 Hearthstone Pity Timer Tracker-*.exe
 hs-pity-timer-tracker.bat

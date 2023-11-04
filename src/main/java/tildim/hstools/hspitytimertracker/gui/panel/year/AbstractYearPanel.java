@@ -62,8 +62,7 @@ public abstract class AbstractYearPanel extends JPanel {
         try {
             icon = IconHelper.createIcon(iconPath);
         } catch (IOException e) {
-            log.error("Error while creating year icon");
-            e.printStackTrace();
+            log.error("Error while creating year icon", e);
         }
 
         return icon;

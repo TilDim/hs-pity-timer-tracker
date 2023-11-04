@@ -44,8 +44,7 @@ public class TrackerGUI extends JFrame {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
                  UnsupportedLookAndFeelException e) {
-            log.error("Error while setting the tracker's look and feel");
-            e.printStackTrace();
+            log.error("Error while setting the tracker's look and feel", e);
         }
 
         // Buttons tooltip style
@@ -82,8 +81,7 @@ public class TrackerGUI extends JFrame {
         try {
             icon = IconHelper.createIcon(IconPaths.TRACKER_ICON_PATH);
         } catch (IOException e) {
-            log.error("Error while creating the tracker window icon");
-            e.printStackTrace();
+            log.error("Error while creating the tracker window icon", e);
         }
 
         return icon;

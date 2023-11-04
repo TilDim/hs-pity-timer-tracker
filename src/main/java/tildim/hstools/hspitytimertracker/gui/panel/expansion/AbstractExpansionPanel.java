@@ -143,8 +143,7 @@ public abstract class AbstractExpansionPanel extends JPanel {
         try {
             icon = IconHelper.createIcon(iconPath);
         } catch (IOException e) {
-            log.error("Error while creating expansion icon");
-            e.printStackTrace();
+            log.error("Error while creating expansion icon", e);
         }
 
         return icon;
@@ -415,8 +414,7 @@ public abstract class AbstractExpansionPanel extends JPanel {
         try {
             doc.insertString(doc.getLength(), text, set);
         } catch (BadLocationException e) {
-            log.error("Error while setting this panel's title");
-            e.printStackTrace();
+            log.error("Error while setting this panel's title", e);
         }
         doc.setParagraphAttributes(0, doc.getLength(), set, false);
 
@@ -441,8 +439,7 @@ public abstract class AbstractExpansionPanel extends JPanel {
         try {
             doc.insertString(doc.getLength(), text, set);
         } catch (BadLocationException e) {
-            log.error("Error while setting this panel's text");
-            e.printStackTrace();
+            log.error("Error while setting this panel's text", e);
         }
 
         set = new SimpleAttributeSet();
@@ -452,8 +449,7 @@ public abstract class AbstractExpansionPanel extends JPanel {
         try {
             doc.insertString(doc.getLength(), number, set);
         } catch (BadLocationException e) {
-            log.error("Error while setting this panel's number");
-            e.printStackTrace();
+            log.error("Error while setting this panel's number", e);
         }
 
         set = new SimpleAttributeSet();

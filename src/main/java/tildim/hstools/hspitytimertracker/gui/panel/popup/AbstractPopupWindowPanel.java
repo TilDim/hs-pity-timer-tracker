@@ -80,8 +80,7 @@ public abstract class AbstractPopupWindowPanel extends JPanel {
         try {
             doc.insertString(doc.getLength(), title.concat(Text.NEXT_LINE), set);
         } catch (BadLocationException e) {
-            log.error("Error while setting the title of pop-up window");
-            e.printStackTrace();
+            log.error("Error while setting the title of pop-up window", e);
         }
         doc.setParagraphAttributes(0, doc.getLength(), set, false);
 
@@ -108,8 +107,7 @@ public abstract class AbstractPopupWindowPanel extends JPanel {
         try {
             doc.insertString(doc.getLength(), text, set);
         } catch (BadLocationException e) {
-            log.error("Error while setting the text of pop-up window");
-            e.printStackTrace();
+            log.error("Error while setting the text of pop-up window", e);
         }
         doc.setParagraphAttributes(0, doc.getLength(), set, false);
 

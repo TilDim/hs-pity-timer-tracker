@@ -90,8 +90,7 @@ public abstract class AbstractModeButton extends JButton {
         try {
             icon = IconHelper.createIcon(iconPath);
         } catch (IOException e) {
-            log.error("Error while creating mode icon");
-            e.printStackTrace();
+            log.error("Error while creating mode icon", e);
         }
 
         return icon;
