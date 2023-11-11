@@ -2,6 +2,7 @@ package tildim.hstools.hspitytimertracker.gui.panel.year;
 
 import java.io.Serial;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthewolf.FestivalOfLegendsPanel;
+import tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthewolf.ShowdownInTheBadlandsPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.expansion.yearofthewolf.TitansPanel;
 import tildim.hstools.hspitytimertracker.util.Text;
 import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
@@ -12,6 +13,7 @@ import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
  *
  * @author Tilemachos Dimos
  * @see AbstractYearPanel
+ * @see ShowdownInTheBadlandsPanel
  * @see TitansPanel
  * @see FestivalOfLegendsPanel
  */
@@ -25,7 +27,10 @@ public class YearOfTheWolfPanel extends AbstractYearPanel {
      * and places in it:
      * <ul>
      *     <li>
-     *         a {@code TitansPanel}.
+     *         a {@code ShowdownInTheBadlandsPanel};
+     *     </li>
+     *     <li>
+     *         a {@code TitansPanel};
      *     </li>
      *     <li>
      *         a {@code FestivalOfLegendsPanel}.
@@ -36,14 +41,17 @@ public class YearOfTheWolfPanel extends AbstractYearPanel {
         super(IconPaths.WOLF_ICON_PATH, Text.WOLF_TITLE);
 
         // Instantiate the year panel's components
+        ShowdownInTheBadlandsPanel showdownInTheBadlandsPanel = new ShowdownInTheBadlandsPanel();
         TitansPanel titansPanel = new TitansPanel();
         FestivalOfLegendsPanel festivalOfLegendsPanel = new FestivalOfLegendsPanel();
 
         // Add the expansion panels to a list
+        yearExpansionPanels.add(showdownInTheBadlandsPanel);
         yearExpansionPanels.add(titansPanel);
         yearExpansionPanels.add(festivalOfLegendsPanel);
 
         // Add the components to the year panel
+        add(showdownInTheBadlandsPanel);
         add(titansPanel);
         add(festivalOfLegendsPanel);
     }

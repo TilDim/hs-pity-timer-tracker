@@ -3,6 +3,7 @@
 ~ Hearthstone Pity Timer Tracker ~
 
 - Expansions
+Showdown in the Badlands
 Titans
 Festival of Legends
 March of the Lich King
@@ -32,6 +33,7 @@ Classic
 ----------
 
 - Epic counters
+Showdown in the Badlands: 0
 Titans: 0
 Festival of Legends: 0
 March of the Lich King: 0
@@ -59,6 +61,7 @@ Goblins vs Gnomes: 0
 Classic: 0
 
 - Epic probabilities
+Showdown in the Badlands: 0
 Titans: 0
 Festival of Legends: 0
 March of the Lich King: 0
@@ -88,6 +91,7 @@ Classic: 0
 ----------
 
 - Legendary counters
+Showdown in the Badlands: 0
 Titans: 0
 Festival of Legends: 0
 March of the Lich King: 0
@@ -115,6 +119,7 @@ Goblins vs Gnomes: 0
 Classic: 0
 
 - Legendary probabilities
+Showdown in the Badlands: 0
 Titans: 0
 Festival of Legends: 0
 March of the Lich King: 0
@@ -144,6 +149,7 @@ Classic: 0
 ----------
 
 - Total counters
+Showdown in the Badlands: 0
 Titans: 0
 Festival of Legends: 0
 March of the Lich King: 0
