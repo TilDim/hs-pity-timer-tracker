@@ -11,38 +11,37 @@
     <description>Keeps track of your pity timers in Hearthstone</description>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.release>17</maven.compiler.release>
 
-        <org.apache.commons.version>4.4</org.apache.commons.version>
-        <org.projectlombok.version>1.18.26</org.projectlombok.version>
-        <ch.qos.logback.version>1.4.6</ch.qos.logback.version>
-        <org.junit.jupiter.version>5.9.2</org.junit.jupiter.version>
+        <commons-collections4.version>4.4</commons-collections4.version>
+        <lombok.version>1.18.30</lombok.version>
+        <logback.version>1.4.14</logback.version>
+        <junit-jupiter.version>5.10.1</junit-jupiter.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
-            <version>${org.apache.commons.version}</version>
+            <version>${commons-collections4.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${org.projectlombok.version}</version>
+            <version>${lombok.version}</version>
         </dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>${ch.qos.logback.version}</version>
+            <version>${logback.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${org.junit.jupiter.version}</version>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
