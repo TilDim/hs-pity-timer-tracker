@@ -47,13 +47,13 @@ public final class Colors {
 
     // Year of the Phoenix
     public static final Color DARKMOON_COLOR = new Color(175, 200, 20);
-    public static final Color SCHOLOMANCE_COLOR = new Color(175, 55, 165);
+    public static final Color SCHOLOMANCE_COLOR = new Color(160, 30, 110);
     public static final Color OUTLAND_COLOR = new Color(0, 60, 30);
 
     // Year of the Dragon
     public static final Color DRAGONS_COLOR = new Color(235, 155, 20);
     public static final Color ULDUM_COLOR = new Color(10, 210, 220);
-    public static final Color SHADOWS_COLOR = new Color(155, 45, 220);
+    public static final Color SHADOWS_COLOR = new Color(115, 25, 170);
 
     // Year of the Raven
     public static final Color RUMBLE_COLOR = new Color(10, 220, 185);
@@ -67,7 +67,7 @@ public final class Colors {
 
     // Year of the Kraken
     public static final Color GADGETZAN_COLOR = new Color(210, 165, 25);
-    public static final Color OLDGODS_COLOR = new Color(190, 120, 190);
+    public static final Color OLDGODS_COLOR = new Color(145, 60, 145);
 
     // Years 1 & 2
     public static final Color TOURNAMENT_COLOR = new Color(95, 70, 50);

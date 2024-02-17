@@ -24,7 +24,7 @@ public class WhispersOfTheOldGodsPanel extends AbstractExpansionPanel {
      */
     public WhispersOfTheOldGodsPanel() {
         super(IconPaths.OLDGODS_LOGO_ICON_PATH, IconPaths.OLDGODS_CARD_PACK_ICON_PATH,
-                Colors.OLDGODS_COLOR, Colors.TEXT_COLOR, Colors.MODIFIERS_COLORS);
+                Colors.OLDGODS_COLOR, Colors.TEXT_DARK_COLOR, Colors.MODIFIERS_DARK_COLORS);
     }
 
 }
