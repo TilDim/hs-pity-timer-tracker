@@ -37,10 +37,11 @@ public final class IconPaths {
 
     // Year shortcuts
     // Standard
+    public static final String PEGASUS_SHORTCUT_ICON_PATH = "images/hs_year_icons/shortcuts/year_of_the_pegasus_s.png";
     public static final String WOLF_SHORTCUT_ICON_PATH = "images/hs_year_icons/shortcuts/year_of_the_wolf_s.png";
-    public static final String HYDRA_SHORTCUT_ICON_PATH = "images/hs_year_icons/shortcuts/year_of_the_hydra_s.png";
 
     // Wild
+    public static final String HYDRA_SHORTCUT_ICON_PATH = "images/hs_year_icons/shortcuts/year_of_the_hydra_s.png";
     public static final String GRYPHON_SHORTCUT_ICON_PATH = "images/hs_year_icons/shortcuts/year_of_the_gryphon_s.png";
     public static final String PHOENIX_SHORTCUT_ICON_PATH = "images/hs_year_icons/shortcuts/year_of_the_phoenix_s.png";
     public static final String DRAGON_SHORTCUT_ICON_PATH = "images/hs_year_icons/shortcuts/year_of_the_dragon_s.png";
@@ -52,10 +53,11 @@ public final class IconPaths {
 
     // ++++++++++   YEAR   ++++++++++
     // Standard
+    public static final String PEGASUS_ICON_PATH = "images/hs_year_icons/year_of_the_pegasus.png";
     public static final String WOLF_ICON_PATH = "images/hs_year_icons/year_of_the_wolf.png";
-    public static final String HYDRA_ICON_PATH = "images/hs_year_icons/year_of_the_hydra.png";
 
     // Wild
+    public static final String HYDRA_ICON_PATH = "images/hs_year_icons/year_of_the_hydra.png";
     public static final String GRYPHON_ICON_PATH = "images/hs_year_icons/year_of_the_gryphon.png";
     public static final String PHOENIX_ICON_PATH = "images/hs_year_icons/year_of_the_phoenix.png";
     public static final String DRAGON_ICON_PATH = "images/hs_year_icons/year_of_the_dragon.png";
@@ -66,6 +68,9 @@ public final class IconPaths {
     // ----------   YEAR   ----------
 
     // ++++++++++   LOGO   ++++++++++
+    // Year of the Pegasus
+    public static final String WORKSHOP_LOGO_ICON_PATH = "images/hs_expansion_icons/whizbang's_workshop.png";
+
     // Year of the Wolf
     public static final String BADLANDS_LOGO_ICON_PATH = "images/hs_expansion_icons/showdown_in_the_badlands.png";
     public static final String TITANS_LOGO_ICON_PATH = "images/hs_expansion_icons/titans.png";
@@ -114,6 +119,9 @@ public final class IconPaths {
     // ----------   LOGO   ----------
 
     // ++++++++++   CARD PACK   ++++++++++
+    // Year of the Pegasus
+    public static final String WORKSHOP_CARD_PACK_ICON_PATH = "images/hs_card_pack_icons/whizbang's_workshop_card_pack.png";
+
     // Year of the Wolf
     public static final String BADLANDS_CARD_PACK_ICON_PATH = "images/hs_card_pack_icons/showdown_in_the_badlands_card_pack.png";
     public static final String TITANS_CARD_PACK_ICON_PATH = "images/hs_card_pack_icons/titans_card_pack.png";

@@ -30,6 +30,9 @@ public final class Colors {
     // ----------   YEAR   ----------
 
     // ++++++++++   EXPANSION   ++++++++++
+    // Year of the Pegasus
+    public static final Color WORKSHOP_COLOR = new Color(125, 5, 55);
+
     // Year of the Wolf
     public static final Color BADLANDS_COLOR = new Color(230, 140, 70);
     public static final Color TITANS_COLOR = new Color(210, 210, 215);

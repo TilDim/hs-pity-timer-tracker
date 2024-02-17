@@ -26,6 +26,7 @@ public final class Text {
     public static final String WILD_TEXT = "Wild";
 
     // YEAR
+    public static final String PEGASUS_TITLE = "Year of the Pegasus (2024)";
     public static final String WOLF_TITLE = "Year of the Wolf (2023)";
     public static final String HYDRA_TITLE = "Year of the Hydra (2022)";
     public static final String GRYPHON_TITLE = "Year of the Gryphon (2021)";

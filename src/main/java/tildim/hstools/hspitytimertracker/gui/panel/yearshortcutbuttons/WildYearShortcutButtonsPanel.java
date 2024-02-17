@@ -10,6 +10,7 @@ import tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.button.*;
  *
  * @author Tilemachos Dimos
  * @see AbstractYearShortcutButtonsPanel
+ * @see YearOfTheHydraShortcutButton
  * @see YearOfTheGryphonShortcutButton
  * @see YearOfThePhoenixShortcutButton
  * @see YearOfTheDragonShortcutButton
@@ -27,6 +28,9 @@ public class WildYearShortcutButtonsPanel extends AbstractYearShortcutButtonsPan
     /**
      * Constructs a {@link #AbstractYearShortcutButtonsPanel} and places in it:
      * <ul>
+     *     <li>
+     *         a {@code YearOfTheHydraShortcutButton};
+     *     </li>
      *     <li>
      *         a {@code YearOfTheGryphonShortcutButton};
      *     </li>
@@ -54,6 +58,7 @@ public class WildYearShortcutButtonsPanel extends AbstractYearShortcutButtonsPan
         super();
 
         // Instantiate the year shortcut buttons panel's components
+        YearOfTheHydraShortcutButton yearOfTheHydraShortcutButton = new YearOfTheHydraShortcutButton();
         YearOfTheGryphonShortcutButton yearOfTheGryphonShortcutButton = new YearOfTheGryphonShortcutButton();
         YearOfThePhoenixShortcutButton yearOfThePhoenixShortcutButton = new YearOfThePhoenixShortcutButton();
         YearOfTheDragonShortcutButton yearOfTheDragonShortcutButton = new YearOfTheDragonShortcutButton();
@@ -63,6 +68,7 @@ public class WildYearShortcutButtonsPanel extends AbstractYearShortcutButtonsPan
         Years1And2ShortcutButton years1And2ShortcutButton = new Years1And2ShortcutButton();
 
         // Add the year shortcut buttons to a list
+        modeYearShortcutButtons.add(yearOfTheHydraShortcutButton);
         modeYearShortcutButtons.add(yearOfTheGryphonShortcutButton);
         modeYearShortcutButtons.add(yearOfThePhoenixShortcutButton);
         modeYearShortcutButtons.add(yearOfTheDragonShortcutButton);
@@ -72,6 +78,7 @@ public class WildYearShortcutButtonsPanel extends AbstractYearShortcutButtonsPan
         modeYearShortcutButtons.add(years1And2ShortcutButton);
 
         // Add the components to the year shortcut buttons panel
+        add(yearOfTheHydraShortcutButton);
         add(yearOfTheGryphonShortcutButton);
         add(yearOfThePhoenixShortcutButton);
         add(yearOfTheDragonShortcutButton);

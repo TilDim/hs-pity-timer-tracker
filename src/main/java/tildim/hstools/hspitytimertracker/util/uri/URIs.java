@@ -13,6 +13,9 @@ import lombok.NoArgsConstructor;
 public final class URIs {
 
     // ++++++++++   EXPANSION   ++++++++++
+    // Year of the Pegasus
+    public static final String WORKSHOP_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/whizbangs-workshop";
+
     // Year of the Wolf
     public static final String BADLANDS_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/showdown-in-the-badlands";
     public static final String TITANS_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/titans/";
@@ -58,6 +61,9 @@ public final class URIs {
     // ----------   EXPANSION   ----------
 
     // ++++++++++   CARD PACK   ++++++++++
+    // Year of the Pegasus
+    public static final String WORKSHOP_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-whizbangs-workshop-packs";
+
     // Year of the Wolf
     public static final String BADLANDS_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-showdown-in-the-badlands-packs";
     public static final String TITANS_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-titans-packs";

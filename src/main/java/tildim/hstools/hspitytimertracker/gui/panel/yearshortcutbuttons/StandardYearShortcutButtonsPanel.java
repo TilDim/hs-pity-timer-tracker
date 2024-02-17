@@ -2,7 +2,7 @@ package tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons;
 
 import java.io.Serial;
 import lombok.Getter;
-import tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.button.YearOfTheHydraShortcutButton;
+import tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.button.YearOfThePegasusShortcutButton;
 import tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.button.YearOfTheWolfShortcutButton;
 
 /**
@@ -11,8 +11,8 @@ import tildim.hstools.hspitytimertracker.gui.panel.yearshortcutbuttons.button.Ye
  *
  * @author Tilemachos Dimos
  * @see AbstractYearShortcutButtonsPanel
+ * @see YearOfThePegasusShortcutButton
  * @see YearOfTheWolfShortcutButton
- * @see YearOfTheHydraShortcutButton
  */
 @Getter
 public class StandardYearShortcutButtonsPanel extends AbstractYearShortcutButtonsPanel {
@@ -24,10 +24,10 @@ public class StandardYearShortcutButtonsPanel extends AbstractYearShortcutButton
      * Constructs a {@link #AbstractYearShortcutButtonsPanel} and places in it:
      * <ul>
      *     <li>
-     *         a {@code YearOfTheWolfShortcutButton};
+     *         a {@code YearOfThePegasusShortcutButton};
      *     </li>
      *     <li>
-     *         a {@code YearOfTheHydraShortcutButton}.
+     *         a {@code YearOfTheWolfShortcutButton}.
      *     </li>
      * </ul>
      */
@@ -35,16 +35,16 @@ public class StandardYearShortcutButtonsPanel extends AbstractYearShortcutButton
         super();
 
         // Instantiate the year shortcut buttons panel's components
+        YearOfThePegasusShortcutButton yearOfThePegasusShortcutButton = new YearOfThePegasusShortcutButton();
         YearOfTheWolfShortcutButton yearOfTheWolfShortcutButton = new YearOfTheWolfShortcutButton();
-        YearOfTheHydraShortcutButton yearOfTheHydraShortcutButton = new YearOfTheHydraShortcutButton();
 
         // Add the year shortcut buttons to a list
+        modeYearShortcutButtons.add(yearOfThePegasusShortcutButton);
         modeYearShortcutButtons.add(yearOfTheWolfShortcutButton);
-        modeYearShortcutButtons.add(yearOfTheHydraShortcutButton);
 
         // Add the components to the year shortcut buttons panel
+        add(yearOfThePegasusShortcutButton);
         add(yearOfTheWolfShortcutButton);
-        add(yearOfTheHydraShortcutButton);
     }
 
 }

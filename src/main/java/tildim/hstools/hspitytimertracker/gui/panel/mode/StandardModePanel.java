@@ -1,7 +1,7 @@
 package tildim.hstools.hspitytimertracker.gui.panel.mode;
 
 import java.io.Serial;
-import tildim.hstools.hspitytimertracker.gui.panel.year.YearOfTheHydraPanel;
+import tildim.hstools.hspitytimertracker.gui.panel.year.YearOfThePegasusPanel;
 import tildim.hstools.hspitytimertracker.gui.panel.year.YearOfTheWolfPanel;
 
 /**
@@ -10,8 +10,8 @@ import tildim.hstools.hspitytimertracker.gui.panel.year.YearOfTheWolfPanel;
  *
  * @author Tilemachos Dimos
  * @see AbstractModePanel
+ * @see YearOfThePegasusPanel
  * @see YearOfTheWolfPanel
- * @see YearOfTheHydraPanel
  */
 public class StandardModePanel extends AbstractModePanel {
 
@@ -22,10 +22,10 @@ public class StandardModePanel extends AbstractModePanel {
      * Constructs a {@link #AbstractModePanel} and places in it:
      * <ul>
      *     <li>
-     *         a {@code YearOfTheWolfPanel};
+     *         a {@code YearOfThePegasusPanel};
      *     </li>
      *     <li>
-     *         a {@code YearOfTheHydraPanel}.
+     *         a {@code YearOfTheWolfPanel}.
      *     </li>
      * </ul>
      */
@@ -33,16 +33,16 @@ public class StandardModePanel extends AbstractModePanel {
         super();
 
         // Instantiate the mode panel's components
+        YearOfThePegasusPanel yearOfThePegasusPanel = new YearOfThePegasusPanel();
         YearOfTheWolfPanel yearOfTheWolfPanel = new YearOfTheWolfPanel();
-        YearOfTheHydraPanel yearOfTheHydraPanel = new YearOfTheHydraPanel();
 
         // Add the year panels to a list
+        modeYearPanels.add(yearOfThePegasusPanel);
         modeYearPanels.add(yearOfTheWolfPanel);
-        modeYearPanels.add(yearOfTheHydraPanel);
 
         // Add the components to the mode panel
+        add(yearOfThePegasusPanel);
         add(yearOfTheWolfPanel);
-        add(yearOfTheHydraPanel);
     }
 
 }

@@ -11,6 +11,7 @@ import tildim.hstools.hspitytimertracker.gui.panel.year.*;
  *
  * @author Tilemachos Dimos
  * @see AbstractModePanel
+ * @see YearOfTheHydraPanel
  * @see YearOfTheGryphonPanel
  * @see YearOfThePhoenixPanel
  * @see YearOfTheDragonPanel
@@ -31,6 +32,9 @@ public class WildModePanel extends AbstractModePanel {
     /**
      * Constructs a {@link #AbstractModePanel} and places in it:
      * <ul>
+     *     <li>
+     *         a {@code YearOfTheHydraPanel};
+     *     </li>
      *     <li>
      *         a {@code YearOfTheGryphonPanel};
      *     </li>
@@ -61,6 +65,7 @@ public class WildModePanel extends AbstractModePanel {
         super();
 
         // Instantiate the mode panel's components
+        YearOfTheHydraPanel yearOfTheHydraPanel = new YearOfTheHydraPanel();
         YearOfTheGryphonPanel yearOfTheGryphonPanel = new YearOfTheGryphonPanel();
         YearOfThePhoenixPanel yearOfThePhoenixPanel = new YearOfThePhoenixPanel();
         YearOfTheDragonPanel yearOfTheDragonPanel = new YearOfTheDragonPanel();
@@ -71,6 +76,7 @@ public class WildModePanel extends AbstractModePanel {
         classicPanel = new ClassicPanel();
 
         // Add the year panels to a list
+        modeYearPanels.add(yearOfTheHydraPanel);
         modeYearPanels.add(yearOfTheGryphonPanel);
         modeYearPanels.add(yearOfThePhoenixPanel);
         modeYearPanels.add(yearOfTheDragonPanel);
@@ -80,6 +86,7 @@ public class WildModePanel extends AbstractModePanel {
         modeYearPanels.add(years1And2Panel);
 
         // Add the components to the mode panel
+        add(yearOfTheHydraPanel);
         add(yearOfTheGryphonPanel);
         add(yearOfThePhoenixPanel);
         add(yearOfTheDragonPanel);
@@ -89,4 +96,5 @@ public class WildModePanel extends AbstractModePanel {
         add(years1And2Panel);
         add(classicPanel);
     }
+
 }

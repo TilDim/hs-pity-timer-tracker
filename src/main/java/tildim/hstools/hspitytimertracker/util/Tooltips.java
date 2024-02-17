@@ -20,6 +20,7 @@ public final class Tooltips {
     public static final String WILD_TOOLTIP = "Show 'Wild' sets";
 
     // YEAR SHORTCUT
+    public static final String PEGASUS_SHORTCUT_TOOLTIP = "Go to 'Year of the Pegasus'";
     public static final String WOLF_SHORTCUT_TOOLTIP = "Go to 'Year of the Wolf'";
     public static final String HYDRA_SHORTCUT_TOOLTIP = "Go to 'Year of the Hydra'";
     public static final String GRYPHON_SHORTCUT_TOOLTIP = "Go to 'Year of the Gryphon'";
