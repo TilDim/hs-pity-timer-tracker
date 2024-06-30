@@ -69,6 +69,7 @@ public final class IconPaths {
 
     // ++++++++++   LOGO   ++++++++++
     // Year of the Pegasus
+    public static final String PARADISE_LOGO_ICON_PATH = "images/hs_expansion_icons/perils_in_paradise.png";
     public static final String WORKSHOP_LOGO_ICON_PATH = "images/hs_expansion_icons/whizbang's_workshop.png";
 
     // Year of the Wolf
@@ -120,6 +121,7 @@ public final class IconPaths {
 
     // ++++++++++   CARD PACK   ++++++++++
     // Year of the Pegasus
+    public static final String PARADISE_CARD_PACK_ICON_PATH = "images/hs_card_pack_icons/perils_in_paradise_card_pack.png";
     public static final String WORKSHOP_CARD_PACK_ICON_PATH = "images/hs_card_pack_icons/whizbang's_workshop_card_pack.png";
 
     // Year of the Wolf

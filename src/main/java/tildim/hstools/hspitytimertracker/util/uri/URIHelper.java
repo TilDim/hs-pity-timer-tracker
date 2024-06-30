@@ -28,6 +28,7 @@ public class URIHelper {
     public static List<URI> getExpansionURIs() {
         List<URI> expansionURIs = new ArrayList<>();
 
+        expansionURIs.add(URI.create(URIs.PARADISE_EXPANSION_URI));
         expansionURIs.add(URI.create(URIs.WORKSHOP_EXPANSION_URI));
         expansionURIs.add(URI.create(URIs.BADLANDS_EXPANSION_URI));
         expansionURIs.add(URI.create(URIs.TITANS_EXPANSION_URI));
@@ -67,6 +68,7 @@ public class URIHelper {
     public static List<URI> getCardPackURIs() {
         List<URI> cardPackURIs = new ArrayList<>();
 
+        cardPackURIs.add(URI.create(URIs.PARADISE_CARD_PACK_URI));
         cardPackURIs.add(URI.create(URIs.WORKSHOP_CARD_PACK_URI));
         cardPackURIs.add(URI.create(URIs.BADLANDS_CARD_PACK_URI));
         cardPackURIs.add(URI.create(URIs.TITANS_CARD_PACK_URI));
