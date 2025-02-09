@@ -12,6 +12,7 @@ import tildim.hstools.hspitytimertracker.util.icon.IconPaths;
  *
  * @author Tilemachos Dimos
  * @see AbstractYearPanel
+ * @see PerilsInParadisePanel
  * @see WhizbangsWorkshopPanel
  */
 public class YearOfThePegasusPanel extends AbstractYearPanel {
