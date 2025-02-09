@@ -14,6 +14,7 @@ public final class URIs {
 
     // ++++++++++   EXPANSION   ++++++++++
     // Year of the Pegasus
+    public static final String GREAT_DARK_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/the-great-dark-beyond";
     public static final String PARADISE_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/perils-in-paradise";
     public static final String WORKSHOP_EXPANSION_URI = "https://hearthstone.blizzard.com/en-us/expansions-adventures/whizbangs-workshop";
 
@@ -63,6 +64,7 @@ public final class URIs {
 
     // ++++++++++   CARD PACK   ++++++++++
     // Year of the Pegasus
+    public static final String GREAT_DARK_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-the-great-dark-beyond-packs";
     public static final String PARADISE_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-perils-in-paradise-packs";
     public static final String WORKSHOP_CARD_PACK_URI = "https://eu.shop.battle.net/en-gb/product/hearthstone-whizbangs-workshop-packs";
 

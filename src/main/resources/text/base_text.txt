@@ -3,6 +3,7 @@
 ~ Hearthstone Pity Timer Tracker ~
 
 - Expansions
+The Great Dark Beyond
 Perils in Paradise
 Whizbang’s Workshop
 Showdown in the Badlands
@@ -35,6 +36,7 @@ Classic
 ----------
 
 - Epic counters
+The Great Dark Beyond: 0
 Perils in Paradise: 0
 Whizbang’s Workshop: 0
 Showdown in the Badlands: 0
@@ -65,6 +67,7 @@ Goblins vs Gnomes: 0
 Classic: 0
 
 - Epic probabilities
+The Great Dark Beyond: 0
 Perils in Paradise: 0
 Whizbang’s Workshop: 0
 Showdown in the Badlands: 0
@@ -97,6 +100,7 @@ Classic: 0
 ----------
 
 - Legendary counters
+The Great Dark Beyond: 0
 Perils in Paradise: 0
 Whizbang’s Workshop: 0
 Showdown in the Badlands: 0
@@ -127,6 +131,7 @@ Goblins vs Gnomes: 0
 Classic: 0
 
 - Legendary probabilities
+The Great Dark Beyond: 0
 Perils in Paradise: 0
 Whizbang’s Workshop: 0
 Showdown in the Badlands: 0
@@ -159,6 +164,7 @@ Classic: 0
 ----------
 
 - Total counters
+The Great Dark Beyond: 0
 Perils in Paradise: 0
 Whizbang’s Workshop: 0
 Showdown in the Badlands: 0

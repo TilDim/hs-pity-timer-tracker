@@ -31,6 +31,7 @@ public final class Colors {
 
     // ++++++++++   EXPANSION   ++++++++++
     // Year of the Pegasus
+    public static final Color GREAT_DARK_COLOR = new Color(65, 50, 170);
     public static final Color PARADISE_COLOR = new Color(30, 140, 190);
     public static final Color WORKSHOP_COLOR = new Color(125, 5, 55);
 
